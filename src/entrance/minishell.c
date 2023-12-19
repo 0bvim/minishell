@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/18 21:23:26 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/12/18 21:34:29 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	printf("Hello I'm your own shell!");
+	(void)argc;
+	(void)argv;
+	(void)envp;
+	printf("Hello I'm your own shell!\n");
 
 	return (EXIT_SUCCESS);
 }

@@ -1,5 +1,5 @@
 # program name #
-NAME = push_swap
+NAME = minishell
 
 # shell #
 SHELL := /bin/bash
@@ -50,8 +50,8 @@ MANDATORY = Program compiled
 LBONUS = Bonus Program compiled
 CLEAN = Objects delete
 FCLEAN = Program delete
-LIBNAME = push_swap
-BLIBNAME = checker
+LIBNAME = minishell
+BLIBNAME = minishell_bonus
 COMP = Compiling
 
 # debug and normal flags #
@@ -66,11 +66,8 @@ INC = includes
 OBJ = obj
 
 # files path #
-VALIDATIONS = $(SRC)/validations
-MOVIMENTATION = $(SRC)/movimentation
-NODES = $(SRC)/nodes
-SORT = $(SRC)/sorting
 ENTRANCE = $(SRC)/entrance
+PARSER = $(SRC)/parser
 
 # libs #
 INCLUDES = -I$(INC)/ -Ilib/libft/includes/
@@ -80,18 +77,12 @@ LIBFT = lib/libft/libft.a
 LIBFT_PATH = lib/libft
 
 # main #
-MAIN_SRC = $(ENTRANCE)/main.c
-BONUS_SRC = $(addprefix $(BONUS)/ )
+MAIN_SRC = $(ENTRANCE)/minishell.c
+BONUS_SRC = $(addprefix $(BONUS)/, )
 
 # files mandatory #
-CFILES = $(addprefix $(ENTRANCE)/, stack_init.c sort_select.c free_all.c)
-CFILES += $(addprefix $(VALIDATIONS)/, validations.c)
-CFILES += $(addprefix $(MOVIMENTATION)/, push.c rev_rotate.c rotate.c swap.c \
-finish_rotation.c move_nodes.c)
-CFILES += $(addprefix $(NODES)/, nodes.c size.c init_node.c find.c \
-current_position.c set_cheapest.c push_price.c target_node.c return_cheapest.c)
-CFILES += $(addprefix $(SORT)/, tiny_sort.c is_sorted.c push_swap.c \
-jackson_sort.c)
+CFILES = $(addprefix $(ENTRANCE)/, )
+CFILES += $(addprefix $(PARSER)/, )
 
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-out.txt
 VAL_TXT = valgrind-out.txt
