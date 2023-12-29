@@ -6,32 +6,32 @@
 /*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:19:08 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/29 16:20:05 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:29:20 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void tokenizeParentheses(char *p, Token *tokens, int *numTokens)
+void tokenizeParentheses(char *p, Token *tokens, int *num_tokens)
 {
 	if (*p == '(')
 	{
-		tokens[*numTokens].type = TOKEN_LPAREN;
-		tokens[*numTokens].value = "(";
-		(*numTokens)++;
+		tokens[*num_tokens].type = TOKEN_LPAREN;
+		tokens[*num_tokens].value = "(";
+		(*num_tokens)++;
 		p++;
 	}
 	else if (*p == ')')
 	{
-		tokens[*numTokens].type = TOKEN_RPAREN;
-		tokens[*numTokens].value = ")";
-		(*numTokens)++;
+		tokens[*num_tokens].type = TOKEN_RPAREN;
+		tokens[*num_tokens].value = ")";
+		(*num_tokens)++;
 		p++;
 	}
 }
 
 
-void tokenizeQuote(char *p, Token *tokens, int *numTokens)
+void tokenizeQuote(char *p, Token *tokens, int *num_tokens)
 {
 	if (*p == '"' || *p == '\'')
 	{
@@ -50,9 +50,9 @@ void tokenizeQuote(char *p, Token *tokens, int *numTokens)
 		{
 			// Handle error: unmatched quote
 		}
-		tokens[*numTokens].type = TOKEN_QUOTE;
-		tokens[*numTokens].value = strndup(begin, p - begin);
-		(*numTokens)++;
+		tokens[*num_tokens].type = TOKEN_QUOTE;
+		tokens[*num_tokens].value = ft_strndup(begin, p - begin);
+		(*num_tokens)++;
 		p++;
 	}
 }
