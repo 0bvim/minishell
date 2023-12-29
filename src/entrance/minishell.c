@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/29 01:52:11 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:14:09 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)),
-		char **envp __attribute__((unused)))
-{
+Token	*tokenize(char *input);
 	/* display the prompt */
 	/* read user input */
 	/* parser user input into commands and expand variables if have one. */
@@ -23,14 +21,20 @@ int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)),
 	/* execute the command(s) (execv)*/
 	/* wait for command completion */
 	/* need to finish this little guide */
+int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)),
+		char **envp __attribute__((unused)))
+{
 	char	*input;
+	Token	*token;
+
 	while (true)
 	{
 		input = readline("minishell~$ ");
 		if (input != NULL)
-			printf("%s\n", input);
+		{
+			token = tokenize(input);
+		}
 		free (input);
 	}
-	// printf("Hello I'm your own shell!\n");
 	return (EXIT_SUCCESS);
 }

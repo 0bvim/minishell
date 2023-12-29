@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/29 02:58:16 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:17:43 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,46 @@
 /* libft header path */
 # include "../lib/libft/includes/libft.h"
 
+# define MAX_NUM_TOKENS 128
+/* enum and struct */
+
+typedef enum
+{
+	TOKEN_COMMAND,
+	TOKEN_ARGUMENT,
+	TOKEN_AND,
+	TOKEN_OR,
+	TOKEN_LPAREN,
+	TOKEN_RPAREN,
+	TOKEN_QUOTE
+} TokenType;
+
+/* struct to keep value and type of token */
+typedef struct
+{
+	TokenType	type;
+	char		*value;
+} Token;
+
+/* struct for command and args */
+typedef struct
+{
+	char	*command;
+	char	**arguments;
+} Command;
+
+/* struct to handle operators and paretheses, which change the precedence of
+ * commands.
+ */
+typedef struct
+{
+	Command	*command;
+	struct Node	*left;
+	struct Node	*right;
+} Node;
+
+
+/* tokenization functions */
+Token	*tokenize(char *input);
+void	tokenize_and(char *p, Token *tokens, int *num);
 #endif
