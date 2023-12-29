@@ -78,7 +78,7 @@ LIBFT = lib/libft/libft.a
 LIBFT_PATH = lib/libft
 
 # main #
-MAIN_SRC = $(ENTRANCE)/minishell.c
+MAIN_SRC = $(ENTRANCE)/minishell.c 
 BONUS_SRC = $(addprefix $(BONUS)/, )
 
 # files mandatory #
