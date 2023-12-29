@@ -58,6 +58,7 @@ COMP = Compiling
 DFLAGS = -Wall -Wextra -Werror -g3 # TO DEBBUG
 CFLAGS = -Wall -Werror -Wextra -g3 -Ofast -flto -MD -MP # FOR DEPENDENCIES
 LFLAGS = -march=native # TO OPTIMIZE FOR SPECIFIC ARCHITECTURE
+FFLAGS = -lreadline # FLAGS THAT ONLY WORK AT THE END OF LINE (AFTER OBJECTS)
 
 # paths #
 SRC = src
@@ -114,7 +115,7 @@ define create_objects_dir
 endef
 
 define compile
-	$(CC) -o $(NAME) $(CFLAGS) $(LFLAGS) $(INCLUDES) $(LINCLUDES) $(OBJECT) $(BIN_OBJ) $(LIBFT)
+	$(CC) -o $(NAME) $(CFLAGS) $(LFLAGS) $(INCLUDES) $(LINCLUDES) $(OBJECT) $(BIN_OBJ) $(LIBFT) $(FFLAGS)
 	$(SLEEP)
 	printf "\n$(MAGENTA)$(MANDATORY)\n$(RESET)"
 endef

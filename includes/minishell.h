@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/18 21:18:33 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/12/29 02:19:14 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 /* for read line (compile with -lreadline or just -l) */
-# include <readline/readline.h>
+# include "readline/readline.h"
 
 /* malloc, free, write, printf, getcwd, chdir, stat, lstat and others */
 # include <stdio.h>
