@@ -56,7 +56,7 @@ COMP = Compiling
 
 # debug and normal flags #
 DFLAGS = -Wall -Wextra -Werror -g3 # TO DEBBUG
-CFLAGS = -Wall -Werror -Wextra -g3 -Ofast -flto -MD -MP # FOR DEPENDENCIES
+CFLAGS = -Wall -Werror -Wextra -g3 -flto -MD -MP # FOR DEPENDENCIES
 LFLAGS = -march=native # TO OPTIMIZE FOR SPECIFIC ARCHITECTURE
 FFLAGS = -lreadline # FLAGS THAT ONLY WORK AT THE END OF LINE (AFTER OBJECTS)
 
@@ -83,7 +83,7 @@ BONUS_SRC = $(addprefix $(BONUS)/, )
 
 # files mandatory #
 CFILES = $(addprefix $(ENTRANCE)/, )
-CFILES += $(addprefix $(PARSER)/, )
+CFILES += $(addprefix $(PARSER)/, and_or.c arguments.c parentheses.c tokenize.c)
 
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-out.txt
 VAL_TXT = valgrind-out.txt

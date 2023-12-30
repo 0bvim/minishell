@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/29 16:17:43 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/12/30 01:12:23 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,9 @@ typedef struct
 /* tokenization functions */
 Token	*tokenize(char *input);
 void	tokenize_and(char *p, Token *tokens, int *num);
+void	tokenize_or(char *p, Token *tokens, int *num);
+void	tokenize_parentheses(char *p, Token *tokens, int *num);
+void	tokenize_quote(char *p, Token *tokens, int *num);
+void	tokenize_argument(char *p, Token *tokens, int *num);
+
 #endif

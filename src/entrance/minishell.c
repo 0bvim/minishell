@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/29 16:14:09 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/12/30 01:46:56 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,17 @@ int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)),
 	char	*input;
 	Token	*token;
 
+	token = NULL;
 	while (true)
 	{
 		input = readline("minishell~$ ");
 		if (input != NULL)
 		{
 			token = tokenize(input);
+			printf("%d", token->type);
 		}
 		free (input);
+		free (token);
 	}
 	return (EXIT_SUCCESS);
 }

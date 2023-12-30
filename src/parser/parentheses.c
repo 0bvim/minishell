@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parenthesis.c                                      :+:      :+:    :+:   */
+/*   parentheses.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:19:08 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/29 16:29:20 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/12/30 01:16:23 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void tokenizeParentheses(char *p, Token *tokens, int *num_tokens)
+void tokenize_parentheses(char *p, Token *tokens, int *num)
 {
 	if (*p == '(')
 	{
-		tokens[*num_tokens].type = TOKEN_LPAREN;
-		tokens[*num_tokens].value = "(";
-		(*num_tokens)++;
+		tokens[*num].type = TOKEN_LPAREN;
+		tokens[*num].value = "(";
+		(*num)++;
 		p++;
 	}
 	else if (*p == ')')
 	{
-		tokens[*num_tokens].type = TOKEN_RPAREN;
-		tokens[*num_tokens].value = ")";
-		(*num_tokens)++;
+		tokens[*num].type = TOKEN_RPAREN;
+		tokens[*num].value = ")";
+		(*num)++;
 		p++;
 	}
 }
 
-void tokenizeQuote(char *p, Token *tokens, int *num_tokens)
+void tokenize_quote(char *p, Token *tokens, int *num)
 {
 	if (*p == '"' || *p == '\'')
 	{
@@ -49,9 +49,9 @@ void tokenizeQuote(char *p, Token *tokens, int *num_tokens)
 		{
 			// Handle error: unmatched quote
 		}
-		tokens[*num_tokens].type = TOKEN_QUOTE;
-		tokens[*num_tokens].value = ft_strndup(begin, p - begin);
-		(*num_tokens)++;
+		tokens[*num].type = TOKEN_QUOTE;
+		tokens[*num].value = ft_strndup(begin, p - begin);
+		(*num)++;
 		p++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:56:48 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/01 12:31:37 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/12/30 01:48:12 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	aux_len = ft_strlen(s);
 	if (start > aux_len)
-		return (ft_strdup(""));
+		return (ft_strndup("", 0));
 	if (aux_len >= len)
 		aux_len = len;
 	if (ft_strlen(s) - start < aux_len)
