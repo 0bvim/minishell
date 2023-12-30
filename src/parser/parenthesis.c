@@ -30,7 +30,6 @@ void tokenizeParentheses(char *p, Token *tokens, int *num_tokens)
 	}
 }
 
-
 void tokenizeQuote(char *p, Token *tokens, int *num_tokens)
 {
 	if (*p == '"' || *p == '\'')
