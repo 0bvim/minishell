@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/31 00:45:35 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/31 02:24:26 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <dirent.h>
 # include <string.h>
 # include <termios.h>
-# include <curses.h>
 
 /* access, open read, close */
 # include <fcntl.h>
@@ -40,6 +39,8 @@
 # include "../lib/libft/includes/libft.h"
 
 # define MAX_NUM_TOKENS 128
+# define clear() printf("\033[H\033[J")
+
 /* enum and struct */
 
 typedef enum e_token_type

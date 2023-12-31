@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:27:56 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/30 22:20:00 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/31 02:15:59 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* Std Libs Headers */
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 # include "get_next_line_bonus.h"
 /* Bonus TypeStruct */
 

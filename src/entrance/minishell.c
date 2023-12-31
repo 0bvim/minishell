@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/30 21:54:35 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/31 02:27:45 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)),
 	char	*input;
 	t_token	*token;
 
+	clear();
 	token = NULL;
 	while (true)
 	{
