@@ -6,7 +6,7 @@
 #    By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/20 12:05:38 by vde-frei          #+#    #+#              #
-#    Updated: 2023/11/15 01:42:10 by nivicius         ###   ########.fr        #
+#    Updated: 2023/12/30 22:20:35 by nivicius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ CFILES = ft_atol.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprin
 	ft_strmapi.c ft_striteri.c ft_lstnew.c  ft_lstadd_front.c ft_lstsize.c \
 	ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
 	ft_lstmap.c ft_free_split.c get_next_line_bonus.c get_next_line_utils_bonus.c \
-	ft_free_str.c
+	ft_free_str.c ft_isspace.c
 
 OBJECT =  $(patsubst %, $(OBJ)/%, $(notdir $(CFILES:.c=.o)))
 
