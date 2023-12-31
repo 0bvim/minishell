@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/30 23:21:51 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/30 23:53:20 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ typedef struct s_node
 
 /* tokenization functions */
 t_token	*tokenize(char *input);
-void	tokenize_and(char *p, t_token *tokens, int *num);
-void	tokenize_or(char *p, t_token *tokens, int *num);
+void	tokenize_and(char **p, t_token **tokens, int *num);
+void	tokenize_or(char **p, t_token **tokens, int *num);
 void	tokenize_parentheses(char *p, t_token *tokens, int *num);
 void	tokenize_quote(char *p, t_token *tokens, int *num);
 void	tokenize_argument(char **p, t_token **tokens, int *num);
