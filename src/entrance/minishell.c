@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/30 21:46:20 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/30 21:54:35 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)),
 		if (input != NULL)
 		{
 			token = tokenize(input);
-			printf("%d", token->type);
+			printf("%d\n", token->type);
 		}
 		free (input);
 		free (token);
