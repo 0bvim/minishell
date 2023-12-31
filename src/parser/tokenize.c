@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:12:23 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/30 01:43:43 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/30 21:46:20 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void tokenize_space(char *p);
 
-Token *tokenize(char *input)
+t_token *tokenize(char *input)
 {
 	char	*p;
-	Token	*tokens;
+	t_token	*tokens;
 	int		num_tokens;
 
 	p = input;
-	tokens = malloc(MAX_NUM_TOKENS * sizeof(Token));
+	tokens = malloc(MAX_NUM_TOKENS * sizeof(t_token));
 	num_tokens = 0;
 
 	while (*p != '\0')

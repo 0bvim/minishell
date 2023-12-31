@@ -6,13 +6,13 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:19:08 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/30 01:16:23 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/30 21:46:20 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void tokenize_parentheses(char *p, Token *tokens, int *num)
+void tokenize_parentheses(char *p, t_token *tokens, int *num)
 {
 	if (*p == '(')
 	{
@@ -30,7 +30,7 @@ void tokenize_parentheses(char *p, Token *tokens, int *num)
 	}
 }
 
-void tokenize_quote(char *p, Token *tokens, int *num)
+void tokenize_quote(char *p, t_token *tokens, int *num)
 {
 	if (*p == '"' || *p == '\'')
 	{

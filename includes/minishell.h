@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/30 01:12:23 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/30 21:41:43 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include <sys/wait.h>
 
 /* signal family */
-#include <signal.h>
+# include <signal.h>
 
 /* libft header path */
 # include "../lib/libft/includes/libft.h"
@@ -42,7 +42,7 @@
 # define MAX_NUM_TOKENS 128
 /* enum and struct */
 
-typedef enum
+typedef enum e_token_type
 {
 	TOKEN_COMMAND,
 	TOKEN_ARGUMENT,
@@ -51,39 +51,38 @@ typedef enum
 	TOKEN_LPAREN,
 	TOKEN_RPAREN,
 	TOKEN_QUOTE
-} TokenType;
+}	t_token_type;
 
 /* struct to keep value and type of token */
-typedef struct
+typedef struct s_Token
 {
-	TokenType	type;
-	char		*value;
-} Token;
+	t_token_type	type;
+	char			*value;
+}	t_token;
 
 /* struct for command and args */
-typedef struct
+typedef struct s_command
 {
 	char	*command;
 	char	**arguments;
-} Command;
+}	t_command;
 
 /* struct to handle operators and paretheses, which change the precedence of
  * commands.
  */
-typedef struct
+typedef struct s_node
 {
-	Command	*command;
+	t_command	*command;
 	struct Node	*left;
 	struct Node	*right;
-} Node;
-
+}	t_node;
 
 /* tokenization functions */
-Token	*tokenize(char *input);
-void	tokenize_and(char *p, Token *tokens, int *num);
-void	tokenize_or(char *p, Token *tokens, int *num);
-void	tokenize_parentheses(char *p, Token *tokens, int *num);
-void	tokenize_quote(char *p, Token *tokens, int *num);
-void	tokenize_argument(char *p, Token *tokens, int *num);
+t_token	*tokenize(char *input);
+void	tokenize_and(char *p, t_token *tokens, int *num);
+void	tokenize_or(char *p, t_token *tokens, int *num);
+void	tokenize_parentheses(char *p, t_token *tokens, int *num);
+void	tokenize_quote(char *p, t_token *tokens, int *num);
+void	tokenize_argument(char *p, t_token *tokens, int *num);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/30 01:46:56 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/30 21:46:20 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-Token	*tokenize(char *input);
+t_token	*tokenize(char *input);
 	/* display the prompt */
 	/* read user input */
 	/* parser user input into commands and expand variables if have one. */
@@ -25,7 +25,7 @@ int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)),
 		char **envp __attribute__((unused)))
 {
 	char	*input;
-	Token	*token;
+	t_token	*token;
 
 	token = NULL;
 	while (true)
