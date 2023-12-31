@@ -6,13 +6,13 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:12:23 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/30 21:52:55 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/30 22:47:43 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void tokenize_space(char *p);
+static void tokenize_space(char **p);
 
 t_token *tokenize(char *input)
 {
@@ -26,7 +26,7 @@ t_token *tokenize(char *input)
 
 	while (*p != '\0')
 	{
-		tokenize_space(p);
+		tokenize_space(&p);
 		tokenize_and(p, tokens, &num_tokens);
 		tokenize_or(p, tokens, &num_tokens);
 		tokenize_parentheses(p, tokens, &num_tokens);
@@ -36,10 +36,8 @@ t_token *tokenize(char *input)
 	return (tokens);
 }
 
-static void tokenize_space(char *p)
+static void tokenize_space(char **p)
 {
-	while (*p == ' ' || *p == '\t' || *p == '\n')
-	{
-		p++;
-	}
+	while (ft_isspace(**p))
+		(*p)++;
 }
