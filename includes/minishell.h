@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/30 21:50:47 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/30 23:21:51 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ void	tokenize_and(char *p, t_token *tokens, int *num);
 void	tokenize_or(char *p, t_token *tokens, int *num);
 void	tokenize_parentheses(char *p, t_token *tokens, int *num);
 void	tokenize_quote(char *p, t_token *tokens, int *num);
-void	tokenize_argument(char **p, t_token *tokens, int *num);
+void	tokenize_argument(char **p, t_token **tokens, int *num);
 
 #endif
