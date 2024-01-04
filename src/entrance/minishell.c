@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/03 18:06:48 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:45:33 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_token	*tokenize(char *input);
 	/* execute the command(s) (execv)*/
 	/* wait for command completion */
 	/* need to finish this little guide */
-int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)),
-		char **envp __attribute__((unused)))
+	/* remember to use extern **environ */
+int	main(void)
 {
 	char	*input;
 	t_token	*token;
