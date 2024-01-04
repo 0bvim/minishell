@@ -68,7 +68,7 @@ OBJ = obj
 
 # files path #
 ENTRANCE = $(SRC)/entrance
-PARSER = $(SRC)/parser
+TOKENIZER = $(SRC)/tokenizer
 
 # libs #
 INCLUDES = -I$(INC)/ -Ilib/libft/includes/
@@ -78,12 +78,12 @@ LIBFT = lib/libft/libft.a
 LIBFT_PATH = lib/libft
 
 # main #
-MAIN_SRC = $(ENTRANCE)/minishell.c 
+MAIN_SRC = $(ENTRANCE)/minishell.c
 BONUS_SRC = $(addprefix $(BONUS)/, )
 
 # files mandatory #
 CFILES = $(addprefix $(ENTRANCE)/, )
-CFILES += $(addprefix $(PARSER)/, and_or.c arguments.c parentheses.c tokenize.c)
+CFILES += $(addprefix $(TOKENIZER)/, and_or.c arguments.c parentheses.c tokenize.c)
 
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-out.txt
 VAL_TXT = valgrind-out.txt
