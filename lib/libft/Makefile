@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+         #
+#    By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/20 12:05:38 by vde-frei          #+#    #+#              #
-#    Updated: 2023/12/30 22:20:35 by nivicius         ###   ########.fr        #
+#    Updated: 2024/01/04 20:37:21 by vde-frei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ BLIBNAME =
 COMP = Compiling
 
 DFLAGS = -Wall -Wextra -Werror -g3 # TO DEBBUG
-CFLAGS = -Wall -Werror -Wextra -O3 -fomit-frame-pointer -finline-functions # TO IMPROVE PERFORMANCE
+CFLAGS = -Wall -Werror -Wextra -g3 # TO IMPROVE PERFORMANCE
 ARFLAGS = rcs
 
 SRC = src
