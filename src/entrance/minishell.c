@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/04 13:45:33 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:40:11 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ int	main(void)
 			printf("%d\n", token->type);
 			printf("%s\n", token->value);
 		}
-		free (input);
-		free (token);
+		if (input)
+		{
+			free(input);
+			free(token);
+		}
 	}
 	return (EXIT_SUCCESS);
 }
