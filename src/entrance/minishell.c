@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/31 02:27:45 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/01/03 18:06:48 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)),
 		{
 			token = tokenize(input);
 			printf("%d\n", token->type);
+			printf("%s\n", token->value);
 		}
 		free (input);
 		free (token);
