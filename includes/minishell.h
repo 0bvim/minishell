@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/02 18:24:12 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/04 18:33:00 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ typedef enum e_token_type
 	TOKEN_OR,
 	TOKEN_LPAREN,
 	TOKEN_RPAREN,
-	TOKEN_QUOTE
+	TOKEN_QUOTE,
+	TOKEN_REDIRECT
 }	t_token_type;
 
 /* struct to keep value and type of token */
@@ -85,5 +86,6 @@ void	tokenize_or(char **p, t_token **tokens, int *num);
 void	tokenize_parentheses(char **p, t_token **tokens, int *num);
 void	tokenize_quote(char **p, t_token **tokens, int *num);
 void	tokenize_argument(char **p, t_token **tokens, int *num);
+void	tokenize_redirection(char **p, t_token **tokens, int *num);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:12:23 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/31 00:44:45 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/01/04 18:22:48 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_token *tokenize(char *input)
 		tokenize_or(&p, &tokens, &num_tokens);
 		tokenize_parentheses(&p, &tokens, &num_tokens);
 		tokenize_quote(&p, &tokens, &num_tokens);
+		tokenize_redirection(&p, &tokens, &num_tokens);
 		tokenize_argument(&p, &tokens, &num_tokens);
 	}
 	return (tokens);
