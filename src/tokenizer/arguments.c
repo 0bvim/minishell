@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 01:00:43 by nivicius          #+#    #+#             */
-/*   Updated: 2024/01/04 20:46:53 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/04 22:38:16 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 void	tokenize_argument(char **p, t_token **tokens, int *num)
 {
 	char	*begin = *p;
-	while (**p && !ft_isspace(**p) && **p != '&' && **p != '|' \
-			&& **p != '(' && **p != ')' && **p != '\0')
-		(*p)++;
-	(*tokens)[*num].type = TOKEN_ARGUMENT;
-	(*tokens)[*num].value = ft_strndup(begin, ((*p) - begin));
-	(*num)++;
+	if (**p)
+	{
+		while (**p && !ft_isspace(**p) && **p != '&' && **p != '|' \
+				&& **p != '(' && **p != ')' && **p != '\0')
+			(*p)++;
+		(*tokens)[*num].type = TOKEN_ARGUMENT;
+		(*tokens)[*num].value = ft_strndup(begin, ((*p) - begin));
+		(*num)++;
+	}
 }
