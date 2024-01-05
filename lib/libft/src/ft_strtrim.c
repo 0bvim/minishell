@@ -3,77 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 10:36:15 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/02 17:29:01 by vde-frei         ###   ########.fr       */
+/*   Created: 2023/10/09 08:58:22 by bmoretti          #+#    #+#             */
+/*   Updated: 2023/11/14 11:03:37 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/**
+ * @file ft_strtrim.c
+ * @brief Implementation of the ft_strtrim function.
+ */
 
-size_t	ft_end(char const *s1, char const *set, size_t len)
+#include <stdlib.h>
+
+static int	ft_is_in(const char c, char const *set)
 {
-	size_t	set_count;
-	size_t	end_index;
-	int		is_on_set;
-
-	end_index = len;
-	while (len)
-	{
-		set_count = 0;
-		is_on_set = 0;
-		while (set[set_count] != '\0')
-		{
-			if (s1[len] == set[set_count])
-			{
-				end_index--;
-				is_on_set = 1;
-				break ;
-			}
-			set_count++;
-		}
-		if (is_on_set == 0)
-			return (end_index);
-		len--;
-	}
-	return (end_index);
+	while (*set)
+		if (*(set++) == c)
+			return (1);
+	return (0);
 }
 
-size_t	ft_start(char const *s1, char const *set)
+static char	*ft_while_in_set(char const *ptr_init, char const *set, int dir)
 {
-	size_t	set_count;
-	size_t	start_index;
-	int		is_on_set;
+	char	*ptr;
 
-	start_index = 0;
-	while (*s1 != '\0')
+	ptr = (char *)ptr_init;
+	if (dir == -1 && *ptr)
 	{
-		set_count = 0;
-		is_on_set = 0;
-		while (set[set_count] != '\0')
-		{
-			if (*s1 == set[set_count])
-			{
-				start_index++;
-				is_on_set = 1;
-				break ;
-			}
-			set_count++;
-		}
-		if (is_on_set == 0)
-			return (start_index);
-		s1++;
+		while (*ptr)
+			ptr++;
+		ptr--;
 	}
-	return (start_index);
+	while (ptr >= (char *)ptr_init && ft_is_in(*ptr, set))
+		ptr += dir;
+	if (ptr < (char *)ptr_init)
+		return ((char *)ptr_init);
+	return (ptr);
 }
 
+/**
+ * @brief Allocates and trims a copy of the input string by removing specified
+ *        characters from the beginning and end.
+ *
+ * This function allocates and returns a new string that is a trimmed version
+ * of the input string 's1'.
+ * Trimming involves removing characters from the beginning and end of the
+ * string that are present in the set 'set'.
+ *
+ * @param s1  The input string to trim.
+ * @param set The set of characters to remove from the beginning and end of the
+ *        string.
+ * @return A newly allocated trimmed string, or NULL if memory allocation
+ *         fails.
+ */
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	start;
-	size_t	end;
+	char			*start;
+	char			*end;
+	char			*str;
+	unsigned int	i;
 
-	start = ft_start(s1, set);
-	end = ft_end(s1, set, ft_strlen(s1) - 1);
-	return (ft_substr(s1, start, (end - start + 1)));
+	if (!s1 || !set)
+		return (NULL);
+	start = ft_while_in_set(s1, set, 1);
+	end = ft_while_in_set(start, set, -1);
+	if (end == start && !*start)
+		str = malloc(1);
+	else
+		str = malloc((size_t)(end - start) + 2);
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (start <= end)
+		str[i++] = *(start++);
+	str[i] = '\0';
+	return (str);
 }

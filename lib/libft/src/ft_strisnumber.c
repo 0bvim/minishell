@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strisnumber.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 09:21:06 by bmoretti          #+#    #+#             */
-/*   Updated: 2023/12/19 16:43:03 by brmoretti        ###   ########.fr       */
+/*   Created: 2023/12/19 16:54:12 by brmoretti         #+#    #+#             */
+/*   Updated: 2023/12/30 11:35:35 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file ft_isdigit.c
- * @brief Implementation of the ft_isdigit function.
+ * @file ft_strisnumber.c
+ * @brief Implentation of the ft_strisnumber function
  */
 
 /**
- * @brief Checks if the given character is a digit (0-9).
+ * @brief Checks if a string is a number.
  *
- * This function checks if the given character is a digit, i.e., it is in the
- * range of '0' to '9'.
- *
- * @param c The character to be checked.
- * @return 1 if the character is a digit, 0 otherwise.
+ * @param str The string to check.
+ * @return 1 if the string is a number, 0 otherwise.
  */
-int	ft_isdigit(int c)
+int	ft_strisnumber(const char *str)
 {
-	if ('0' <= c && c <= '9')
-		return (1);
-	return (0);
+	if (!str || !*str)
+		return (0);
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str)
+		if (!('0' <= *str && *str <= '9') || *str != '.')
+			return (0);
+	return (1);
 }

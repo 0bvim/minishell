@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 09:21:06 by bmoretti          #+#    #+#             */
-/*   Updated: 2023/12/19 16:43:03 by brmoretti        ###   ########.fr       */
+/*   Created: 2023/12/22 14:57:02 by brmoretti         #+#    #+#             */
+/*   Updated: 2023/12/22 16:04:04 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file ft_isdigit.c
- * @brief Implementation of the ft_isdigit function.
+ * @file ft_abs.c
+ * @brief Implementation of the ft_abs function.
  */
 
 /**
- * @brief Checks if the given character is a digit (0-9).
+ * Returns the absolute value of an integer.
  *
- * This function checks if the given character is a digit, i.e., it is in the
- * range of '0' to '9'.
- *
- * @param c The character to be checked.
- * @return 1 if the character is a digit, 0 otherwise.
+ * @param nb The integer whose absolute value is to be returned.
+ * @return The absolute value of the integer.
  */
-int	ft_isdigit(int c)
+int	ft_abs(int nb)
 {
-	if ('0' <= c && c <= '9')
-		return (1);
-	return (0);
+	if (nb < 0)
+		return (-nb);
+	return (nb);
 }

@@ -3,21 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/19 02:01:24 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/07/24 17:46:32 by vde-frei         ###   ########.fr       */
+/*   Created: 2023/10/08 22:26:54 by bmoretti          #+#    #+#             */
+/*   Updated: 2023/11/14 10:53:53 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/**
+ * @file ft_strlen.c
+ * @brief Implementation of the ft_strlen function.
+ */
 
-size_t	ft_strlen(const char *str)
+#include <stddef.h>
+
+/**
+ * @brief Calculates the length of a null-terminated string.
+ *
+ * This function calculates the length of the null-terminated string 's'.
+ *
+ * @param s The null-terminated string.
+ * @return The length of the string (excluding the null-terminator).
+ */
+size_t	ft_strlen(const char *s)
 {
-	size_t	len;
+	size_t	i;
 
-	len = 0;
-	while (*str++)
-		len++;
-	return (len);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
