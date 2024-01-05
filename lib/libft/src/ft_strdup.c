@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 21:42:46 by bmoretti          #+#    #+#             */
-/*   Updated: 2023/11/14 10:49:38 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/05 13:00:37 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@
 char	*ft_strdup(const char *s)
 {
 	char	*ptr;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])
 		i++;
 	ptr = malloc(i + 1);
 	if (!ptr)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (s && *s)
 		ptr[i++] = *s++;

@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/02 18:24:12 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/05 13:30:38 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <stdbool.h>
+
 /* for read line (compile with -lreadline or just -l) */
+# include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
 /* malloc, free, write, printf, getcwd, chdir, stat, lstat and others */
-# include <stdio.h>
 # include <stdlib.h>
 # include <sys/stat.h>
 # include <dirent.h>
@@ -36,7 +38,7 @@
 # include <signal.h>
 
 /* libft header path */
-# include "../lib/libft/includes/libft.h"
+# include "../lib/libft/include/libft.h"
 
 # define MAX_NUM_TOKENS 128
 # define clear() printf("\033[H\033[J")
