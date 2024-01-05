@@ -1,2 +1,10 @@
+# cat
 cat | cat | cat file.txt | cat
+
+# heredoc with pipes
+<< eof | echo oi
+echo oi | echo iu | << eof | echo ooo
+echo oi | echo iu | echo ooo | cat << eof
+echo oi | << eof
+echo oi | echo iu | echo ooo | << eof
 
