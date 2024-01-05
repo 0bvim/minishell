@@ -3,20 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 16:09:21 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/07/24 11:04:47 by vde-frei         ###   ########.fr       */
+/*   Created: 2023/10/06 09:01:30 by bmoretti          #+#    #+#             */
+/*   Updated: 2023/11/14 10:18:56 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/**
+ * @file ft_isalpha.c
+ * @brief Implementation of the ft_isalpha function.
+ */
 
+/**
+ * @brief Checks if the given character is an alphabetic character.
+ *
+ * This function checks if the given character is an alphabetic character,
+ * i.e., an uppercase or lowercase letter (A-Z or a-z).
+ *
+ * @param c The character to be checked.
+ * @return 1 if the character is alphabetic, 0 otherwise.
+ */
 int	ft_isalpha(int c)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (1);
-	if (c >= 'a' && c <= 'z')
+	if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
 		return (1);
 	return (0);
 }

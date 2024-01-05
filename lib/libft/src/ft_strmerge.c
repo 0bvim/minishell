@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strmerge.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 09:21:06 by bmoretti          #+#    #+#             */
-/*   Updated: 2023/12/19 16:43:03 by brmoretti        ###   ########.fr       */
+/*   Created: 2023/12/20 16:49:00 by brmoretti         #+#    #+#             */
+/*   Updated: 2023/12/20 17:04:20 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file ft_isdigit.c
- * @brief Implementation of the ft_isdigit function.
+ * @file ft_strmerge.c
+ * @brief Implementation of the ft_strmerge function.
  */
 
+#include "libft.h"
+
 /**
- * @brief Checks if the given character is a digit (0-9).
- *
- * This function checks if the given character is a digit, i.e., it is in the
- * range of '0' to '9'.
- *
- * @param c The character to be checked.
- * @return 1 if the character is a digit, 0 otherwise.
+ * @brief Merges two strings into one. The two strings are freed.
+ * @param s1 The first string.
+ * @param s2 The second string.
+ * @return The merged string.
  */
-int	ft_isdigit(int c)
+char	*ft_strmerge(char *s1, char *s2)
 {
-	if ('0' <= c && c <= '9')
-		return (1);
-	return (0);
+	char	*merged;
+
+	merged = ft_strjoin(s1, s2);
+	if (!merged)
+		return (NULL);
+	free(s1);
+	free(s2);
+	return (merged);
 }

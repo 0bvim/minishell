@@ -3,58 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 01:21:41 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/16 06:57:34 by vde-frei         ###   ########.fr       */
+/*   Created: 2023/10/10 11:54:07 by bmoretti          #+#    #+#             */
+/*   Updated: 2023/11/14 10:16:17 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/**
+ * @file ft_itoa.c
+ * @brief Implementation of the ft_itoa function.
+ */
 
-static int	ft_feedback(int *count, int n)
+#include <stdlib.h>
+
+static size_t	ft_define_size(int n)
 {
-	if (n < 0)
-		return (*count += 1, -1);
-	return (1);
-}
+	size_t	s;
 
-static char	*ft_str_len(unsigned int n, int *count)
-{
-	char	*str;
-
-	if (n >= 10)
+	s = 1;
+	if (n <= 0)
+		s++;
+	while (n != 0)
 	{
-		*count += 1;
-		str = ft_str_len(n / 10, count);
+		n /= 10;
+		s++;
 	}
-	else
-		str = (char *)ft_calloc(*count + 1, sizeof(char));
-	if (!str)
-		return (0);
-	return (str);
+	return (s);
 }
 
-static void	ft_recursive_itoa(unsigned int n, int count, char *str)
-{
-	if (n >= 10)
-		ft_recursive_itoa(n / 10, count - 1, str);
-	str[count] = (n % 10) + '0';
-}
-
+/**
+ * @brief Converts an integer to a string.
+ *
+ * This function converts the given integer to a string representation.
+ *
+ * @param n The integer to be converted.
+ * @return A dynamically allocated string representing the integer.
+ *         Returns NULL if memory allocation fails.
+ */
 char	*ft_itoa(int n)
 {
-	int		count;
-	int		signal;
-	char	*str;
+	char		*a;
+	size_t		size;
+	short int	negative;
 
-	count = 1;
-	signal = ft_feedback(&count, n);
-	str = ft_str_len(n * signal, &count);
-	if (!str)
+	size = ft_define_size(n);
+	a = malloc(size);
+	if (a == NULL)
 		return (NULL);
-	if (signal == -1)
-		str[0] = '-';
-	ft_recursive_itoa(n * signal, count - 1, str);
-	return (str);
+	a[--size] = '\0';
+	negative = 0;
+	if (n < 0)
+		negative = 1;
+	if (n < 0)
+		a[0] = '-';
+	while (size)
+	{
+		if (n < 0)
+			a[--size] = (-(n % 10)) + '0';
+		else
+			a[--size] = (n % 10) + '0';
+		n /= 10;
+	}
+	if (negative)
+		a[0] = '-';
+	return (a);
 }

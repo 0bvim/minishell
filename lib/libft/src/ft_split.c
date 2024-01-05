@@ -3,96 +3,124 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 19:44:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/11/04 14:17:07 by vde-frei         ###   ########.fr       */
+/*   Created: 2023/10/09 19:20:44 by bmoretti          #+#    #+#             */
+/*   Updated: 2023/11/14 10:41:32 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file ft_split.c
+ * @brief Implementation of the ft_split function.
+ */
+
 #include "libft.h"
 
-static void	alloc_mem(char **split_array, char const *s, char c)
+static unsigned int	ft_count_tokens(char const *s, char c)
 {
-	int	index;
-	int	letters;
+	unsigned int	count;
 
-	index = 0;
-	letters = 0;
-	while (*s != '\0')
+	count = 1;
+	if (!*s)
+		return (0);
+	while (*s == c)
+		s++;
+	while (*s)
 	{
-		if (*s != c)
+		if (*(s++) == c)
 		{
-			while (*s != c && *s != '\0')
-			{
-				letters++;
+			count++;
+			while (*s == c)
 				s++;
-			}
-			split_array[index] = ft_calloc((letters + 1), sizeof(char));
-			index++;
-			letters = 0;
 		}
-		else
-			s++;
 	}
+	if (*(s - 1) == c && count >= 1)
+		count--;
+	return (count);
 }
 
-static int	count_word(const char *s, char c)
+static char	*ft_split_malloc(char *start, char c)
 {
-	int	index;
-	int	words;
+	unsigned int	i;
+	char			*str;
 
-	index = 0;
-	words = 0;
-	while (s[index] != '\0')
+	while (*start == c)
+		start++;
+	i = -1;
+	while (start[++i])
 	{
-		if (s[index] != c)
+		if (start[i] == c)
 		{
-			words++;
-			while (s[index] != c && s[index] != '\0')
-				index++;
+			str = malloc(i + 1);
+			if (str == NULL)
+				return (NULL);
+			return (str);
 		}
-		else
-			index++;
 	}
-	return (words);
+	str = malloc(i + 1);
+	if (str == NULL)
+		return (NULL);
+	return (str);
 }
 
-static void	fill_array(char **result_array, const char *s, char c)
+static char	*ft_copy_split(char *dest, char *src, char c)
 {
-	int	word;
-	int	letters;
-
-	word = 0;
-	letters = 0;
-	while (*s != '\0')
-	{
-		if (*s != c)
-		{
-			while (*s != c && *s != '\0')
-			{
-				result_array[word][letters] = *s;
-				s++;
-				letters++;
-			}
-			word++;
-			letters = 0;
-		}
-		else
-			s++;
-	}
+	while (*src && *src == c)
+		src++;
+	while (*src && *src != c)
+		*(dest++) = *(src++);
+	*dest = '\0';
+	if (*src)
+		return (src + 1);
+	return (src);
 }
 
+static char	**ft_clear(char **tab)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (tab[i])
+		free (tab[i++]);
+	free (tab);
+	return (NULL);
+}
+
+/**
+ * @brief Splits a string into an array of tokens based on a specified
+ *        delimiter.
+ *
+ * This function splits the string 's' into an array of tokens using the
+ * delimiter 'c'.
+ *
+ * @param s The string to be split.
+ * @param c The delimiter character.
+ * @return A dynamically allocated array of strings representing the tokens.
+ *         Returns NULL in case of memory allocation failure or if 's' is
+ *         NULL.
+ */
 char	**ft_split(char const *s, char c)
 {
-	char	**result;
-	int		words;
+	char			**tab;
+	char			*mover;
+	unsigned int	i;
+	unsigned int	n_tokens;
 
-	words = count_word(s, c);
-	result = ft_calloc((words + 1), sizeof(char *));
-	if (!s || !result)
+	if (!s)
 		return (NULL);
-	alloc_mem(result, s, c);
-	fill_array(result, s, c);
-	return (result);
+	n_tokens = ft_count_tokens(s, c);
+	tab = ft_calloc((size_t)n_tokens + 1, sizeof(char *));
+	if (!tab)
+		return (NULL);
+	mover = (char *)s;
+	i = -1;
+	while (++i < n_tokens)
+	{
+		tab[i] = ft_split_malloc(mover, c);
+		if (tab[i] == NULL)
+			return (ft_clear(tab));
+		mover = ft_copy_split(tab[i], mover, c);
+	}
+	return (tab);
 }

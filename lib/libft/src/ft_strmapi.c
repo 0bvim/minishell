@@ -3,28 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 15:41:19 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/05 20:22:52 by vde-frei         ###   ########.fr       */
+/*   Created: 2023/10/10 14:25:57 by bmoretti          #+#    #+#             */
+/*   Updated: 2023/12/20 17:01:21 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file ft_strmapi.c
+ * @brief This file contains the ft_strmapi function.
+ */
+
 #include "libft.h"
 
+/**
+ * @brief Applies the function f to each character of the string passed as
+ * argument by giving its index as first argument to create a new string
+ * resulting from successive applications of f.
+ * @param s The string on which to iterate.
+ * @param f The function to apply to each character.
+ * @return The string created from the successive applications of f.
+ * Returns NULL if the allocation fails.
+*/
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*map_return;
-	int		index;
+	char			*str;
+	unsigned int	i;
 
-	map_return = (char *)ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	index = 0;
-	if (!map_return || !f)
+	if (!s || !f)
 		return (NULL);
-	while (s[index] != '\0')
+	str = malloc(ft_strlen(s) + 1);
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i])
 	{
-		map_return[index] = f(index, s[index]);
-		index++;
+		str[i] = f(i, s[i]);
+		i++;
 	}
-	return (map_return);
+	str[i] = '\0';
+	return (str);
 }

@@ -3,28 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivi <nivi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 17:06:02 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/11/10 17:29:02 by nivi             ###   ########.fr       */
+/*   Created: 2023/10/09 08:20:17 by bmoretti          #+#    #+#             */
+/*   Updated: 2023/11/14 10:49:19 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file ft_strjoin.c
+ * @brief Implementation of the ft_strjoin function.
+ */
+
 #include "libft.h"
 
+/**
+ * @brief Concatenates two strings into a newly allocated string.
+ *
+ * This function concatenates the strings 's1' and 's2' into a newly allocated
+ * string, and returns a pointer to the newly created string. The caller is
+ * responsible for freeing the allocated memory.
+ *
+ * @param s1 The first null-terminated string.
+ * @param s2 The second null-terminated string.
+ * @return A pointer to the newly allocated string containing the concatenated
+ *         strings, or NULL in case of memory allocation failure or if either
+ *         's1' or 's2' is NULL.
+ */
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	len1;
-	size_t	len2;
-	char	*new_str;
+	size_t	len;
+	char	*joined;
+	char	*origin;
 
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	new_str = (char *)ft_calloc((len1 + len2 + 1), sizeof(char));
-	if (!new_str || !s1)
+	if (!s1 || !s2)
 		return (NULL);
-	ft_strlcpy(new_str, (char *)s1, len1 + 1);
-	ft_strlcat(new_str, (char *)s2, len2 + len1 + 1);
-	new_str[len1 + len2] = '\0';
-	return (new_str);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	joined = malloc(len + 1);
+	if (joined == NULL)
+		return (NULL);
+	origin = joined;
+	while (*s1)
+		*(joined++) = *(s1++);
+	while (*s2)
+		*(joined++) = *(s2++);
+	*joined = '\0';
+	return (origin);
 }

@@ -3,26 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 19:33:08 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/05 20:15:23 by vde-frei         ###   ########.fr       */
+/*   Created: 2023/10/12 18:02:51 by bmoretti          #+#    #+#             */
+/*   Updated: 2023/11/14 10:46:17 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/**
+ * @file ft_striteri.c
+ * @brief Implementation of the ft_striteri function.
+ */
 
-void	*ft_striteri(char *s, void (*f)(unsigned int, char *))
+/**
+ * @brief Applies a function to each character of a string, passing its index
+ *        as well.
+ *
+ * This function applies the function 'f' to each character of the string 's',
+ * passing the index of the character as the first argument to the function.
+ *
+ * @param s A pointer to the null-terminated string.
+ * @param f The function to be applied to each character.
+ */
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned int	index;
+	unsigned int	i;
 
-	index = 0;
 	if (!s || !f)
-		return (NULL);
-	while (s[index] != '\0')
-	{
-		f(index, &s[index]);
-		index++;
-	}
-	return (NULL);
+		return ;
+	i = -1;
+	while (s[++i])
+		f(i, &s[i]);
 }

@@ -3,25 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/30 19:52:09 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/24 17:21:58 by vde-frei         ###   ########.fr       */
+/*   Created: 2023/10/08 20:43:09 by bmoretti          #+#    #+#             */
+/*   Updated: 2023/11/14 10:18:04 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file ft_calloc.c
+ * @brief Implementation of the ft_calloc function.
+ */
+
 #include "libft.h"
 
+/**
+ * @brief Allocates memory for an array of nmemb elements, each of size size.
+ *
+ * This function allocates memory for an array of nmemb elements, each of size
+ * size, and initializes all bytes to zero.
+ *
+ * @param nmemb Number of elements in the array.
+ * @param size  Size of each element in bytes.
+ * @return A pointer to the allocated memory, or NULL if allocation fails.
+ */
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
-	size_t	result;
+	size_t	total;
 
-	ptr = NULL;
-	result = nmemb * size;
-	if (!nmemb || !size || nmemb == result / size)
-		ptr = malloc (result);
-	if (ptr)
-		ft_bzero(ptr, result);
+	total = nmemb * size;
+	if (nmemb && total / nmemb != size)
+		return (NULL);
+	ptr = malloc(total);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, total);
 	return (ptr);
 }
