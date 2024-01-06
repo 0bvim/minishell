@@ -7,4 +7,4 @@ echo oi | echo iu | << eof | echo ooo
 echo oi | echo iu | echo ooo | cat << eof
 echo oi | << eof
 echo oi | echo iu | echo ooo | << eof
-
+echo oi | echo oi1 | cat << eof | echo ultimo | echo ooooo
