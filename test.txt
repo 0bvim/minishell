@@ -8,3 +8,13 @@ echo oi | echo iu | echo ooo | cat << eof
 echo oi | << eof
 echo oi | echo iu | echo ooo | << eof
 echo oi | echo oi1 | cat << eof | echo ultimo | echo ooooo
+
+# expansion
+ARG=(1 + 2); echo $ARG
+ARG=(1+ 2); echo $ARG
+ARG=(1+2); echo $ARG
+ARG=(1 +2); echo $ARG
+ARG=(1 +2); echo $ARG
+ARG=$(1 +2); echo $ARG
+ARG=$(1 + 2); echo $ARG
+ARG=$(1+2); echo $ARG
