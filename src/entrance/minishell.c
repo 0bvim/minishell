@@ -6,13 +6,11 @@
 /*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/07 16:00:27 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/07 16:08:01 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-t_token	*tokenize(char *input);
 	/* display the prompt */
 	/* read user input */
 	/* parser user input into commands and expand variables if have one. */
