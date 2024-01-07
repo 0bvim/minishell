@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/05 13:30:38 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/07 15:59:20 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 
 /* enum and struct */
 
-typedef enum e_token_type
+enum e_token_type
 {
 	TOKEN_COMMAND,
 	TOKEN_ARGUMENT,
@@ -54,38 +54,6 @@ typedef enum e_token_type
 	TOKEN_LPAREN,
 	TOKEN_RPAREN,
 	TOKEN_QUOTE
-}	t_token_type;
-
-/* struct to keep value and type of token */
-typedef struct s_Token
-{
-	t_token_type	type;
-	char			*value;
-}	t_token;
-
-/* struct for command and args */
-typedef struct s_command
-{
-	char	*command;
-	char	**arguments;
-}	t_command;
-
-/* struct to handle operators and paretheses, which change the precedence of
- * commands.
- */
-typedef struct s_node
-{
-	t_command	*command;
-	struct Node	*left;
-	struct Node	*right;
-}	t_node;
-
-/* tokenization functions */
-t_token	*tokenize(char *input);
-void	tokenize_and(char **p, t_token **tokens, int *num);
-void	tokenize_or(char **p, t_token **tokens, int *num);
-void	tokenize_parentheses(char **p, t_token **tokens, int *num);
-void	tokenize_quote(char **p, t_token **tokens, int *num);
-void	tokenize_argument(char **p, t_token **tokens, int *num);
+};
 
 #endif
