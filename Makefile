@@ -69,6 +69,7 @@ OBJ = obj
 # files path #
 ENTRANCE = $(SRC)/entrance
 TOKENIZER = $(SRC)/tokenizer
+UTILS = $(SRC)/utils
 
 # libs #
 INCLUDES = -I$(INC)/ -Ilib/libft/includes/
@@ -83,7 +84,8 @@ BONUS_SRC = $(addprefix $(BONUS)/, )
 
 # files mandatory #
 CFILES = $(addprefix $(ENTRANCE)/, )
-CFILES += $(addprefix $(TOKENIZER)/, )
+CFILES += $(addprefix $(TOKENIZER)/, get_token.c)
+CFILES += $(addprefix $(UTILS)/, str.c)
 
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-out.txt
 VAL_TXT = valgrind-out.txt
