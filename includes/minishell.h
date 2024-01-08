@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/08 02:51:38 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:46:57 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # include "../lib/libft/include/libft.h"
 
 # define SYMBOLS "&|<>;()'\""
+# define BLANK ""
 
 /* enum and struct */
 
@@ -61,6 +62,11 @@ enum e_token
 	TOKEN_APPEND,
 	TOKEN_NULL
 };
+
+// code_pieces
+int		create_env_vars_array(char ***env_vars);
+//expands dollar sign variables
+char	*env_var_value(char *key);
 
 // utils
 int		ft_issymbol(char c);
