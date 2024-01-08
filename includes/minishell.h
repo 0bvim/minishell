@@ -3,16 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/01/08 18:46:57 by brmoretti        ###   ########.fr       */
-=======
-/*   Updated: 2024/01/08 17:56:53 by nivicius         ###   ########.fr       */
->>>>>>> 0379280 (fixed type of variable tokens in parameter)
+/*   Updated: 2024/01/08 19:10:01 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
