@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_array.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:49:56 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/04 18:53:07 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:07:50 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,4 @@ char	*env_var_value(char *key)
 	return (NULL);
 }
 
-#include <stdio.h>
 
-int	main(void)
-{
-	char **env_vars;
-
-	create_env_vars_array(&env_vars);
-	printf("%s\n", env_vars[0]);
-	return (0);
-}
