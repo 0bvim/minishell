@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/07 18:34:09 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/08 02:51:38 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ enum e_token
 };
 
 // utils
-int	ft_issymbol(char c);
+int		ft_issymbol(char c);
+void	clear_console(void);
 
-int	get_token(char **buffer, char *end, char **tk, char **tk_end);
+int		get_token(char **buffer, char *end, char **tk, char **tk_end);
+bool	peek(char **buffer, char *end_str, char **toks);
 
 #endif

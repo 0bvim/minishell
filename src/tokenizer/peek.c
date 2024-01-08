@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_console.c                                    :+:      :+:    :+:   */
+/*   peek.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 18:33:01 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/08 02:52:57 by nivicius         ###   ########.fr       */
+/*   Created: 2024/01/08 02:18:47 by nivicius          #+#    #+#             */
+/*   Updated: 2024/01/08 02:59:36 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	clear_console(void)
+bool	peek(char **buffer, char *end_str, char **toks)
 {
-	printf("\033[H\033[J");
+	char	*start;
+
+	start = *buffer;
+	while (start < end_str && ft_isspace(*start))
+		start++;
+	*buffer = start;
+	return (*start && ft_strchr(*toks, *start));
 }
