@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/08 02:51:38 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:56:53 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ int		ft_issymbol(char c);
 void	clear_console(void);
 
 int		get_token(char **buffer, char *end, char **tk, char **tk_end);
-bool	peek(char **buffer, char *end_str, char **toks);
+bool	peek(char **buffer, char *end_str, char *toks);
 
 #endif
