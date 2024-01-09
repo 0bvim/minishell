@@ -85,7 +85,7 @@ BONUS_SRC = $(addprefix $(BONUS)/, )
 # files mandatory #
 CFILES = $(addprefix $(ENTRANCE)/, )
 CFILES += $(addprefix $(TOKENIZER)/, get_token.c peek.c)
-CFILES += $(addprefix $(UTILS)/, str.c clear_console.c)
+CFILES += $(addprefix $(UTILS)/, str.c clear_console.c panic.c)
 
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-out.txt
 VAL_TXT = valgrind-out.txt

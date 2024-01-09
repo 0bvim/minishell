@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsers.h                                          :+:      :+:    :+:   */
+/*   panic.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 14:40:55 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/09 16:02:56 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/01/09 15:51:07 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/01/09 16:00:29 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSERS_H
-# define PARSERS_H
+#include "../../includes/minishell.h"
 
-typedef struct s_cmd
+void	panic(char *str1, char *str2, char *str3, int err_nb)
 {
-	int	type;
-}	t_cmd;
-
-t_cmd	*parse_cmd(char *buffer);
-
-//to do:
-//t_cmd	*parse_line(char **buffer, char *end);
-//t_cmd	*null_terminate(struct cmd *cmd);
-
-#endif
+	ft_putstr_fd("minishell:\n", 2);
+	ft_putstr_fd(str1, 2);
+	ft_putstr_fd(str2, 2);
+	ft_putstr_fd(str3, 2);
+	if (err_nb)
+	{
+		ft_putstr_fd("\nError number: ", 2);
+		ft_putnbr_fd(err_nb, 2);
+	}
+	exit(EXIT_FAILURE);
+}
