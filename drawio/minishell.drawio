@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-01-09T15:56:28.198Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="i5QT6O9xbsGzGDP1aGmm" version="22.0.2" type="device" pages="12">
+<mxfile host="Electron" modified="2024-01-09T16:37:01.545Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="DAANy7KGWbvu9everw6Z" version="22.0.2" type="device" pages="13">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Simple Flow">
     <mxGraphModel dx="1434" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -876,7 +876,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="parse_pipe" id="EA4-gjncSRhEobE_LakP">
-    <mxGraphModel dx="1434" dy="1938" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="1970" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="3KOtAvCk15iPRzg6Dqja-0" />
         <mxCell id="3KOtAvCk15iPRzg6Dqja-1" parent="3KOtAvCk15iPRzg6Dqja-0" />
@@ -938,14 +938,48 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="yMSbvmBXJBEQ9-3ciVkA" name="Page-12">
+  <diagram id="yMSbvmBXJBEQ9-3ciVkA" name="exec_cmd">
     <mxGraphModel dx="1434" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="BSIYDQ7AMVE6INH8RELx-1" value="oiioioi" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" vertex="1" parent="1">
-          <mxGeometry x="400" y="330" width="140" height="160" as="geometry" />
+        <mxCell id="2C_nguVzXa8cs7sDlUyI-1" value="return (cmd)" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.start" vertex="1" parent="1">
+          <mxGeometry x="352" y="440" width="170" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="2C_nguVzXa8cs7sDlUyI-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="2C_nguVzXa8cs7sDlUyI-3" target="2C_nguVzXa8cs7sDlUyI-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2C_nguVzXa8cs7sDlUyI-3" value="start" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.start" vertex="1" parent="1">
+          <mxGeometry x="378.5" y="220" width="117" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2C_nguVzXa8cs7sDlUyI-4" value="Variables to declare at start of function:&lt;br&gt;&lt;br&gt;struct exe_cmd *cmd;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="715" y="80" width="125" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="2C_nguVzXa8cs7sDlUyI-5" value="Prototype&lt;br&gt;struct *cmd exec_cmd(void)" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="287.5" y="40" width="307" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2C_nguVzXa8cs7sDlUyI-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2C_nguVzXa8cs7sDlUyI-7" target="2C_nguVzXa8cs7sDlUyI-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="437" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2C_nguVzXa8cs7sDlUyI-7" value="cmd = ft_calloc (sizeof(exe_cmd))" style="whiteSpace=wrap;html=1;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="317" y="280" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2C_nguVzXa8cs7sDlUyI-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="2C_nguVzXa8cs7sDlUyI-15" target="2C_nguVzXa8cs7sDlUyI-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2C_nguVzXa8cs7sDlUyI-15" value="cmd-&amp;gt;type = EXER" style="whiteSpace=wrap;html=1;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="317" y="360" width="240" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Rk-914VeQndw_JCLYQLI" name="flow-code">
+    <mxGraphModel dx="1434" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
       </root>
     </mxGraphModel>
   </diagram>
