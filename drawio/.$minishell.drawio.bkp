@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-01-09T16:30:05.914Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="pzBhGNnSQJ7QDd0FOcLb" version="22.0.2" type="device" pages="13">
+<mxfile host="Electron" modified="2024-01-09T16:41:23.745Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="5kr53XGAyrdsR3dLGVUF" version="22.0.2" type="device" pages="13">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Simple Flow">
     <mxGraphModel dx="1434" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -118,7 +118,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="D7j-j1-MAFlxfh_JzDIf" name="pipe struct">
-    <mxGraphModel dx="1434" dy="838" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -234,31 +234,16 @@
           <mxGeometry y="180" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="FN-v7fhe-bMee7GAThjz-1" value="&lt;ul style=&quot;font-size: 26px;&quot;&gt;&lt;li&gt;pipecmd&lt;/li&gt;&lt;li&gt;listcmd&lt;/li&gt;&lt;li&gt;execcmd&lt;/li&gt;&lt;li&gt;redircmd&lt;/li&gt;&lt;li&gt;and&lt;/li&gt;&lt;li&gt;or&lt;/li&gt;&lt;li&gt;dollar&lt;/li&gt;&lt;li&gt;double-quote&lt;/li&gt;&lt;li&gt;single-quote&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" parent="1" vertex="1">
-          <mxGeometry x="560" y="60" width="250" height="330" as="geometry" />
+          <mxGeometry x="520" y="80" width="250" height="330" as="geometry" />
         </mxCell>
         <mxCell id="FN-v7fhe-bMee7GAThjz-2" value="&quot;Constructor Functions&quot;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
           <mxGeometry x="590" y="20" width="100" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="TRmJoj6EEWZRkiMbtXqf-1" value="DOLLAR struct" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="250" y="670" width="140" height="150" as="geometry" />
-        </mxCell>
-        <mxCell id="TRmJoj6EEWZRkiMbtXqf-2" value="TYPE&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;DOLLAR" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="TRmJoj6EEWZRkiMbtXqf-1" vertex="1">
-          <mxGeometry y="30" width="140" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="TRmJoj6EEWZRkiMbtXqf-3" value="left" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="TRmJoj6EEWZRkiMbtXqf-1" vertex="1">
-          <mxGeometry y="60" width="140" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="TRmJoj6EEWZRkiMbtXqf-4" value="is_sub?" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="TRmJoj6EEWZRkiMbtXqf-1" vertex="1">
-          <mxGeometry y="90" width="140" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="TRmJoj6EEWZRkiMbtXqf-5" value="right" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="TRmJoj6EEWZRkiMbtXqf-1" vertex="1">
-          <mxGeometry y="120" width="140" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="HMrgLLYH5mMNjP-bZU6A" name="Functions">
-    <mxGraphModel dx="1434" dy="838" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -311,7 +296,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="R1GGkcK9gN2BOpAxLae9" name="main">
-    <mxGraphModel dx="1434" dy="838" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -346,7 +331,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="1ipeGstKOe-G4t7PuAYK" name="get_token">
-    <mxGraphModel dx="2097" dy="1829" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2284" dy="1970" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -608,7 +593,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="KTtzLN8uxYnJFcxS4sRh" name="peek">
-    <mxGraphModel dx="2216" dy="1898" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2284" dy="1970" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -735,7 +720,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="am_MB54OdodzvzByPbxE" name="parse_cmd">
-    <mxGraphModel dx="1434" dy="838" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -975,7 +960,7 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="Rk-914VeQndw_JCLYQLI" name="flux">
+  <diagram id="Rk-914VeQndw_JCLYQLI" name="flow-code">
     <mxGraphModel dx="1434" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
