@@ -6,11 +6,9 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/09 17:40:34 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:23:16 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -18,15 +16,15 @@
 # include <stdbool.h>
 
 /* for read line (compile with -lreadline or just -l) */
-# include <stdio.h>
-# include <readline/readline.h>
 # include <readline/history.h>
+# include <readline/readline.h>
+# include <stdio.h>
 
 /* malloc, free, write, printf, getcwd, chdir, stat, lstat and others */
-# include <stdlib.h>
-# include <sys/stat.h>
 # include <dirent.h>
+# include <stdlib.h>
 # include <string.h>
+# include <sys/stat.h>
 # include <termios.h>
 
 /* access, open read, close */
@@ -45,27 +43,28 @@
 # define SYMBOLS "&|<>;()'\""
 # define BLANK ""
 
-# include "parsers.h"
 # include "cmds.h"
+# include "parsers.h"
 
 /* enum and struct */
 
-enum e_token
+enum	e_token
 {
-	TOKEN_ARGUMENT,
-	TOKEN_PIPE,
-	TOKEN_SEMICOLON,
-	TOKEN_AND,
-	TOKEN_OR,
-	TOKEN_L_PAREN,
-	TOKEN_R_PAREN,
-	TOKEN_QUOTE,
-	TOKEN_DOUBLE_QUOTE,
-	TOKEN_L_REDIR,
-	TOKEN_HEREDOC,
-	TOKEN_R_REDIR,
-	TOKEN_APPEND,
-	TOKEN_NULL
+	ARGUMENT,
+	PIPE,
+	SEMICOLON,
+	AND,
+	OR,
+	L_PAREN,
+	R_PAREN,
+	QUOTE,
+	DOUBLE_QUOTE,
+	L_REDIR,
+	HEREDOC,
+	R_REDIR,
+	APPEND,
+	TOKEN_NULL,
+	EXEC
 };
 
 // code_pieces

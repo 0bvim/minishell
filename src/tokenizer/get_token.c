@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:16:51 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/07 18:30:19 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:25:11 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static int	which_token_double(char *str)
 {
 	if (!ft_strncmp(str, "&&", 2))
-		return (TOKEN_AND);
+		return (AND);
 	if (!ft_strncmp(str, "||", 2))
-		return (TOKEN_OR);
+		return (OR);
 	if (!ft_strncmp(str, "<<", 2))
-		return (TOKEN_HEREDOC);
+		return (HEREDOC);
 	if (!ft_strncmp(str, ">>", 2))
-		return (TOKEN_APPEND);
+		return (APPEND);
 	return (0);
 }
 
@@ -32,22 +32,22 @@ static int	which_token(char *str)
 	if (!*str)
 		return (TOKEN_NULL);
 	if (*str == '|')
-		return (TOKEN_PIPE);
+		return (PIPE);
 	if (*str == ';')
-		return (TOKEN_SEMICOLON);
+		return (SEMICOLON);
 	if (*str == '(')
-		return (TOKEN_L_PAREN);
+		return (L_PAREN);
 	if (*str == ')')
-		return (TOKEN_R_PAREN);
+		return (R_PAREN);
 	if (*str == '\'')
-		return (TOKEN_QUOTE);
+		return (QUOTE);
 	if (*str == '"')
-		return (TOKEN_DOUBLE_QUOTE);
+		return (DOUBLE_QUOTE);
 	if (*str == '<')
-		return (TOKEN_L_REDIR);
+		return (L_REDIR);
 	if (*str == '>')
-		return (TOKEN_R_REDIR);
-	return (TOKEN_ARGUMENT);
+		return (R_REDIR);
+	return (ARGUMENT);
 }
 
 int	get_token(char **buffer, char *end, char **tk, char **tk_end)
@@ -61,11 +61,11 @@ int	get_token(char **buffer, char *end, char **tk, char **tk_end)
 	if (tk)
 		*tk = s;
 	ret = which_token(s);
-	if (ret != TOKEN_NULL)
+	if (ret != NULL)
 		s++;
-	if (ret == TOKEN_AND || ret == TOKEN_OR || ret == TOKEN_HEREDOC)
+	if (ret == AND || ret == OR || ret == HEREDOC)
 		s++;
-	while (ret == TOKEN_ARGUMENT && s < end && !ft_isspace(*s)
+	while (ret == ARGUMENT && s < end && !ft_isspace(*s)
 		&& !ft_issymbol(*s))
 		s++;
 	if (tk_end)
