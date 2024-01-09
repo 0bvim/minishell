@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/09 16:04:29 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:40:34 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@
 # define SYMBOLS "&|<>;()'\""
 # define BLANK ""
 
-#include "parsers.h"
+# include "parsers.h"
+# include "cmds.h"
 
 /* enum and struct */
 
@@ -75,11 +76,9 @@ char	*env_var_value(char *key);
 // utils
 int		ft_issymbol(char c);
 void	clear_console(void);
+void	panic(char *str1, char *str2, char *str3, int err_nb);
 
 int		get_token(char **buffer, char *end, char **tk, char **tk_end);
 bool	peek(char **buffer, char *end_str, char *toks);
-
-//to do:
-void	panic(char *str1, char *str2, char *str3, int err_nb);
 
 #endif

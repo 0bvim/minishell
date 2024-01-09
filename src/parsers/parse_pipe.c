@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsers.h                                          :+:      :+:    :+:   */
+/*   parse_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 14:40:55 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/09 17:42:51 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/01/09 16:48:58 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/01/09 17:43:11 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSERS_H
-# define PARSERS_H
+#include "../../includes/minishell.h"
 
-# include "minishell.h"
-
-typedef struct s_cmd
+//yet untested
+t_cmd	*parse_pipe(char **buffer, char *end)
 {
-	int	type;
-}	t_cmd;
+	t_cmd	*cmd;
 
-t_cmd	*parse_cmd(char *buffer);
-t_cmd	*parse_pipe(char **buffer, char *end);
-
-//to do:
-t_cmd	*parse_line(char **buffer, char *end);
-t_cmd	*null_terminate(struct cmd *cmd);
-t_cmd	*parse_exec(char **buffer, char *end);
-
-#endif
+	cmd = parse_exec(buffer, end);
+	if (peek(buffer, end, "|"))
+	{
+		get_token(buffer, end, NULL, NULL);
+		cmd = pipe_cmd(cmd, parse_pipe(buffer, end));
+	}
+	return (cmd);
+}
