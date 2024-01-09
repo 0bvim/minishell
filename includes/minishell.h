@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/08 19:11:35 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:33:21 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define SYMBOLS "&|<>;()'\""
 # define BLANK ""
 
+#include "parsers.h"
+
 /* enum and struct */
 
 enum e_token
@@ -76,5 +78,8 @@ void	clear_console(void);
 
 int		get_token(char **buffer, char *end, char **tk, char **tk_end);
 bool	peek(char **buffer, char *end_str, char *toks);
+
+//to do:
+void	panic(char *str1, char *str2, char *str3, int err_nb);
 
 #endif
