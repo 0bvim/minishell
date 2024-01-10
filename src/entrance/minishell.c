@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/10 14:22:39 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:57:28 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,25 @@
 	/* wait for command completion */
 	/* need to finish this little guide */
 	/* remember to use extern **environ */
-int	main(void)
+
+extern char	**environ;
+
+int		main(void)
 {
-	char		*input;
+	char		*line;
 	t_branch	*root;
 
 	clear_console();
-	while (true)
+	line = readline("minishell~$ ");
+	while (line)
 	{
-		input = readline("minishell~$ ");
-		if (input != NULL && ft_strncmp(input, "exit", 4))
-		{
-			printf("%s\n", input);
-			free (input);
-		}
-		else
-			break;
+		if (!line || !ft_strncmp(line, "exit", 4))
+			break ;
+		root = tokenizer(line);
+		print_tree(root);
+		free_tree(root);
+		line = readline("minishell~$ ");
 	}
-	free(input);
-	return (EXIT_SUCCESS);
+	free(line);
+	return (0);
 }

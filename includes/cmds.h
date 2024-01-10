@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmds.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:39:01 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/09 21:38:07 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:36:21 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "minishell.h"
 
-t_cmd	*pipe_cmd(struct cmd *left, struct cmd *right);
+//t_cmd	*pipe_cmd(struct cmd *left, struct cmd *right);
 
 #endif

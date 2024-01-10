@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/10 14:20:49 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:42:24 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,9 @@ bool	peek(char **buffer, char *end_str, char *toks);
 //NEW_TOKENIZER
 typedef struct s_branch
 {
+	int					type;
 	char				*str;
+	struct s_branch		*parent;
 	struct s_branch		*left;
 	struct s_branch		*right;
 }	t_branch;
