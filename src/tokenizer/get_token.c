@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_token.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:16:51 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/09 18:25:11 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/09 21:35:36 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	get_token(char **buffer, char *end, char **tk, char **tk_end)
 	if (tk)
 		*tk = s;
 	ret = which_token(s);
-	if (ret != NULL)
+	if (ret != 0x0)
 		s++;
 	if (ret == AND || ret == OR || ret == HEREDOC)
 		s++;

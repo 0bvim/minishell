@@ -66,6 +66,9 @@ BONUS = $(SRC)/bonus
 INC = includes
 OBJ = obj
 
+# includes #
+HEADERS = $(addprefix $(INC)/, cmds.h minishell.h parsers.h)
+
 # files path #
 ENTRANCE = $(SRC)/entrance
 TOKENIZER = $(SRC)/tokenizer
