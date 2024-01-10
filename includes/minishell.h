@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/10 15:42:24 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:52:05 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ enum	e_token
 	R_REDIR,
 	APPEND,
 	TOKEN_NULL,
+	EVAL,
+	BLOCK,
 	EXEC
 };
 
@@ -90,7 +92,7 @@ typedef struct s_branch
 	struct s_branch		*right;
 }	t_branch;
 
-t_branch	*tokenizer(char *line);
+t_branch	*tokenizer(char *line, t_branch *root);
 void		print_tree(t_branch *root);
 void		free_tree(t_branch *root);
 

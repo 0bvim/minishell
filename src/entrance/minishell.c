@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/10 16:57:28 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:52:22 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		main(void)
 	{
 		if (!line || !ft_strncmp(line, "exit", 4))
 			break ;
-		root = tokenizer(line);
+		root = tokenizer(line, NULL);
 		print_tree(root);
 		free_tree(root);
 		line = readline("minishell~$ ");

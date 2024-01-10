@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 07:27:10 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/10 16:20:11 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:36:40 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int	which_token_double(char *str)
 		return (HEREDOC);
 	if (!ft_strncmp(str, ">>", 2))
 		return (APPEND);
+	if (!ft_strncmp(str, "$(", 2))
+		return (EVAL);
 	return (0);
 }
 
@@ -64,35 +66,74 @@ t_branch	*new_branch(t_branch *parent)
 	exit (EXIT_FAILURE);
 }
 
-t_branch *tokenizer(char *line)
+void	define_branch_type(char **line, char **end, t_branch *branch)
 {
-	t_branch		*root;
+	if ((*end - 1) >= *line && *(*end - 1) == **end)
+	{
+		branch->type = which_token_double(*end - 1);
+		*(*end - 1) = '\0';
+	}
+	else
+		branch->type = which_token(*end);
+	**end = '\0';
+}
+
+void	block_handler(char **line, char **end, t_branch *branch)
+{
+	int	i;
+
+	i = 1;
+	while (--*end >= *line && i)
+	{
+		if (**end == ')' && i++)
+			break;
+		else if (**end == '(' && i--)
+			break;
+	}
+	if (!i)
+	{
+		**end = '\0';
+		if (*(end - 1) >= *line && *(*end - 1) == '$')
+		{
+			*(*end - 1) = '\0';
+			branch->type = EVAL;
+		}
+		else
+			branch->type = BLOCK;
+		branch->right = tokenizer(*end + 1, branch);
+	}
+	else
+		free_tree(branch);
+}
+
+
+t_branch *tokenizer(char *line, t_branch *root)
+{
+	t_branch		*branch;
 	char			*end;
 
-	root = new_branch(NULL);
+	branch = new_branch(root);
 	end = line + ft_strlen(line);
 	while (--end >= line)
 	{
 		if (ft_issymbol(*end))
 		{
-			if ((end - 1) >= line && *(end - 1) == *end)
-			{
-				root->type = which_token_double(end - 1);
-				*(end - 1) = '\0';
-			}
+			define_branch_type(&line, &end, branch);
+			if (branch->type == R_PAREN)
+				block_handler(&line, &end, branch);
 			else
-				root->type = which_token(end);
-			*end = '\0';
-			root->right = new_branch(root);
-			root->right->type = EXEC;
-			root->right->str = ft_strdup(end + 1);
-			root->left = tokenizer(line);
-			return (root);
+			{
+				branch->right = new_branch(branch);
+				branch->right->type = EXEC;
+				branch->right->str = ft_strdup(end + 1);
+			}
+			branch->left = tokenizer(line, branch);
+			return (branch);
 		}
 	}
-	root->type = EXEC;
-	root->str = line;
-	return (root);
+	branch->type = EXEC;
+	branch->str = line;
+	return (branch);
 }
 
 void	print_tree(t_branch *root)
