@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/09 18:23:16 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:20:49 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,17 @@ void	panic(char *str1, char *str2, char *str3, int err_nb);
 
 int		get_token(char **buffer, char *end, char **tk, char **tk_end);
 bool	peek(char **buffer, char *end_str, char *toks);
+
+//NEW_TOKENIZER
+typedef struct s_branch
+{
+	char				*str;
+	struct s_branch		*left;
+	struct s_branch		*right;
+}	t_branch;
+
+t_branch	*tokenizer(char *line);
+void		print_tree(t_branch *root);
+void		free_tree(t_branch *root);
 
 #endif
