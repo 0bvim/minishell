@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/10 18:52:05 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:58:17 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdbool.h>
 
 /* for read line (compile with -lreadline or just -l) */
+# include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include <stdio.h>
 
 /* malloc, free, write, printf, getcwd, chdir, stat, lstat and others */
 # include <dirent.h>
@@ -50,22 +50,22 @@
 
 enum	e_token
 {
-	ARGUMENT,
+	ARGUMENT,	// 0
 	PIPE,
 	SEMICOLON,
 	AND,
 	OR,
-	L_PAREN,
+	L_PAREN,	// 5
 	R_PAREN,
 	QUOTE,
 	DOUBLE_QUOTE,
 	L_REDIR,
-	HEREDOC,
+	HEREDOC,	// 10
 	R_REDIR,
 	APPEND,
 	TOKEN_NULL,
 	EVAL,
-	BLOCK,
+	BLOCK,		// 15
 	EXEC
 };
 

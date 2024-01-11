@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 07:27:10 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/10 19:36:40 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:47:11 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	define_branch_type(char **line, char **end, t_branch *branch)
 	**end = '\0';
 }
 
-void	block_handler(char **line, char **end, t_branch *branch)
+t_branch	*block_handler(char **line, char **end, t_branch *branch)
 {
 	int	i;
 
@@ -93,6 +93,7 @@ void	block_handler(char **line, char **end, t_branch *branch)
 	if (!i)
 	{
 		**end = '\0';
+		branch->right = tokenizer(ft_strdup(*end + 1), branch);
 		if (*(end - 1) >= *line && *(*end - 1) == '$')
 		{
 			*(*end - 1) = '\0';
@@ -100,10 +101,13 @@ void	block_handler(char **line, char **end, t_branch *branch)
 		}
 		else
 			branch->type = BLOCK;
-		branch->right = tokenizer(*end + 1, branch);
+		return (branch);
 	}
 	else
-		free_tree(branch);
+	{
+		free_tree(branch);// to do: exchange for panic
+		exit (EXIT_FAILURE);
+	}
 }
 
 
@@ -120,7 +124,7 @@ t_branch *tokenizer(char *line, t_branch *root)
 		{
 			define_branch_type(&line, &end, branch);
 			if (branch->type == R_PAREN)
-				block_handler(&line, &end, branch);
+				branch = block_handler(&line, &end, branch);
 			else
 			{
 				branch->right = new_branch(branch);
@@ -144,10 +148,14 @@ void	print_tree(t_branch *root)
 			print_tree(root->left);
 		if (root->type == EXEC)
 			printf("command: %s\n", root->str);
-		else
-			printf("type: %d\n", root->type);
+		else if (root->type != BLOCK)
+			printf("token: %d\n", root->type);
+		if (root->type == BLOCK)
+			printf("(  START OF BLOCK\n");
 		if (root->right)
 			print_tree(root->right);
+		if (root->type == BLOCK)
+			printf("   END OF BLOCK  )\n");
 	}
 }
 
