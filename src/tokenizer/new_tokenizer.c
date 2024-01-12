@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/11 22:46:56 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/11 23:26:12 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	count_quotes(const char *str, int *single_quotes, int *double_quotes)
 			str++;
 			while (*str && *str != quote_type)
 				str++;
-			if (*str == '\'')
+			if (quote_type == '\'')
 				(*single_quotes)++;
-			else if (*str == '"')
+			else if (quote_type == '"')
 				(*double_quotes)++;
 		}
 		str++;
