@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/09 18:23:16 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/12 19:12:18 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdbool.h>
 
 /* for read line (compile with -lreadline or just -l) */
+# include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include <stdio.h>
 
 /* malloc, free, write, printf, getcwd, chdir, stat, lstat and others */
 # include <dirent.h>
@@ -40,11 +40,8 @@
 /* libft header path */
 # include "../lib/libft/include/libft.h"
 
-# define SYMBOLS "&|<>;()'\""
+# define SYMBOLS "&|<>()'\""
 # define BLANK ""
-
-# include "cmds.h"
-# include "parsers.h"
 
 /* enum and struct */
 
@@ -52,7 +49,7 @@ enum	e_token
 {
 	ARGUMENT,
 	PIPE,
-	SEMICOLON,
+	DOLLAR,
 	AND,
 	OR,
 	L_PAREN,
@@ -74,10 +71,10 @@ char	*env_var_value(char *key);
 
 // utils
 int		ft_issymbol(char c);
+void	ft_skip_spaces(const char **str);
 void	clear_console(void);
 void	panic(char *str1, char *str2, char *str3, int err_nb);
 
-int		get_token(char **buffer, char *end, char **tk, char **tk_end);
-bool	peek(char **buffer, char *end_str, char *toks);
+t_list	*tokenizer(const char *str);
 
 #endif

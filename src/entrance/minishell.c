@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/08 02:57:41 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/01/12 19:07:02 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 int	main(void)
 {
 	char	*input;
+	t_list	*tokens;
 
 	clear_console();
 	while (true)
@@ -30,7 +31,8 @@ int	main(void)
 		input = readline("minishell~$ ");
 		if (input != NULL && ft_strncmp(input, "exit", 4))
 		{
-			printf("%s\n", input);
+			//printf("%s\n", input);
+			tokens = tokenizer(input);
 			free (input);
 		}
 		else
