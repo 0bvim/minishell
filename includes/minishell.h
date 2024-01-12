@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/09 18:23:16 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/11 22:34:18 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdbool.h>
 
 /* for read line (compile with -lreadline or just -l) */
+# include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include <stdio.h>
 
 /* malloc, free, write, printf, getcwd, chdir, stat, lstat and others */
 # include <dirent.h>
@@ -79,5 +79,7 @@ void	panic(char *str1, char *str2, char *str3, int err_nb);
 
 int		get_token(char **buffer, char *end, char **tk, char **tk_end);
 bool	peek(char **buffer, char *end_str, char *toks);
+
+t_list	*treat_quotes_init(const char *str);
 
 #endif
