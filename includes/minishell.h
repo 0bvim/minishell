@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/11 22:34:18 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/12 14:24:42 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ char	*env_var_value(char *key);
 
 // utils
 int		ft_issymbol(char c);
+void	ft_skip_spaces(const char **str);
 void	clear_console(void);
 void	panic(char *str1, char *str2, char *str3, int err_nb);
 

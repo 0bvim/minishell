@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_tokenizer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/11 23:26:12 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/12 14:32:40 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_list	*treat_quotes(const char *str, t_list *quotes_delimit)
 t_list	*treat_quotes_init(const char *str)
 {
 	t_list		*quotes_delimit;
-	
+
 	if (!quotes_validation(str))
 		return (NULL);
 	quotes_delimit = ft_calloc(1, sizeof(t_list));
@@ -91,4 +91,30 @@ t_list	*treat_quotes_init(const char *str)
 		return (NULL); //panic
 	quotes_delimit = treat_quotes(str, quotes_delimit);
 	return (quotes_delimit);
+}
+
+t_list	list_generator(t_list *tokens, const char *start, const char *mover)
+{
+	while (*mover)
+	{
+		if (*mover == '\'' || *mover == '"')
+			add_quotes_token(tokens, &start, &mover);
+		else if (ft_isspace(*mover) || ft_issymbol(*mover))
+			add_token(tokens, &start, &mover);
+		mover++;
+	}
+}
+
+t_list	*tokenizer(const char *str)
+{
+	t_list		*tokens;
+	const char	*start;
+	const char	*end;
+
+	if (!quotes_validation(str))
+		return (NULL);
+	tokens = ft_calloc(1, sizeof(t_list));
+	if (!tokens)
+		return (NULL);
+	ft_skip_spaces(&str);
 }
