@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/12 14:24:42 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/12 17:55:39 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 /* libft header path */
 # include "../lib/libft/include/libft.h"
 
-# define SYMBOLS "&|<>;()'\""
+# define SYMBOLS "&|<>()'\""
 # define BLANK ""
 
 # include "cmds.h"
@@ -52,7 +52,7 @@ enum	e_token
 {
 	ARGUMENT,
 	PIPE,
-	SEMICOLON,
+	DOLLAR,
 	AND,
 	OR,
 	L_PAREN,
@@ -81,6 +81,6 @@ void	panic(char *str1, char *str2, char *str3, int err_nb);
 int		get_token(char **buffer, char *end, char **tk, char **tk_end);
 bool	peek(char **buffer, char *end_str, char *toks);
 
-t_list	*treat_quotes_init(const char *str);
+t_list	*tokenizer(const char *str);
 
 #endif

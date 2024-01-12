@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/11 23:44:12 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/12 17:46:35 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 int	main(void)
 {
 	char	*input;
-	t_list	*quotes_delimited;
+	t_list	*tokens;
 
 	clear_console();
 	while (true)
@@ -32,8 +32,7 @@ int	main(void)
 		if (input != NULL && ft_strncmp(input, "exit", 4))
 		{
 			//printf("%s\n", input);
-			quotes_delimited = treat_quotes_init(input);
-			free (quotes_delimited);
+			tokens = tokenizer(input);
 			free (input);
 		}
 		else
