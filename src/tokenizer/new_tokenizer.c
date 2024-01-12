@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/12 17:53:51 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/12 19:06:45 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	quotes_validation(const char *str)
 	int		double_quotes;
 
 	count_quotes(str, &single_quotes, &double_quotes);
-	printf("%d %d\n", single_quotes, double_quotes);
 	if (single_quotes % 2 || double_quotes % 2)
 		return (0);
 	return (1);
@@ -119,7 +118,7 @@ void	add_quotes_token(t_list *tokens, const char **start, const char **mover)
 {
 	char		quote_type;
 
-	quote_type = **mover;
+	quote_type = **start;
 	(*mover)++;
 	while (**mover != quote_type)
 		(*mover)++;
@@ -131,7 +130,7 @@ void	add_symbols_token(t_list *tokens, const char **start, const char **mover)
 {
 	int	operator;
 
-	operator = which_token(*mover);
+	operator = which_token(*start);
 	if (operator == AND || operator == OR
 		|| operator == HEREDOC || operator == APPEND)
 		(*mover)++;
@@ -143,9 +142,9 @@ void	list_generator(t_list *tokens, const char *start, const char *mover)
 {
 	while (*mover)
 	{
-		if (*mover == '\'' || *mover == '"')
+		if (*start == '\'' || *start == '"')
 			add_quotes_token(tokens, &start, &mover);
-		else if (ft_issymbol(*mover))
+		else if (ft_issymbol(*start))
 			add_symbols_token(tokens, &start, &mover);
 		else
 		{
@@ -158,7 +157,7 @@ void	list_generator(t_list *tokens, const char *start, const char *mover)
 	}
 }
 
-void	list_printer(t_list *tokens)
+void	list_printer(t_list *tokens) //debug purposes only
 {
 	t_element	*el;
 

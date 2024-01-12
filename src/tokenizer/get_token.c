@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_token.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:16:51 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/09 21:35:36 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:38:56 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ static int	which_token(char *str)
 		return (TOKEN_NULL);
 	if (*str == '|')
 		return (PIPE);
-	if (*str == ';')
-		return (SEMICOLON);
 	if (*str == '(')
 		return (L_PAREN);
 	if (*str == ')')
