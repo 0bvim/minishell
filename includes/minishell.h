@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/12 17:55:39 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/12 19:12:18 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@
 # define SYMBOLS "&|<>()'\""
 # define BLANK ""
 
-# include "cmds.h"
-# include "parsers.h"
-
 /* enum and struct */
 
 enum	e_token
@@ -77,9 +74,6 @@ int		ft_issymbol(char c);
 void	ft_skip_spaces(const char **str);
 void	clear_console(void);
 void	panic(char *str1, char *str2, char *str3, int err_nb);
-
-int		get_token(char **buffer, char *end, char **tk, char **tk_end);
-bool	peek(char **buffer, char *end_str, char *toks);
 
 t_list	*tokenizer(const char *str);
 
