@@ -20,3 +20,8 @@ ARG=$(1 + 2); echo $ARG
 ARG=$(1+2); echo $ARG
 echo "o valor e $(expr 1 + 2)"
 echo 'o valor e $(expr 1 + 2)'
+echo a && (echo "(" && echo 3)
+"""
+'''
+"'"
+'"'
