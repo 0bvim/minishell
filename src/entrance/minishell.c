@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-#ifdef NDEBUG
+#include "../../includes/minishell.h"
 	/* display the prompt */
 	/* read user input */
 	/* parser user input into commands and expand variables if have one. */
@@ -42,4 +41,3 @@ int	main(void)
 	free(input);
 	return (EXIT_SUCCESS);
 }
-#endif

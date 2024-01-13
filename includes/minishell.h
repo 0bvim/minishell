@@ -13,8 +13,6 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <assert.h>
-
 /* for read line (compile with -lreadline or just -l) */
 # include <stdio.h>
 # include <readline/history.h>
