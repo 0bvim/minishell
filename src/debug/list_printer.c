@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str.c                                              :+:      :+:    :+:   */
+/*   print_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 17:56:41 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/12 21:11:30 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/01/12 20:13:51 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/01/12 20:15:14 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_issymbol(char c)
+void	list_printer(t_list *tokens)
 {
-	if (ft_strchr(SYMBOLS, c))
-		return (1);
-	return (0);
-}
+	t_element	*el;
 
-void	ft_skip_spaces(const char **str)
-{
-	while (**str && ft_isspace(**str))
-		(*str)++;
+	el = tokens->first;
+	while (el)
+	{
+		printf("%s\n", (char *)el->content);
+		el = el->next;
+	}
 }
