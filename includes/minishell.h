@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/12 21:25:56 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/13 16:02:22 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,14 @@ enum	e_token
 	HEREDOC,
 	R_REDIR,
 	APPEND,
-	TOKEN_NULL,
-	EXEC
+	TOKEN_NULL
 };
+
+typedef	struct s_token
+{
+	int		type;
+	char	*str;
+}	t_token;
 
 // code_pieces
 int		create_env_vars_array(char ***env_vars);
@@ -79,10 +84,11 @@ int		which_token(const char *str);
 //TOKENIZER
 t_list	*tokenizer(const char *str);
 t_list	*token_list_holder(t_list *tokens);
-void	panic_tokenizer(void);
-void	add_token(t_list *tokens, const char **start, const char **mover);
-void	add_quotes_token(t_list *tokens, const char **start, const char **mover);
-void	add_symbols_token(t_list *tokens, const char **start, const char **mover);
+void	free_token(void *p_token);
+void	panic_tokenizer(char *error_msg);
+void	add_token(t_list *tokens, const char **start, const char **mover, int token_type);
+void	add_quotes_token(t_list *tokens, const char **start, const char **mover, int token_type);
+void	add_symbols_token(t_list *tokens, const char **start, const char **mover, int token_type);
 int		quotes_validation(const char *str);
 int		parenthesis_validation(const char *str);
 

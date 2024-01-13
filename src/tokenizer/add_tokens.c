@@ -6,24 +6,28 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:20:35 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/12 20:38:51 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/13 15:47:55 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 void	add_token(t_list *tokens,
-	const char **start, const char **mover)
+	const char **start, const char **mover, int token_type)
 {
 	t_element	*el;
-	char		*content;
+	t_token		*content;
 
-	content = ft_strndup(*start, *mover - *start);
+	content = ft_calloc(1, sizeof(t_token));
 	if (!content)
-		panic_tokenizer();
+		panic_tokenizer("memory allocation failure\n");
+	content->str = ft_strndup(*start, *mover - *start);
+	if (!content->str)
+		panic_tokenizer("memory allocation failure\n");
+	content->type = token_type;
 	el = ft_lstnewelement(content);
 	if (!el)
-		panic_tokenizer();
+		panic_tokenizer("memory allocation failure\n");
 	ft_lstadd_back(tokens, el);
 	ft_skip_spaces(mover);
 	*start = *mover;
@@ -32,7 +36,7 @@ void	add_token(t_list *tokens,
 }
 
 void	add_quotes_token(t_list *tokens,
-	const char **start, const char **mover)
+	const char **start, const char **mover, int token_type)
 {
 	char		quote_type;
 
@@ -41,17 +45,14 @@ void	add_quotes_token(t_list *tokens,
 	while (**mover != quote_type)
 		(*mover)++;
 	(*mover)++;
-	add_token(tokens, start, mover);
+	add_token(tokens, start, mover, token_type);
 }
 
 void	add_symbols_token(t_list *tokens,
-	const char **start, const char **mover)
+	const char **start, const char **mover, int token_type)
 {
-	int	operator;
-
-	operator = which_token(*start);
-	if (operator == AND || operator == OR
-		|| operator == HEREDOC || operator == APPEND)
+	if (token_type == AND || token_type == OR
+		|| token_type == HEREDOC || token_type == APPEND)
 		(*mover)++;
-	add_token(tokens, start, mover);
+	add_token(tokens, start, mover, token_type);
 }

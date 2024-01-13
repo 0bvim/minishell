@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/12 21:25:08 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/13 17:29:44 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,28 @@ static int	input_validations(const char *str)
 static void	token_list_generator(t_list *tokens,
 	const char *start, const char *mover)
 {
+	int	token;
+
 	if (!*start)
 		return ;
 	while (*mover)
 	{
-		if (*start == '\'' || *start == '"')
-			add_quotes_token(tokens, &start, &mover);
-		else if (ft_issymbol(*start))
-			add_symbols_token(tokens, &start, &mover);
+		token = which_token(start);
+		if (token == QUOTE || token == DOUBLE_QUOTE)
+			add_quotes_token(tokens, &start, &mover, token);
+		else if (token != ARGUMENT)
+			add_symbols_token(tokens, &start, &mover, token);
 		else
 		{
 			while (*mover && !ft_isspace(*mover) && !ft_issymbol(*mover))
 				mover++;
 			if (mover == start)
 				break ;
-			add_token(tokens, &start, &mover);
+			add_token(tokens, &start, &mover, token);
 		}
 	}
 	if (mover > start)
-		add_token(tokens, &start, &mover);
+		add_token(tokens, &start, &mover, which_token(start));
 }
 
 t_list	*tokenizer(const char *str)
@@ -56,6 +59,6 @@ t_list	*tokenizer(const char *str)
 	ft_skip_spaces(&str);
 	token_list_generator(tokens, str, str + 1);
 	list_printer(tokens); //remove
-	ft_lstclear(tokens, free); //remove
+	ft_lstclear(tokens, free_token); //remove
 	return (tokens);
 }

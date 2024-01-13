@@ -6,11 +6,21 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:22:42 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/12 20:32:11 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/13 16:01:23 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	free_token(void *p_token)
+{
+	t_token	*token;
+
+	token = p_token;
+	if (token->str)
+		free (token->str);
+	free (token);
+}
 
 t_list	*token_list_holder(t_list *tokens)
 {
@@ -21,12 +31,14 @@ t_list	*token_list_holder(t_list *tokens)
 	return (lst_address);
 }
 
-void	panic_tokenizer(void)
+void	panic_tokenizer(char *error_msg)
 {
 	t_list	*tokens;
 
 	tokens = token_list_holder(NULL);
 	if (tokens)
-		ft_lstclear(tokens, free);
+		ft_lstclear(tokens, free_token);
+	if (error_msg)
+		ft_putstr_fd(error_msg, 2);
 	exit (EXIT_FAILURE);
 }
