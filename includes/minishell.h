@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/12 19:12:18 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/12 20:55:01 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <stdbool.h>
+# include <assert.h>
 
 /* for read line (compile with -lreadline or just -l) */
 # include <stdio.h>
@@ -24,6 +24,7 @@
 # include <dirent.h>
 # include <stdlib.h>
 # include <string.h>
+# include <stdbool.h>
 # include <sys/stat.h>
 # include <termios.h>
 
@@ -42,6 +43,7 @@
 
 # define SYMBOLS "&|<>()'\""
 # define BLANK ""
+
 
 /* enum and struct */
 

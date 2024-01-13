@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/12 19:07:02 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/12 20:54:49 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#ifdef NDEBUG
 	/* display the prompt */
 	/* read user input */
 	/* parser user input into commands and expand variables if have one. */
@@ -41,3 +42,4 @@ int	main(void)
 	free(input);
 	return (EXIT_SUCCESS);
 }
+#endif
