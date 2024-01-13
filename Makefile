@@ -71,6 +71,7 @@ HEADERS = $(addprefix $(INC)/, cmds.h minishell.h parsers.h)
 
 # files path #
 ENTRANCE = $(SRC)/entrance
+DEBUG = $(SRC)/debug
 TOKENIZER = $(SRC)/tokenizer
 UTILS = $(SRC)/utils
 
@@ -87,8 +88,9 @@ BONUS_SRC = $(addprefix $(BONUS)/, )
 
 # files mandatory #
 CFILES = $(addprefix $(ENTRANCE)/, )
-CFILES += $(addprefix $(TOKENIZER)/, new_tokenizer.c)
-CFILES += $(addprefix $(UTILS)/, str.c clear_console.c panic.c)
+CFILES += $(addprefix $(DEBUG)/, list_printer.c)
+CFILES += $(addprefix $(TOKENIZER)/, add_tokens.c memory_handler.c parenthesis_validation.c quotes_validation.c tokenizer.c)
+CFILES += $(addprefix $(UTILS)/, str.c clear_console.c panic.c which_token.c)
 
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-out.txt
 VAL_TXT = valgrind-out.txt
