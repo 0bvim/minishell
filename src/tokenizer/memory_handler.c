@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str.c                                              :+:      :+:    :+:   */
+/*   memory_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 17:56:41 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/12 21:11:30 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/01/12 20:22:42 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/01/12 20:32:11 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_issymbol(char c)
+t_list	*token_list_holder(t_list *tokens)
 {
-	if (ft_strchr(SYMBOLS, c))
-		return (1);
-	return (0);
+	static t_list	*lst_address;
+
+	if (tokens)
+		lst_address = tokens;
+	return (lst_address);
 }
 
-void	ft_skip_spaces(const char **str)
+void	panic_tokenizer(void)
 {
-	while (**str && ft_isspace(**str))
-		(*str)++;
+	t_list	*tokens;
+
+	tokens = token_list_holder(NULL);
+	if (tokens)
+		ft_lstclear(tokens, free);
+	exit (EXIT_FAILURE);
 }
