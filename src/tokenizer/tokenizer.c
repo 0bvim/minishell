@@ -14,8 +14,11 @@
 
 static int	input_validations(const char *str)
 {
-	if (!quotes_validation(str) || !parenthesis_validation(str))
-		return (0);
+  if(*str)
+  {
+    if (!quotes_validation(str) || !parenthesis_validation(str))
+      return (0);
+  }
 	return (1);
 }
 
@@ -50,15 +53,19 @@ t_list	*tokenizer(const char *str)
 {
 	t_list		*tokens;
 
-	if (!input_validations(str))
-		return (NULL);
-	tokens = ft_calloc(1, sizeof(t_list));
-	if (!tokens)
-		return (NULL);
-	token_list_holder(tokens);
-	ft_skip_spaces(&str);
-	token_list_generator(tokens, str, str + 1);
-	list_printer(tokens); //remove
-	ft_lstclear(tokens, free_token); //remove
-	return (tokens);
+  tokens = 0;
+  if (*str)
+  {
+    if (!input_validations(str))
+      return (NULL);
+    tokens = ft_calloc(1, sizeof(t_list));
+    if (!tokens)
+      return (NULL);
+    token_list_holder(tokens);
+    ft_skip_spaces(&str);
+    token_list_generator(tokens, str, str + 1);
+    list_printer(tokens); //remove
+    ft_lstclear(tokens, free_token); //remove
+  }
+  return (tokens);
 }

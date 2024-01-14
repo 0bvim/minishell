@@ -21,6 +21,7 @@ int	ft_issymbol(char c)
 
 void	ft_skip_spaces(const char **str)
 {
-	while (**str && ft_isspace(**str))
-		(*str)++;
+  if (**str)
+    while (**str && ft_isspace(**str))
+      (*str)++;
 }

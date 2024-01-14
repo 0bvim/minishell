@@ -42,8 +42,9 @@ void	add_quotes_token(t_list *tokens,
 
 	quote_type = **start;
 	(*mover)++;
-	while (**mover != quote_type)
-		(*mover)++;
+  if (**mover)
+    while (**mover != quote_type)
+      (*mover)++;
 	(*mover)++;
 	add_token(tokens, start, mover, token_type);
 }

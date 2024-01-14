@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_validation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:27:52 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/12 20:36:16 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/14 00:04:47 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	count_quotes(const char *str,
-	int *single_quotes, int *double_quotes)
+static void count_quotes(const char *str,
+						 int *single_quotes, int *double_quotes)
 {
 	char	quote_type;
 
@@ -36,17 +36,21 @@ static void	count_quotes(const char *str,
 			else if (*str == quote_type && *str == '"')
 				(*double_quotes)++;
 		}
-		str++;
+		if (*str)
+			str++;
 	}
 }
 
-int	quotes_validation(const char *str)
+int quotes_validation(const char *str)
 {
-	int		single_quotes;
-	int		double_quotes;
+	int single_quotes;
+	int double_quotes;
 
-	count_quotes(str, &single_quotes, &double_quotes);
-	if (single_quotes % 2 || double_quotes % 2)
-		return (0);
+	if (*str)
+	{
+		count_quotes(str, &single_quotes, &double_quotes);
+		if (single_quotes % 2 || double_quotes % 2)
+			return (0);
+	}
 	return (1);
 }

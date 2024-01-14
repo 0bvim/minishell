@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/13 17:49:26 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/13 23:03:20 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 /* display the prompt */
 /* read user input */
 /* parser user input into commands and expand variables if have one. */
@@ -20,21 +20,24 @@
 /* wait for command completion */
 /* need to finish this little guide */
 /* remember to use extern **environ */
-int main(void) {
-  char *input;
-  t_list *tokens;
+int main(void)
+{
+	char	*input;
+	t_list	*tokens;
 
-  clear_console();
-  while (true) {
-    input = readline("minishell~$ ");
-    if (input != NULL && ft_strncmp(input, "exit", 4)) {
-      // printf("%s\n", input);
-      tokens = tokenizer(input);
-      (void)tokens;
-      free(input);
-    } else
-      break;
-  }
-  free(input);
-  return (EXIT_SUCCESS);
+	clear_console();
+	while (true)
+	{
+		input = readline("minishell~$ ");
+		if (input != NULL && ft_strncmp(input, "exit", 4))
+		{
+			tokens = tokenizer(input);
+			(void)tokens;
+			free(input);
+		}
+		else
+			break;
+	}
+	free(input);
+	return (EXIT_SUCCESS);
 }
