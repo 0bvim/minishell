@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/13 16:02:22 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:49:15 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ typedef	struct s_token
 int		create_env_vars_array(char ***env_vars);
 //expands dollar sign variables
 char	*env_var_value(char *key);
+
+//GRAMMAR CHECK
+void	grammar_checker(t_list *tokens);
+void	redir_and_or_rule(t_element *el);
 
 //UTILS
 int		ft_issymbol(char c);

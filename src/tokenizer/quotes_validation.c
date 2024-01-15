@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_validation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:27:52 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/14 05:11:52 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:24:11 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ int	quotes_validation(const char *str)
 	{
 		count_quotes(str, &single_quotes, &double_quotes);
 		if (single_quotes % 2 || double_quotes % 2)
+		{
+			ft_putstr_fd("minishell parses closed quotes only\n", 2);
 			return (0);
+		}
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:51:11 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/12 21:29:48 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:24:25 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ int	parenthesis_validation(const char *str)
 	}
 	if (right == left)
 		return (1);
+	ft_putstr_fd("minishell only parses closed parenthesis\n", 2);
 	return (0);
 }
