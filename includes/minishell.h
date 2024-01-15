@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/15 17:09:37 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/15 19:38:05 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,19 @@ typedef struct  s_token
 typedef struct  s_ast t_ast;
 struct s_ast
 {
-  int type;
-  void  *content;
-  t_ast *left;
-  t_ast *right;
+	int			type;
+	void		*content;
+	t_ast		*left;
+	t_ast		*right;
+	t_element		*l_left;
+	t_element		*l_right;
 };
 
 typedef struct  s_cmd t_cmd;
 struct s_cmd
 {
-  char *cmd;
-  char **args;
+	char	*cmd;
+	char	**args;
 };
 
 // code_pieces
@@ -90,6 +92,9 @@ int		create_env_vars_array(char ***env_vars);
 //expands dollar sign variables
 char	*env_var_value(char *key);
 char  **get_paths(void);
+
+//AST
+t_ast	*ast_constructor(t_list *tokens);
 
 //GRAMMAR CHECK
 void	grammar_checker(t_list *tokens);
