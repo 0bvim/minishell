@@ -47,3 +47,12 @@ char	*env_var_value(char *key)
 		return (environ[i] + key_len + 1);
 	return (BLANK);
 }
+
+char  **get_paths(void)
+{
+  char  **splited_path;
+  const char  *full_path = env_var_value("PATH");
+
+  splited_path = ft_split(full_path, ':');
+  return (splited_path);
+}

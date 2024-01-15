@@ -63,16 +63,33 @@ enum	e_token
 	TOKEN_NULL
 };
 
-typedef	struct s_token
+typedef struct  s_token
 {
 	int		type;
 	char	*str;
 }	t_token;
 
+typedef struct  s_ast t_ast;
+struct s_ast
+{
+  int type;
+  void  *content;
+  t_ast *left;
+  t_ast *right;
+};
+
+typedef struct  s_cmd t_cmd;
+struct s_cmd
+{
+  char *cmd;
+  char **args;
+};
+
 // code_pieces
 int		create_env_vars_array(char ***env_vars);
 //expands dollar sign variables
 char	*env_var_value(char *key);
+char  **get_paths(void);
 
 //GRAMMAR CHECK
 void	grammar_checker(t_list *tokens);
