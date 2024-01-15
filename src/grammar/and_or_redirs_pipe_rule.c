@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   and_or_redirs_rule.c                               :+:      :+:    :+:   */
+/*   and_or_redirs_pipe_rule.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:44:34 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/15 16:48:16 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:11:00 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int is_and_or(int type)
 	return (type == AND || type == OR);
 }
 
-void	redir_and_or_rule(t_element *el)
+void	redir_and_or_pipe_rule(t_element *el)
 {
 	int		type;
 	int		prev_type;
@@ -33,13 +33,14 @@ void	redir_and_or_rule(t_element *el)
 		prev_type = ((t_token *)el->prev->content)->type;
 	else
 		prev_type = -1;
-	if (is_redirect(type) || is_and_or(type))
+	if (is_redirect(type) || is_and_or(type) || type == PIPE)
 	{
 		if (prev_type == -1)
 			ft_putstr_fd("Invalid token begining the line\n", 2); //panic
 		else if (!el->next)
 			ft_putstr_fd("Invalid token at the end of the line\n", 2); //panic
-		else if (is_redirect(prev_type) || is_and_or(prev_type))
+		else if (is_redirect(prev_type) || is_and_or(prev_type)
+			|| prev_type == PIPE)
 			ft_putstr_fd("Invalid syntax\n", 2); //panic
 	}
 }
