@@ -94,7 +94,7 @@ CFILES = $(addprefix $(ENTRANCE)/, )
 CFILES += $(addprefix $(DEBUG)/, list_printer.c)
 CFILES += $(addprefix $(GRAMMAR)/, grammar_checker.c and_or_redirs_pipe_rule.c)
 CFILES += $(addprefix $(TOKENIZER)/, add_tokens.c memory_handler.c parenthesis_validation.c quotes_validation.c tokenizer.c)
-CFILES += $(addprefix $(UTILS)/, str.c clear_console.c panic.c which_token.c)
+CFILES += $(addprefix $(UTILS)/, str.c clear_console.c ft_lst_split.c panic.c which_token.c)
 CFILES += $(addprefix $(CODEP)/, env_array.c)
 CFILES += $(addprefix $(AST)/, ast.c)
 
