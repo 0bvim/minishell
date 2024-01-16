@@ -12,13 +12,13 @@
 
 #include "../../includes/minishell.h"
 
-static int	is_redirect(int	type)
+static int	is_redirect(int type)
 {
 	return (type == L_REDIR || type == R_REDIR
 		|| type == HEREDOC || type == APPEND);
 }
 
-static int is_and_or(int type)
+static int	is_and_or(int type)
 {
 	return (type == AND || type == OR);
 }
