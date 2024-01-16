@@ -63,24 +63,24 @@ enum	e_token
 	TOKEN_NULL
 };
 
-typedef struct  s_token
+typedef struct s_token
 {
 	int		type;
 	char	*str;
 }	t_token;
 
-typedef struct  s_ast t_ast;
+typedef struct s_ast	t_ast;
 struct s_ast
 {
 	int			type;
 	void		*content;
 	t_ast		*left;
 	t_ast		*right;
-	t_element		*l_left;
-	t_element		*l_right;
+	t_element	*l_left;
+	t_element	*l_right;
 };
 
-typedef struct  s_cmd t_cmd;
+typedef struct s_cmd	t_cmd;
 struct s_cmd
 {
 	char	*cmd;
@@ -91,7 +91,7 @@ struct s_cmd
 int		create_env_vars_array(char ***env_vars);
 //expands dollar sign variables
 char	*env_var_value(char *key);
-char  **get_paths(void);
+char	**get_paths(void);
 
 //AST
 t_ast	*ast_constructor(t_list *tokens);
@@ -112,9 +112,12 @@ t_list	*tokenizer(const char *str);
 t_list	*token_list_holder(t_list *tokens);
 void	free_token(void *p_token);
 void	panic_tokenizer(char *error_msg);
-void	add_token(t_list *tokens, const char **start, const char **mover, int token_type);
-void	add_quotes_token(t_list *tokens, const char **start, const char **mover, int token_type);
-void	add_symbols_token(t_list *tokens, const char **start, const char **mover, int token_type);
+void	add_token(t_list *tokens, const char **start, const char **mover, \
+	int token_type);
+void	add_quotes_token(t_list *tokens, const char **start, \
+	const char **mover, int token_type);
+void	add_symbols_token(t_list *tokens, const char **start, \
+	const char **mover, int token_type);
 int		quotes_validation(const char *str);
 int		parenthesis_validation(const char *str);
 
