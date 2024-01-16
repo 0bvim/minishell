@@ -14,9 +14,6 @@
 
 int	main(void)
 {
-	// char	*input;
-	char	*str;
-
 	clear_console();
 	str = env_var_value("LSCOLORS");
 	printf("-%s-\n", str);
