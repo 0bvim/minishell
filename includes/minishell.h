@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/15 19:38:05 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/16 10:39:30 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	ft_skip_spaces(const char **str);
 void	clear_console(void);
 void	panic(char *str1, char *str2, char *str3, int err_nb);
 int		which_token(const char *str);
+t_list	*ft_lstsplit(t_list *lst, t_element *el);
 
 //TOKENIZER
 t_list	*tokenizer(const char *str);
