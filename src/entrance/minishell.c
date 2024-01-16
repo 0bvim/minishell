@@ -20,7 +20,7 @@
 /* wait for command completion */
 /* need to finish this little guide */
 /* remember to use extern **environ */
-int main(void)
+int	main(void)
 {
 	char	*input;
 	t_list	*tokens;
@@ -36,7 +36,7 @@ int main(void)
 			free(input);
 		}
 		else
-			break;
+			break ;
 	}
 	free(input);
 	return (EXIT_SUCCESS);

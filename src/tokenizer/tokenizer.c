@@ -23,7 +23,7 @@ static int	input_validations(const char *str)
 }
 
 static void	token_list_generator(t_list *tokens,
-								const char *start, const char *mover)
+									const char *start, const char *mover)
 {
 	int	token;
 
@@ -52,6 +52,7 @@ static void	token_list_generator(t_list *tokens,
 		add_token(tokens, &start, &mover, which_token(start));
 }
 
+/*remove list_printer and ft_lstclear*/
 t_list	*tokenizer(const char *str)
 {
 	t_list	*tokens;
@@ -69,10 +70,10 @@ t_list	*tokenizer(const char *str)
 			ft_skip_spaces(&str);
 		if (*str + 1)
 			token_list_generator(tokens, str, str + 1);
-		list_printer(tokens);// remove
+		list_printer(tokens);
 		grammar_checker(tokens);
 		ast_constructor(tokens);
-		ft_lstclear(tokens, free_token);// remove
+		ft_lstclear(tokens, free_token);
 	}
 	return (tokens);
 }

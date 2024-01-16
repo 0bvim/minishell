@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-extern char **environ;
-
 #include "../../includes/minishell.h"
+
+extern char	**environ;
 
 int	create_env_vars_array(char ***env_vars)
 {
 	unsigned int	i;
 
 	i = 0;
-	while(environ[i++])
+	while (environ[i++])
 		;
 	*env_vars = ft_calloc(i + 1, sizeof(char *));
 	if (!(*env_vars))
 		return (0);
 	i = -1;
-	while(environ[++i])
+	while (environ[++i])
 	{
 		(*env_vars)[i] = ft_strdup(environ[i]);
 		if (!(*env_vars)[i])
@@ -42,17 +42,17 @@ char	*env_var_value(char *key)
 	key_len = ft_strlen(key);
 	i = 0;
 	while (environ[i] && ft_strncmp(key, environ[i], key_len))
-		i++;
+	i++;
 	if (environ[i])
 		return (environ[i] + key_len + 1);
 	return (BLANK);
 }
 
-char  **get_paths(void)
+char	**get_paths(void)
 {
-  char  **splited_path;
-  const char  *full_path = env_var_value("PATH");
+	char		**splited_path;
+	const char	*full_path = env_var_value("PATH");
 
-  splited_path = ft_split(full_path, ':');
-  return (splited_path);
+	splited_path = ft_split(full_path, ':');
+	return (splited_path);
 }
