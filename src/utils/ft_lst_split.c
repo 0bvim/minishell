@@ -36,5 +36,5 @@ t_list	*ft_lstsplit(t_list *lst, t_element *el)
 		ft_lstadd_front(new_lst, ft_lstpop(lst, -1));
 		tmp_el = lst->last;
 	}
-	return(new_lst);
+	return (new_lst);
 }

@@ -23,6 +23,7 @@ static int	is_and_or(int type)
 	return (type == AND || type == OR);
 }
 
+/*remember to change ft_putstr for panic function*/
 void	redir_and_or_pipe_rule(t_element *el)
 {
 	int		type;
@@ -36,11 +37,11 @@ void	redir_and_or_pipe_rule(t_element *el)
 	if (is_redirect(type) || is_and_or(type) || type == PIPE)
 	{
 		if (prev_type == -1)
-			ft_putstr_fd("Invalid token begining the line\n", 2); //panic
+			ft_putstr_fd("Invalid token begining the line\n", 2);
 		else if (!el->next)
-			ft_putstr_fd("Invalid token at the end of the line\n", 2); //panic
+			ft_putstr_fd("Invalid token at the end of the line\n", 2);
 		else if (is_redirect(prev_type) || is_and_or(prev_type)
 			|| prev_type == PIPE)
-			ft_putstr_fd("Invalid syntax\n", 2); //panic
+			ft_putstr_fd("Invalid syntax\n", 2);
 	}
 }

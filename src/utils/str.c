@@ -12,16 +12,16 @@
 
 #include "../../includes/minishell.h"
 
-int ft_issymbol(char c)
+int	ft_issymbol(char c)
 {
 	if (ft_strchr(SYMBOLS, c))
 		return (1);
 	return (0);
 }
 
-void ft_skip_spaces(const char **str)
+void	ft_skip_spaces(const char **str)
 {
 	if (*str)
 		while (**str && ft_isspace(**str))
-			(*str)++;
+	(*str)++;
 }
