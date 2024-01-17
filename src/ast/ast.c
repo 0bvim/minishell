@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:17:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/15 19:46:35 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/17 00:45:30 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_ast	*ast_constructor(t_list *tokens)
 	{
 		root->l_right = el->next;
 		root->l_left = el->prev;
+		tk = root->l_left->content;
+		printf("%s\n", tk->str);
 	}
-	tk = root->l_left->content;
-	printf("%s\n", tk->str);
 	return (root);
 }
