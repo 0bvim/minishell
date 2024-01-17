@@ -18,8 +18,8 @@ int	create_env_vars_array(char ***env_vars)
 {
 	unsigned int	i;
 
-	i = 0;
-	while (environ[i++])
+	i = -1;
+	while (environ[++i])
 		;
 	*env_vars = ft_calloc(i + 1, sizeof(char *));
 	if (!(*env_vars))
@@ -42,7 +42,7 @@ char	*env_var_value(char *key)
 	key_len = ft_strlen(key);
 	i = 0;
 	while (environ[i] && ft_strncmp(key, environ[i], key_len))
-	i++;
+		i++;
 	if (environ[i])
 		return (environ[i] + key_len + 1);
 	return (BLANK);
