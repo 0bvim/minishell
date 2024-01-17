@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/16 10:39:30 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/17 11:27:52 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ enum	e_token
 	HEREDOC,
 	R_REDIR,
 	APPEND,
-	TOKEN_NULL
+	TOKEN_NULL,
+	EXEC
 };
 
 typedef struct s_token
@@ -76,8 +77,7 @@ struct s_ast
 	void		*content;
 	t_ast		*left;
 	t_ast		*right;
-	t_element	*l_left;
-	t_element	*l_right;
+	t_list		*exec;
 };
 
 typedef struct s_cmd	t_cmd;
@@ -95,6 +95,8 @@ char	**get_paths(void);
 
 //AST
 t_ast	*ast_constructor(t_list *tokens);
+void	ast_split_node(t_ast *ast_node, t_list *tokens,
+	t_element *el_to_split);
 
 //GRAMMAR CHECK
 void	grammar_checker(t_list *tokens);

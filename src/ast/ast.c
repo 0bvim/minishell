@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:17:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/17 00:45:30 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/01/17 11:25:08 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,12 @@ t_ast	*ast_constructor(t_list *tokens)
 
 	root = ft_calloc(1, sizeof(t_ast));
 	if (!root)
-		return (NULL);
-	el = search_and_or(tokens);
-	if (el)
+		return (NULL); //panic tree
+	ast_split_node(root, tokens, search_and_or(tokens));
+	if (!root->type)
 	{
-		root->l_right = el->next;
-		root->l_left = el->prev;
-		tk = root->l_left->content;
-		printf("%s\n", tk->str);
+		root->type = EXEC;
+		root->exec = tokens;
 	}
 	return (root);
 }
