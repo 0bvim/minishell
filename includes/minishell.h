@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/17 13:59:49 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:25:14 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	**get_paths(void);
 
 //AST
 t_ast	*ast_constructor(t_list *tokens);
-void	ast_split_node(t_ast *ast_node, t_list *tokens,
+int		ast_split_node(t_ast *ast_node, t_list *tokens,
 	t_element *el_to_split);
 
 //GRAMMAR CHECK
