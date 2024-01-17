@@ -42,7 +42,7 @@ char	*env_var_value(char *key)
 	key_len = ft_strlen(key);
 	i = 0;
 	while (environ[i] && ft_strncmp(key, environ[i], key_len))
-	i++;
+		i++;
 	if (environ[i])
 		return (environ[i] + key_len + 1);
 	return (BLANK);
