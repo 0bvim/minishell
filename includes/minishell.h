@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/16 10:39:30 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/17 15:37:19 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ enum	e_token
 	HEREDOC,
 	R_REDIR,
 	APPEND,
-	TOKEN_NULL
+	TOKEN_NULL,
+	BLOCK,
+	EXEC
 };
 
 typedef struct s_token
@@ -76,8 +78,7 @@ struct s_ast
 	void		*content;
 	t_ast		*left;
 	t_ast		*right;
-	t_element	*l_left;
-	t_element	*l_right;
+	t_list		*exec;
 };
 
 typedef struct s_cmd	t_cmd;
@@ -95,6 +96,8 @@ char	**get_paths(void);
 
 //AST
 t_ast	*ast_constructor(t_list *tokens);
+int		ast_split_node(t_ast *ast_node, t_list *tokens,
+	t_element *el_to_split);
 
 //GRAMMAR CHECK
 void	grammar_checker(t_list *tokens);
@@ -115,14 +118,13 @@ void	free_token(void *p_token);
 void	panic_tokenizer(char *error_msg);
 void	add_token(t_list *tokens, const char **start, const char **mover, \
 	int token_type);
-void	add_quotes_token(t_list *tokens, const char **start, \
-	const char **mover, int token_type);
-void	add_symbols_token(t_list *tokens, const char **start, \
-	const char **mover, int token_type);
+int	add_special_token(t_list *tokens,
+					const char **start, const char **mover, int token_type);
 int		quotes_validation(const char *str);
 int		parenthesis_validation(const char *str);
 
 //DEBUGGERS
 void	list_printer(t_list *tokens);
+void	tree_execs_printer(t_ast *root);
 
 #endif

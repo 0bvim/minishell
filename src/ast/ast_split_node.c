@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grammar_checker.c                                  :+:      :+:    :+:   */
+/*   ast_split_node.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 15:37:13 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/17 15:19:36 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/01/17 10:16:44 by brmoretti         #+#    #+#             */
+/*   Updated: 2024/01/17 14:24:59 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	grammar_checker(t_list *tokens)
+int	ast_split_node(t_ast *ast_node, t_list *tokens,
+	t_element *el_to_split)
 {
-	t_element	*el;
+	t_list	*right;
 
-	if (!tokens || !tokens->first)
-		return ;
-	el = tokens->first;
-	while (el)
-	{
-		redir_and_or_pipe_rule(el);
-		el = el->next;
-	}
+	if (!ast_node || !tokens || !el_to_split)
+		return (0);
+	right = ft_lstsplit(tokens, el_to_split);
+	if (!right)
+		return (0); //panic tree
+	ast_node->type = ((t_token *)tokens->last->content)->type;
+	ft_lstdelone(tokens, tokens->last, free_token);
+	ast_node->left = ast_constructor(tokens);
+	ast_node->right = ast_constructor(right);
+	return (1);
 }

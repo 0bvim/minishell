@@ -91,12 +91,12 @@ BONUS_SRC = $(addprefix $(BONUS)/, )
 
 # files mandatory #
 CFILES = $(addprefix $(ENTRANCE)/, )
-CFILES += $(addprefix $(DEBUG)/, list_printer.c)
+CFILES += $(addprefix $(DEBUG)/, list_printer.c tree_execs_printer.c)
 CFILES += $(addprefix $(GRAMMAR)/, grammar_checker.c and_or_redirs_pipe_rule.c)
 CFILES += $(addprefix $(TOKENIZER)/, add_tokens.c memory_handler.c parenthesis_validation.c quotes_validation.c tokenizer.c)
 CFILES += $(addprefix $(UTILS)/, str.c clear_console.c ft_lst_split.c panic.c which_token.c)
 CFILES += $(addprefix $(CODEP)/, env_array.c)
-CFILES += $(addprefix $(AST)/, ast.c)
+CFILES += $(addprefix $(AST)/, ast.c ast_split_node.c)
 
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-out.txt
 VAL_TXT = valgrind-out.txt

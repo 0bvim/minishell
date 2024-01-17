@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grammar_checker.c                                  :+:      :+:    :+:   */
+/*   tree_execs_printer.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 15:37:13 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/17 15:19:36 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/01/17 10:59:27 by brmoretti         #+#    #+#             */
+/*   Updated: 2024/01/17 13:23:08 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	grammar_checker(t_list *tokens)
+void	tree_execs_printer(t_ast *root)
 {
 	t_element	*el;
 
-	if (!tokens || !tokens->first)
-		return ;
-	el = tokens->first;
-	while (el)
+	if (root->left)
+		tree_execs_printer(root->left);
+	if (root->right)
+		tree_execs_printer(root->right);
+	if (root->exec)
 	{
-		redir_and_or_pipe_rule(el);
-		el = el->next;
+		el = root->exec->first;
+		while (el)
+		{
+			printf("%s ", ((t_token *)el->content)->str);
+			el = el->next;
+		}
+		printf("\n");
 	}
 }
