@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:20:35 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/14 05:22:03 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/01/17 15:35:51 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	add_token(t_list *tokens,
 		(*mover)++;
 }
 
-void	add_quotes_token(t_list *tokens,
+static void	add_quotes_token(t_list *tokens,
 					const char **start, const char **mover, int token_type)
 {
 	char	quote_type;
@@ -51,11 +51,35 @@ void	add_quotes_token(t_list *tokens,
 	add_token(tokens, start, mover, token_type);
 }
 
-void	add_symbols_token(t_list *tokens,
+static void	add_symbols_token(t_list *tokens,
 					const char **start, const char **mover, int token_type)
 {
 	if (token_type == AND || token_type == OR || token_type == HEREDOC \
 		|| token_type == APPEND)
 		(*mover)++;
 	add_token(tokens, start, mover, token_type);
+}
+
+static void	add_block_token(t_list *tokens,
+					const char **start, const char **mover, int token_type)
+{
+	while (**mover && **mover != ')')
+		(*mover)++;
+	if (**mover)
+		(*mover)++;
+	add_token(tokens, start, mover, token_type);
+}
+
+int	add_special_token(t_list *tokens,
+					const char **start, const char **mover, int token_type)
+{
+	if (token_type == QUOTE || token_type == DOUBLE_QUOTE)
+		add_quotes_token(tokens, start, mover, token_type);
+	else if (token_type == L_PAREN)
+		add_block_token(tokens, start, mover, BLOCK);
+	else if (token_type != ARGUMENT)
+		add_symbols_token(tokens, start, mover, token_type);
+	else
+		return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/17 14:25:14 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/17 15:37:19 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ enum	e_token
 	R_REDIR,
 	APPEND,
 	TOKEN_NULL,
+	BLOCK,
 	EXEC
 };
 
@@ -117,10 +118,8 @@ void	free_token(void *p_token);
 void	panic_tokenizer(char *error_msg);
 void	add_token(t_list *tokens, const char **start, const char **mover, \
 	int token_type);
-void	add_quotes_token(t_list *tokens, const char **start, \
-	const char **mover, int token_type);
-void	add_symbols_token(t_list *tokens, const char **start, \
-	const char **mover, int token_type);
+int	add_special_token(t_list *tokens,
+					const char **start, const char **mover, int token_type);
 int		quotes_validation(const char *str);
 int		parenthesis_validation(const char *str);
 

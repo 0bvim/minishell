@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/17 13:58:43 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:10:00 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,7 @@ static void	token_list_generator(t_list *tokens,
 		token = which_token(start);
 		if (*mover)
 		{
-			if (token == QUOTE || token == DOUBLE_QUOTE)
-				add_quotes_token(tokens, &start, &mover, token);
-			else if (token != ARGUMENT)
-				add_symbols_token(tokens, &start, &mover, token);
-			else
+			if (!add_special_token(tokens, &start, &mover, token))
 			{
 				while (*mover && !ft_isspace(*mover) && !ft_issymbol(*mover))
 					mover++;
