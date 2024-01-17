@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:17:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/17 11:25:08 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/17 13:23:49 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ t_element	*search_and_or(t_list *tokens)
 t_ast	*ast_constructor(t_list *tokens)
 {
 	t_ast		*root;
-	t_element	*el;
-	t_token		*tk;
 
 	root = ft_calloc(1, sizeof(t_ast));
 	if (!root)

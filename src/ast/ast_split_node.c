@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_split_node.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 10:16:44 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/17 11:21:12 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/17 13:43:54 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	ast_split_node(t_ast *ast_node, t_list *tokens,
 	t_element *el_to_split)
 {
 	t_list	*right;
-	
+
 	if (!ast_node || !tokens || !el_to_split)
 		return ;
-	right = ft_lst_split(tokens, el_to_split);
+	right = ft_lstsplit(tokens, el_to_split);
 	if (!right)
 		return ; //panic tree
 	ast_node->type = ((t_token *)tokens->last->content)->type;

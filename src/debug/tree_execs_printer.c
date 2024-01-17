@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_execs_printer.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 10:59:27 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/17 11:10:43 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/17 13:23:08 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
