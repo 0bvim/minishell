@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/17 15:37:19 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/18 12:54:29 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int		create_env_vars_array(char ***env_vars);
 //expands dollar sign variables
 char	*env_var_value(char *key);
 char	**get_paths(void);
+void	clear_tree(t_ast *root);
 
 //AST
 t_ast	*ast_constructor(t_list *tokens);
