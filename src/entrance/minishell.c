@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/18 13:01:26 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:01:23 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,46 @@
 /* wait for command completion */
 /* need to finish this little guide */
 /* remember to use extern **environ */
+char	*prompt(void);
+void	parser(char *input);
+
 int	main(void)
 {
-	char	*input;
-	t_list	*tokens;
+	pid_t	pid;
 
 	clear_console();
 	while (true)
 	{
-		input = readline("minishell~$ ");
-		if (input != NULL && ft_strncmp(input, "exit", 4))
-		{
-			tokens = tokenizer(input);
-			(void)tokens;
-			free(input);
-		}
-		else
-			break ;
+		pid = fork();
+		if (pid != 0)
+			ft_putstr_fd("fork error");
+		if (pid == 0)
+			parser(prompt());
+		wait(NULL);
 	}
-	free(input);
 	return (EXIT_SUCCESS);
 }
+
+char	*prompt(void)
+{
+	char	*input;
+
+	input = readline("minishell~$ ");
+	if (!(input != NULL && ft_strncmp(input, "exit", 4)))
+		exit(EXIT_SUCCESS);
+	return (input);
+}
+
+void	parser(char *input)
+{
+	t_list	*tokens;
+	t_ast	*root;
+
+	tokens = tokenizer(input);
+	grammar_checker(tokens);
+	root = ast_constructor(tokens);
+	tree_execs_printer(root);
+	free(input);
+	clear_tree(root);
+}
+
