@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 10:16:44 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/18 12:25:06 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/18 12:47:59 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ast_split_node(t_ast *ast_node, t_list *tokens,
 		return (0); //panic tree
 	ast_node->type = ((t_token *)tokens->last->content)->type;
 	ft_lstdelone(tokens, tokens->last, free_token);
-	if (ast_node->type == L_REDIR || ast_node == R_REDIR
+	if (ast_node->type == L_REDIR || ast_node->type == R_REDIR
 		|| ast_node->type == HEREDOC || ast_node->type == APPEND)
 		transfer_all_elements_keep_first(tokens, right);
 	ast_node->left = ast_constructor(tokens);

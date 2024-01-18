@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/17 16:10:00 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/18 12:55:03 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ t_list	*tokenizer(const char *str)
 	tokens = 0;
 	if (*str)
 	{
+		t_ast	*root;
+
 		if (!input_validations(str))
 			return (NULL);
 		tokens = ft_calloc(1, sizeof(t_list));
@@ -68,8 +70,10 @@ t_list	*tokenizer(const char *str)
 			token_list_generator(tokens, str, str + 1);
 		//list_printer(tokens);
 		grammar_checker(tokens);
-		tree_execs_printer(ast_constructor(tokens));
-		ft_lstclear(tokens, free_token);
+		root = ast_constructor(tokens);
+		tree_execs_printer(root);
+		clear_tree(root);
+		//ft_lstclear(tokens, free_token);
 	}
 	return (tokens);
 }
