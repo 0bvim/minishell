@@ -91,11 +91,22 @@ void	exec_single_command(t_ast *root)
 			ft_strlcat(tmp, ((t_token *)el->content)->str, ft_strlen(((t_token *)el->content)->str) + 1);
 			el = el->next;
 		}
-		printf("%s\n", tmp);
 		cmd->args = get_command(tmp);
 		cmd->path = validate_path(cmd->args[0], cmd->paths);
 		execve(cmd->path, cmd->args, environ);
-		printf("%s ", ((t_token *)el->content)->str);
-		printf("\n");
 	}
+}
+
+char	*concat_args(t_ast *root)
+{
+	char	*retrn;
+	t_list	lst;
+
+	if (root)
+	{
+		lst = root->exec;
+		retrn = ft_strjoin(retrn, lst->first->content->str)
+		return (concat_args(root->right))
+	}
+	return (NULL);
 }
