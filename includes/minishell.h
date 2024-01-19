@@ -84,8 +84,8 @@ struct s_ast
 typedef struct s_cmd	t_cmd;
 struct s_cmd
 {
-	char	*cmd;
 	char	**args;
+	char	**path;
 };
 
 // code_pieces

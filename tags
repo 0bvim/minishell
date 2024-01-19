@@ -1,0 +1,343 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+$(BUILD_DIR)	lib/libft/Makefile	/^$(BUILD_DIR):$/;"	t
+$(BUILD_DIR)/%.o	lib/libft/Makefile	/^$(BUILD_DIR)\/%.o: $(SRC_DIR)\/%.c$/;"	t
+$(NAME)	Makefile	/^$(NAME): $(OBJECT) $(BIN_OBJ)$/;"	t
+$(NAME)	lib/libft/Makefile	/^$(NAME) : $(BUILD_DIR) $(OBJS)$/;"	t
+$(OBJ)/%.o	Makefile	/^$(OBJ)\/%.o: %.c$/;"	t
+.DEFAULT_GOAL	Makefile	/^.DEFAULT_GOAL := all$/;"	m
+0	.vscode/launch.json	/^				{$/;"	o	array:configurations.0.setupCommands
+0	.vscode/launch.json	/^		{$/;"	o	array:configurations
+1	.vscode/launch.json	/^				{$/;"	o	array:configurations.0.setupCommands
+AND	includes/minishell.h	/^	AND,$/;"	e	enum:e_token
+APPEND	includes/minishell.h	/^	APPEND,$/;"	e	enum:e_token
+AR	lib/libft/Makefile	/^AR				=	ar$/;"	m
+ARGUMENT	includes/minishell.h	/^	ARGUMENT,$/;"	e	enum:e_token
+AR_FLAGS	lib/libft/Makefile	/^AR_FLAGS		=	rcs$/;"	m
+AST	Makefile	/^AST = $(SRC)\/ast$/;"	m
+BG_BLACK	Makefile	/^BG_BLACK=\\033[40m$/;"	m
+BG_BLUE	Makefile	/^BG_BLUE=\\033[104m$/;"	m
+BG_CYAN	Makefile	/^BG_CYAN=\\033[106m$/;"	m
+BG_DARK_BLUE	Makefile	/^BG_DARK_BLUE=\\033[44m$/;"	m
+BG_DARK_CYAN	Makefile	/^BG_DARK_CYAN=\\033[46m$/;"	m
+BG_DARK_GRAY	Makefile	/^BG_DARK_GRAY=\\033[100m$/;"	m
+BG_DARK_GREEN	Makefile	/^BG_DARK_GREEN=\\033[42m$/;"	m
+BG_DARK_MAGENTA	Makefile	/^BG_DARK_MAGENTA=\\033[45m$/;"	m
+BG_DARK_RED	Makefile	/^BG_DARK_RED=\\033[41m$/;"	m
+BG_DARK_YELLOW	Makefile	/^BG_DARK_YELLOW=\\033[43m$/;"	m
+BG_DEFAULT	Makefile	/^BG_DEFAULT=\\033[49m$/;"	m
+BG_GREEN	Makefile	/^BG_GREEN=\\033[102m$/;"	m
+BG_LIGHT_GRAY	Makefile	/^BG_LIGHT_GRAY=\\033[47m$/;"	m
+BG_MAGENTA	Makefile	/^BG_MAGENTA=\\033[105m$/;"	m
+BG_ORANGE	Makefile	/^BG_ORANGE=\\033[103m$/;"	m
+BG_RED	Makefile	/^BG_RED=\\033[101m$/;"	m
+BG_WHITE	Makefile	/^BG_WHITE=\\033[107m$/;"	m
+BIN_OBJ	Makefile	/^	BIN_OBJ = $(BONUS_SRC:%.c=$(OBJ)\/%.o)$/;"	m
+BIN_OBJ	Makefile	/^BIN_OBJ = $(MAIN_SRC:%.c=$(OBJ)\/%.o)$/;"	m
+BLACK	Makefile	/^BLACK=\\033[30m$/;"	m
+BLANK	includes/minishell.h	/^# define BLANK /;"	d
+BLIBNAME	Makefile	/^BLIBNAME = minishell_bonus$/;"	m
+BLOCK	includes/minishell.h	/^	BLOCK,$/;"	e	enum:e_token
+BLUE	Makefile	/^BLUE=\\033[94m$/;"	m
+BLUE	lib/libft/Makefile	/^BLUE			=	\\033[0;34m$/;"	m
+BONUS	Makefile	/^BONUS = $(SRC)\/bonus$/;"	m
+BONUS_SRC	Makefile	/^BONUS_SRC = $(addprefix $(BONUS)\/, )$/;"	m
+BUFFER_SIZE	lib/libft/include/get_next_line.h	/^#  define BUFFER_SIZE /;"	d
+BUILD_DIR	lib/libft/Makefile	/^BUILD_DIR		=	build$/;"	m
+CC	lib/libft/Makefile	/^CC				=	cc$/;"	m
+CC_FLAGS	lib/libft/Makefile	/^CC_FLAGS 		=	-Wall -Werror -Wextra -O3$/;"	m
+CFILES	Makefile	/^CFILES = $(addprefix $(ENTRANCE)\/, )$/;"	m
+CFLAGS	Makefile	/^	CFLAGS = $(DFLAGS)$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -Werror -Wextra -g3 -pedantic -flto -MD -MP # FOR DEPENDENCIES$/;"	m
+CLEAN	Makefile	/^CLEAN = Objects delete$/;"	m
+CODEP	Makefile	/^CODEP = $(SRC)\/code_pieces$/;"	m
+COMP	Makefile	/^COMP = Compiling$/;"	m
+COUNT	Makefile	/^COUNT := 0$/;"	m
+CYAN	Makefile	/^CYAN=\\033[96m$/;"	m
+CYAN	lib/libft/Makefile	/^CYAN			=	\\033[0;36m$/;"	m
+DARK_BLUE	Makefile	/^DARK_BLUE=\\033[34m$/;"	m
+DARK_CYAN	Makefile	/^DARK_CYAN=\\033[36m$/;"	m
+DARK_GRAY	Makefile	/^DARK_GRAY=\\033[90m$/;"	m
+DARK_GREEN	Makefile	/^DARK_GREEN=\\033[32m$/;"	m
+DARK_MAGENTA	Makefile	/^DARK_MAGENTA=\\033[35m$/;"	m
+DARK_RED	Makefile	/^DARK_RED=\\033[31m$/;"	m
+DARK_YELLOW	Makefile	/^DARK_YELLOW=\\033[33m$/;"	m
+DEBUG	Makefile	/^DEBUG = $(SRC)\/debug$/;"	m
+DEFAULT	Makefile	/^DEFAULT=\\033[39m$/;"	m
+DEFAULT	lib/libft/Makefile	/^DEFAULT 		=	\\033[0:0m$/;"	m
+DFLAGS	Makefile	/^DFLAGS = -Wall -Wextra -Werror -g3 # TO DEBBUG$/;"	m
+DOLLAR	includes/minishell.h	/^	DOLLAR,$/;"	e	enum:e_token
+DOUBLE_QUOTE	includes/minishell.h	/^	DOUBLE_QUOTE,$/;"	e	enum:e_token
+ENTRANCE	Makefile	/^ENTRANCE = $(SRC)\/entrance$/;"	m
+EXEC	includes/minishell.h	/^	EXEC$/;"	e	enum:e_token
+FCLEAN	Makefile	/^FCLEAN = Program delete$/;"	m
+FFLAGS	Makefile	/^FFLAGS = -lreadline # FLAGS THAT ONLY WORK AT THE END OF LINE (AFTER OBJECTS)$/;"	m
+GET_NEXT_LINE_H	lib/libft/include/get_next_line.h	/^# define GET_NEXT_LINE_H$/;"	d
+GRAMMAR	Makefile	/^GRAMMAR = $(SRC)\/grammar$/;"	m
+GREEN	Makefile	/^GREEN=\\033[92m$/;"	m
+GREEN	lib/libft/Makefile	/^GREEN			=	\\033[0;32m$/;"	m
+HEADERS	Makefile	/^HEADERS = $(addprefix $(INC)\/, cmds.h minishell.h parsers.h)$/;"	m
+HEREDOC	includes/minishell.h	/^	HEREDOC,$/;"	e	enum:e_token
+INC	Makefile	/^INC = includes$/;"	m
+INCLUDES	Makefile	/^INCLUDES = -I$(INC)\/ -Ilib\/libft\/includes\/$/;"	m
+INCLUDES	lib/libft/Makefile	/^INCLUDES		=	-I.\/include$/;"	m
+INCLUDES_FILES	lib/libft/Makefile	/^INCLUDES_FILES	=	get_next_line.h				\\$/;"	m
+LBONUS	Makefile	/^LBONUS = Bonus Program compiled$/;"	m
+LFLAGS	Makefile	/^LFLAGS = -march=native # TO OPTIMIZE FOR SPECIFIC ARCHITECTURE$/;"	m
+LIB	lib/libft/Makefile	/^LIB				=	libft.a$/;"	m
+LIBFT	Makefile	/^LIBFT = lib\/libft\/libft.a$/;"	m
+LIBFT_H	lib/libft/include/libft.h	/^# define LIBFT_H$/;"	d
+LIBFT_PATH	Makefile	/^LIBFT_PATH = lib\/libft$/;"	m
+LIBNAME	Makefile	/^	LIBNAME = $(BLIBNAME)$/;"	m
+LIBNAME	Makefile	/^LIBNAME = minishell$/;"	m
+LIGHT_GRAY	Makefile	/^LIGHT_GRAY=\\033[37m$/;"	m
+LINCLUDES	Makefile	/^LINCLUDES = -L$(LIBFT_PATH) -lft$/;"	m
+L_PAREN	includes/minishell.h	/^	L_PAREN,$/;"	e	enum:e_token
+L_REDIR	includes/minishell.h	/^	L_REDIR,$/;"	e	enum:e_token
+MAGENTA	Makefile	/^	MAGENTA = $(YELLOW)$/;"	m
+MAGENTA	Makefile	/^MAGENTA=\\033[95m$/;"	m
+MAGENTA	lib/libft/Makefile	/^MAGENTA			=	\\033[0;35m$/;"	m
+MAIN_SRC	Makefile	/^	MAIN_SRC = $(BONUS_SRC)$/;"	m
+MAIN_SRC	Makefile	/^MAIN_SRC = $(ENTRANCE)\/minishell.c$/;"	m
+MANDATORY	Makefile	/^	MANDATORY = $(LBONUS)$/;"	m
+MANDATORY	Makefile	/^MANDATORY = Program compiled$/;"	m
+MIMode	.vscode/launch.json	/^			"MIMode": "gdb",$/;"	s	object:configurations.0
+MINISHELL_H	includes/minishell.h	/^# define MINISHELL_H$/;"	d
+NAME	Makefile	/^	NAME = $(BLIBNAME)$/;"	m
+NAME	Makefile	/^NAME = minishell$/;"	m
+NAME	lib/libft/Makefile	/^NAME			=	libft.a$/;"	m
+OBJ	Makefile	/^OBJ = obj$/;"	m
+OBJECT	Makefile	/^OBJECT = $(CFILES:%.c=$(OBJ)\/%.o)$/;"	m
+OBJS	lib/libft/Makefile	/^OBJS 			=	$(addprefix .\/$(BUILD_DIR)\/, $(SRC_FILES:.c=.o))$/;"	m
+OR	includes/minishell.h	/^	OR,$/;"	e	enum:e_token
+ORANGE	Makefile	/^ORANGE=\\033[93m$/;"	m
+PIPE	includes/minishell.h	/^	PIPE,$/;"	e	enum:e_token
+QUOTE	includes/minishell.h	/^	QUOTE,$/;"	e	enum:e_token
+RED	Makefile	/^RED=\\033[91m$/;"	m
+RED	lib/libft/Makefile	/^RED				=	\\033[0;31m$/;"	m
+RESET	Makefile	/^RESET=\\033[0m$/;"	m
+R_PAREN	includes/minishell.h	/^	R_PAREN,$/;"	e	enum:e_token
+R_REDIR	includes/minishell.h	/^	R_REDIR,$/;"	e	enum:e_token
+SHELL	Makefile	/^SHELL := \/bin\/bash$/;"	m
+SLEEP	Makefile	/^SLEEP := sleep 0.2$/;"	m
+SRC	Makefile	/^SRC = src$/;"	m
+SRCS	lib/libft/Makefile	/^SRCS			=	$(addprefix .\/$(SRC_DIR)\/, $(SRC_FILES))$/;"	m
+SRC_DIR	lib/libft/Makefile	/^SRC_DIR			=	src$/;"	m
+SRC_FILES	lib/libft/Makefile	/^SRC_FILES		=	ft_abs.c					\\$/;"	m
+SYMBOLS	includes/minishell.h	/^# define SYMBOLS /;"	d
+TOKENIZER	Makefile	/^TOKENIZER = $(SRC)\/tokenizer$/;"	m
+TOKEN_NULL	includes/minishell.h	/^	TOKEN_NULL,$/;"	e	enum:e_token
+UTILS	Makefile	/^UTILS = $(SRC)\/utils$/;"	m
+VAL	Makefile	/^VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-o/;"	m
+VAL_TXT	Makefile	/^VAL_TXT = valgrind-out.txt$/;"	m
+WHITE	Makefile	/^WHITE=\\033[97m$/;"	m
+WHITE	lib/libft/Makefile	/^WHITE			=	\\033[0;37m$/;"	m
+YELLOW	lib/libft/Makefile	/^YELLOW			=	\\033[0;33m$/;"	m
+add_block_token	src/tokenizer/add_tokens.c	/^static void	add_block_token(t_list *tokens,$/;"	f	typeref:typename:void	file:
+add_quotes_token	src/tokenizer/add_tokens.c	/^static void	add_quotes_token(t_list *tokens,$/;"	f	typeref:typename:void	file:
+add_special_token	src/tokenizer/add_tokens.c	/^int	add_special_token(t_list *tokens,$/;"	f	typeref:typename:int
+add_symbols_token	src/tokenizer/add_tokens.c	/^static void	add_symbols_token(t_list *tokens,$/;"	f	typeref:typename:void	file:
+add_token	src/tokenizer/add_tokens.c	/^void	add_token(t_list *tokens,$/;"	f	typeref:typename:void
+all	Makefile	/^all: $(NAME)$/;"	t
+all	lib/libft/Makefile	/^all: $(NAME)$/;"	t
+args	.vscode/launch.json	/^			"args": [],$/;"	a	object:configurations.0
+args	includes/minishell.h	/^	char	**args;$/;"	m	struct:s_cmd	typeref:typename:char **
+array	.vscode/settings.json	/^		"array": "c",$/;"	s	object:files.associations
+ast_constructor	src/ast/ast.c	/^t_ast	*ast_constructor(t_list *tokens)$/;"	f	typeref:typename:t_ast *
+ast_holder	src/ast/ast_memory_handler.c	/^t_ast	*ast_holder(t_ast *root)$/;"	f	typeref:typename:t_ast *
+ast_split_node	src/ast/ast_split_node.c	/^int	ast_split_node(t_ast *ast_node, t_list *tokens,$/;"	f	typeref:typename:int
+bonus	Makefile	/^bonus:$/;"	t
+bonus	Makefile	/^define bonus$/;"	m
+clean	Makefile	/^clean:$/;"	t
+clean	Makefile	/^define clean$/;"	m
+clean	lib/libft/Makefile	/^clean:$/;"	t
+clear_console	src/utils/clear_console.c	/^void	clear_console(void)$/;"	f	typeref:typename:void
+clear_tree	src/ast/ast_memory_handler.c	/^void	clear_tree(t_ast *root)$/;"	f	typeref:typename:void
+cmd	includes/minishell.h	/^	char	*cmd;$/;"	m	struct:s_cmd	typeref:typename:char *
+compile	Makefile	/^	compile = compile_bonus$/;"	m
+compile	Makefile	/^define compile$/;"	m
+compile_bonus	Makefile	/^define compile_bonus$/;"	m
+compile_source	Makefile	/^define compile_source$/;"	m
+configurations	.vscode/launch.json	/^	"configurations": [$/;"	a
+content	includes/minishell.h	/^	void		*content;$/;"	m	struct:s_ast	typeref:typename:void *
+content	lib/libft/include/libft.h	/^	void				*content;$/;"	m	struct:s_element	typeref:typename:void *
+count_quotes	src/tokenizer/quotes_validation.c	/^static void	count_quotes(const char *str,$/;"	f	typeref:typename:void	file:
+create_env_vars_array	src/code_pieces/env_array.c	/^int	create_env_vars_array(char ***env_vars)$/;"	f	typeref:typename:int
+create_objects_dir	Makefile	/^define create_objects_dir$/;"	m
+cwd	.vscode/launch.json	/^			"cwd": "${fileDirname}",$/;"	s	object:configurations.0
+debug	Makefile	/^debug:$/;"	t
+debug	Makefile	/^define debug$/;"	m
+deque	.vscode/settings.json	/^		"deque": "c",$/;"	s	object:files.associations
+description	.vscode/launch.json	/^					"description": "Enable pretty-printing for gdb",$/;"	s	object:configurations.0.setupCommands.0
+description	.vscode/launch.json	/^					"description": "Set Disassembly Flavor to Intel",$/;"	s	object:configurations.0.setupCommands.1
+e_token	includes/minishell.h	/^enum	e_token$/;"	g
+env_var_value	src/code_pieces/env_array.c	/^char	*env_var_value(char *key)$/;"	f	typeref:typename:char *
+environment	.vscode/launch.json	/^			"environment": [],$/;"	a	object:configurations.0
+eraseBins	Makefile	/^define eraseBins$/;"	m
+exec	includes/minishell.h	/^	t_list		*exec;$/;"	m	struct:s_ast	typeref:typename:t_list *
+externalConsole	.vscode/launch.json	/^			"externalConsole": false,$/;"	b	object:configurations.0
+fclean	Makefile	/^define fclean$/;"	m
+fclean	Makefile	/^fclean: clean$/;"	t
+fclean	lib/libft/Makefile	/^fclean: clean$/;"	t
+files.associations	.vscode/settings.json	/^	"files.associations": {$/;"	o
+first	lib/libft/include/libft.h	/^	t_element	*first;$/;"	m	struct:s_list	typeref:typename:t_element *
+free_token	src/tokenizer/memory_handler.c	/^void	free_token(void *p_token)$/;"	f	typeref:typename:void
+ft_abs	lib/libft/src/ft_abs.c	/^int	ft_abs(int nb)$/;"	f	typeref:typename:int
+ft_atof	lib/libft/src/ft_atof.c	/^double	ft_atof(const char *nptr)$/;"	f	typeref:typename:double
+ft_atoi	lib/libft/src/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f	typeref:typename:int
+ft_atoll	lib/libft/src/ft_atoll.c	/^long long	ft_atoll(const char *nptr)$/;"	f	typeref:typename:long long
+ft_bzero	lib/libft/src/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f	typeref:typename:void
+ft_calloc	lib/libft/src/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f	typeref:typename:void *
+ft_clear	lib/libft/src/ft_split.c	/^static char	**ft_clear(char **tab)$/;"	f	typeref:typename:char **	file:
+ft_copy_split	lib/libft/src/ft_split.c	/^static char	*ft_copy_split(char *dest, char *src, char c)$/;"	f	typeref:typename:char *	file:
+ft_count_tokens	lib/libft/src/ft_split.c	/^static unsigned int	ft_count_tokens(char const *s, char c)$/;"	f	typeref:typename:unsigned int	file:
+ft_define_size	lib/libft/src/ft_itoa.c	/^static size_t	ft_define_size(int n)$/;"	f	typeref:typename:size_t	file:
+ft_define_size	lib/libft/src/ft_itoa_base.c	/^static size_t	ft_define_size(int n, int base)$/;"	f	typeref:typename:size_t	file:
+ft_define_size	lib/libft/src/ft_ultoa_base.c	/^static size_t	ft_define_size(unsigned long n, int base)$/;"	f	typeref:typename:size_t	file:
+ft_define_size	lib/libft/src/ft_utoa_base.c	/^static size_t	ft_define_size(unsigned int n, int base)$/;"	f	typeref:typename:size_t	file:
+ft_digit_representation	lib/libft/src/ft_itoa_base.c	/^static char	ft_digit_representation(int n)$/;"	f	typeref:typename:char	file:
+ft_digit_representation	lib/libft/src/ft_ultoa_base.c	/^static char	ft_digit_representation(int n)$/;"	f	typeref:typename:char	file:
+ft_digit_representation	lib/libft/src/ft_utoa_base.c	/^static char	ft_digit_representation(int n)$/;"	f	typeref:typename:char	file:
+ft_el_is_first	lib/libft/src/ft_lstdelone.c	/^static void	ft_el_is_first(t_list *lst, t_element *el)$/;"	f	typeref:typename:void	file:
+ft_el_is_first	lib/libft/src/ft_lstpop.c	/^static void	ft_el_is_first(t_list *lst, t_element *el)$/;"	f	typeref:typename:void	file:
+ft_el_is_last	lib/libft/src/ft_lstdelone.c	/^static void	ft_el_is_last(t_list *lst, t_element *el)$/;"	f	typeref:typename:void	file:
+ft_el_is_last	lib/libft/src/ft_lstpop.c	/^static void	ft_el_is_last(t_list *lst, t_element *el)$/;"	f	typeref:typename:void	file:
+ft_is_in	lib/libft/src/ft_strtrim.c	/^static int	ft_is_in(const char c, char const *set)$/;"	f	typeref:typename:int	file:
+ft_isalnum	lib/libft/src/ft_isalnum.c	/^int	ft_isalnum(int c)$/;"	f	typeref:typename:int
+ft_isalpha	lib/libft/src/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f	typeref:typename:int
+ft_isascii	lib/libft/src/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f	typeref:typename:int
+ft_isdigit	lib/libft/src/ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	f	typeref:typename:int
+ft_isprint	lib/libft/src/ft_isprint.c	/^int	ft_isprint(int c)$/;"	f	typeref:typename:int
+ft_isspace	lib/libft/src/ft_isspace.c	/^int	ft_isspace(int c)$/;"	f	typeref:typename:int
+ft_issymbol	src/utils/str.c	/^int	ft_issymbol(char c)$/;"	f	typeref:typename:int
+ft_itoa	lib/libft/src/ft_itoa.c	/^char	*ft_itoa(int n)$/;"	f	typeref:typename:char *
+ft_itoa_base	lib/libft/src/ft_itoa_base.c	/^char	*ft_itoa_base(int n, int base)$/;"	f	typeref:typename:char *
+ft_join_till_bslash_n	lib/libft/src/get_next_line.c	/^static char	*ft_join_till_bslash_n(char *dst, char *src)$/;"	f	typeref:typename:char *	file:
+ft_line_iterative	lib/libft/src/get_next_line.c	/^static char	*ft_line_iterative(int fd, char *buffer, ssize_t *read_size)$/;"	f	typeref:typename:char *	file:
+ft_lstadd_back	lib/libft/src/ft_lstadd_back.c	/^void	ft_lstadd_back(t_list *lst, t_element *el)$/;"	f	typeref:typename:void
+ft_lstadd_front	lib/libft/src/ft_lstadd_front.c	/^void	ft_lstadd_front(t_list *lst, t_element *el)$/;"	f	typeref:typename:void
+ft_lstclear	lib/libft/src/ft_lstclear.c	/^void	ft_lstclear(t_list *lst, void (*del)(void*))$/;"	f	typeref:typename:void
+ft_lstdelone	lib/libft/src/ft_lstdelone.c	/^void	ft_lstdelone(t_list *lst, t_element *el, void (*del)(void*))$/;"	f	typeref:typename:void
+ft_lstiter	lib/libft/src/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(void *))$/;"	f	typeref:typename:void
+ft_lstmap	lib/libft/src/ft_lstmap.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))$/;"	f	typeref:typename:t_list *
+ft_lstnewelement	lib/libft/src/ft_lstnewelement.c	/^t_element	*ft_lstnewelement(void *content)$/;"	f	typeref:typename:t_element *
+ft_lstpickel	lib/libft/src/ft_lstpickel.c	/^t_element	*ft_lstpickel(t_list *lst, int index)$/;"	f	typeref:typename:t_element *
+ft_lstpop	lib/libft/src/ft_lstpop.c	/^t_element	*ft_lstpop(t_list *lst, int index)$/;"	f	typeref:typename:t_element *
+ft_lstsecondlast	lib/libft/src/ft_lstsecondlast.c	/^t_element	*ft_lstsecondlast(t_list *lst)$/;"	f	typeref:typename:t_element *
+ft_lstsize	lib/libft/src/ft_lstsize.c	/^int	ft_lstsize(t_list *lst)$/;"	f	typeref:typename:int
+ft_lstsplit	src/utils/ft_lst_split.c	/^t_list	*ft_lstsplit(t_list *lst, t_element *el)$/;"	f	typeref:typename:t_list *
+ft_memchr	lib/libft/src/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/;"	f	typeref:typename:void *
+ft_memcmp	lib/libft/src/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size_t n)$/;"	f	typeref:typename:int
+ft_memcpy	lib/libft/src/ft_memcpy.c	/^void	*ft_memcpy(void *dest, const void *src, size_t n)$/;"	f	typeref:typename:void *
+ft_memmove	lib/libft/src/ft_memmove.c	/^void	*ft_memmove(void *dest, const void *src, size_t n)$/;"	f	typeref:typename:void *
+ft_memset	lib/libft/src/ft_memset.c	/^void	*ft_memset(void *s, int c, size_t n)$/;"	f	typeref:typename:void *
+ft_move_to_begin	lib/libft/src/get_next_line.c	/^static void	ft_move_to_begin(char *to, char *from)$/;"	f	typeref:typename:void	file:
+ft_putchar_fd	lib/libft/src/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/;"	f	typeref:typename:void
+ft_putendl_fd	lib/libft/src/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/;"	f	typeref:typename:void
+ft_putnbr_fd	lib/libft/src/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/;"	f	typeref:typename:void
+ft_putstr_fd	lib/libft/src/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/;"	f	typeref:typename:void
+ft_skip_quotes	src/tokenizer/parenthesis_validation.c	/^static int	ft_skip_quotes(const char **str)$/;"	f	typeref:typename:int	file:
+ft_skip_spaces	src/utils/str.c	/^void	ft_skip_spaces(const char **str)$/;"	f	typeref:typename:void
+ft_split	lib/libft/src/ft_split.c	/^char	**ft_split(char const *s, char c)$/;"	f	typeref:typename:char **
+ft_split_malloc	lib/libft/src/ft_split.c	/^static char	*ft_split_malloc(char *start, char c)$/;"	f	typeref:typename:char *	file:
+ft_strchr	lib/libft/src/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f	typeref:typename:char *
+ft_strdup	lib/libft/src/ft_strdup.c	/^char	*ft_strdup(const char *s)$/;"	f	typeref:typename:char *
+ft_strisinteger	lib/libft/src/ft_strisinteger.c	/^int	ft_strisinteger(const char *str)$/;"	f	typeref:typename:int
+ft_strisnumber	lib/libft/src/ft_strisnumber.c	/^int	ft_strisnumber(const char *str)$/;"	f	typeref:typename:int
+ft_striteri	lib/libft/src/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char*))$/;"	f	typeref:typename:void
+ft_strjoin	lib/libft/src/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f	typeref:typename:char *
+ft_strlcat	lib/libft/src/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size_t size)$/;"	f	typeref:typename:size_t
+ft_strlcpy	lib/libft/src/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dst, const char *src, size_t size)$/;"	f	typeref:typename:size_t
+ft_strlen	lib/libft/src/ft_strlen.c	/^size_t	ft_strlen(const char *s)$/;"	f	typeref:typename:size_t
+ft_strlen_till_bslash_n	lib/libft/src/get_next_line.c	/^static size_t	ft_strlen_till_bslash_n(const char *s)$/;"	f	typeref:typename:size_t	file:
+ft_strmapi	lib/libft/src/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))$/;"	f	typeref:typename:char *
+ft_strmerge	lib/libft/src/ft_strmerge.c	/^char	*ft_strmerge(char *s1, char *s2)$/;"	f	typeref:typename:char *
+ft_strncmp	lib/libft/src/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f	typeref:typename:int
+ft_strndup	lib/libft/src/ft_strndup.c	/^char	*ft_strndup(const char *s, size_t n)$/;"	f	typeref:typename:char *
+ft_strnlen	lib/libft/src/ft_strlcat.c	/^static size_t	ft_strnlen(const char *s, size_t maxlen)$/;"	f	typeref:typename:size_t	file:
+ft_strnstr	lib/libft/src/ft_strnstr.c	/^char	*ft_strnstr(const char *big, const char *little, size_t len)$/;"	f	typeref:typename:char *
+ft_strrchr	lib/libft/src/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/;"	f	typeref:typename:char *
+ft_strtolower	lib/libft/src/ft_strtolower.c	/^char	*ft_strtolower(char	*str)$/;"	f	typeref:typename:char *
+ft_strtoupper	lib/libft/src/ft_strtoupper.c	/^char	*ft_strtoupper(char	*str)$/;"	f	typeref:typename:char *
+ft_strtrim	lib/libft/src/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/;"	f	typeref:typename:char *
+ft_substr	lib/libft/src/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, size_t len)$/;"	f	typeref:typename:char *
+ft_tolower	lib/libft/src/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f	typeref:typename:int
+ft_toupper	lib/libft/src/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f	typeref:typename:int
+ft_ultoa_base	lib/libft/src/ft_ultoa_base.c	/^char	*ft_ultoa_base(unsigned long n, int base)$/;"	f	typeref:typename:char *
+ft_utoa_base	lib/libft/src/ft_utoa_base.c	/^char	*ft_utoa_base(unsigned int n, int base)$/;"	f	typeref:typename:char *
+ft_while_in_set	lib/libft/src/ft_strtrim.c	/^static char	*ft_while_in_set(char const *ptr_init, char const *set, int dir)$/;"	f	typeref:typename:char *	file:
+get_next_line	lib/libft/src/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f	typeref:typename:char *
+get_paths	src/code_pieces/env_array.c	/^char	**get_paths(void)$/;"	f	typeref:typename:char **
+grammar_checker	src/grammar/grammar_checker.c	/^void	grammar_checker(t_list *tokens)$/;"	f	typeref:typename:void
+help	Makefile	/^define help$/;"	m
+help	Makefile	/^help:$/;"	t
+ignoreFailures	.vscode/launch.json	/^					"ignoreFailures": true$/;"	b	object:configurations.0.setupCommands.0
+ignoreFailures	.vscode/launch.json	/^					"ignoreFailures": true$/;"	b	object:configurations.0.setupCommands.1
+initializer_list	.vscode/settings.json	/^		"initializer_list": "c"$/;"	s	object:files.associations
+input_validations	src/tokenizer/tokenizer.c	/^static int	input_validations(const char *str)$/;"	f	typeref:typename:int	file:
+is_and_or	src/grammar/and_or_redirs_pipe_rule.c	/^static int	is_and_or(int type)$/;"	f	typeref:typename:int	file:
+is_redirect	src/grammar/and_or_redirs_pipe_rule.c	/^static int	is_redirect(int type)$/;"	f	typeref:typename:int	file:
+last	lib/libft/include/libft.h	/^	t_element	*last;$/;"	m	struct:s_list	typeref:typename:t_element *
+left	includes/minishell.h	/^	t_ast		*left;$/;"	m	struct:s_ast	typeref:typename:t_ast *
+list_printer	src/debug/list_printer.c	/^void	list_printer(t_list *tokens)$/;"	f	typeref:typename:void
+main	src/entrance/minishell.c	/^int	main(void)$/;"	f	typeref:typename:int
+main	src/tests/create_env_vars_array.c	/^int	main(void)$/;"	f	typeref:typename:int
+main	src/tests/env_var_value.c	/^int	main(void)$/;"	f	typeref:typename:int
+minishell	README.md	/^# minishell$/;"	c
+minishell.h	.vscode/settings.json	/^		"minishell.h": "c",$/;"	s	object:files.associations
+name	.vscode/launch.json	/^			"name": "(gdb) Launch",$/;"	s	object:configurations.0
+next	lib/libft/include/libft.h	/^	struct s_element	*next;$/;"	m	struct:s_element	typeref:struct:s_element *
+panic	src/utils/panic.c	/^void	panic(char *str1, char *str2, char *str3, int err_nb)$/;"	f	typeref:typename:void
+panic_ast	src/ast/ast_memory_handler.c	/^void	panic_ast(char *msg)$/;"	f	typeref:typename:void
+panic_tokenizer	src/tokenizer/memory_handler.c	/^void	panic_tokenizer(char *error_msg)$/;"	f	typeref:typename:void
+parenthesis_validation	src/tokenizer/parenthesis_validation.c	/^int	parenthesis_validation(const char *str)$/;"	f	typeref:typename:int
+parser	src/entrance/minishell.c	/^void	parser(char *input)$/;"	f	typeref:typename:void
+prev	lib/libft/include/libft.h	/^	struct s_element	*prev;$/;"	m	struct:s_element	typeref:struct:s_element *
+program	.vscode/launch.json	/^			"program": "${workspaceFolder}\/minishell",$/;"	s	object:configurations.0
+prompt	src/entrance/minishell.c	/^static char	*prompt(void)$/;"	f	typeref:typename:char *	file:
+quotes_validation	src/tokenizer/quotes_validation.c	/^int	quotes_validation(const char *str)$/;"	f	typeref:typename:int
+re	Makefile	/^re: fclean all$/;"	t
+re	lib/libft/Makefile	/^re: fclean all$/;"	t
+redir_and_or_pipe_rule	src/grammar/and_or_redirs_pipe_rule.c	/^void	redir_and_or_pipe_rule(t_element *el)$/;"	f	typeref:typename:void
+request	.vscode/launch.json	/^			"request": "launch",$/;"	s	object:configurations.0
+right	includes/minishell.h	/^	t_ast		*right;$/;"	m	struct:s_ast	typeref:typename:t_ast *
+s_ast	includes/minishell.h	/^struct s_ast$/;"	s
+s_cmd	includes/minishell.h	/^struct s_cmd$/;"	s
+s_element	lib/libft/include/libft.h	/^typedef struct s_element$/;"	s
+s_list	lib/libft/include/libft.h	/^typedef struct s_list$/;"	s
+s_token	includes/minishell.h	/^typedef struct s_token$/;"	s
+search_and_or	src/ast/ast.c	/^t_element	*search_and_or(t_list *tokens)$/;"	f	typeref:typename:t_element *
+search_pipe	src/ast/ast.c	/^t_element	*search_pipe(t_list *tokens)$/;"	f	typeref:typename:t_element *
+search_redirects	src/ast/ast.c	/^t_element	*search_redirects(t_list *tokens)$/;"	f	typeref:typename:t_element *
+setupCommands	.vscode/launch.json	/^			"setupCommands": [$/;"	a	object:configurations.0
+size	lib/libft/include/libft.h	/^	size_t		size;$/;"	m	struct:s_list	typeref:typename:size_t
+stopAtEntry	.vscode/launch.json	/^			"stopAtEntry": true,$/;"	b	object:configurations.0
+str	includes/minishell.h	/^	char	*str;$/;"	m	struct:s_token	typeref:typename:char *
+string	.vscode/settings.json	/^		"string": "c",$/;"	s	object:files.associations
+string_view	.vscode/settings.json	/^		"string_view": "c",$/;"	s	object:files.associations
+t_ast	includes/minishell.h	/^typedef struct s_ast	t_ast;$/;"	t	typeref:struct:s_ast
+t_cmd	includes/minishell.h	/^typedef struct s_cmd	t_cmd;$/;"	t	typeref:struct:s_cmd
+t_element	lib/libft/include/libft.h	/^}	t_element;$/;"	t	typeref:struct:s_element
+t_list	lib/libft/include/libft.h	/^}	t_list;$/;"	t	typeref:struct:s_list
+t_token	includes/minishell.h	/^}	t_token;$/;"	t	typeref:struct:s_token
+text	.vscode/launch.json	/^					"text": "-enable-pretty-printing",$/;"	s	object:configurations.0.setupCommands.0
+text	.vscode/launch.json	/^					"text": "-gdb-set disassembly-flavor intel",$/;"	s	object:configurations.0.setupCommands.1
+token_list_generator	src/tokenizer/tokenizer.c	/^static void	token_list_generator(t_list *tokens,$/;"	f	typeref:typename:void	file:
+token_list_holder	src/tokenizer/memory_handler.c	/^t_list	*token_list_holder(t_list *tokens)$/;"	f	typeref:typename:t_list *
+tokenizer	src/tokenizer/tokenizer.c	/^t_list	*tokenizer(const char *str)$/;"	f	typeref:typename:t_list *
+transfer_all_elements_keep_first	src/ast/ast_split_node.c	/^static void	transfer_all_elements_keep_first(t_list *dest, t_list *src)$/;"	f	typeref:typename:void	file:
+tree_execs_printer	src/debug/tree_execs_printer.c	/^void	tree_execs_printer(t_ast *root)$/;"	f	typeref:typename:void
+try_split_else_exec	src/ast/ast.c	/^static void	try_split_else_exec(t_ast *ast_node, t_list *tokens)$/;"	f	typeref:typename:void	file:
+type	.vscode/launch.json	/^			"type": "cppdbg",$/;"	s	object:configurations.0
+type	includes/minishell.h	/^	int			type;$/;"	m	struct:s_ast	typeref:typename:int
+type	includes/minishell.h	/^	int		type;$/;"	m	struct:s_token	typeref:typename:int
+under construction.	README.md	/^### under construction.$/;"	S
+unordered_map	.vscode/settings.json	/^		"unordered_map": "c",$/;"	s	object:files.associations
+vars	.gdbinit	/^define vars$/;"	d
+vector	.vscode/settings.json	/^		"vector": "c",$/;"	s	object:files.associations
+which_token	src/utils/which_token.c	/^int	which_token(const char *str)$/;"	f	typeref:typename:int

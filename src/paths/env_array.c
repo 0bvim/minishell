@@ -56,3 +56,5 @@ char	**get_paths(void)
 	splited_path = ft_split(full_path, ':');
 	return (splited_path);
 }
+
+

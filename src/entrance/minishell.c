@@ -18,9 +18,9 @@
 /* create a child process (fork) */
 /* execute the command(s) (execv)*/
 /* wait for command completion */
-/* need to finish this little guide */
 /* remember to use extern **environ */
-char	*prompt(void);
+static char	*prompt(void);
+
 void	parser(char *input);
 
 int	main(void)
@@ -31,8 +31,8 @@ int	main(void)
 	while (true)
 	{
 		pid = fork();
-		if (pid != 0)
-			ft_putstr_fd("fork error");
+		if (pid == -1)
+			ft_putstr_fd("fork error\n", DOLLAR);
 		if (pid == 0)
 			parser(prompt());
 		wait(NULL);
@@ -40,7 +40,7 @@ int	main(void)
 	return (EXIT_SUCCESS);
 }
 
-char	*prompt(void)
+static char	*prompt(void)
 {
 	char	*input;
 
