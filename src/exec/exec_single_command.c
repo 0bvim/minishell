@@ -86,11 +86,12 @@ char	*get_first_command(const char *cmd)
 	char	*temp;
 	int		len;
 
+	len = 0;
 	if (!cmd)
 		return (NULL);
-	while (cmd[len] != ' ' || cmd[len] != '\0')
+	while (cmd[len] != ' ' && cmd[len] != '\0')
 		len++;
-	temp = malloc(len + 1);
-	ft_strlcpy(temp, dest, len);
+	temp = malloc(++len);
+	strlcpy(temp, cmd, len);
 	return (temp);
 }
