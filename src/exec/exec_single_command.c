@@ -2,37 +2,12 @@
 
 extern char	**environ;
 
-void	exec_single_command(t_ast *root)
+void	ft_free_str(char *str)
 {
-	t_element	*el;
-	t_cmd		*cmd;
-	pid_t		fork;
-
-	cmd = 0;
-	cmd->paths = get_paths();
-	cmd->path = 
-	if (root->left)
-		exec_single_command(root->left);
-	if (root->right)
-		exec_single_command(root->right);
-	if (root->exec)
+	if (str)
 	{
-		el = root->exec->first;
-		while (el)
-		{
-			fork = fork();
-			cmd->paths = get_paths();
-			if (fork == 0)
-			{
-				cmd->cmds = get_command(((t_token *)el->content)->str);
-				execve()
-
-			}
-			wait(NULL);
-			printf("%s ", ((t_token *)el->content)->str);
-			el = el->next;
-		}
-		printf("\n");
+		free(str);
+		str = NULL;
 	}
 }
 
@@ -92,6 +67,35 @@ char	*get_first_command(const char *cmd)
 	while (cmd[len] != ' ' && cmd[len] != '\0')
 		len++;
 	temp = malloc(++len);
-	strlcpy(temp, cmd, len);
+	ft_strlcpy(temp, cmd, len);
 	return (temp);
+}
+
+void	exec_single_command(t_ast *root)
+{
+	t_element	*el;
+	t_cmd		*cmd;
+	char		tmp[1000];
+
+	cmd = malloc(sizeof(t_cmd *) * 1);
+	cmd->paths = get_paths();
+	if (root->left)
+		exec_single_command(root->left);
+	if (root->right)
+		exec_single_command(root->right);
+	if (root->exec)
+	{
+		el = root->exec->first;
+		while (el)
+		{
+			ft_strlcat(tmp, ((t_token *)el->content)->str, ft_strlen(((t_token *)el->content)->str) + 1);
+			el = el->next;
+		}
+		printf("%s\n", tmp);
+		cmd->args = get_command(tmp);
+		cmd->path = validate_path(cmd->args[0], cmd->paths);
+		execve(cmd->path, cmd->args, environ);
+		printf("%s ", ((t_token *)el->content)->str);
+		printf("\n");
+	}
 }

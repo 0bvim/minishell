@@ -26,16 +26,20 @@ void	parser(char *input);
 int	main(void)
 {
 	pid_t	pid;
+	char	*input;
 
 	clear_console();
 	while (true)
 	{
+		input = prompt();
 		pid = fork();
 		if (pid == -1)
 			ft_putstr_fd("fork error\n", DOLLAR);
 		if (pid == 0)
-			parser(prompt());
+			parser(input);
 		wait(NULL);
+		if (input)
+			free(input);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -58,6 +62,7 @@ void	parser(char *input)
 	tokens = tokenizer(input);
 	grammar_checker(tokens);
 	root = ast_constructor(tokens);
+	exec_single_command(root);
 	tree_execs_printer(root);
 	free(input);
 	clear_tree(root);

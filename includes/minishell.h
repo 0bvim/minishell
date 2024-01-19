@@ -89,8 +89,12 @@ struct s_cmd
 	char	*path;
 };
 
+// exec
+void	exec_single_command(t_ast *root);
+
 // code_pieces
 int		create_env_vars_array(char ***env_vars);
+
 //expands dollar sign variables
 char	*env_var_value(char *key);
 char	**get_paths(void);
