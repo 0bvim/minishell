@@ -8,6 +8,9 @@ void	exec_single_command(t_ast *root)
 	t_cmd		*cmd;
 	pid_t		fork;
 
+	cmd = 0;
+	cmd->paths = get_paths();
+	cmd->path = 
 	if (root->left)
 		exec_single_command(root->left);
 	if (root->right)
@@ -15,9 +18,17 @@ void	exec_single_command(t_ast *root)
 	if (root->exec)
 	{
 		el = root->exec->first;
-		cmd->cmds
 		while (el)
 		{
+			fork = fork();
+			cmd->paths = get_paths();
+			if (fork == 0)
+			{
+				cmd->cmds = get_command(((t_token *)el->content)->str);
+				execve()
+
+			}
+			wait(NULL);
 			printf("%s ", ((t_token *)el->content)->str);
 			el = el->next;
 		}
@@ -48,4 +59,38 @@ char	*validate_path(char *final, char **paths)
 		i++;
 	}
 	return (NULL);
+}
+
+char	**get_command(char *argv)
+{
+	int			i;
+	char		**cmds;
+
+	i = ft_strlen(argv);
+	while (argv[i] != 0x27 && argv[i] != 0x22 && i != 0)
+		--i;
+	if (i == 0)
+		cmds = ft_split(argv, ' ');
+	else
+	{
+		if (argv[i] == 39)
+			cmds = ft_split(argv, 0x27);
+		else
+			cmds = ft_split(argv, 0x22);
+	}
+	return (cmds);
+}
+
+char	*get_first_command(const char *cmd)
+{
+	char	*temp;
+	int		len;
+
+	if (!cmd)
+		return (NULL);
+	while (cmd[len] != ' ' || cmd[len] != '\0')
+		len++;
+	temp = malloc(len + 1);
+	ft_strlcpy(temp, dest, len);
+	return (temp);
 }
