@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/18 12:55:03 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:37:00 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,18 @@ t_list	*tokenizer(const char *str)
 {
 	t_list	*tokens;
 
-	tokens = 0;
+	tokens = NULL;
 	if (*str)
 	{
-		t_ast	*root;
-
 		if (!input_validations(str))
 			return (NULL);
 		tokens = ft_calloc(1, sizeof(t_list));
 		if (!tokens)
 			return (NULL);
 		token_list_holder(tokens);
-		if (*str)
-			ft_skip_spaces(&str);
-		if (*str + 1)
-			token_list_generator(tokens, str, str + 1);
-		//list_printer(tokens);
+		ft_skip_spaces(&str);
+		token_list_generator(tokens, str, str + 1);
 		grammar_checker(tokens);
-		root = ast_constructor(tokens);
-		tree_execs_printer(root);
-		clear_tree(root);
-		//ft_lstclear(tokens, free_token);
 	}
 	return (tokens);
 }
