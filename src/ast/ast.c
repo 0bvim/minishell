@@ -119,6 +119,7 @@ char	**splited_args(t_list *tokens)
 		el = el->next;
 	}
 	index = 0;
+	printf("----\n");
 	while (splited[index])
 	{
 		printf("%s\n", splited[index++]);

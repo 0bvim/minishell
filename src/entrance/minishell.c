@@ -49,6 +49,7 @@ static char	*prompt(void)
 	char	*input;
 
 	input = readline("minishell~$ ");
+	add_history(input);
 	if (!(input != NULL && ft_strncmp(input, "exit", 4)))
 		exit(EXIT_SUCCESS);
 	return (input);
