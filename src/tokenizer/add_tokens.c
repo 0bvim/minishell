@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:20:35 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/17 15:35:51 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/19 19:00:44 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	add_special_token(t_list *tokens,
 		add_quotes_token(tokens, start, mover, token_type);
 	else if (token_type == L_PAREN)
 		add_block_token(tokens, start, mover, BLOCK);
-	else if (token_type != ARGUMENT)
+	else if (token_type != ARGUMENT && token_type != DOLLAR)
 		add_symbols_token(tokens, start, mover, token_type);
 	else
 		return (0);

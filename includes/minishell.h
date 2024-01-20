@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/18 12:54:29 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/20 09:52:09 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 /* libft header path */
 # include "../lib/libft/include/libft.h"
 
-# define SYMBOLS "&|<>()'\"$"
+# define SYMBOLS "&|<>()'\""
 # define BLANK ""
 
 /* enum and struct */
@@ -91,7 +91,7 @@ struct s_cmd
 // code_pieces
 int		create_env_vars_array(char ***env_vars);
 //expands dollar sign variables
-char	*env_var_value(char *key);
+char	*env_var_value(const char *key);
 char	**get_paths(void);
 void	clear_tree(t_ast *root);
 
@@ -99,6 +99,7 @@ void	clear_tree(t_ast *root);
 t_ast	*ast_constructor(t_list *tokens);
 int		ast_split_node(t_ast *ast_node, t_list *tokens,
 	t_element *el_to_split);
+void	expansions(t_list *tokens);
 
 //GRAMMAR CHECK
 void	grammar_checker(t_list *tokens);

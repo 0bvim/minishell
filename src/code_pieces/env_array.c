@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:49:56 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/08 18:22:10 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/19 18:47:34 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	create_env_vars_array(char ***env_vars)
 	return (1);
 }
 
-char	*env_var_value(char *key)
+char	*env_var_value(const char *key)
 {
 	int		i;
 	ssize_t	key_len;
