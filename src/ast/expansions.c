@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/20 15:31:46 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/20 16:07:39 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*merged_substitution(char *head, char *middle, char *tail,
 {
 	char	*expansion;
 	char	*expanded;
-	size_t	delta;
+	ssize_t	delta;
 
 	expansion = ft_strdup(env_var_value(middle));
 	free (middle);
@@ -39,18 +39,18 @@ static char	*split_and_call_substitution(char *str, char **mover)
 	char	*head;
 	char	*middle;
 	char	*tail;
-	char	*mover;
+	char	*mover_2;
 
 	head = ft_strndup(str, *mover - str);
 	if (head)
 	{
-		mover = *mover + 1;
-		while (*mover && (ft_isalnum(*mover) || *mover == '_' ))
-			mover++;
-		middle = ft_strndup(*mover + 1, mover - (*mover + 1));
+		mover_2 = *mover + 1;
+		while (*mover_2 && (ft_isalnum(*mover_2) || *mover_2 == '_' ))
+			mover_2++;
+		middle = ft_strndup(*mover + 1, mover_2 - (*mover + 1));
 		if (middle)
 		{
-			tail = ft_strdup(mover);
+			tail = ft_strdup(mover_2);
 			if (tail)
 				return (merged_substitution(head, middle, tail, mover));
 			free (middle);
