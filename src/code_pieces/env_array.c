@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_array.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:49:56 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/19 18:47:34 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/20 15:32:23 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,22 @@ int	create_env_vars_array(char ***env_vars)
 char	*env_var_value(const char *key)
 {
 	int		i;
-	ssize_t	key_len;
+	size_t	key_len;
+	size_t	comparison;
 
 	key_len = ft_strlen(key);
 	i = 0;
-	while (environ[i] && ft_strncmp(key, environ[i], key_len))
+	while (environ[i])
+	{
+		comparison = ft_strchr(environ[i], '=') - environ[i];
+		if (comparison < key_len)
+			comparison = key_len;
+		if (!ft_strncmp(key, environ[i], comparison))
+			break ;
 		i++;
+	}
 	if (environ[i])
-		return (environ[i] + key_len + 1);
+		return (environ[i] + comparison + 1);
 	return (BLANK);
 }
 

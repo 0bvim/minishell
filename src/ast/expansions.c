@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   expansions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/20 13:07:09 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/20 15:31:46 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-static char	*merged_substitution(char *head, char *middle, char *tail, char **split)
+static char	*merged_substitution(char *head, char *middle, char *tail,
+	char **mover)
 {
 	char	*expansion;
 	char	*expanded;
@@ -25,7 +26,7 @@ static char	*merged_substitution(char *head, char *middle, char *tail, char **sp
 		delta = ft_strlen(head) + ft_strlen(expansion);
 		expanded = ft_strmerge(ft_strmerge(head, expansion), tail);
 		if (expanded)
-			*split = expanded + delta;
+			*mover = expanded + delta;
 		return (expanded);
 	}
 	free (head);
@@ -33,25 +34,25 @@ static char	*merged_substitution(char *head, char *middle, char *tail, char **sp
 	return (NULL);
 }
 
-static char	*split_and_call_substitution(char *str, char **split)
+static char	*split_and_call_substitution(char *str, char **mover)
 {
 	char	*head;
 	char	*middle;
 	char	*tail;
 	char	*mover;
 
-	head = ft_strndup(str, *split - str);
+	head = ft_strndup(str, *mover - str);
 	if (head)
 	{
-		mover = *split + 1;
-		while (*mover && ft_isalnum(*mover))
+		mover = *mover + 1;
+		while (*mover && (ft_isalnum(*mover) || *mover == '_' ))
 			mover++;
-		middle = ft_strndup(*split + 1, mover - (*split + 1));
+		middle = ft_strndup(*mover + 1, mover - (*mover + 1));
 		if (middle)
 		{
 			tail = ft_strdup(mover);
 			if (tail)
-				return (merged_substitution(head, middle, tail, split));
+				return (merged_substitution(head, middle, tail, mover));
 			free (middle);
 		}
 		free (head);
@@ -77,6 +78,7 @@ static void	token_expansion(void *p_token)
 			token->str = split_and_call_substitution(str, &mover);
 			free (str);
 			str = token->str;
+			mover--;
 		}
 		mover++;
 	}
