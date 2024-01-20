@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/20 16:07:39 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:41:33 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	token_expansion(void *p_token)
 	mover = str;
 	while (*mover)
 	{
-		if (*mover == '$' && *(mover + 1))
+		if (*mover == '$' && *(mover + 1) && *(mover + 1) != '\"')
 		{
 			token->str = split_and_call_substitution(str, &mover);
 			free (str);
