@@ -101,6 +101,7 @@ t_ast	*ast_constructor(t_list *tokens);
 int		ast_split_node(t_ast *ast_node, t_list *tokens,
 	t_element *el_to_split);
 void	expansions(t_list *tokens);
+void	execution(t_ast *root);
 
 //GRAMMAR CHECK
 void	grammar_checker(t_list *tokens);

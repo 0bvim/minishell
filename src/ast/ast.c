@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+char	**splited_args(t_list *tokens);
+
 t_element	*search_and_or(t_list *tokens)
 {
 	t_token		*token;
@@ -85,3 +87,42 @@ t_ast	*ast_constructor(t_list *tokens)
 	try_split_else_exec(root, tokens);
 	return (root);
 }
+
+void	execution(t_ast *root)
+{
+	if (root->left)
+		execution(root->left);
+	if (root->right)
+		execution(root->right);
+	if (root->exec)
+	{
+		expansions(root->exec);
+		splited_args(root->exec);
+	}
+		//get command and execute
+}
+
+char	**splited_args(t_list *tokens)
+{
+	char	**splited;
+	size_t		index;
+	t_element	*el;
+	t_token		*token;
+
+	el = tokens->first;
+	splited = ft_calloc(tokens->size + 1, sizeof(char *));
+	index = 0;
+	while (el)
+	{
+		token = el->content;
+		splited[index++] = token->str;
+		el = el->next;
+	}
+	index = 0;
+	while (splited[index])
+	{
+		printf("%s\n", splited[index++]);
+	}
+	return (splited);
+}
+

@@ -18,26 +18,52 @@
 /* create a child process (fork) */
 /* execute the command(s) (execv)*/
 /* wait for command completion */
-/* need to finish this little guide */
 /* remember to use extern **environ */
+static char	*prompt(void);
+
+void	parser(char *input);
+
 int	main(void)
 {
+	pid_t	pid;
 	char	*input;
-	t_list	*tokens;
 
 	clear_console();
 	while (true)
 	{
-		input = readline("minishell~$ ");
-		if (input != NULL && ft_strncmp(input, "exit", 4))
-		{
-			tokens = tokenizer(input);
-			(void)tokens;
+		input = prompt();
+		pid = fork();
+		if (pid == -1)
+			ft_putstr_fd("fork error\n", DOLLAR);
+		if (pid == 0)
+			parser(input);
+		wait(NULL);
+		if (input)
 			free(input);
-		}
-		else
-			break ;
 	}
-	free(input);
 	return (EXIT_SUCCESS);
+}
+
+static char	*prompt(void)
+{
+	char	*input;
+
+	input = readline("minishell~$ ");
+	if (!(input != NULL && ft_strncmp(input, "exit", 4)))
+		exit(EXIT_SUCCESS);
+	return (input);
+}
+
+void	parser(char *input)
+{
+	t_list	*tokens;
+	t_ast	*root;
+
+	tokens = tokenizer(input);
+	grammar_checker(tokens);
+	root = ast_constructor(tokens);
+	execution(root);
+	// tree_execs_printer(root);
+	// free(input);
+	// clear_tree(root);
 }
