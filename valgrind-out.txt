@@ -1,0 +1,707 @@
+==77263== Memcheck, a memory error detector
+==77263== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==77263== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==77263== Command: ./minishell
+==77263== Parent PID: 63898
+==77263== 
+==77325== 
+==77325== HEAP SUMMARY:
+==77325==     in use at exit: 206,460 bytes in 300 blocks
+==77325==   total heap usage: 562 allocs, 262 frees, 228,104 bytes allocated
+==77325== 
+==77325== 5 bytes in 1 blocks are still reachable in loss record 2 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402FBA: ft_strndup (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401392: add_token (add_tokens.c:24)
+==77325==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77325==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77325==    by 0x4028B4: parser (minishell.c:63)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 8 bytes in 1 blocks are indirectly lost in loss record 5 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402FBA: ft_strndup (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401392: add_token (add_tokens.c:24)
+==77325==    by 0x4015DF: add_block_token (add_tokens.c:70)
+==77325==    by 0x40146F: add_special_token (add_tokens.c:79)
+==77325==    by 0x401B97: token_list_generator (tokenizer.c:37)
+==77325==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77325==    by 0x4028B4: parser (minishell.c:63)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 16 bytes in 1 blocks are still reachable in loss record 11 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401365: add_token (add_tokens.c:21)
+==77325==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77325==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77325==    by 0x4028B4: parser (minishell.c:63)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 16 bytes in 1 blocks are indirectly lost in loss record 12 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401365: add_token (add_tokens.c:21)
+==77325==    by 0x4015DF: add_block_token (add_tokens.c:70)
+==77325==    by 0x40146F: add_special_token (add_tokens.c:79)
+==77325==    by 0x401B97: token_list_generator (tokenizer.c:37)
+==77325==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77325==    by 0x4028B4: parser (minishell.c:63)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 16 bytes in 1 blocks are definitely lost in loss record 13 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40231C: splited_args (ast.c:113)
+==77325==    by 0x4022E0: execution (ast.c:100)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4028D7: parser (minishell.c:66)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 16 bytes in 1 blocks are definitely lost in loss record 14 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40231C: splited_args (ast.c:113)
+==77325==    by 0x4022E0: execution (ast.c:100)
+==77325==    by 0x4022BB: execution (ast.c:96)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4028D7: parser (minishell.c:66)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 16 bytes in 1 blocks are definitely lost in loss record 15 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40231C: splited_args (ast.c:113)
+==77325==    by 0x4022E0: execution (ast.c:100)
+==77325==    by 0x4022BB: execution (ast.c:96)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4028D7: parser (minishell.c:66)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 16 bytes in 1 blocks are definitely lost in loss record 16 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40231C: splited_args (ast.c:113)
+==77325==    by 0x4022E0: execution (ast.c:100)
+==77325==    by 0x4022BB: execution (ast.c:96)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4028D7: parser (minishell.c:66)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 16 bytes in 1 blocks are definitely lost in loss record 17 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40231C: splited_args (ast.c:113)
+==77325==    by 0x4022E0: execution (ast.c:100)
+==77325==    by 0x4022BB: execution (ast.c:96)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4028D7: parser (minishell.c:66)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 16 bytes in 1 blocks are definitely lost in loss record 18 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40231C: splited_args (ast.c:113)
+==77325==    by 0x4022E0: execution (ast.c:100)
+==77325==    by 0x4022BB: execution (ast.c:96)
+==77325==    by 0x4022A3: execution (ast.c:94)
+==77325==    by 0x4028D7: parser (minishell.c:66)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 24 bytes in 1 blocks are still reachable in loss record 21 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401A83: tokenizer (tokenizer.c:61)
+==77325==    by 0x4028B4: parser (minishell.c:63)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 24 bytes in 1 blocks are still reachable in loss record 22 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x402B12: ft_lstnewelement (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x4013BC: add_token (add_tokens.c:28)
+==77325==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77325==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77325==    by 0x4028B4: parser (minishell.c:63)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 24 bytes in 1 blocks are indirectly lost in loss record 23 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x402B12: ft_lstnewelement (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x4013BC: add_token (add_tokens.c:28)
+==77325==    by 0x4015DF: add_block_token (add_tokens.c:70)
+==77325==    by 0x40146F: add_special_token (add_tokens.c:79)
+==77325==    by 0x401B97: token_list_generator (tokenizer.c:37)
+==77325==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77325==    by 0x4028B4: parser (minishell.c:63)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 24 bytes in 1 blocks are indirectly lost in loss record 24 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401D47: ft_lstsplit (ft_lst_split.c:30)
+==77325==    by 0x402401: ast_split_node (ast_split_node.c:45)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x4028CA: parser (minishell.c:65)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 24 bytes in 1 blocks are indirectly lost in loss record 25 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401D47: ft_lstsplit (ft_lst_split.c:30)
+==77325==    by 0x402401: ast_split_node (ast_split_node.c:45)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x4028CA: parser (minishell.c:65)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 24 bytes in 1 blocks are indirectly lost in loss record 26 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401D47: ft_lstsplit (ft_lst_split.c:30)
+==77325==    by 0x402401: ast_split_node (ast_split_node.c:45)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325== 
+==77325== 24 bytes in 1 blocks are indirectly lost in loss record 27 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401D47: ft_lstsplit (ft_lst_split.c:30)
+==77325==    by 0x402401: ast_split_node (ast_split_node.c:45)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325== 
+==77325== 24 bytes in 1 blocks are definitely lost in loss record 28 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40231C: splited_args (ast.c:113)
+==77325==    by 0x4022E0: execution (ast.c:100)
+==77325==    by 0x4022BB: execution (ast.c:96)
+==77325==    by 0x4028D7: parser (minishell.c:66)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 38 bytes in 9 blocks are indirectly lost in loss record 30 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402FBA: ft_strndup (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401392: add_token (add_tokens.c:24)
+==77325==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77325==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77325==    by 0x4028B4: parser (minishell.c:63)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 40 bytes in 1 blocks are indirectly lost in loss record 31 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40218A: ast_constructor (ast.c:84)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x4028CA: parser (minishell.c:65)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 40 bytes in 1 blocks are indirectly lost in loss record 32 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40218A: ast_constructor (ast.c:84)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x4028CA: parser (minishell.c:65)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 40 bytes in 1 blocks are indirectly lost in loss record 33 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40218A: ast_constructor (ast.c:84)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325== 
+==77325== 40 bytes in 1 blocks are indirectly lost in loss record 34 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40218A: ast_constructor (ast.c:84)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325== 
+==77325== 40 bytes in 1 blocks are indirectly lost in loss record 35 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40218A: ast_constructor (ast.c:84)
+==77325==    by 0x402491: ast_split_node (ast_split_node.c:54)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325== 
+==77325== 40 bytes in 1 blocks are indirectly lost in loss record 36 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40218A: ast_constructor (ast.c:84)
+==77325==    by 0x402491: ast_split_node (ast_split_node.c:54)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325== 
+==77325== 40 bytes in 1 blocks are indirectly lost in loss record 37 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40218A: ast_constructor (ast.c:84)
+==77325==    by 0x402491: ast_split_node (ast_split_node.c:54)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x4028CA: parser (minishell.c:65)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 40 bytes in 1 blocks are indirectly lost in loss record 38 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40218A: ast_constructor (ast.c:84)
+==77325==    by 0x402491: ast_split_node (ast_split_node.c:54)
+==77325==    by 0x402204: try_split_else_exec (ast.c:70)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x4028CA: parser (minishell.c:65)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 48 bytes in 2 blocks are indirectly lost in loss record 42 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401D47: ft_lstsplit (ft_lst_split.c:30)
+==77325==    by 0x402401: ast_split_node (ast_split_node.c:45)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325== 
+==77325== 48 bytes in 3 blocks are definitely lost in loss record 43 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40231C: splited_args (ast.c:113)
+==77325==    by 0x4022E0: execution (ast.c:100)
+==77325==    by 0x4028D7: parser (minishell.c:66)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 72 bytes in 3 blocks are indirectly lost in loss record 47 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401A83: tokenizer (tokenizer.c:61)
+==77325==    by 0x4028B4: parser (minishell.c:63)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 80 bytes in 2 blocks are indirectly lost in loss record 49 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40218A: ast_constructor (ast.c:84)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325== 
+==77325== 80 bytes in 2 blocks are indirectly lost in loss record 50 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40218A: ast_constructor (ast.c:84)
+==77325==    by 0x402491: ast_split_node (ast_split_node.c:54)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325==    by 0x402480: ast_split_node (ast_split_node.c:53)
+==77325==    by 0x402250: try_split_else_exec (ast.c:74)
+==77325==    by 0x4021AC: ast_constructor (ast.c:87)
+==77325== 
+==77325== 144 bytes in 9 blocks are indirectly lost in loss record 54 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x401365: add_token (add_tokens.c:21)
+==77325==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77325==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77325==    by 0x4028B4: parser (minishell.c:63)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 216 bytes in 9 blocks are indirectly lost in loss record 56 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x402B12: ft_lstnewelement (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x4013BC: add_token (add_tokens.c:28)
+==77325==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77325==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77325==    by 0x4028B4: parser (minishell.c:63)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== 1,302 (160 direct, 1,142 indirect) bytes in 4 blocks are definitely lost in loss record 68 of 97
+==77325==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77325==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77325==    by 0x40218A: ast_constructor (ast.c:84)
+==77325==    by 0x4028CA: parser (minishell.c:65)
+==77325==    by 0x40281D: main (minishell.c:39)
+==77325== 
+==77325== LEAK SUMMARY:
+==77325==    definitely lost: 328 bytes in 14 blocks
+==77325==    indirectly lost: 1,142 bytes in 51 blocks
+==77325==      possibly lost: 0 bytes in 0 blocks
+==77325==    still reachable: 69 bytes in 4 blocks
+==77325==         suppressed: 204,921 bytes in 231 blocks
+==77325== 
+==77325== For lists of detected and suppressed errors, rerun with: -s
+==77325== ERROR SUMMARY: 9 errors from 9 contexts (suppressed: 0 from 0)
+==77273== 
+==77273== HEAP SUMMARY:
+==77273==     in use at exit: 205,293 bytes in 249 blocks
+==77273==   total heap usage: 491 allocs, 242 frees, 226,656 bytes allocated
+==77273== 
+==77273== 3 bytes in 1 blocks are still reachable in loss record 1 of 72
+==77273==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77273==    by 0x402FBA: ft_strndup (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x401392: add_token (add_tokens.c:24)
+==77273==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77273==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77273==    by 0x4028B4: parser (minishell.c:63)
+==77273==    by 0x40281D: main (minishell.c:39)
+==77273== 
+==77273== 9 bytes in 2 blocks are indirectly lost in loss record 5 of 72
+==77273==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77273==    by 0x402FBA: ft_strndup (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x401392: add_token (add_tokens.c:24)
+==77273==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77273==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77273==    by 0x4028B4: parser (minishell.c:63)
+==77273==    by 0x40281D: main (minishell.c:39)
+==77273== 
+==77273== 16 bytes in 1 blocks are still reachable in loss record 11 of 72
+==77273==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77273==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x401365: add_token (add_tokens.c:21)
+==77273==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77273==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77273==    by 0x4028B4: parser (minishell.c:63)
+==77273==    by 0x40281D: main (minishell.c:39)
+==77273== 
+==77273== 24 bytes in 1 blocks are still reachable in loss record 14 of 72
+==77273==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77273==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x401A83: tokenizer (tokenizer.c:61)
+==77273==    by 0x4028B4: parser (minishell.c:63)
+==77273==    by 0x40281D: main (minishell.c:39)
+==77273== 
+==77273== 24 bytes in 1 blocks are still reachable in loss record 15 of 72
+==77273==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77273==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x402B12: ft_lstnewelement (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x4013BC: add_token (add_tokens.c:28)
+==77273==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77273==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77273==    by 0x4028B4: parser (minishell.c:63)
+==77273==    by 0x40281D: main (minishell.c:39)
+==77273== 
+==77273== 32 bytes in 2 blocks are indirectly lost in loss record 17 of 72
+==77273==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77273==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x401365: add_token (add_tokens.c:21)
+==77273==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77273==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77273==    by 0x4028B4: parser (minishell.c:63)
+==77273==    by 0x40281D: main (minishell.c:39)
+==77273== 
+==77273== 48 bytes in 2 blocks are indirectly lost in loss record 21 of 72
+==77273==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77273==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x401A83: tokenizer (tokenizer.c:61)
+==77273==    by 0x4028B4: parser (minishell.c:63)
+==77273==    by 0x40281D: main (minishell.c:39)
+==77273== 
+==77273== 48 bytes in 2 blocks are indirectly lost in loss record 22 of 72
+==77273==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77273==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x402B12: ft_lstnewelement (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x4013BC: add_token (add_tokens.c:28)
+==77273==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77273==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77273==    by 0x4028B4: parser (minishell.c:63)
+==77273==    by 0x40281D: main (minishell.c:39)
+==77273== 
+==77273== 48 bytes in 3 blocks are definitely lost in loss record 23 of 72
+==77273==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77273==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x40231C: splited_args (ast.c:113)
+==77273==    by 0x4022E0: execution (ast.c:100)
+==77273==    by 0x4028D7: parser (minishell.c:66)
+==77273==    by 0x40281D: main (minishell.c:39)
+==77273== 
+==77273== 257 (120 direct, 137 indirect) bytes in 3 blocks are definitely lost in loss record 33 of 72
+==77273==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77273==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77273==    by 0x40218A: ast_constructor (ast.c:84)
+==77273==    by 0x4028CA: parser (minishell.c:65)
+==77273==    by 0x40281D: main (minishell.c:39)
+==77273== 
+==77273== LEAK SUMMARY:
+==77273==    definitely lost: 168 bytes in 6 blocks
+==77273==    indirectly lost: 137 bytes in 8 blocks
+==77273==      possibly lost: 0 bytes in 0 blocks
+==77273==    still reachable: 67 bytes in 4 blocks
+==77273==         suppressed: 204,921 bytes in 231 blocks
+==77273== 
+==77273== For lists of detected and suppressed errors, rerun with: -s
+==77273== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==77267== 
+==77267== HEAP SUMMARY:
+==77267==     in use at exit: 205,079 bytes in 240 blocks
+==77267==   total heap usage: 465 allocs, 225 frees, 226,057 bytes allocated
+==77267== 
+==77267== 3 bytes in 1 blocks are indirectly lost in loss record 1 of 72
+==77267==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77267==    by 0x402FBA: ft_strndup (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x401392: add_token (add_tokens.c:24)
+==77267==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77267==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77267==    by 0x4028B4: parser (minishell.c:63)
+==77267==    by 0x40281D: main (minishell.c:39)
+==77267== 
+==77267== 6 bytes in 1 blocks are still reachable in loss record 3 of 72
+==77267==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77267==    by 0x402FBA: ft_strndup (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x401392: add_token (add_tokens.c:24)
+==77267==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77267==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77267==    by 0x4028B4: parser (minishell.c:63)
+==77267==    by 0x40281D: main (minishell.c:39)
+==77267== 
+==77267== 16 bytes in 1 blocks are still reachable in loss record 11 of 72
+==77267==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77267==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x401365: add_token (add_tokens.c:21)
+==77267==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77267==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77267==    by 0x4028B4: parser (minishell.c:63)
+==77267==    by 0x40281D: main (minishell.c:39)
+==77267== 
+==77267== 16 bytes in 1 blocks are indirectly lost in loss record 12 of 72
+==77267==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77267==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x401365: add_token (add_tokens.c:21)
+==77267==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77267==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77267==    by 0x4028B4: parser (minishell.c:63)
+==77267==    by 0x40281D: main (minishell.c:39)
+==77267== 
+==77267== 24 bytes in 1 blocks are still reachable in loss record 16 of 72
+==77267==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77267==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x401A83: tokenizer (tokenizer.c:61)
+==77267==    by 0x4028B4: parser (minishell.c:63)
+==77267==    by 0x40281D: main (minishell.c:39)
+==77267== 
+==77267== 24 bytes in 1 blocks are still reachable in loss record 17 of 72
+==77267==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77267==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x402B12: ft_lstnewelement (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x4013BC: add_token (add_tokens.c:28)
+==77267==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77267==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77267==    by 0x4028B4: parser (minishell.c:63)
+==77267==    by 0x40281D: main (minishell.c:39)
+==77267== 
+==77267== 24 bytes in 1 blocks are indirectly lost in loss record 18 of 72
+==77267==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77267==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x401A83: tokenizer (tokenizer.c:61)
+==77267==    by 0x4028B4: parser (minishell.c:63)
+==77267==    by 0x40281D: main (minishell.c:39)
+==77267== 
+==77267== 24 bytes in 1 blocks are indirectly lost in loss record 19 of 72
+==77267==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77267==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x402B12: ft_lstnewelement (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x4013BC: add_token (add_tokens.c:28)
+==77267==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77267==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77267==    by 0x4028B4: parser (minishell.c:63)
+==77267==    by 0x40281D: main (minishell.c:39)
+==77267== 
+==77267== 32 bytes in 2 blocks are definitely lost in loss record 21 of 72
+==77267==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77267==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x40231C: splited_args (ast.c:113)
+==77267==    by 0x4022E0: execution (ast.c:100)
+==77267==    by 0x4028D7: parser (minishell.c:66)
+==77267==    by 0x40281D: main (minishell.c:39)
+==77267== 
+==77267== 147 (80 direct, 67 indirect) bytes in 2 blocks are definitely lost in loss record 31 of 72
+==77267==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77267==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77267==    by 0x40218A: ast_constructor (ast.c:84)
+==77267==    by 0x4028CA: parser (minishell.c:65)
+==77267==    by 0x40281D: main (minishell.c:39)
+==77267== 
+==77267== LEAK SUMMARY:
+==77267==    definitely lost: 112 bytes in 4 blocks
+==77267==    indirectly lost: 67 bytes in 4 blocks
+==77267==      possibly lost: 0 bytes in 0 blocks
+==77267==    still reachable: 70 bytes in 4 blocks
+==77267==         suppressed: 204,830 bytes in 228 blocks
+==77267== 
+==77267== For lists of detected and suppressed errors, rerun with: -s
+==77267== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==77263== 
+==77263== Process terminating with default action of signal 2 (SIGINT)
+==77263==    at 0x4994C3A: wait4 (wait4.c:27)
+==77263==    by 0x402824: main (minishell.c:40)
+==77266== 
+==77266== Process terminating with default action of signal 2 (SIGINT)
+==77266==    at 0x48F53DB: kill (syscall-template.S:78)
+==77266==    by 0x488F7A2: ??? (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
+==77266==    by 0x4891C8E: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
+==77266==    by 0x4892502: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
+==77266==    by 0x4877C81: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
+==77266==    by 0x48784EC: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
+==77266==    by 0x402856: prompt (minishell.c:51)
+==77266==    by 0x4027E8: main (minishell.c:34)
+==77263== 
+==77263== HEAP SUMMARY:
+==77263==     in use at exit: 204,654 bytes in 219 blocks
+==77263==   total heap usage: 427 allocs, 208 frees, 225,415 bytes allocated
+==77263== 
+==77263== LEAK SUMMARY:
+==77263==    definitely lost: 0 bytes in 0 blocks
+==77263==    indirectly lost: 0 bytes in 0 blocks
+==77263==      possibly lost: 0 bytes in 0 blocks
+==77263==    still reachable: 0 bytes in 0 blocks
+==77263==         suppressed: 204,654 bytes in 219 blocks
+==77263== 
+==77263== For lists of detected and suppressed errors, rerun with: -s
+==77263== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==77266== 
+==77266== HEAP SUMMARY:
+==77266==     in use at exit: 204,816 bytes in 227 blocks
+==77266==   total heap usage: 444 allocs, 217 frees, 225,686 bytes allocated
+==77266== 
+==77266== 3 bytes in 1 blocks are still reachable in loss record 1 of 67
+==77266==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77266==    by 0x402FBA: ft_strndup (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77266==    by 0x401392: add_token (add_tokens.c:24)
+==77266==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77266==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77266==    by 0x4028B4: parser (minishell.c:63)
+==77266==    by 0x40281D: main (minishell.c:39)
+==77266== 
+==77266== 16 bytes in 1 blocks are still reachable in loss record 11 of 67
+==77266==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77266==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77266==    by 0x401365: add_token (add_tokens.c:21)
+==77266==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77266==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77266==    by 0x4028B4: parser (minishell.c:63)
+==77266==    by 0x40281D: main (minishell.c:39)
+==77266== 
+==77266== 16 bytes in 1 blocks are definitely lost in loss record 12 of 67
+==77266==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77266==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77266==    by 0x40231C: splited_args (ast.c:113)
+==77266==    by 0x4022E0: execution (ast.c:100)
+==77266==    by 0x4028D7: parser (minishell.c:66)
+==77266==    by 0x40281D: main (minishell.c:39)
+==77266== 
+==77266== 24 bytes in 1 blocks are still reachable in loss record 15 of 67
+==77266==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77266==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77266==    by 0x401A83: tokenizer (tokenizer.c:61)
+==77266==    by 0x4028B4: parser (minishell.c:63)
+==77266==    by 0x40281D: main (minishell.c:39)
+==77266== 
+==77266== 24 bytes in 1 blocks are still reachable in loss record 16 of 67
+==77266==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77266==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77266==    by 0x402B12: ft_lstnewelement (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77266==    by 0x4013BC: add_token (add_tokens.c:28)
+==77266==    by 0x401C09: token_list_generator (tokenizer.c:43)
+==77266==    by 0x401ABF: tokenizer (tokenizer.c:66)
+==77266==    by 0x4028B4: parser (minishell.c:63)
+==77266==    by 0x40281D: main (minishell.c:39)
+==77266== 
+==77266== 40 bytes in 1 blocks are definitely lost in loss record 19 of 67
+==77266==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==77266==    by 0x402900: ft_calloc (in /nfs/homes/vde-frei/common_core/minishell/minishell)
+==77266==    by 0x40218A: ast_constructor (ast.c:84)
+==77266==    by 0x4028CA: parser (minishell.c:65)
+==77266==    by 0x40281D: main (minishell.c:39)
+==77266== 
+==77266== LEAK SUMMARY:
+==77266==    definitely lost: 56 bytes in 2 blocks
+==77266==    indirectly lost: 0 bytes in 0 blocks
+==77266==      possibly lost: 0 bytes in 0 blocks
+==77266==    still reachable: 67 bytes in 4 blocks
+==77266==         suppressed: 204,693 bytes in 221 blocks
+==77266== 
+==77266== For lists of detected and suppressed errors, rerun with: -s
+==77266== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
