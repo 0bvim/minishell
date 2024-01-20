@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/20 15:10:33 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:40:39 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,7 @@ t_list	*tokenizer(const char *str)
 		token_list_holder(tokens);
 		ft_skip_spaces(&str);
 		token_list_generator(tokens, str, str + 1);
-		expansions(tokens);
-		list_printer(tokens);
 		grammar_checker(tokens);
-		ft_lstclear(tokens, free_token);
 	}
 	return (tokens);
 }
