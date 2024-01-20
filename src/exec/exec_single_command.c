@@ -75,7 +75,7 @@ void	exec_single_command(t_ast *root)
 {
 	t_element	*el;
 	t_cmd		*cmd;
-	char		tmp[1000];
+	char		*tmp;
 
 	cmd = malloc(sizeof(t_cmd *) * 1);
 	cmd->paths = get_paths();
@@ -86,27 +86,21 @@ void	exec_single_command(t_ast *root)
 	if (root->exec)
 	{
 		el = root->exec->first;
-		while (el)
-		{
-			ft_strlcat(tmp, ((t_token *)el->content)->str, ft_strlen(((t_token *)el->content)->str) + 1);
-			el = el->next;
-		}
+		tmp = concat_args(el);
+		// printf("%s\n", tmp);
 		cmd->args = get_command(tmp);
 		cmd->path = validate_path(cmd->args[0], cmd->paths);
-		execve(cmd->path, cmd->args, environ);
+		// if (execve(cmd->path, cmd->args, environ) < 0)
+		// 	exit(1);
 	}
 }
 
-char	*concat_args(t_ast *root)
+// need to concat with one space betwen each word, or input in one **char in each position
+char	*concat_args(t_element *el)
 {
-	char	*retrn;
-	t_list	lst;
+	size_t	words;
 
-	if (root)
-	{
-		lst = root->exec;
-		retrn = ft_strjoin(retrn, lst->first->content->str)
-		return (concat_args(root->right))
-	}
+	words = ft_lstsize((t_list *)el);
+	printf("%zu\n", words);
 	return (NULL);
 }

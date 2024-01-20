@@ -91,6 +91,7 @@ struct s_cmd
 
 // exec
 void	exec_single_command(t_ast *root);
+char	*concat_args(t_element *el);
 
 // code_pieces
 int		create_env_vars_array(char ***env_vars);
