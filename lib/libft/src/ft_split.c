@@ -76,7 +76,7 @@ static char	*ft_copy_split(char *dest, char *src, char c)
 	return (src);
 }
 
-static char	**ft_clear(char **tab)
+char	**ft_clear_split(char **tab)
 {
 	unsigned int	i;
 
@@ -119,7 +119,7 @@ char	**ft_split(char const *s, char c)
 	{
 		tab[i] = ft_split_malloc(mover, c);
 		if (tab[i] == NULL)
-			return (ft_clear(tab));
+			return (ft_clear_split(tab));
 		mover = ft_copy_split(tab[i], mover, c);
 	}
 	return (tab);
