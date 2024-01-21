@@ -77,6 +77,7 @@ TOKENIZER = $(SRC)/tokenizer
 UTILS = $(SRC)/utils
 CODEP = $(SRC)/code_pieces
 AST = $(SRC)/ast
+EXEC = $(SRC)/exec
 
 # libs #
 INCLUDES = -I$(INC)/ -Ilib/libft/includes/
@@ -97,6 +98,7 @@ CFILES += $(addprefix $(TOKENIZER)/, add_tokens.c memory_handler.c parenthesis_v
 CFILES += $(addprefix $(UTILS)/, str.c clear_console.c ft_lst_split.c panic.c which_token.c)
 CFILES += $(addprefix $(CODEP)/, env_array.c)
 CFILES += $(addprefix $(AST)/, ast.c ast_split_node.c ast_memory_handler.c expansions.c)
+CFILES += $(addprefix $(EXEC)/, execution.c)
 
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-out.txt
 VAL_TXT = valgrind-out.txt

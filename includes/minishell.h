@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/20 15:22:51 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/21 04:27:37 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ struct s_cmd
 
 // code_pieces
 int		create_env_vars_array(char ***env_vars);
+
 //expands dollar sign variables
 char	*env_var_value(const char *key);
 char	**get_paths(void);
@@ -101,7 +102,12 @@ t_ast	*ast_constructor(t_list *tokens);
 int		ast_split_node(t_ast *ast_node, t_list *tokens,
 	t_element *el_to_split);
 void	expansions(t_list *tokens);
+
+// execve
 void	execution(t_ast *root);
+void	execute(char **tokens);
+char	*validate_path(char *exec_name);
+char	**splited_args(t_list *tokens);
 
 //GRAMMAR CHECK
 void	grammar_checker(t_list *tokens);
