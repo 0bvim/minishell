@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/20 10:59:38 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/20 21:00:33 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(void)
 		input = prompt();
 		pid = fork();
 		if (pid == -1)
-			ft_putstr_fd("fork error\n", DOLLAR);
+			ft_putstr_fd("fork error\n", 2);
 		if (pid == 0)
 			parser(input);
 		wait(NULL);

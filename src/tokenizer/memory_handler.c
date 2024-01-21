@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:22:42 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/13 16:01:23 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:16:51 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	panic_tokenizer(char *error_msg)
 	if (tokens)
 		ft_lstclear(tokens, free_token);
 	if (error_msg)
-		ft_putstr_fd(error_msg, 2);
+		ft_putendl_fd(error_msg, 2);
 	exit (EXIT_FAILURE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:20:35 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/19 19:00:44 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/20 21:12:05 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	add_quotes_token(t_list *tokens,
 	char	quote_type;
 
 	quote_type = **start;
-	(*mover)++;
 	if (**mover)
 		while (**mover != quote_type)
 			(*mover)++;
