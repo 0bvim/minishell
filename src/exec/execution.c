@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/21 04:29:58 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/21 04:35:45 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	**splited_args(t_list *tokens)
 {
-	char	**splited;
 	size_t		index;
 	t_element	*el;
 	t_token		*token;
+	char		**splited;
 
 	el = tokens->first;
 	splited = ft_calloc(tokens->size + 1, sizeof(char *));
@@ -83,7 +83,7 @@ char	*validate_path(char *exec_name)
 void	execution(t_ast *root)
 {
 	pid_t	leaf;
-	
+
 	if (root->left)
 		execution(root->left);
 	if (root->right)
