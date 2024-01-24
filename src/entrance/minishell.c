@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/20 21:00:33 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/21 04:37:49 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 /* execute the command(s) (execv)*/
 /* wait for command completion */
 /* remember to use extern **environ */
-static char	*prompt(void);
 
-void	parser(char *input);
+static char	*prompt(void);
+void		parser(char *input);
 
 int	main(void)
 {
@@ -66,5 +66,5 @@ void	parser(char *input)
 	execution(root);
 	// tree_execs_printer(root);
 	// free(input);
-	// clear_tree(root);
+	clear_tree(root);
 }
