@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   and_or_redirs_pipe_rule.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:44:34 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/20 21:17:32 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:17:58 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
