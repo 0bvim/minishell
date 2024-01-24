@@ -1,14 +1,10 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
-!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
-!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
-!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/nivicius/Documents/projects/ft/minishell/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	5.9.0	//
+!_TAG_PROGRAM_VERSION	0.0.0	//
 $(BUILD_DIR)	lib/libft/Makefile	/^$(BUILD_DIR):$/;"	t
 $(BUILD_DIR)/%.o	lib/libft/Makefile	/^$(BUILD_DIR)\/%.o: $(SRC_DIR)\/%.c$/;"	t
 $(NAME)	Makefile	/^$(NAME): $(OBJECT) $(BIN_OBJ)$/;"	t
@@ -154,7 +150,6 @@ all	Makefile	/^all: $(NAME)$/;"	t
 all	lib/libft/Makefile	/^all: $(NAME)$/;"	t
 args	.vscode/launch.json	/^			"args": [],$/;"	a	object:configurations.0
 args	includes/minishell.h	/^	char	**args;$/;"	m	struct:s_cmd	typeref:typename:char **
-args	includes/minishell.h	/^	char	**args;$/;"	m	struct:s_pipe	typeref:typename:char **
 array	.vscode/settings.json	/^		"array": "c",$/;"	s	object:files.associations
 ast_constructor	src/ast/ast.c	/^t_ast	*ast_constructor(t_list *tokens)$/;"	f	typeref:typename:t_ast *
 ast_holder	src/ast/ast_memory_handler.c	/^t_ast	*ast_holder(t_ast *root)$/;"	f	typeref:typename:t_ast *
@@ -167,7 +162,6 @@ clean	lib/libft/Makefile	/^clean:$/;"	t
 clear_console	src/utils/clear_console.c	/^void	clear_console(void)$/;"	f	typeref:typename:void
 clear_tree	src/ast/ast_memory_handler.c	/^void	clear_tree(t_ast *root)$/;"	f	typeref:typename:void
 cmd	includes/minishell.h	/^	char	*cmd;$/;"	m	struct:s_cmd	typeref:typename:char *
-cmd	includes/minishell.h	/^	char	*cmd;$/;"	m	struct:s_pipe	typeref:typename:char *
 compile	Makefile	/^	compile = compile_bonus$/;"	m
 compile	Makefile	/^define compile$/;"	m
 compile_bonus	Makefile	/^define compile_bonus$/;"	m
@@ -187,6 +181,8 @@ description	.vscode/launch.json	/^					"description": "Set Disassembly Flavor to
 description	.vscode/launch.json	/^					"description": "Set detach-on-fork to off",$/;"	s	object:configurations.0.setupCommands.3
 description	.vscode/launch.json	/^					"description": "Set follow-fork-mode to child",$/;"	s	object:configurations.0.setupCommands.2
 e_token	includes/minishell.h	/^enum	e_token$/;"	g
+echo	src/builtins/echo.c	/^int	echo(const char **args)$/;"	f	typeref:typename:int
+env	src/builtins/env.c	/^void	env(const char **args)$/;"	f	typeref:typename:void
 env_var_value	src/code_pieces/env_array.c	/^char	*env_var_value(const char *key)$/;"	f	typeref:typename:char *
 environment	.vscode/launch.json	/^			"environment": [],$/;"	a	object:configurations.0
 eraseBins	Makefile	/^define eraseBins$/;"	m
@@ -198,7 +194,6 @@ externalConsole	.vscode/launch.json	/^			"externalConsole": false,$/;"	b	object:
 fclean	Makefile	/^define fclean$/;"	m
 fclean	Makefile	/^fclean: clean$/;"	t
 fclean	lib/libft/Makefile	/^fclean: clean$/;"	t
-fd	includes/minishell.h	/^	pid_t	*fd[2];$/;"	m	struct:s_pipe	typeref:typename:pid_t * [2]
 files.associations	.vscode/settings.json	/^	"files.associations": {$/;"	o
 first	lib/libft/include/libft.h	/^	t_element	*first;$/;"	m	struct:s_list	typeref:typename:t_element *
 free_token	src/tokenizer/memory_handler.c	/^void	free_token(void *p_token)$/;"	f	typeref:typename:void
@@ -289,6 +284,7 @@ ft_while_in_set	lib/libft/src/ft_strtrim.c	/^static char	*ft_while_in_set(char c
 get_next_line	lib/libft/src/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f	typeref:typename:char *
 get_paths	src/code_pieces/env_array.c	/^char	**get_paths(void)$/;"	f	typeref:typename:char **
 grammar_checker	src/grammar/grammar_checker.c	/^void	grammar_checker(t_list *tokens)$/;"	f	typeref:typename:void
+handle_pipe	src/exec/execution.c	/^int	handle_pipe(t_ast *node_pipe)$/;"	f	typeref:typename:int
 help	Makefile	/^define help$/;"	m
 help	Makefile	/^help:$/;"	t
 ignoreFailures	.vscode/launch.json	/^					"ignoreFailures": false$/;"	b	object:configurations.0.setupCommands.2
@@ -318,6 +314,7 @@ parser	src/entrance/minishell.c	/^void	parser(char *input)$/;"	f	typeref:typenam
 prev	lib/libft/include/libft.h	/^	struct s_element	*prev;$/;"	m	struct:s_element	typeref:struct:s_element *
 program	.vscode/launch.json	/^			"program": "${workspaceFolder}\/minishell",$/;"	s	object:configurations.0
 prompt	src/entrance/minishell.c	/^static char	*prompt(void)$/;"	f	typeref:typename:char *	file:
+pwd	src/builtins/pwd.c	/^int	pwd(const char **args)$/;"	f	typeref:typename:int
 quotes_validation	src/tokenizer/quotes_validation.c	/^int	quotes_validation(const char *str)$/;"	f	typeref:typename:int
 re	Makefile	/^re: fclean all$/;"	t
 re	lib/libft/Makefile	/^re: fclean all$/;"	t
@@ -328,7 +325,6 @@ s_ast	includes/minishell.h	/^struct s_ast$/;"	s
 s_cmd	includes/minishell.h	/^struct s_cmd$/;"	s
 s_element	lib/libft/include/libft.h	/^typedef struct s_element$/;"	s
 s_list	lib/libft/include/libft.h	/^typedef struct s_list$/;"	s
-s_pipe	includes/minishell.h	/^struct s_pipe$/;"	s
 s_token	includes/minishell.h	/^typedef struct s_token$/;"	s
 search_and_or	src/ast/ast.c	/^t_element	*search_and_or(t_list *tokens)$/;"	f	typeref:typename:t_element *
 search_pipe	src/ast/ast.c	/^t_element	*search_pipe(t_list *tokens)$/;"	f	typeref:typename:t_element *
@@ -345,7 +341,6 @@ t_ast	includes/minishell.h	/^typedef struct s_ast	t_ast;$/;"	t	typeref:struct:s_
 t_cmd	includes/minishell.h	/^typedef struct s_cmd	t_cmd;$/;"	t	typeref:struct:s_cmd
 t_element	lib/libft/include/libft.h	/^}	t_element;$/;"	t	typeref:struct:s_element
 t_list	lib/libft/include/libft.h	/^}	t_list;$/;"	t	typeref:struct:s_list
-t_pipe	includes/minishell.h	/^typedef struct s_pipe	t_pipe;$/;"	t	typeref:struct:s_pipe
 t_token	includes/minishell.h	/^}	t_token;$/;"	t	typeref:struct:s_token
 text	.vscode/launch.json	/^					"text": "-enable-pretty-printing",$/;"	s	object:configurations.0.setupCommands.0
 text	.vscode/launch.json	/^					"text": "-gdb-set disassembly-flavor intel",$/;"	s	object:configurations.0.setupCommands.1
@@ -361,7 +356,7 @@ try_split_else_exec	src/ast/ast.c	/^static void	try_split_else_exec(t_ast *ast_n
 type	.vscode/launch.json	/^			"type": "cppdbg",$/;"	s	object:configurations.0
 type	includes/minishell.h	/^	int			type;$/;"	m	struct:s_ast	typeref:typename:int
 type	includes/minishell.h	/^	int		type;$/;"	m	struct:s_token	typeref:typename:int
-under construction.	README.md	/^### under construction.$/;"	S	chapter:minishell
+under construction.	README.md	/^### under construction.$/;"	S
 unordered_map	.vscode/settings.json	/^		"unordered_map": "c",$/;"	s	object:files.associations
 validate_path	src/exec/execution.c	/^char	*validate_path(char *exec_name)$/;"	f	typeref:typename:char *
 vars	.gdbinit	/^define vars$/;"	d
