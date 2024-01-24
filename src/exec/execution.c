@@ -6,11 +6,13 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/21 04:35:45 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:25:47 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	handle_pipe(t_ast *node_pipe);
 
 char	**splited_args(t_list *tokens)
 {
@@ -82,17 +84,57 @@ char	*validate_path(char *exec_name)
 
 void	execution(t_ast *root)
 {
-	pid_t	leaf;
+	// pid_t	leaf;
 
-	if (root->left)
+	if (!root)
+		return ; //panic
+	if (root->type == PIPE)
+		handle_pipe(root);
+	else if (root->left)
 		execution(root->left);
-	if (root->right)
+	else if (root->right)
 		execution(root->right);
-	if (root->exec)
+	else if (root->exec)
 	{
 		expansions(root->exec);
-		leaf = fork();
-		if (!leaf)
-			execute(splited_args(root->exec));
+		// leaf = fork();
+		// if (!leaf)
+		execute(splited_args(root->exec));
 	}
+}
+
+int	handle_pipe(t_ast *node_pipe)
+{
+	pid_t	fildes[2];
+	pid_t	f1;
+	pid_t	f2;
+	pid_t	status;
+
+	if (pipe(fildes) < 0)
+		exit(1); //panic opening pipe
+	f1 = fork();
+	if (f1 < 0)
+		exit(1); //panic opening fork
+	if (f1 == 0)
+	{
+		dup2(fildes[1], 1);
+		close(fildes[0]);
+		close(fildes[1]);
+		execution(node_pipe->left);
+	}
+	f2 = fork();
+	if (f2 < 0)
+		exit(1); //panic opening fork
+	if (f2 == 0)
+	{
+		dup2(fildes[0], 0);
+		close(fildes[0]);
+		close(fildes[1]);
+		execution(node_pipe->right);
+	}
+	close(fildes[0]);
+	close(fildes[1]);
+	waitpid(f1, NULL, 0);
+	waitpid(f2, &status, 0);
+	return (status);
 }

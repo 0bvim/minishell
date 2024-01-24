@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:17:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/21 04:32:32 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:08:08 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	try_split_else_exec(t_ast *ast_node, t_list *tokens)
 		return ;
 	if (ast_split_node(ast_node, tokens, search_and_or(tokens)))
 		return ;
-	if (ast_split_node(ast_node, tokens, search_pipe(tokens)))
+	if (ast_split_node(ast_node, tokens, search_pipe(tokens))) //when pipe need to open pipe and dup fd. Verify if it's here or in anotther function
 		return ;
 	if (ast_split_node(ast_node, tokens, search_redirects(tokens)))
 		return ;

@@ -1,10 +1,14 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/nivicius/Documents/projects/ft/minishell/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	0.0.0	//
+!_TAG_PROGRAM_VERSION	5.9.0	//
 $(BUILD_DIR)	lib/libft/Makefile	/^$(BUILD_DIR):$/;"	t
 $(BUILD_DIR)/%.o	lib/libft/Makefile	/^$(BUILD_DIR)\/%.o: $(SRC_DIR)\/%.c$/;"	t
 $(NAME)	Makefile	/^$(NAME): $(OBJECT) $(BIN_OBJ)$/;"	t
@@ -14,6 +18,8 @@ $(OBJ)/%.o	Makefile	/^$(OBJ)\/%.o: %.c$/;"	t
 0	.vscode/launch.json	/^				{$/;"	o	array:configurations.0.setupCommands
 0	.vscode/launch.json	/^		{$/;"	o	array:configurations
 1	.vscode/launch.json	/^				{$/;"	o	array:configurations.0.setupCommands
+2	.vscode/launch.json	/^				{$/;"	o	array:configurations.0.setupCommands
+3	.vscode/launch.json	/^				{$/;"	o	array:configurations.0.setupCommands
 AND	includes/minishell.h	/^	AND,$/;"	e	enum:e_token
 APPEND	includes/minishell.h	/^	APPEND,$/;"	e	enum:e_token
 AR	lib/libft/Makefile	/^AR				=	ar$/;"	m
@@ -74,6 +80,7 @@ DFLAGS	Makefile	/^DFLAGS = -Wall -Wextra -Werror -g3 # TO DEBBUG$/;"	m
 DOLLAR	includes/minishell.h	/^	DOLLAR,$/;"	e	enum:e_token
 DOUBLE_QUOTE	includes/minishell.h	/^	DOUBLE_QUOTE,$/;"	e	enum:e_token
 ENTRANCE	Makefile	/^ENTRANCE = $(SRC)\/entrance$/;"	m
+EXEC	Makefile	/^EXEC = $(SRC)\/exec$/;"	m
 EXEC	includes/minishell.h	/^	EXEC$/;"	e	enum:e_token
 FCLEAN	Makefile	/^FCLEAN = Program delete$/;"	m
 FFLAGS	Makefile	/^FFLAGS = -lreadline # FLAGS THAT ONLY WORK AT THE END OF LINE (AFTER OBJECTS)$/;"	m
@@ -147,6 +154,7 @@ all	Makefile	/^all: $(NAME)$/;"	t
 all	lib/libft/Makefile	/^all: $(NAME)$/;"	t
 args	.vscode/launch.json	/^			"args": [],$/;"	a	object:configurations.0
 args	includes/minishell.h	/^	char	**args;$/;"	m	struct:s_cmd	typeref:typename:char **
+args	includes/minishell.h	/^	char	**args;$/;"	m	struct:s_pipe	typeref:typename:char **
 array	.vscode/settings.json	/^		"array": "c",$/;"	s	object:files.associations
 ast_constructor	src/ast/ast.c	/^t_ast	*ast_constructor(t_list *tokens)$/;"	f	typeref:typename:t_ast *
 ast_holder	src/ast/ast_memory_handler.c	/^t_ast	*ast_holder(t_ast *root)$/;"	f	typeref:typename:t_ast *
@@ -159,6 +167,7 @@ clean	lib/libft/Makefile	/^clean:$/;"	t
 clear_console	src/utils/clear_console.c	/^void	clear_console(void)$/;"	f	typeref:typename:void
 clear_tree	src/ast/ast_memory_handler.c	/^void	clear_tree(t_ast *root)$/;"	f	typeref:typename:void
 cmd	includes/minishell.h	/^	char	*cmd;$/;"	m	struct:s_cmd	typeref:typename:char *
+cmd	includes/minishell.h	/^	char	*cmd;$/;"	m	struct:s_pipe	typeref:typename:char *
 compile	Makefile	/^	compile = compile_bonus$/;"	m
 compile	Makefile	/^define compile$/;"	m
 compile_bonus	Makefile	/^define compile_bonus$/;"	m
@@ -175,16 +184,21 @@ debug	Makefile	/^define debug$/;"	m
 deque	.vscode/settings.json	/^		"deque": "c",$/;"	s	object:files.associations
 description	.vscode/launch.json	/^					"description": "Enable pretty-printing for gdb",$/;"	s	object:configurations.0.setupCommands.0
 description	.vscode/launch.json	/^					"description": "Set Disassembly Flavor to Intel",$/;"	s	object:configurations.0.setupCommands.1
+description	.vscode/launch.json	/^					"description": "Set detach-on-fork to off",$/;"	s	object:configurations.0.setupCommands.3
+description	.vscode/launch.json	/^					"description": "Set follow-fork-mode to child",$/;"	s	object:configurations.0.setupCommands.2
 e_token	includes/minishell.h	/^enum	e_token$/;"	g
 env_var_value	src/code_pieces/env_array.c	/^char	*env_var_value(const char *key)$/;"	f	typeref:typename:char *
 environment	.vscode/launch.json	/^			"environment": [],$/;"	a	object:configurations.0
 eraseBins	Makefile	/^define eraseBins$/;"	m
 exec	includes/minishell.h	/^	t_list		*exec;$/;"	m	struct:s_ast	typeref:typename:t_list *
+execute	src/exec/execution.c	/^void	execute(char **tokens)$/;"	f	typeref:typename:void
+execution	src/exec/execution.c	/^void	execution(t_ast *root)$/;"	f	typeref:typename:void
 expansions	src/ast/expansions.c	/^void	expansions(t_list *tokens)$/;"	f	typeref:typename:void
 externalConsole	.vscode/launch.json	/^			"externalConsole": false,$/;"	b	object:configurations.0
 fclean	Makefile	/^define fclean$/;"	m
 fclean	Makefile	/^fclean: clean$/;"	t
 fclean	lib/libft/Makefile	/^fclean: clean$/;"	t
+fd	includes/minishell.h	/^	pid_t	*fd[2];$/;"	m	struct:s_pipe	typeref:typename:pid_t * [2]
 files.associations	.vscode/settings.json	/^	"files.associations": {$/;"	o
 first	lib/libft/include/libft.h	/^	t_element	*first;$/;"	m	struct:s_list	typeref:typename:t_element *
 free_token	src/tokenizer/memory_handler.c	/^void	free_token(void *p_token)$/;"	f	typeref:typename:void
@@ -194,7 +208,7 @@ ft_atoi	lib/libft/src/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f	typeref:ty
 ft_atoll	lib/libft/src/ft_atoll.c	/^long long	ft_atoll(const char *nptr)$/;"	f	typeref:typename:long long
 ft_bzero	lib/libft/src/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f	typeref:typename:void
 ft_calloc	lib/libft/src/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f	typeref:typename:void *
-ft_clear	lib/libft/src/ft_split.c	/^static char	**ft_clear(char **tab)$/;"	f	typeref:typename:char **	file:
+ft_clear_split	lib/libft/src/ft_split.c	/^char	**ft_clear_split(char **tab)$/;"	f	typeref:typename:char **
 ft_copy_split	lib/libft/src/ft_split.c	/^static char	*ft_copy_split(char *dest, char *src, char c)$/;"	f	typeref:typename:char *	file:
 ft_count_tokens	lib/libft/src/ft_split.c	/^static unsigned int	ft_count_tokens(char const *s, char c)$/;"	f	typeref:typename:unsigned int	file:
 ft_define_size	lib/libft/src/ft_itoa.c	/^static size_t	ft_define_size(int n)$/;"	f	typeref:typename:size_t	file:
@@ -277,6 +291,8 @@ get_paths	src/code_pieces/env_array.c	/^char	**get_paths(void)$/;"	f	typeref:typ
 grammar_checker	src/grammar/grammar_checker.c	/^void	grammar_checker(t_list *tokens)$/;"	f	typeref:typename:void
 help	Makefile	/^define help$/;"	m
 help	Makefile	/^help:$/;"	t
+ignoreFailures	.vscode/launch.json	/^					"ignoreFailures": false$/;"	b	object:configurations.0.setupCommands.2
+ignoreFailures	.vscode/launch.json	/^					"ignoreFailures": false$/;"	b	object:configurations.0.setupCommands.3
 ignoreFailures	.vscode/launch.json	/^					"ignoreFailures": true$/;"	b	object:configurations.0.setupCommands.0
 ignoreFailures	.vscode/launch.json	/^					"ignoreFailures": true$/;"	b	object:configurations.0.setupCommands.1
 initializer_list	.vscode/settings.json	/^		"initializer_list": "c"$/;"	s	object:files.associations
@@ -312,6 +328,7 @@ s_ast	includes/minishell.h	/^struct s_ast$/;"	s
 s_cmd	includes/minishell.h	/^struct s_cmd$/;"	s
 s_element	lib/libft/include/libft.h	/^typedef struct s_element$/;"	s
 s_list	lib/libft/include/libft.h	/^typedef struct s_list$/;"	s
+s_pipe	includes/minishell.h	/^struct s_pipe$/;"	s
 s_token	includes/minishell.h	/^typedef struct s_token$/;"	s
 search_and_or	src/ast/ast.c	/^t_element	*search_and_or(t_list *tokens)$/;"	f	typeref:typename:t_element *
 search_pipe	src/ast/ast.c	/^t_element	*search_pipe(t_list *tokens)$/;"	f	typeref:typename:t_element *
@@ -319,7 +336,8 @@ search_redirects	src/ast/ast.c	/^t_element	*search_redirects(t_list *tokens)$/;"
 setupCommands	.vscode/launch.json	/^			"setupCommands": [$/;"	a	object:configurations.0
 size	lib/libft/include/libft.h	/^	size_t		size;$/;"	m	struct:s_list	typeref:typename:size_t
 split_and_call_substitution	src/ast/expansions.c	/^static char	*split_and_call_substitution(char *str, char **mover)$/;"	f	typeref:typename:char *	file:
-stopAtEntry	.vscode/launch.json	/^			"stopAtEntry": false,$/;"	b	object:configurations.0
+splited_args	src/exec/execution.c	/^char	**splited_args(t_list *tokens)$/;"	f	typeref:typename:char **
+stopAtEntry	.vscode/launch.json	/^			"stopAtEntry": true,$/;"	b	object:configurations.0
 str	includes/minishell.h	/^	char	*str;$/;"	m	struct:s_token	typeref:typename:char *
 string	.vscode/settings.json	/^		"string": "c",$/;"	s	object:files.associations
 string_view	.vscode/settings.json	/^		"string_view": "c",$/;"	s	object:files.associations
@@ -327,9 +345,12 @@ t_ast	includes/minishell.h	/^typedef struct s_ast	t_ast;$/;"	t	typeref:struct:s_
 t_cmd	includes/minishell.h	/^typedef struct s_cmd	t_cmd;$/;"	t	typeref:struct:s_cmd
 t_element	lib/libft/include/libft.h	/^}	t_element;$/;"	t	typeref:struct:s_element
 t_list	lib/libft/include/libft.h	/^}	t_list;$/;"	t	typeref:struct:s_list
+t_pipe	includes/minishell.h	/^typedef struct s_pipe	t_pipe;$/;"	t	typeref:struct:s_pipe
 t_token	includes/minishell.h	/^}	t_token;$/;"	t	typeref:struct:s_token
 text	.vscode/launch.json	/^					"text": "-enable-pretty-printing",$/;"	s	object:configurations.0.setupCommands.0
 text	.vscode/launch.json	/^					"text": "-gdb-set disassembly-flavor intel",$/;"	s	object:configurations.0.setupCommands.1
+text	.vscode/launch.json	/^					"text": "set detach-on-fork off",$/;"	s	object:configurations.0.setupCommands.3
+text	.vscode/launch.json	/^					"text": "set follow-fork-mode child",$/;"	s	object:configurations.0.setupCommands.2
 token_expansion	src/ast/expansions.c	/^static void	token_expansion(void *p_token)$/;"	f	typeref:typename:void	file:
 token_list_generator	src/tokenizer/tokenizer.c	/^static void	token_list_generator(t_list *tokens,$/;"	f	typeref:typename:void	file:
 token_list_holder	src/tokenizer/memory_handler.c	/^t_list	*token_list_holder(t_list *tokens)$/;"	f	typeref:typename:t_list *
@@ -340,8 +361,9 @@ try_split_else_exec	src/ast/ast.c	/^static void	try_split_else_exec(t_ast *ast_n
 type	.vscode/launch.json	/^			"type": "cppdbg",$/;"	s	object:configurations.0
 type	includes/minishell.h	/^	int			type;$/;"	m	struct:s_ast	typeref:typename:int
 type	includes/minishell.h	/^	int		type;$/;"	m	struct:s_token	typeref:typename:int
-under construction.	README.md	/^### under construction.$/;"	S
+under construction.	README.md	/^### under construction.$/;"	S	chapter:minishell
 unordered_map	.vscode/settings.json	/^		"unordered_map": "c",$/;"	s	object:files.associations
+validate_path	src/exec/execution.c	/^char	*validate_path(char *exec_name)$/;"	f	typeref:typename:char *
 vars	.gdbinit	/^define vars$/;"	d
 vector	.vscode/settings.json	/^		"vector": "c",$/;"	s	object:files.associations
 which_token	src/utils/which_token.c	/^int	which_token(const char *str)$/;"	f	typeref:typename:int
