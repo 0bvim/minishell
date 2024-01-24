@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/24 17:25:47 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:08:46 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,5 +136,5 @@ int	handle_pipe(t_ast *node_pipe)
 	close(fildes[1]);
 	waitpid(f1, NULL, 0);
 	waitpid(f2, &status, 0);
-	return (status);
+	exit (status);
 }
