@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/21 04:35:45 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:28:11 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	execution(t_ast *root)
 {
 	pid_t	leaf;
 
+	if (!root)
+		return ; //panic
 	if (root->left)
 		execution(root->left);
 	if (root->right)
