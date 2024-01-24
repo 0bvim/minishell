@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:51:33 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/23 13:20:08 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/24 16:34:56 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	pwd(void)
+int	pwd(const char **args)
 {
 	char	*buffer;
 	char	*wd;
@@ -20,7 +20,7 @@ int	pwd(void)
 
 	chars = 1024;
 	buffer = ft_calloc(chars, sizeof(char));
-	while (buffer)
+	while (buffer && args[0])
 	{
 		wd = getcwd(buffer, sizeof(buffer));
 		if (wd)
