@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/23 21:14:23 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:39:09 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ struct s_cmd
 	char	*cmd;
 	char	**args;
 };
+
+//pipe handling
+int			handle_pipe(t_ast *node_pipe);
 
 // code_pieces
 int		create_env_vars_array(char ***env_vars);
