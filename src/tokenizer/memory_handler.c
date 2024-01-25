@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:22:42 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/20 21:16:51 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:43:19 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	free_token(void *p_token)
 
 	token = p_token;
 	if (token->str)
-		free (token->str);
-	free (token);
+		free(token->str);
+	free(token);
 }
 
 t_list	*token_list_holder(t_list *tokens)
@@ -40,5 +40,5 @@ void	panic_tokenizer(char *error_msg)
 		ft_lstclear(tokens, free_token);
 	if (error_msg)
 		ft_putendl_fd(error_msg, 2);
-	exit (EXIT_FAILURE);
+	exit(errno);
 }

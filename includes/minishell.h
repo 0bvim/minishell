@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/24 22:39:09 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:42:06 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@
 /* libft header path */
 # include "../lib/libft/include/libft.h"
 
+/*errors*/
+# include <errno.h>
+
 # define SYMBOLS "&|<>()'\""
 # define BLANK ""
 
@@ -64,6 +67,12 @@ enum	e_token
 	TOKEN_NULL,
 	BLOCK,
 	EXEC
+};
+
+enum	e_flags
+{
+	READ,
+	WRITE
 };
 
 typedef struct s_token
@@ -123,6 +132,7 @@ void	clear_console(void);
 void	panic(char *str1, char *str2, char *str3, int err_nb);
 int		which_token(const char *str);
 t_list	*ft_lstsplit(t_list *lst, t_element *el);
+int		last_exit_status(pid_t pid);
 
 //TOKENIZER
 t_list	*tokenizer(const char *str);

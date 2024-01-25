@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/24 22:40:26 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:52:08 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ void	execute(char **tokens)
 	if (!path)
 	{
 		ft_clear_split(tokens);
-		exit(EXIT_FAILURE);
+		exit(127);
 	}
 	if (execve(path, tokens, __environ) < 0)
 	{
 		ft_clear_split(tokens);
 		free(path);
-		exit(EXIT_FAILURE);
+		exit(errno);
 	}
+
 }
 
 char	*validate_path(char *exec_name)

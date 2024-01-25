@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:51:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/09 16:00:29 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:43:19 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void	panic(char *str1, char *str2, char *str3, int err_nb)
 		ft_putstr_fd("\nError number: ", 2);
 		ft_putnbr_fd(err_nb, 2);
 	}
-	exit(EXIT_FAILURE);
+	exit(errno);
 }
