@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   handling_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:30:51 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/24 22:35:14 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:59:32 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	close_and_wait(int *fildes, pid_t *f1, pid_t *f2, int *status)
+static int	close_and_wait(int *fildes, pid_t *f1, pid_t *f2)
 {
+	int status;
+
 	close(fildes[0]);
 	close(fildes[1]);
 	waitpid(*f1, NULL, 0);
-	waitpid(*f2, status, 0);
-	return (*status);
+	waitpid(*f2, &status, 0);
+	return (status);
 }
 
 static void	dup_and_close(int *fildes, int fd_to_dup)
@@ -30,10 +32,9 @@ static void	dup_and_close(int *fildes, int fd_to_dup)
 
 int	handle_pipe(t_ast *node_pipe)
 {
-	pid_t	fildes[2];
+	int		fildes[2];
 	pid_t	f1;
 	pid_t	f2;
-	pid_t	status;
 
 	if (pipe(fildes) < 0)
 		exit(1); //panic opening pipe
@@ -53,5 +54,5 @@ int	handle_pipe(t_ast *node_pipe)
 		dup_and_close(fildes, STDIN_FILENO);
 		execution(node_pipe->right);
 	}
-	exit(close_and_wait(fildes, &f1, &f2, &status));
+	exit(close_and_wait(fildes, &f1, &f2));
 }

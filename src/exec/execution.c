@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/24 22:40:26 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:57:20 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,14 @@ void	execute(char **tokens)
 	char	*path;
 
 	path = validate_path(tokens[0]);
-	if (!path)
-	{
-		ft_clear_split(tokens);
-		exit(EXIT_FAILURE);
-	}
 	if (execve(path, tokens, __environ) < 0)
 	{
 		ft_clear_split(tokens);
-		free(path);
-		exit(EXIT_FAILURE);
+		if (errno == EACCES)
+			panic_ast(126, "minishell: Permission denied");
+		else if (errno == ENOENT)
+			panic_ast(127, "minishell: Command not found");
+		exit(!!errno);
 	}
 }
 
@@ -77,7 +75,7 @@ char	*validate_path(char *exec_name)
 		i++;
 	}
 	ft_clear_split(paths);
-	return (NULL);
+	return (exec_name);
 }
 
 void	execution(t_ast *root)
