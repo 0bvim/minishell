@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/25 15:42:06 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:42:21 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ typedef struct s_ast	t_ast;
 struct s_ast
 {
 	int			type;
-	void		*content;
 	t_ast		*left;
 	t_ast		*right;
 	t_list		*exec;
@@ -102,7 +101,7 @@ struct s_cmd
 int			handle_pipe(t_ast *node_pipe);
 
 // code_pieces
-int		create_env_vars_array(char ***env_vars);
+char	*getenv_or_blank(const char *name);
 
 //expands dollar sign variables
 char	*env_var_value(const char *key);
@@ -114,6 +113,8 @@ t_ast	*ast_constructor(t_list *tokens);
 int		ast_split_node(t_ast *ast_node, t_list *tokens,
 			t_element *el_to_split);
 void	expansions(t_list *tokens);
+t_ast	*ast_holder(t_ast *root);
+void	panic_ast(int error, char *msg);
 
 // execve
 void	execution(t_ast *root);

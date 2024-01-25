@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/25 15:16:46 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:13:07 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*merged_substitution(char *head, char *middle, char *tail,
 	if (!ft_strncmp(middle, "?", 2))
 		expansion = ft_itoa(last_exit_status(0));
 	else
-		expansion = ft_strdup(getenv(middle));
+		expansion = ft_strdup(getenv_or_blank(middle));
 	free (middle);
 	if (expansion)
 	{
@@ -82,6 +82,8 @@ static void	token_expansion(void *p_token)
 		if (*mover == '$' && *(mover + 1) && *(mover + 1) != '\"')
 		{
 			token->str = split_and_call_substitution(str, &mover);
+			if (!token->str)
+				exit (EXIT_FAILURE);
 			free (str);
 			str = token->str;
 			mover--;

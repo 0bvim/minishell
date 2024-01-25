@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:49:56 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/20 15:32:23 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:09:27 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,20 @@ int	create_env_vars_array(char ***env_vars)
 	return (1);
 }
 
-char	*env_var_value(const char *key)
+char	*getenv_or_blank(const char *name)
 {
-	int		i;
-	size_t	key_len;
-	size_t	comparison;
+	char	*env_var;
 
-	key_len = ft_strlen(key);
-	i = 0;
-	while (environ[i])
-	{
-		comparison = ft_strchr(environ[i], '=') - environ[i];
-		if (comparison < key_len)
-			comparison = key_len;
-		if (!ft_strncmp(key, environ[i], comparison))
-			break ;
-		i++;
-	}
-	if (environ[i])
-		return (environ[i] + comparison + 1);
+	env_var = getenv(name);
+	if (env_var)
+		return (env_var);
 	return (BLANK);
 }
 
 char	**get_paths(void)
 {
 	char		**splited_path;
-	const char	*full_path = env_var_value("PATH");
+	const char	*full_path = getenv_or_blank("PATH");
 
 	splited_path = ft_split(full_path, ':');
 	return (splited_path);

@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:11:29 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/25 15:37:27 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:44:22 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	last_exit_status(pid_t pid)
 	if (pid)
 	{
 		waitpid(pid, &status, 0);
-		status = (((status) & 0xff00) >> 8);
+		//status = (((status) & 0xff00) >> 8);
 	}
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
 	return (status);
 }

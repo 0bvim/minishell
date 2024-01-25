@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:31:01 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/25 15:43:19 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:41:48 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	clear_tree(t_ast *root)
 	free(root);
 }
 
-void	panic_ast(char *msg)
+void	panic_ast(int error, char *msg)
 {
 	ft_putstr_fd(msg, 2);
 	clear_tree(ast_holder(NULL));
-	exit(errno);
+	exit(error);
 }

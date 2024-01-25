@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/25 15:52:08 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:55:13 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,16 @@ void	execute(char **tokens)
 	char	*path;
 
 	path = validate_path(tokens[0]);
-	if (!path)
-	{
-		ft_clear_split(tokens);
-		exit(127);
-	}
 	if (execve(path, tokens, __environ) < 0)
 	{
 		ft_clear_split(tokens);
 		free(path);
-		exit(errno);
+		if (errno == EACCES)
+			exit (126);
+		else if (errno == ENOENT)
+			exit (127);
+		exit(!!errno);
 	}
-
 }
 
 char	*validate_path(char *exec_name)
@@ -78,7 +76,7 @@ char	*validate_path(char *exec_name)
 		i++;
 	}
 	ft_clear_split(paths);
-	return (NULL);
+	return (exec_name);
 }
 
 void	execution(t_ast *root)
