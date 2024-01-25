@@ -161,6 +161,7 @@ clean	Makefile	/^define clean$/;"	m
 clean	lib/libft/Makefile	/^clean:$/;"	t
 clear_console	src/utils/clear_console.c	/^void	clear_console(void)$/;"	f	typeref:typename:void
 clear_tree	src/ast/ast_memory_handler.c	/^void	clear_tree(t_ast *root)$/;"	f	typeref:typename:void
+close_and_wait	src/exec/handling_pipe.c	/^static int	close_and_wait(int *fildes, pid_t *f1, pid_t *f2, int *status)$/;"	f	typeref:typename:int	file:
 cmd	includes/minishell.h	/^	char	*cmd;$/;"	m	struct:s_cmd	typeref:typename:char *
 compile	Makefile	/^	compile = compile_bonus$/;"	m
 compile	Makefile	/^define compile$/;"	m
@@ -180,6 +181,7 @@ description	.vscode/launch.json	/^					"description": "Enable pretty-printing fo
 description	.vscode/launch.json	/^					"description": "Set Disassembly Flavor to Intel",$/;"	s	object:configurations.0.setupCommands.1
 description	.vscode/launch.json	/^					"description": "Set detach-on-fork to off",$/;"	s	object:configurations.0.setupCommands.3
 description	.vscode/launch.json	/^					"description": "Set follow-fork-mode to child",$/;"	s	object:configurations.0.setupCommands.2
+dup_and_close	src/exec/handling_pipe.c	/^static void	dup_and_close(int *fildes, int fd_to_dup)$/;"	f	typeref:typename:void	file:
 e_token	includes/minishell.h	/^enum	e_token$/;"	g
 echo	src/builtins/echo.c	/^int	echo(const char **args)$/;"	f	typeref:typename:int
 env	src/builtins/env.c	/^void	env(const char **args)$/;"	f	typeref:typename:void
@@ -284,7 +286,7 @@ ft_while_in_set	lib/libft/src/ft_strtrim.c	/^static char	*ft_while_in_set(char c
 get_next_line	lib/libft/src/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f	typeref:typename:char *
 get_paths	src/code_pieces/env_array.c	/^char	**get_paths(void)$/;"	f	typeref:typename:char **
 grammar_checker	src/grammar/grammar_checker.c	/^void	grammar_checker(t_list *tokens)$/;"	f	typeref:typename:void
-handle_pipe	src/exec/execution.c	/^int	handle_pipe(t_ast *node_pipe)$/;"	f	typeref:typename:int
+handle_pipe	src/exec/handling_pipe.c	/^int	handle_pipe(t_ast *node_pipe)$/;"	f	typeref:typename:int
 help	Makefile	/^define help$/;"	m
 help	Makefile	/^help:$/;"	t
 ignoreFailures	.vscode/launch.json	/^					"ignoreFailures": false$/;"	b	object:configurations.0.setupCommands.2
