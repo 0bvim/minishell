@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:22:42 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/25 15:43:19 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 19:00:49 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	free_token(void *p_token)
 
 	token = p_token;
 	if (token->str)
+	{
 		free(token->str);
+		token->str = NULL;
+	}
 	free(token);
 }
 

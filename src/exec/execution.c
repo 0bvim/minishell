@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/25 17:55:13 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:57:20 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@ void	execute(char **tokens)
 	if (execve(path, tokens, __environ) < 0)
 	{
 		ft_clear_split(tokens);
-		free(path);
 		if (errno == EACCES)
-			exit (126);
+			panic_ast(126, "minishell: Permission denied");
 		else if (errno == ENOENT)
-			exit (127);
+			panic_ast(127, "minishell: Command not found");
 		exit(!!errno);
 	}
 }
