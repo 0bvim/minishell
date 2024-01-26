@@ -79,6 +79,7 @@ CODEP = $(SRC)/code_pieces
 AST = $(SRC)/ast
 EXEC = $(SRC)/exec
 EXPANSIONS = $(SRC)/expansions
+BUILTINS = $(SRC)/builtins
 
 # libs #
 INCLUDES = -I$(INC)/ -Ilib/libft/includes/
@@ -101,6 +102,7 @@ CFILES += $(addprefix $(CODEP)/, env_array.c)
 CFILES += $(addprefix $(AST)/, ast.c ast_split_node.c ast_memory_handler.c)
 CFILES += $(addprefix $(EXEC)/, execution.c handling_pipe.c)
 CFILES += $(addprefix $(EXPANSIONS)/, expansions.c)
+CFILES += $(addprefix $(BUILTINS)/, env.c)
 
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-out.txt
 VAL_TXT = valgrind-out.txt
