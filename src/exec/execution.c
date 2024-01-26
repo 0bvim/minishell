@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/25 18:57:20 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:01:33 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	execute(char **tokens)
 			panic_ast(126, "minishell: Permission denied");
 		else if (errno == ENOENT)
 			panic_ast(127, "minishell: Command not found");
-		exit(!!errno);
+		else
+			exit(!!errno);
 	}
 }
 
@@ -56,7 +57,7 @@ char	*validate_path(char *exec_name)
 	int		i;
 
 	paths = ft_split(getenv("PATH"), ':');
-	if (access(exec_name, F_OK | X_OK) == 0)
+	if (access(exec_name, X_OK) == 0)
 	{
 		cmd = ft_strdup(exec_name);
 		return (cmd);
@@ -65,7 +66,7 @@ char	*validate_path(char *exec_name)
 	while (paths[i])
 	{
 		cmd = ft_strmerge(ft_strjoin(paths[i], "/"), ft_strdup(exec_name));
-		if (access(cmd, F_OK | X_OK) == 0)
+		if (access(cmd, X_OK) == 0)
 		{
 			ft_clear_split(paths);
 			return (cmd);
