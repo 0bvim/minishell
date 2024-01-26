@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:51:11 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/15 14:24:25 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:54:35 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	parenthesis_validation(const char *str)
 		else if (*str == ')')
 			right++;
 		if (right > left)
-			return (0);
+			break;
 		if (!ft_skip_quotes(&str))
 			str++;
 	}

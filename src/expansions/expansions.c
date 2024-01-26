@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/20 18:41:33 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:13:07 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static char	*merged_substitution(char *head, char *middle, char *tail,
 	char	*expanded;
 	ssize_t	delta;
 
-	expansion = ft_strdup(env_var_value(middle));
+	if (!ft_strncmp(middle, "?", 2))
+		expansion = ft_itoa(last_exit_status(0));
+	else
+		expansion = ft_strdup(getenv_or_blank(middle));
 	free (middle);
 	if (expansion)
 	{
@@ -45,8 +48,11 @@ static char	*split_and_call_substitution(char *str, char **mover)
 	if (head)
 	{
 		mover_2 = *mover + 1;
-		while (*mover_2 && (ft_isalnum(*mover_2) || *mover_2 == '_' ))
+		if (!ft_strncmp(mover_2, "?", 2))
 			mover_2++;
+		else
+			while (*mover_2 && (ft_isalnum(*mover_2) || *mover_2 == '_' ))
+				mover_2++;
 		middle = ft_strndup(*mover + 1, mover_2 - (*mover + 1));
 		if (middle)
 		{
@@ -76,6 +82,8 @@ static void	token_expansion(void *p_token)
 		if (*mover == '$' && *(mover + 1) && *(mover + 1) != '\"')
 		{
 			token->str = split_and_call_substitution(str, &mover);
+			if (!token->str)
+				exit (EXIT_FAILURE);
 			free (str);
 			str = token->str;
 			mover--;

@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/24 18:08:46 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:01:33 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	handle_pipe(t_ast *node_pipe);
 
 char	**splited_args(t_list *tokens)
 {
@@ -40,16 +38,15 @@ void	execute(char **tokens)
 	char	*path;
 
 	path = validate_path(tokens[0]);
-	if (!path)
-	{
-		ft_clear_split(tokens);
-		exit(EXIT_FAILURE);
-	}
 	if (execve(path, tokens, __environ) < 0)
 	{
 		ft_clear_split(tokens);
-		free(path);
-		exit(EXIT_FAILURE);
+		if (errno == EACCES)
+			panic_ast(126, "minishell: Permission denied");
+		else if (errno == ENOENT)
+			panic_ast(127, "minishell: Command not found");
+		else
+			exit(!!errno);
 	}
 }
 
@@ -60,7 +57,7 @@ char	*validate_path(char *exec_name)
 	int		i;
 
 	paths = ft_split(getenv("PATH"), ':');
-	if (access(exec_name, F_OK | X_OK) == 0)
+	if (access(exec_name, X_OK) == 0)
 	{
 		cmd = ft_strdup(exec_name);
 		return (cmd);
@@ -69,7 +66,7 @@ char	*validate_path(char *exec_name)
 	while (paths[i])
 	{
 		cmd = ft_strmerge(ft_strjoin(paths[i], "/"), ft_strdup(exec_name));
-		if (access(cmd, F_OK | X_OK) == 0)
+		if (access(cmd, X_OK) == 0)
 		{
 			ft_clear_split(paths);
 			return (cmd);
@@ -79,13 +76,11 @@ char	*validate_path(char *exec_name)
 		i++;
 	}
 	ft_clear_split(paths);
-	return (NULL);
+	return (exec_name);
 }
 
 void	execution(t_ast *root)
 {
-	// pid_t	leaf;
-
 	if (!root)
 		return ; //panic
 	if (root->type == PIPE)
@@ -97,44 +92,6 @@ void	execution(t_ast *root)
 	else if (root->exec)
 	{
 		expansions(root->exec);
-		// leaf = fork();
-		// if (!leaf)
 		execute(splited_args(root->exec));
 	}
-}
-
-int	handle_pipe(t_ast *node_pipe)
-{
-	pid_t	fildes[2];
-	pid_t	f1;
-	pid_t	f2;
-	pid_t	status;
-
-	if (pipe(fildes) < 0)
-		exit(1); //panic opening pipe
-	f1 = fork();
-	if (f1 < 0)
-		exit(1); //panic opening fork
-	if (f1 == 0)
-	{
-		dup2(fildes[1], 1);
-		close(fildes[0]);
-		close(fildes[1]);
-		execution(node_pipe->left);
-	}
-	f2 = fork();
-	if (f2 < 0)
-		exit(1); //panic opening fork
-	if (f2 == 0)
-	{
-		dup2(fildes[0], 0);
-		close(fildes[0]);
-		close(fildes[1]);
-		execution(node_pipe->right);
-	}
-	close(fildes[0]);
-	close(fildes[1]);
-	waitpid(f1, NULL, 0);
-	waitpid(f2, &status, 0);
-	exit (status);
 }

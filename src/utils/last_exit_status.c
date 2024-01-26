@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   last_exit_status.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:18:15 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/25 15:43:19 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/01/25 12:11:29 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/01/25 16:44:22 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern char	**environ;
-
-void	env(const char **args)
+int	last_exit_status(pid_t pid)
 {
-	int	i;
+	static int	status;
 
-	if (args[1])
+	if (pid)
 	{
-		ft_putendl_fd("minishell: env doesn't accept arguments or flags", 2);
-		exit(errno);
+		waitpid(pid, &status, 0);
+		//status = (((status) & 0xff00) >> 8);
 	}
-	i = 0;
-	while (environ[i])
-		ft_putendl_fd(environ[i++], 1);
-	exit(EXIT_SUCCESS);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	return (status);
 }
