@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/26 13:21:08 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:49:10 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,17 @@ char	**splited_args(t_list *tokens)
 	el = tokens->first;
 	splited = ft_calloc(tokens->size + 1, sizeof(char *));
 	if (!splited)
-		return (NULL); //panic tree
+		panic_ast(1, "malloc error");
 	index = 0;
 	while (el)
 	{
 		token = el->content;
-		splited[index++] = ft_strdup(token->str);
-		//panic
+		splited[index] = ft_strdup(token->str);
+		if (!splited[index++])
+		{
+			ft_clear_split(splited);
+			panic_ast(1, "malloc error");
+		}
 		el = el->next;
 	}
 	return (splited);
