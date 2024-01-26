@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:07:49 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:08:27 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ struct s_cmd
 	char	**args;
 };
 
+char	*prompt(void);
+int		is_after_prompt(int is_after);
+
 //pipe handling
 int			handle_pipe(t_ast *node_pipe);
 
@@ -133,7 +136,8 @@ void	clear_console(void);
 void	panic(char *str1, char *str2, char *str3, int err_nb);
 int		which_token(const char *str);
 t_list	*ft_lstsplit(t_list *lst, t_element *el);
-int		last_exit_status(pid_t pid);
+int		last_exit_status(int exit_status);
+void	pid_last_exit_status(pid_t pid);
 
 //TOKENIZER
 t_list	*tokenizer(const char *str);
@@ -146,6 +150,9 @@ int		add_special_token(t_list *tokens,
 			const char **start, const char **mover, int token_type);
 int		quotes_validation(const char *str);
 int		parenthesis_validation(const char *str);
+
+//SIGNALS
+void	signal_handler(int signal);
 
 //DEBUGGERS
 void	list_printer(t_list *tokens);

@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/25 18:37:37 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:07:57 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 /* wait for command completion */
 /* remember to use extern **environ */
 
-static char	*prompt(void);
 void		parser(char *input);
 
 int	main(void)
@@ -28,7 +27,7 @@ int	main(void)
 	pid_t	pid;
 	char	*input;
 
-	clear_console();
+	signal(SIGINT, signal_handler);
 	while (true)
 	{
 		input = prompt();
@@ -37,18 +36,29 @@ int	main(void)
 			ft_putstr_fd("fork error\n", 2);
 		if (pid == 0)
 			parser(input);
-		last_exit_status(pid);
+		pid_last_exit_status(pid);
 		if (input)
 			free(input);
 	}
 	return (EXIT_SUCCESS);
 }
 
-static char	*prompt(void)
+int	is_after_prompt(int is_after)
+{
+	static int	after;
+
+	if (is_after != -1)
+		after = is_after;
+	return (after);
+}
+
+char	*prompt(void)
 {
 	char	*input;
 
-	input = readline("minishell~$ ");
+	is_after_prompt(0);
+	input = readline("minishell>$ ");
+	is_after_prompt(1);
 	add_history(input);
 	if (!(input != NULL && ft_strncmp(input, "exit", 4)))
 		exit(EXIT_SUCCESS);
@@ -65,7 +75,5 @@ void	parser(char *input)
 	root = ast_constructor(tokens);
 	ast_holder(root);
 	execution(root);
-	// tree_execs_printer(root);
-	// free(input);
 	clear_tree(root);
 }
