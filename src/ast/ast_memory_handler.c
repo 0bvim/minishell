@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_memory_handler.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:31:01 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/25 21:03:55 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:56:51 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	clear_tree(t_ast *root)
 void	panic_ast(int error, char *msg)
 {
 	ft_putendl_fd(msg, 2);
-	if (!ast_holder(NULL))
+	if (ast_holder(NULL))
 		clear_tree(ast_holder(NULL));
 	exit(error);
 }

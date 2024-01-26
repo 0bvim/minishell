@@ -4,7 +4,7 @@ LIB				=	libft.a
 AR				=	ar
 AR_FLAGS		=	rcs
 CC				=	cc
-CC_FLAGS 		=	-Wall -Werror -Wextra -O3
+CC_FLAGS 		=	-Wall -Werror -Wextra -O3 -g3
 
 #≻───░⋆ ✪ PROJECT DIRECTORIES & FILES ✪ ⋆░───────────────────────────────────≺#
 INCLUDES		=	-I./include

@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/25 18:42:21 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:07:49 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int		last_exit_status(pid_t pid);
 t_list	*tokenizer(const char *str);
 t_list	*token_list_holder(t_list *tokens);
 void	free_token(void *p_token);
-void	panic_tokenizer(char *error_msg);
+void	panic_tokenizer(int error, char *msg);
 void	add_token(t_list *tokens, const char **start, const char **mover, \
 	int token_type);
 int		add_special_token(t_list *tokens,

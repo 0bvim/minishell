@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:20:35 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/20 21:12:05 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:11:32 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	add_token(t_list *tokens,
 
 	content = ft_calloc(1, sizeof(t_token));
 	if (!content)
-		panic_tokenizer("memory allocation failure\n");
+		panic_tokenizer(1, "memory allocation failure\n");
 	content->str = ft_strndup(*start, *mover - *start);
 	if (!content->str)
-		panic_tokenizer("memory allocation failure\n");
+		panic_tokenizer(1, "memory allocation failure\n");
 	content->type = token_type;
 	el = ft_lstnewelement(content);
 	if (!el)
-		panic_tokenizer("memory allocation failure\n");
+		panic_tokenizer(1, "memory allocation failure\n");
 	ft_lstadd_back(tokens, el);
 	if (**mover)
 		ft_skip_spaces(mover);
