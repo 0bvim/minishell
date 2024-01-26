@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:30:51 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/25 14:59:32 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:27:55 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	close_and_wait(int *fildes, pid_t *f1, pid_t *f2)
 	close(fildes[1]);
 	waitpid(*f1, NULL, 0);
 	waitpid(*f2, &status, 0);
+	clear_tree(ast_holder(NULL));
 	return (status);
 }
 
@@ -37,10 +38,10 @@ int	handle_pipe(t_ast *node_pipe)
 	pid_t	f2;
 
 	if (pipe(fildes) < 0)
-		exit(1); //panic opening pipe
+		panic_ast(1, "file descriptor error"); //panic opening pipe
 	f1 = fork();
 	if (f1 < 0)
-		exit(1); //panic opening fork
+		panic_ast(1, "error opening a new fork"); //panic opening fork
 	if (f1 == 0)
 	{
 		dup_and_close(fildes, STDOUT_FILENO);
@@ -48,7 +49,7 @@ int	handle_pipe(t_ast *node_pipe)
 	}
 	f2 = fork();
 	if (f2 < 0)
-		exit(1); //panic opening fork
+		panic_ast(1, "error opening a new fork"); //panic opening fork
 	if (f2 == 0)
 	{
 		dup_and_close(fildes, STDIN_FILENO);

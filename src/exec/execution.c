@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/25 21:01:33 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:49:10 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,17 @@ char	**splited_args(t_list *tokens)
 	el = tokens->first;
 	splited = ft_calloc(tokens->size + 1, sizeof(char *));
 	if (!splited)
-		return (NULL); //panic tree
+		panic_ast(1, "malloc error");
 	index = 0;
 	while (el)
 	{
 		token = el->content;
-		splited[index++] = token->str;
+		splited[index] = ft_strdup(token->str);
+		if (!splited[index++])
+		{
+			ft_clear_split(splited);
+			panic_ast(1, "malloc error");
+		}
 		el = el->next;
 	}
 	return (splited);
@@ -40,7 +45,7 @@ void	execute(char **tokens)
 	path = validate_path(tokens[0]);
 	if (execve(path, tokens, __environ) < 0)
 	{
-		ft_clear_split(tokens);
+		tokens = ft_clear_split(tokens);
 		if (errno == EACCES)
 			panic_ast(126, "minishell: Permission denied");
 		else if (errno == ENOENT)
