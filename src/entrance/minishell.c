@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/26 19:07:57 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/27 16:48:52 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 /* wait for command completion */
 /* remember to use extern **environ */
 
+volatile int	g_last_signal;
+
 void		parser(char *input);
 
 int	main(void)
@@ -27,9 +29,10 @@ int	main(void)
 	pid_t	pid;
 	char	*input;
 
-	signal(SIGINT, signal_handler);
+	signals_initializer();
 	while (true)
 	{
+		g_last_signal = 0;
 		input = prompt();
 		pid = fork();
 		if (pid == -1)
@@ -37,6 +40,8 @@ int	main(void)
 		if (pid == 0)
 			parser(input);
 		pid_last_exit_status(pid);
+		if (g_last_signal == SIGINT)
+			last_exit_status(130);
 		if (input)
 			free(input);
 	}
@@ -61,7 +66,10 @@ char	*prompt(void)
 	is_after_prompt(1);
 	add_history(input);
 	if (!(input != NULL && ft_strncmp(input, "exit", 4)))
+	{
+		ft_putendl_fd("exit", 1);
 		exit(EXIT_SUCCESS);
+	}
 	return (input);
 }
 

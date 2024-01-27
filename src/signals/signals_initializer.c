@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   last_exit_status.c                                 :+:      :+:    :+:   */
+/*   signals_initializer.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 12:11:29 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/27 17:35:42 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/01/27 16:32:05 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/01/27 17:09:00 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	last_exit_status(int exit_status)
+void	signals_initializer(void)
 {
-	static int	status;
-
-	if (exit_status != -1)
-		status = exit_status;
-	return (status);
-}
-
-void	pid_last_exit_status(pid_t pid)
-{
-	int	status;
-
-	waitpid(pid, &status, 0);
-	last_exit_status(status);
+	if (signal(SIGINT, signal_handler) == SIG_ERR
+		|| signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+	{
+		ft_putendl_fd("fail to set signals", 1);
+		exit (EXIT_FAILURE);
+	}
 }

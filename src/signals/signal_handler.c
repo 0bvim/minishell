@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:15:21 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/26 18:59:59 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/27 15:06:17 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	signal_handler(int signal)
 {
 	if (signal == SIGINT)
 	{
+		g_last_signal = SIGINT;
 		if (ast_holder(NULL))
 			panic_ast(130, "");
 		rl_on_new_line();

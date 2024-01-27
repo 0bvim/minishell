@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/26 19:08:27 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/27 17:16:12 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 
 # define SYMBOLS "&|<>()'\""
 # define BLANK ""
+
+extern volatile int	g_last_signal;
 
 /* enum and struct */
 
@@ -90,7 +92,7 @@ struct s_ast
 	t_list		*exec;
 };
 
-typedef struct s_cmd	t_cmd;
+typedef struct s_cmd		t_cmd;
 struct s_cmd
 {
 	char	*cmd;
@@ -101,7 +103,7 @@ char	*prompt(void);
 int		is_after_prompt(int is_after);
 
 //pipe handling
-int			handle_pipe(t_ast *node_pipe);
+int		handle_pipe(t_ast *node_pipe);
 
 // code_pieces
 char	*getenv_or_blank(const char *name);
@@ -152,6 +154,7 @@ int		quotes_validation(const char *str);
 int		parenthesis_validation(const char *str);
 
 //SIGNALS
+void	signals_initializer(void);
 void	signal_handler(int signal);
 
 //DEBUGGERS

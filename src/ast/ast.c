@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:17:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/26 12:33:47 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/27 17:08:10 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,9 @@ t_element	*search_redirects(t_list *tokens)
 
 static void	try_split_else_exec(t_ast *ast_node, t_list *tokens)
 {
-	if (!ast_node || !tokens)//remove
-		return ;//remove
 	if (ast_split_node(ast_node, tokens, search_and_or(tokens)))
 		return ;
-	if (ast_split_node(ast_node, tokens, search_pipe(tokens))) //when pipe need to open pipe and dup fd. Verify if it's here or in anotther function
+	if (ast_split_node(ast_node, tokens, search_pipe(tokens)))
 		return ;
 	if (ast_split_node(ast_node, tokens, search_redirects(tokens)))
 		return ;
@@ -81,7 +79,7 @@ t_ast	*ast_constructor(t_list *tokens)
 
 	root = ft_calloc(1, sizeof(t_ast));
 	if (!root)
-		return (NULL); //panic tree
+		panic_tokenizer(1, "fail to create the root node of AST");
 	try_split_else_exec(root, tokens);
 	return (root);
 }
