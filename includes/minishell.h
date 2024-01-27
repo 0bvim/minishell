@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:52:07 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/26 21:41:39 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ void	env(const char **args);
 
 //pipe handling
 int			handle_pipe(t_ast *node_pipe);
+
+//handle redirs
+void	handle_redirs(t_ast *node_pipe);
 
 // code_pieces
 char	*getenv_or_blank(const char *name);
