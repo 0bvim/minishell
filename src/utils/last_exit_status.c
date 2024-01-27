@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:11:29 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/27 17:35:42 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/27 18:29:14 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void	pid_last_exit_status(pid_t pid)
 	int	status;
 
 	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		status = WEXITSTATUS(status);
 	last_exit_status(status);
 }

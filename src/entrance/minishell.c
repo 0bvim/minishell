@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/27 16:48:52 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/27 18:50:09 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	main(void)
 	signals_initializer();
 	while (true)
 	{
-		g_last_signal = 0;
 		input = prompt();
+		g_last_signal = 0;
 		pid = fork();
 		if (pid == -1)
 			ft_putstr_fd("fork error\n", 2);
@@ -42,19 +42,9 @@ int	main(void)
 		pid_last_exit_status(pid);
 		if (g_last_signal == SIGINT)
 			last_exit_status(130);
-		if (input)
-			free(input);
+		free(input);
 	}
 	return (EXIT_SUCCESS);
-}
-
-int	is_after_prompt(int is_after)
-{
-	static int	after;
-
-	if (is_after != -1)
-		after = is_after;
-	return (after);
 }
 
 char	*prompt(void)

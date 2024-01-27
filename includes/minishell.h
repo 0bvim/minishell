@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/27 17:16:12 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/27 18:50:00 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ int		parenthesis_validation(const char *str);
 //SIGNALS
 void	signals_initializer(void);
 void	signal_handler(int signal);
+int		is_after_prompt(int is_after);
 
 //DEBUGGERS
 void	list_printer(t_list *tokens);
