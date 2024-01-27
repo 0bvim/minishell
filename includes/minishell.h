@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/26 21:41:39 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/27 18:01:50 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 
 # define SYMBOLS "&|<>()'\""
 # define BLANK ""
+# define TRUN O_CREAT | O_TRUNC | O_RDWR
+# define APEN O_CREAT | O_APPEND | O_RDWR
 
 /* enum and struct */
 

@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/26 21:57:15 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/27 18:06:56 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	execution(t_ast *root)
 	if (root->type == PIPE)
 		handle_pipe(root);
 	else if (root->type == R_REDIR)
+		handle_redirs(root);
+	else if (root->type == APPEND)
 		handle_redirs(root);
 	else if (root->left)
 		execution(root->left);
