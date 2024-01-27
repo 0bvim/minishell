@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   last_exit_status.c                                 :+:      :+:    :+:   */
+/*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 12:11:29 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/27 18:29:14 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/01/26 15:15:21 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/01/27 18:31:14 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	last_exit_status(int exit_status)
+void	signal_handler(int signal)
 {
-	static int	status;
-
-	if (exit_status != -1)
-		status = exit_status;
-	return (status);
-}
-
-void	pid_last_exit_status(pid_t pid)
-{
-	int	status;
-
-	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		status = WEXITSTATUS(status);
-	last_exit_status(status);
+	if (signal == SIGINT)
+	{
+		g_last_signal = SIGINT;
+		if (ast_holder(NULL))
+			panic_ast(130, "");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		ft_putstr_fd("\n", 1);
+		if (!is_after_prompt(-1))
+			rl_redisplay();
+		last_exit_status(130);
+	}
+	return ;
 }
