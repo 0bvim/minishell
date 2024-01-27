@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 10:16:44 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/18 12:47:59 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/27 17:04:18 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ast_split_node(t_ast *ast_node, t_list *tokens,
 		return (0);
 	right = ft_lstsplit(tokens, el_to_split);
 	if (!right)
-		return (0); //panic tree
+		panic_ast(1, "panic while spliting tokens to create AST");
 	ast_node->type = ((t_token *)tokens->last->content)->type;
 	ft_lstdelone(tokens, tokens->last, free_token);
 	if (ast_node->type == L_REDIR || ast_node->type == R_REDIR
