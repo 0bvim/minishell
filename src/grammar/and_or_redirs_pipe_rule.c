@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   and_or_redirs_pipe_rule.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:44:34 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/26 12:11:06 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/28 14:25:55 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	redir_and_or_pipe_rule(t_element *el)
 		prev_type = ((t_token *)el->prev->content)->type;
 	else
 		prev_type = -1;
-	if (is_redirect(type) || is_and_or(type) || type == PIPE)
+	if (is_and_or(type) || type == PIPE)
 	{
 		if (prev_type == -1)
 			panic_tokenizer(2, "Invalid token begining the line");
