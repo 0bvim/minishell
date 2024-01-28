@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:18:15 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/26 16:05:12 by vde-frei         ###   ########.fr       */
+/*   Created: 2024/01/26 15:15:21 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/01/27 18:31:14 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern char	**environ;
-
-void	env(const char **args)
+void	signal_handler(int signal)
 {
-	int	i;
-
-	if (args[1])
+	if (signal == SIGINT)
 	{
-		ft_putendl_fd("minishell: env doesn't accept arguments or flags", 2);
-		exit(errno);
+		g_last_signal = SIGINT;
+		if (ast_holder(NULL))
+			panic_ast(130, "");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		ft_putstr_fd("\n", 1);
+		if (!is_after_prompt(-1))
+			rl_redisplay();
+		last_exit_status(130);
 	}
-	i = 0;
-	while (environ[i])
-		ft_putendl_fd(environ[i++], 1);
-	exit(EXIT_SUCCESS);
+	return ;
 }

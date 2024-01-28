@@ -21,5 +21,9 @@ ARG=$(1+2); echo $ARG
 echo "o valor e $(expr 1 + 2)"
 echo 'o valor e $(expr 1 + 2)'
 
+
+< zzz grep a | ./Makefile > b
+< zzz ./Makefile | grep a > b
+
 #grammar
 echo <(echo foo)
