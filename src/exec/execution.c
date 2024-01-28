@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/27 19:20:41 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/28 14:33:34 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	execution(t_ast *root)
 		panic_ast(1, "error creating the AST");
 	if (root->type == PIPE)
 		handle_pipe(root);
-	else if (root->type == R_REDIR)
+	else if (root->type == R_REDIR || root->type == L_REDIR)
 		handle_redirs(root);
 	else if (root->type == APPEND)
 		handle_redirs(root);
