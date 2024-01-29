@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/28 14:33:34 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/28 20:57:58 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ void	execute(char **tokens)
 	if (execve(path, tokens, __environ) < 0)
 	{
 		tokens = ft_clear_split(tokens);
+		if ((open(path, O_DIRECTORY | O_RDONLY)) != -1)
+			panic_ast(126, "minishell: Is a directory");
 		if (errno == EACCES)
-			panic_ast(126, "minishell: Permission denied");
+				panic_ast(126, "minishell: Permission denied");
 		else if (errno == ENOENT)
 			panic_ast(127, "minishell: Command not found");
 		else
