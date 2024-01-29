@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/27 19:18:10 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/28 23:01:25 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ extern volatile int	g_last_signal;
 
 enum	e_token
 {
-	ARGUMENT,
+	ARGUMENT = 1,
 	PIPE,
 	DOLLAR,
 	AND,
@@ -89,6 +89,7 @@ typedef struct s_ast	t_ast;
 struct s_ast
 {
 	int			type;
+	int			type_prev;
 	t_ast		*left;
 	t_ast		*right;
 	t_list		*exec;
