@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/26 12:08:04 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:53:40 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 static void	input_validations(const char *str)
 {
 	if (!*str)
+	{
+		environ_holder(NULL, 1);
 		exit(EXIT_SUCCESS);
+	}
 	if (!quotes_validation(str) || !parenthesis_validation(str))
-		exit(errno);
+	{
+		environ_holder(NULL, 1);
+		exit(EXIT_FAILURE);
+	}
 }
 
 static void	token_list_generator(t_list *tokens,

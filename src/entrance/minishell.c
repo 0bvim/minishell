@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/28 23:27:36 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:28:49 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 /* remember to use extern **environ */
 
 volatile int	g_last_signal;
+extern char		**environ;
 
 void		parser(char *input);
 
@@ -30,6 +31,7 @@ int	main(void)
 	char	*input;
 
 	signals_initializer();
+	environ_initializer();
 	while (true)
 	{
 		input = prompt();
@@ -44,6 +46,7 @@ int	main(void)
 			last_exit_status(130);
 		free(input);
 	}
+	environ_holder(NULL, 1);
 	return (EXIT_SUCCESS);
 }
 
@@ -58,6 +61,7 @@ char	*prompt(void)
 	if (!(input != NULL && ft_strncmp(input, "exit", 4)))
 	{
 		ft_putendl_fd("exit", 1);
+		environ_holder(NULL, 1);
 		exit(EXIT_SUCCESS);
 	}
 	return (input);
@@ -69,6 +73,7 @@ void	parser(char *input)
 	t_ast	*root;
 
 	tokens = tokenizer(input);
+	free(input);
 	grammar_checker(tokens);
 	root = ast_constructor(tokens);
 	ast_holder(root);

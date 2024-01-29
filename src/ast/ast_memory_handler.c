@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_memory_handler.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:31:01 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/27 14:41:24 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:54:57 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ void	panic_ast(int error, char *msg)
 	ft_putendl_fd(msg, 2);
 	if (ast_holder(NULL))
 		clear_tree(ast_holder(NULL));
+	environ_holder(NULL, 1);
 	exit(error);
 }

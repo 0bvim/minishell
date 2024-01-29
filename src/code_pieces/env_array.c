@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_array.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:49:56 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/25 18:09:27 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:39:10 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ int	create_env_vars_array(char ***env_vars)
 char	*getenv_or_blank(const char *name)
 {
 	char	*env_var;
+	char	**temp_env;
 
+	temp_env = __environ;
+	__environ = environ_holder(NULL, 0);
 	env_var = getenv(name);
+	__environ = temp_env;
 	if (env_var)
 		return (env_var);
 	return (BLANK);

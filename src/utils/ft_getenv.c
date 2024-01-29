@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:18:15 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/29 15:48:26 by brmoretti        ###   ########.fr       */
+/*   Created: 2024/01/29 15:42:26 by brmoretti         #+#    #+#             */
+/*   Updated: 2024/01/29 15:43:23 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern char	**environ;
-
-void	env(const char **args)
+char	*ft_getenv(const char *name)
 {
-	int		i;
-	char	**env_vars;
+	char	*env_var;
+	char	**temp_env;
 
-	if (args[1])
-	{
-		ft_putendl_fd("minishell: env doesn't accept arguments or flags", 2);
-		exit(errno);
-	}
-	i = 0;
-	env_vars = environ_holder(NULL, 0);
-	while (env_vars[i])
-		ft_putendl_fd(environ[i++], 1);
-	exit(EXIT_SUCCESS);
+	temp_env = __environ;
+	__environ = environ_holder(NULL, 0);
+	env_var = getenv(name);
+	__environ = temp_env;
+	return (env_var);
 }
