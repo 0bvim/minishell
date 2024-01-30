@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/29 17:05:25 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/29 23:26:52 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,16 @@ struct s_cmd
 void	environ_initializer(void);
 char	**environ_holder(char **new_environ, int need_to_free);
 
-// builtins
-void	env(const char **args);
+//BUILTINS
+void	builtins_caller(char **args);
+int		echo(char **args);
+int		env(const char **args);
+void	builtin_exit(char **args);
+int		export(char **args);
+int		pwd(const char **args);
+int		unset(char **args);
+
+//prompt
 char	*prompt(void);
 int		is_after_prompt(int is_after);
 
@@ -133,6 +141,7 @@ int		ast_split_node(t_ast *ast_node, t_list *tokens,
 void	expansions(t_list *tokens);
 t_ast	*ast_holder(t_ast *root);
 void	panic_ast(int error, char *msg);
+void	clean_exit_ast(void);
 
 // execve
 void	execution(t_ast *root);

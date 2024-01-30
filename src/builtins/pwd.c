@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:51:33 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/27 16:59:04 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:39:04 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	pwd(const char **args)
 	buffer = ft_calloc(chars, sizeof(char));
 	while (buffer && args[0])
 	{
-		wd = getcwd(buffer, sizeof(buffer));
+		wd = getcwd(buffer, chars);
 		if (wd)
 		{
 			ft_putendl_fd(wd, 1);

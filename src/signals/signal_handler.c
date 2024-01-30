@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:15:21 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/27 18:31:14 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:20:52 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ void	signal_handler(int signal)
 			rl_redisplay();
 		last_exit_status(130);
 	}
-	return ;
 }
