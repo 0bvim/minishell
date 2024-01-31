@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:31:01 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/29 23:11:21 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/31 18:33:24 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	panic_ast(int error, char *msg)
 	if (ast_holder(NULL))
 		clear_tree(ast_holder(NULL));
 	environ_holder(NULL, 1);
-	exit(error);
+	last_exit_status(error);
 }
 
 void	clean_exit_ast(void)

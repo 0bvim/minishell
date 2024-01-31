@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/29 23:26:52 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/31 18:07:04 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	environ_initializer(void);
 char	**environ_holder(char **new_environ, int need_to_free);
 
 //BUILTINS
-void	builtins_caller(char **args);
+int		builtins_caller(char **args);
 int		echo(char **args);
 int		env(const char **args);
 void	builtin_exit(char **args);
@@ -150,8 +150,8 @@ char	*validate_path(char *exec_name);
 char	**splited_args(t_list *tokens);
 
 //GRAMMAR CHECK
-void	grammar_checker(t_list *tokens);
-void	redir_and_or_pipe_rule(t_element *el);
+int		grammar_checker(t_list *tokens);
+int		redir_and_or_pipe_rule(t_element *el);
 
 //UTILS
 int		ft_issymbol(char c);

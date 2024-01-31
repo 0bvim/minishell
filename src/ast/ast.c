@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:17:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/27 17:08:10 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:03:37 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ t_ast	*ast_constructor(t_list *tokens)
 
 	root = ft_calloc(1, sizeof(t_ast));
 	if (!root)
+	{
 		panic_tokenizer(1, "fail to create the root node of AST");
+		return (NULL);
+	}
 	try_split_else_exec(root, tokens);
 	return (root);
 }

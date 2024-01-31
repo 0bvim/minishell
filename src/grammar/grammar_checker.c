@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   grammar_checker.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:37:13 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/26 12:23:52 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:44:23 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	grammar_checker(t_list *tokens)
+int	grammar_checker(t_list *tokens)
 {
 	t_element	*el;
 
@@ -21,7 +21,9 @@ void	grammar_checker(t_list *tokens)
 	el = tokens->first;
 	while (el)
 	{
-		redir_and_or_pipe_rule(el);
+		if (redir_and_or_pipe_rule(el))
+			return (1);
 		el = el->next;
 	}
+	return (0);
 }

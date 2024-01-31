@@ -6,13 +6,13 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 22:08:00 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/29 23:27:24 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/31 18:57:50 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	builtins_caller(char **args)
+int	builtins_caller(char **args)
 {
 	int	exit_status;
 
@@ -31,10 +31,7 @@ void	builtins_caller(char **args)
 		exit_status = env((const char **)args);
 	else if (ft_strncmp(args[0], "exit", 5) == 0)
 		builtin_exit(args);
-	if (exit_status != -1)
-		ft_clear_list(&args);
-	if (exit_status == EXIT_SUCCESS)
-		clean_exit_ast();
-	else if (exit_status == EXIT_FAILURE)
-		panic_ast(EXIT_FAILURE, NULL);
+	if (exit_status == EXIT_FAILURE || exit_status == EXIT_SUCCESS)
+		last_exit_status(exit_status);
+	return (exit_status);
 }

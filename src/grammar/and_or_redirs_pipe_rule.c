@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   and_or_redirs_pipe_rule.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:44:34 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/28 14:25:55 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:41:23 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	is_and_or(int type)
 }
 
 /*remember to change ft_putstr for panic function*/
-void	redir_and_or_pipe_rule(t_element *el)
+int	redir_and_or_pipe_rule(t_element *el)
 {
 	int		type;
 	int		prev_type;
@@ -43,5 +43,9 @@ void	redir_and_or_pipe_rule(t_element *el)
 		else if (is_redirect(prev_type) || is_and_or(prev_type)
 			|| prev_type == PIPE)
 			panic_tokenizer(2, "Invalid syntax");
+		else
+			return (0);
+		return (1);
 	}
+	return (0);
 }

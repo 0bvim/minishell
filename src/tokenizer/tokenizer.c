@@ -6,25 +6,11 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/29 14:53:40 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/31 17:45:28 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static void	input_validations(const char *str)
-{
-	if (!*str)
-	{
-		environ_holder(NULL, 1);
-		exit(EXIT_SUCCESS);
-	}
-	if (!quotes_validation(str) || !parenthesis_validation(str))
-	{
-		environ_holder(NULL, 1);
-		exit(EXIT_FAILURE);
-	}
-}
 
 static void	token_list_generator(t_list *tokens,
 									const char *start,
@@ -32,8 +18,6 @@ static void	token_list_generator(t_list *tokens,
 {
 	int	token;
 
-	if (!*start)
-		panic_tokenizer(0, NULL);
 	while (*mover)
 	{
 		token = which_token(start);
@@ -58,14 +42,18 @@ t_list	*tokenizer(const char *str)
 {
 	t_list	*tokens;
 
-	tokens = NULL;
-	input_validations(str);
+	ft_skip_spaces(&str);
+	if (!*str)
+		return (NULL);
+	if (!quotes_validation(str) || !parenthesis_validation(str))
+	{
+		last_exit_status(2);
+		return (NULL);
+	}
 	tokens = ft_calloc(1, sizeof(t_list));
 	if (!tokens)
-		exit(errno);
+		return (NULL);
 	token_list_holder(tokens);
-	ft_skip_spaces(&str);
 	token_list_generator(tokens, str, str + 1);
-	grammar_checker(tokens);
 	return (tokens);
 }

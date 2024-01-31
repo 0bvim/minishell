@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/29 23:41:54 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/31 20:03:28 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,14 @@ void		parser(char *input);
 
 int	main(void)
 {
-	pid_t	pid;
-	char	*input;
-
 	signals_initializer();
 	environ_initializer();
 	while (true)
 	{
-		input = prompt();
+		parser(prompt());
 		g_last_signal = 0;
-		pid = fork();
-		if (pid == -1)
-			ft_putstr_fd("fork error\n", 2);
-		if (pid == 0)
-			parser(input);
-		pid_last_exit_status(pid);
 		if (g_last_signal == SIGINT)
 			last_exit_status(130);
-		free(input);
 		if (last_exit_status(-1) == 42)
 			break;
 	}
@@ -72,8 +62,16 @@ void	parser(char *input)
 
 	tokens = tokenizer(input);
 	free(input);
-	grammar_checker(tokens);
+	if (!tokens)
+		return ;
+	if (grammar_checker(tokens))
+	{
+		panic_tokenizer(2, NULL);
+		return ;
+	}
 	root = ast_constructor(tokens);
+	if (!root)
+		return ;
 	ast_holder(root);
 	execution(root);
 	clear_tree(root);

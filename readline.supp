@@ -40,7 +40,16 @@
    fun:add_history
    ...
 }
-
+{
+   <AddHistory>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:xmalloc
+   fun:UnknownInlinedFun
+   fun:add_history
+   ...
+}
 {
    <ReadlineInternalTeardown>
    Memcheck:Leak

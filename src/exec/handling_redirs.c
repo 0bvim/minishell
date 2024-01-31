@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/30 23:31:12 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/31 20:25:43 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	handle_redirs(t_ast *node_pipe)
 			dup2(file, STDOUT_FILENO);
 		close(file);
 		execution(node_pipe->left);
+		dup2(STDOUT_FILENO, STDOUT_FILENO);
 	}
 }
 
