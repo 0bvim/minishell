@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:51:42 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/24 16:36:57 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:26:03 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	echo(const char **args)
+int	echo(char **args)
 {
 	short int		new_line;
 	short int		space;

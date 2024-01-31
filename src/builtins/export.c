@@ -6,13 +6,13 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:08:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/29 17:00:55 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/29 23:28:26 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	add_to_env(const char *new_env_var)
+static void	add_to_env(char *new_env_var)
 {
 	char	**env_vars;
 	char	**new_env_vars;
@@ -57,7 +57,7 @@ void	ft_setenv(const char *name, const char *value)
 	add_to_env(new_env_var);
 }
 
-void	export(const char **args)
+int	export(char **args)
 {
 	int		i;
 	char	*equal_sign;
@@ -74,13 +74,14 @@ void	export(const char **args)
 			{
 				ft_putendl_fd("minishell: export:\
 				 `=': not a valid identifier", 2);
-				exit(EXIT_FAILURE);
+				return(EXIT_FAILURE);
 			}
 			name = ft_strndup(args[i], equal_sign - args[i]);
 			if (!name)
-				exit(EXIT_FAILURE);
+				return(EXIT_FAILURE);
 			ft_setenv(name, equal_sign + 1);
 			free(name);
 		}
 	}
+	return(EXIT_SUCCESS);
 }

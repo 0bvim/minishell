@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:50:11 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/29 18:16:54 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/29 23:29:34 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ void	ft_unsetenv(const char *name)
 	free(temp);
 }
 
-void	unset(const char **args)
+int	unset(char **args)
 {
-	char	**env_vars;
 	int		i;
 
-	env_vars = environ_holder(NULL, 0);
 	i = 0;
 	while (args[++i])
 		ft_unsetenv(args[i]);
+	return (EXIT_SUCCESS);
 }

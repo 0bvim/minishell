@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/29 17:04:16 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/29 23:15:02 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	execute(char **tokens)
 	char	*path;
 
 	path = validate_path(tokens[0]);
+	builtins_caller(tokens);
 	if (execve(path, tokens, __environ) < 0)
 	{
 		tokens = ft_clear_split(tokens);
@@ -53,7 +54,7 @@ void	execute(char **tokens)
 		else if (errno == ENOENT)
 			panic_ast(127, "minishell: Command not found");
 		else
-			exit(!!errno);
+			panic_ast(!!errno, "NULL");
 	}
 }
 

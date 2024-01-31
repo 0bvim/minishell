@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/29 15:28:49 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/29 23:41:54 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	main(void)
 		if (g_last_signal == SIGINT)
 			last_exit_status(130);
 		free(input);
+		if (last_exit_status(-1) == 42)
+			break;
 	}
 	environ_holder(NULL, 1);
 	return (EXIT_SUCCESS);
@@ -58,12 +60,8 @@ char	*prompt(void)
 	input = readline("minishell>$ ");
 	is_after_prompt(1);
 	add_history(input);
-	if (!(input != NULL && ft_strncmp(input, "exit", 4)))
-	{
-		ft_putendl_fd("exit", 1);
-		environ_holder(NULL, 1);
-		exit(EXIT_SUCCESS);
-	}
+	if (!input)
+		input = ft_strdup("exit");
 	return (input);
 }
 
