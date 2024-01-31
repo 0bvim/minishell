@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/28 23:52:39 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/01/30 23:31:12 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	input_redir(t_ast *node_pipe)
 	file = open(token->str, O_RDONLY);
 	if (file == -1)
 		exit(1); //panic
-	dup2(file, STDOUT_FILENO);
+	dup2(file, STDIN_FILENO);
 	execution(node_pipe->left);
 	close(file);
 }
