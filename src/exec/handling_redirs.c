@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/31 20:25:43 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/01/31 21:31:51 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ static int	append_trunc(t_ast *node_pipe, t_token *token, int flag);
 
 void	handle_redirs(t_ast *node_pipe)
 {
-	t_token	*token;
-	int		file = 0;
+	t_token			*token;
+	int				file;
+	const int		tmp = dup(STDOUT_FILENO);
 
 	token = node_pipe->right->exec->first->content;
 	if (node_pipe->type == L_REDIR)
@@ -35,14 +36,16 @@ void	handle_redirs(t_ast *node_pipe)
 			dup2(file, STDOUT_FILENO);
 		close(file);
 		execution(node_pipe->left);
-		dup2(STDOUT_FILENO, STDOUT_FILENO);
+		dup2(tmp, STDOUT_FILENO);
 	}
+	close (tmp);
 }
 
 static void	input_redir(t_ast *node_pipe)
 {
 	t_token	*token;
 	int		file = 0;
+	const int		tmp = dup(STDIN_FILENO);
 
 	token = node_pipe->right->exec->first->content;
 	file = open(token->str, O_RDONLY);
@@ -50,6 +53,8 @@ static void	input_redir(t_ast *node_pipe)
 		exit(1); //panic
 	dup2(file, STDIN_FILENO);
 	execution(node_pipe->left);
+	dup2(tmp, STDIN_FILENO);
+	close (tmp);
 	close(file);
 }
 
