@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/31 21:04:32 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 12:29:38 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ void	parser(char *input)
 	if (!tokens)
 		return ;
 	if (grammar_checker(tokens))
-	{
-		panic_tokenizer(2, NULL);
 		return ;
-	}
 	root = ast_constructor(tokens);
 	if (!root)
 		return ;

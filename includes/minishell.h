@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/31 18:07:04 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 12:15:05 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,8 @@ char	**splited_args(t_list *tokens);
 
 //GRAMMAR CHECK
 int		grammar_checker(t_list *tokens);
+int		is_redirect(int type);
+int		is_and_or(int type);
 int		redir_and_or_pipe_rule(t_element *el);
 
 //UTILS
