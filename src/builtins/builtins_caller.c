@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 22:08:00 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/31 18:57:50 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 17:17:08 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	builtins_caller(char **args)
 	exit_status = -1;
 	if (ft_strncmp(args[0], "echo", 5) == 0)
 		exit_status = echo(args);
-	// else if (ft_strcmp(args[0], "cd") == 0)
-	// 	builtin_cd(args);
+	else if (ft_strncmp(args[0], "cd", 3) == 0)
+		exit_status = cd(args);
 	else if (ft_strncmp(args[0], "pwd", 4) == 0)
 		exit_status = pwd((const char **)args);
 	else if (ft_strncmp(args[0], "export", 7) == 0)

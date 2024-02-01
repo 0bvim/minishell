@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/01 15:50:05 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 17:42:51 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(void)
 		g_last_signal = 0;
 		parser(prompt());
 	}
-	environ_holder(NULL, 1);
 	return (EXIT_SUCCESS);
 }
 

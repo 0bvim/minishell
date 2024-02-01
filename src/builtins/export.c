@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:08:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/29 23:28:26 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 18:00:00 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void	add_to_env(char *new_env_var)
 	i = -1;
 	while (env_vars[++i])
 		new_env_vars[i] = env_vars[i];
-	new_env_vars[i++] = new_env_var;
-	new_env_vars[i] = NULL;
-	free(env_vars);
+	new_env_vars[i] = new_env_var;
+	new_env_vars[++i] = NULL;
+	environ_holder(NULL, 1);
 	environ_holder(new_env_vars, 0);
 }
 

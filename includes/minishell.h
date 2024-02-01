@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/01 14:48:53 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 17:12:07 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ void	environ_initializer(void);
 char	**environ_holder(char **new_environ, int to_free);
 
 //BUILTINS
+char	*malloc_pwd(void);
+int		cd(char **args);
 int		builtins_caller(char **args);
 int		echo(char **args);
 int		env(const char **args);

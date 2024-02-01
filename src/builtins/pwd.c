@@ -6,13 +6,13 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:51:33 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/29 23:39:04 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 16:35:43 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	pwd(const char **args)
+char	*malloc_pwd(void)
 {
 	char	*buffer;
 	char	*wd;
@@ -20,15 +20,11 @@ int	pwd(const char **args)
 
 	chars = 1024;
 	buffer = ft_calloc(chars, sizeof(char));
-	while (buffer && args[0])
+	while (buffer)
 	{
 		wd = getcwd(buffer, chars);
 		if (wd)
-		{
-			ft_putendl_fd(wd, 1);
-			free(buffer);
-			return (EXIT_SUCCESS);
-		}
+			return (wd);
 		else
 		{
 			free(buffer);
@@ -38,5 +34,18 @@ int	pwd(const char **args)
 			buffer = ft_calloc(chars, sizeof(char));
 		}
 	}
-	return (errno);
+	return (NULL);
+}
+
+int	pwd(const char **args)
+{
+	char	*wd;
+
+	(void)args;
+	wd = malloc_pwd();
+	if (!wd)
+		return (EXIT_FAILURE);
+	ft_putendl_fd(wd, STDOUT_FILENO);
+	free (wd);
+	return (EXIT_SUCCESS);
 }
