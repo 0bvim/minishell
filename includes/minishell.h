@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/01 12:15:05 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 14:48:53 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ struct s_cmd
 
 //ENTRANCE
 void	environ_initializer(void);
-char	**environ_holder(char **new_environ, int need_to_free);
+char	**environ_holder(char **new_environ, int to_free);
 
 //BUILTINS
 int		builtins_caller(char **args);
@@ -139,9 +139,8 @@ t_ast	*ast_constructor(t_list *tokens);
 int		ast_split_node(t_ast *ast_node, t_list *tokens,
 			t_element *el_to_split);
 void	expansions(t_list *tokens);
-t_ast	*ast_holder(t_ast *root);
+t_ast	*ast_holder(t_ast *root, int to_free);
 void	panic_ast(int error, char *msg);
-void	clean_exit_ast(void);
 
 // execve
 void	execution(t_ast *root);
@@ -169,7 +168,7 @@ char	*ft_getenv(const char *name);
 
 //TOKENIZER
 t_list	*tokenizer(const char *str);
-t_list	*token_list_holder(t_list *tokens);
+t_list	*token_list_holder(t_list *tokens, int to_free);
 void	free_token(void *p_token);
 void	panic_tokenizer(int error, char *msg);
 void	add_token(t_list *tokens, const char **start, const char **mover, \

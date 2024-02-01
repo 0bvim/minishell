@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/01/31 21:08:38 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 15:49:40 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,15 @@ void	execute(char **tokens)
 {
 	char	*path;
 
+	g_last_signal = 0;
 	if (builtins_caller(tokens) == -1)
 	{
 		path = validate_path(tokens[0]);
 		fork_and_execve(tokens, path);
 		free(path);
 	}
+	if (g_last_signal == SIGINT)
+		last_exit_status(130);
 	ft_clear_list(&tokens);
 }
 

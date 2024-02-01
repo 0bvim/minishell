@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   last_exit_status.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:11:29 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/27 18:29:14 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:34:40 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:22:42 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/31 17:26:30 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 13:26:32 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,23 @@ void	free_token(void *p_token)
 	free(token);
 }
 
-t_list	*token_list_holder(t_list *tokens)
+t_list	*token_list_holder(t_list *tokens, int to_free)
 {
 	static t_list	*lst_address;
 
 	if (tokens)
 		lst_address = tokens;
+	if (lst_address && to_free)
+	{
+		ft_lstclear(tokens, free_token);
+		lst_address = NULL;
+	}
 	return (lst_address);
 }
 
 void	panic_tokenizer(int error, char *msg)
 {
-	t_list	*tokens;
-
-	tokens = token_list_holder(NULL);
-	if (tokens)
-		ft_lstclear(tokens, free_token);
+	token_list_holder(NULL, 1);
 	if (msg)
 		ft_putendl_fd(msg, 2);
 	last_exit_status(error);

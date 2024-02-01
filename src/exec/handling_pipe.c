@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:30:51 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/01 01:31:34 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 13:11:10 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void fork_process(int *fildes, t_ast *node_pipe,
 		execution(node_pipe->left);
 	else
 		execution(node_pipe->right);
-	clear_tree(ast_holder(NULL));
+	ast_holder(NULL, 1);
 	environ_holder(NULL, 1);
 	exit(last_exit_status(-1));
 }

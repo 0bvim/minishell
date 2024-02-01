@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/01 12:29:38 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 15:50:05 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,8 @@ int	main(void)
 	environ_initializer();
 	while (true)
 	{
-		parser(prompt());
 		g_last_signal = 0;
-		if (g_last_signal == SIGINT)
-			last_exit_status(130);
-		if (last_exit_status(-1) == 42)
-			break;
+		parser(prompt());
 	}
 	environ_holder(NULL, 1);
 	return (EXIT_SUCCESS);
@@ -69,7 +65,7 @@ void	parser(char *input)
 	root = ast_constructor(tokens);
 	if (!root)
 		return ;
-	ast_holder(root);
+	ast_holder(root, 0);
 	execution(root);
-	clear_tree(root);
+	ast_holder(NULL, 1);
 }

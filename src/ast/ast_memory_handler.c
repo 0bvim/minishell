@@ -6,20 +6,11 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:31:01 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/31 18:33:24 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 13:11:46 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-t_ast	*ast_holder(t_ast *root)
-{
-	static t_ast	*ast_address;
-
-	if (root)
-		ast_address = root;
-	return (ast_address);
-}
 
 void	clear_tree(t_ast *root)
 {
@@ -42,20 +33,24 @@ void	clear_tree(t_ast *root)
 	}
 	free(root);
 }
+t_ast	*ast_holder(t_ast *root, int to_free)
+{
+	static t_ast	*ast_address;
+
+	if (root)
+		ast_address = root;
+	if (ast_address && to_free)
+	{
+		clear_tree(ast_address);
+		ast_address = NULL;
+	}
+	return (ast_address);
+}
 
 void	panic_ast(int error, char *msg)
 {
 	ft_putendl_fd(msg, 2);
-	if (ast_holder(NULL))
-		clear_tree(ast_holder(NULL));
+	ast_holder(NULL, 1);
 	environ_holder(NULL, 1);
 	last_exit_status(error);
-}
-
-void	clean_exit_ast(void)
-{
-	if (ast_holder(NULL))
-		clear_tree(ast_holder(NULL));
-	environ_holder(NULL, 1);
-	exit(EXIT_SUCCESS);
 }
