@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:08:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/01 18:00:00 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 18:33:55 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	add_to_env(char *new_env_var)
 	new_env_vars = malloc(sizeof(char *) * (i + 2));
 	i = -1;
 	while (env_vars[++i])
-		new_env_vars[i] = env_vars[i];
+		new_env_vars[i] = ft_strdup(env_vars[i]);
 	new_env_vars[i] = new_env_var;
 	new_env_vars[++i] = NULL;
 	environ_holder(NULL, 1);
