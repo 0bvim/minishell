@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/01 17:12:07 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/01 22:29:52 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int		handle_pipe(t_ast *node_pipe);
 
 //handle redirs
 void	handle_redirs(t_ast *node_pipe);
+int		heredoc(t_ast *node_pipe);
 
 // code_pieces
 char	*getenv_or_blank(const char *name);
