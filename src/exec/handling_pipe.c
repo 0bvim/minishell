@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   handling_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:30:51 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/01 13:11:10 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/02 11:49:13 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void fork_process(int *fildes, t_ast *node_pipe,
+static void	fork_process(int *fildes, t_ast *node_pipe,
 	const int *tmp, int left_right)
 {
 	if (left_right == 0)
@@ -44,8 +44,8 @@ static void	wait_restore_fds(int *fildes, const int *tmp, int *forks)
 
 int	handle_pipe(t_ast *node_pipe)
 {
-	int		fildes[2];
-	pid_t	fs[2];
+	int			fildes[2];
+	pid_t		fs[2];
 	const int	tmp[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
 
 	if (!pipe(fildes))

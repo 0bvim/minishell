@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:08:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/01 18:33:55 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/02 11:52:27 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ int	export(char **args)
 			{
 				ft_putendl_fd("minishell: export:\
 				 `=': not a valid identifier", 2);
-				return(EXIT_FAILURE);
+				return (EXIT_FAILURE);
 			}
 			name = ft_strndup(args[i], equal_sign - args[i]);
 			if (!name)
-				return(EXIT_FAILURE);
+				return (EXIT_FAILURE);
 			ft_setenv(name, equal_sign + 1);
 			free(name);
 		}
 	}
-	return(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

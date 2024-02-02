@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environ.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:17:48 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/01 13:13:00 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/02 11:49:45 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,5 @@ char	**environ_holder(char **new_environ, int to_free)
 		ft_clear_list(&environ_holder);
 		environ_holder = NULL;
 	}
-	return (environ_holder);	
+	return (environ_holder);
 }
-

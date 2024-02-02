@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:49:49 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/01 23:14:45 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/02 11:55:21 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	handle_infile(t_ast *node_pipe)
 	dup2(tmp, STDIN_FILENO);
 	close (tmp);
 }
+
 int	heredoc(t_ast *node_pipe)
 {
-	int		fd;
-	char	*buff;
-	const char	*ef = ((t_token *)(node_pipe->right->exec->first->content))->str;
+	int			fd;
+	char		*buff;
+	const char	*ef = ((t_token*)(node_pipe->right->exec->first->content))->str;
 
-	
 	fd = open("/tmp/heredoc", O_CREAT | O_WRONLY | O_APPEND, 0000644);
 	if (fd < 0)
 		exit (EXIT_FAILURE); //panic

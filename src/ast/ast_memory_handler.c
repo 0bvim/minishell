@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_memory_handler.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:31:01 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/01 13:11:46 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/02 11:46:43 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	clear_tree(t_ast *root)
 	}
 	free(root);
 }
+
 t_ast	*ast_holder(t_ast *root, int to_free)
 {
 	static t_ast	*ast_address;

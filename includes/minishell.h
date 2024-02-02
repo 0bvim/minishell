@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/01 22:29:52 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/02 11:36:55 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@
 
 # define SYMBOLS "&|<>()'\""
 # define BLANK ""
-# define TRUN O_CREAT | O_TRUNC | O_RDWR
-# define APEN O_CREAT | O_APPEND | O_RDWR
+# define TRUN 0x00000242
+# define APEN 0x00000442
 
 extern volatile int	g_last_signal;
 
@@ -85,23 +85,20 @@ typedef struct s_token
 	char	*str;
 }	t_token;
 
-typedef struct s_ast	t_ast;
-struct s_ast
+typedef struct s_ast
 {
-	int			type;
-	int			type_prev;
-	t_ast		*left;
-	t_ast		*right;
-	t_list		*exec;
-};
+	int					type;
+	int					type_prev;
+	struct s_ast		*left;
+	struct s_ast		*right;
+	t_list				*exec;
+}	t_ast;
 
-typedef struct s_cmd		t_cmd;
-struct s_cmd
+typedef struct s_cmd
 {
 	char	*cmd;
 	char	**args;
-};
-
+}	t_cmd;
 
 //ENTRANCE
 void	environ_initializer(void);
