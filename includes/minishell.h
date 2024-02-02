@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/02 11:36:55 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:56:27 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,90 +101,94 @@ typedef struct s_cmd
 }	t_cmd;
 
 //ENTRANCE
-void	environ_initializer(void);
-char	**environ_holder(char **new_environ, int to_free);
+void		environ_initializer(void);
+char		**environ_holder(char **new_environ, int to_free);
 
 //BUILTINS
-char	*malloc_pwd(void);
-int		cd(char **args);
-int		builtins_caller(char **args);
-int		echo(char **args);
-int		env(const char **args);
-void	builtin_exit(char **args);
-int		export(char **args);
-int		pwd(const char **args);
-int		unset(char **args);
+char		*malloc_pwd(void);
+int			cd(char **args);
+int			builtins_caller(char **args);
+int			echo(char **args);
+int			env(const char **args);
+void		builtin_exit(char **args);
+int			export(char **args);
+int			pwd(const char **args);
+int			unset(char **args);
 
 //prompt
-char	*prompt(void);
-int		is_after_prompt(int is_after);
+char		*prompt(void);
+int			is_after_prompt(int is_after);
 
 //pipe handling
-int		handle_pipe(t_ast *node_pipe);
+int			handle_pipe(t_ast *node_pipe);
 
 //handle redirs
-void	handle_redirs(t_ast *node_pipe);
-int		heredoc(t_ast *node_pipe);
+void		handle_redirs(t_ast *node_pipe);
+int			heredoc(t_ast *node_pipe);
 
 // code_pieces
-char	*getenv_or_blank(const char *name);
+char		*getenv_or_blank(const char *name);
 
 //expands dollar sign variables
-char	*env_var_value(const char *key);
-char	**get_paths(void);
-void	clear_tree(t_ast *root);
+char		*env_var_value(const char *key);
+char		**get_paths(void);
+void		clear_tree(t_ast *root);
 
 //AST
-t_ast	*ast_constructor(t_list *tokens);
-int		ast_split_node(t_ast *ast_node, t_list *tokens,
+t_ast		*ast_constructor(t_list *tokens);
+int			ast_split_node(t_ast *ast_node, t_list *tokens,
 			t_element *el_to_split);
-void	expansions(t_list *tokens);
-t_ast	*ast_holder(t_ast *root, int to_free);
-void	panic_ast(int error, char *msg);
+void		expansions(t_list *tokens);
+t_ast		*ast_holder(t_ast *root, int to_free);
+void		panic_ast(int error, char *msg);
+t_element	*search_and_or(t_list *tokens);
+t_element	*search_pipe(t_list *tokens);
+t_element	*search_outfile_redir(t_list *tokens);
+t_element	*search_infile_redir(t_list *tokens);
 
 // execve
-void	execution(t_ast *root);
-void	execute(char **tokens);
-char	*validate_path(char *exec_name);
-char	**splited_args(t_list *tokens);
+void		execution(t_ast *root);
+void		execute(char **tokens);
+char		*validate_path(char *exec_name);
+char		**splited_args(t_list *tokens);
 
 //GRAMMAR CHECK
-int		grammar_checker(t_list *tokens);
-int		is_redirect(int type);
-int		is_and_or(int type);
-int		redir_and_or_pipe_rule(t_element *el);
+int			grammar_checker(t_list *tokens);
+int			is_redirect(int type);
+int			is_and_or(int type);
+int			redir_and_or_pipe_rule(t_element *el);
 
 //UTILS
-int		ft_issymbol(char c);
-void	ft_skip_spaces(const char **str);
-void	clear_console(void);
-void	panic(char *str1, char *str2, char *str3, int err_nb);
-int		which_token(const char *str);
-t_list	*ft_lstsplit(t_list *lst, t_element *el);
-int		last_exit_status(int exit_status);
-void	pid_last_exit_status(pid_t pid);
-void	ft_clear_list(char ***list);
-char	*ft_getenv(const char *name);
+int			ft_issymbol(char c);
+void		ft_skip_spaces(const char **str);
+void		clear_console(void);
+void		panic(char *str1, char *str2, char *str3, int err_nb);
+int			which_token(const char *str);
+t_list		*ft_lstsplit(t_list *lst, t_element *el);
+int			last_exit_status(int exit_status);
+void		pid_last_exit_status(pid_t pid);
+void		ft_clear_list(char ***list);
+char		*ft_getenv(const char *name);
 
 //TOKENIZER
-t_list	*tokenizer(const char *str);
-t_list	*token_list_holder(t_list *tokens, int to_free);
-void	free_token(void *p_token);
-void	panic_tokenizer(int error, char *msg);
-void	add_token(t_list *tokens, const char **start, const char **mover, \
+t_list		*tokenizer(const char *str);
+t_list		*token_list_holder(t_list *tokens, int to_free);
+void		free_token(void *p_token);
+void		panic_tokenizer(int error, char *msg);
+void		add_token(t_list *tokens, const char **start, const char **mover, \
 	int token_type);
-int		add_special_token(t_list *tokens,
+int			add_special_token(t_list *tokens,
 			const char **start, const char **mover, int token_type);
-int		quotes_validation(const char *str);
-int		parenthesis_validation(const char *str);
+int			quotes_validation(const char *str);
+int			parenthesis_validation(const char *str);
 
 //SIGNALS
-void	signals_initializer(void);
-void	signal_handler(int signal);
-int		is_after_prompt(int is_after);
+void		signals_initializer(void);
+void		signal_handler(int signal);
+int			is_after_prompt(int is_after);
 
 //DEBUGGERS
-void	list_printer(t_list *tokens);
-void	tree_execs_printer(t_ast *root);
+void		list_printer(t_list *tokens);
+void		tree_execs_printer(t_ast *root);
 
 #endif

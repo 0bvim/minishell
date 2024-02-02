@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:08:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/02 11:52:27 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/02 12:51:32 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	add_to_env(char *new_env_var)
 	i = -1;
 	while (env_vars[++i])
 		new_env_vars[i] = ft_strdup(env_vars[i]);
-	new_env_vars[i] = new_env_var;
+	new_env_vars[i] = ft_strdup(new_env_var);
 	new_env_vars[++i] = NULL;
 	environ_holder(NULL, 1);
 	environ_holder(new_env_vars, 0);
@@ -49,7 +49,7 @@ void	ft_setenv(const char *name, const char *value)
 		{
 			free(temp);
 			free(env_vars[i]);
-			env_vars[i] = new_env_var;
+			env_vars[i] = ft_strdup(new_env_var);
 			return ;
 		}
 	}

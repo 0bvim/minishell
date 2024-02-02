@@ -6,60 +6,11 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:17:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/31 18:03:37 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/02 13:57:42 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-t_element	*search_and_or(t_list *tokens)
-{
-	t_token		*token;
-	t_element	*el;
-
-	el = tokens->last;
-	while (el)
-	{
-		token = el->content;
-		if (token->type == AND || token->type == OR)
-			return (el);
-		el = el->prev;
-	}
-	return (NULL);
-}
-
-t_element	*search_pipe(t_list *tokens)
-{
-	t_token		*token;
-	t_element	*el;
-
-	el = tokens->last;
-	while (el)
-	{
-		token = el->content;
-		if (token->type == PIPE)
-			return (el);
-		el = el->prev;
-	}
-	return (NULL);
-}
-
-t_element	*search_redirects(t_list *tokens)
-{
-	t_token		*token;
-	t_element	*el;
-
-	el = tokens->last;
-	while (el)
-	{
-		token = el->content;
-		if (token->type == L_REDIR || token->type == R_REDIR
-			|| token->type == HEREDOC || token->type == APPEND)
-			return (el);
-		el = el->prev;
-	}
-	return (NULL);
-}
 
 static void	try_split_else_exec(t_ast *ast_node, t_list *tokens)
 {
@@ -67,7 +18,9 @@ static void	try_split_else_exec(t_ast *ast_node, t_list *tokens)
 		return ;
 	if (ast_split_node(ast_node, tokens, search_pipe(tokens)))
 		return ;
-	if (ast_split_node(ast_node, tokens, search_redirects(tokens)))
+	if (ast_split_node(ast_node, tokens, search_outfile_redir(tokens)))
+		return ;
+	if (ast_split_node(ast_node, tokens, search_infile_redir(tokens)))
 		return ;
 	ast_node->type = EXEC;
 	ast_node->exec = tokens;
