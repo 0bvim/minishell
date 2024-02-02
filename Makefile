@@ -81,6 +81,7 @@ EXEC = $(SRC)/exec
 EXPANSIONS = $(SRC)/expansions
 BUILTINS = $(SRC)/builtins
 SIGNALS = $(SRC)/signals
+HEREDOC = $(SRC)/heredoc
 
 # libs #
 INCLUDES = -I$(INC)/ -Ilib/libft/includes/
@@ -105,6 +106,7 @@ CFILES += $(addprefix $(EXEC)/, execution.c handling_pipe.c handling_redirs.c)
 CFILES += $(addprefix $(EXPANSIONS)/, expansions.c)
 CFILES += $(addprefix $(BUILTINS)/, builtins_caller.c cd.c echo.c env.c exit.c export.c pwd.c unset.c)
 CFILES += $(addprefix $(SIGNALS)/, signal_handler.c signals_initializer.c)
+CFILES += $(addprefix $(HEREDOC)/, heredoc_func.c)
 
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-out.txt
 VAL_TXT = valgrind-out.txt
