@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/01 22:33:36 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/02 20:04:12 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,17 +114,13 @@ void	execution(t_ast *root)
 {
 	if (root->type == PIPE)
 		handle_pipe(root);
-	else if (root->type == R_REDIR || root->type == L_REDIR)
+	else if (is_redirect(root->type))
 		handle_redirs(root);
-	else if (root->type == APPEND)
-		handle_redirs(root);
-	else if (root->type == HEREDOC)
-		heredoc(root);
 	else if (root->left)
 		execution(root->left);
 	else if (root->right)
 		execution(root->right);
-	else if (root->exec)
+	else if (root->exec && root->exec->first)
 	{
 		expansions(root->exec);
 		execute(splited_args(root->exec));

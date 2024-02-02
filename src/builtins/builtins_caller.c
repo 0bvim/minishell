@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_caller.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 22:08:00 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/01 17:17:08 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/02 19:45:53 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	builtins_caller(char **args)
 	int	exit_status;
 
 	exit_status = -1;
+	if (!args || !args[0])
+		return (exit_status);
 	if (ft_strncmp(args[0], "echo", 5) == 0)
 		exit_status = echo(args);
 	else if (ft_strncmp(args[0], "cd", 3) == 0)

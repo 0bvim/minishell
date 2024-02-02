@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/02 11:48:32 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/02 20:06:30 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	handle_redirs(t_ast *node_pipe)
 	const int		tmp = dup(STDOUT_FILENO);
 
 	token = node_pipe->right->exec->first->content;
-	if (node_pipe->type == L_REDIR)
+	if (node_pipe->type == L_REDIR || node_pipe->type == HEREDOC)
 		input_redir(node_pipe);
 	else if (node_pipe->type == R_REDIR)
 		file = append_trunc(node_pipe, token, TRUN);
@@ -51,11 +51,14 @@ static void	input_redir(t_ast *node_pipe)
 	file = open(token->str, O_RDONLY);
 	if (file == -1)
 		exit(1); //panic
+	//create heredoc expansions
 	dup2(file, STDIN_FILENO);
+	close(file);
 	execution(node_pipe->left);
 	dup2(tmp, STDIN_FILENO);
+	if (node_pipe->type == HEREDOC)
+		unlink(token->str);
 	close (tmp);
-	close(file);
 }
 
 static int	append_trunc(t_ast *node_pipe, t_token *token, int flag)

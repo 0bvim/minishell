@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/02 13:56:27 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/02 18:36:51 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define BLANK ""
 # define TRUN 0x00000242
 # define APEN 0x00000442
+# define HERE 0x00000441
 
 extern volatile int	g_last_signal;
 
@@ -124,7 +125,7 @@ int			handle_pipe(t_ast *node_pipe);
 
 //handle redirs
 void		handle_redirs(t_ast *node_pipe);
-int			heredoc(t_ast *node_pipe);
+void		heredoc_substitution(t_list *tokens);
 
 // code_pieces
 char		*getenv_or_blank(const char *name);
