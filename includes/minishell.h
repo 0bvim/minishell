@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 02:11:15 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/03 02:58:36 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void		clear_tree(t_ast *root);
 //AST
 t_ast		*ast_constructor(t_list *tokens);
 int			ast_split_node(t_ast *ast_node, t_list *tokens,
-			t_element *el_to_split);
+				t_element *el_to_split);
 void		expansions(t_list *tokens);
 t_ast		*ast_holder(t_ast *root, int to_free);
 void		panic_ast(int error, char *msg);
@@ -179,7 +179,7 @@ void		panic_tokenizer(int error, char *msg);
 void		add_token(t_list *tokens, const char **start, const char **mover, \
 	int token_type);
 int			add_special_token(t_list *tokens,
-			const char **start, const char **mover, int token_type);
+				const char **start, const char **mover, int token_type);
 int			quotes_validation(const char *str);
 int			parenthesis_validation(const char *str);
 

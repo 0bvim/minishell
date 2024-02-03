@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/01 13:04:52 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/03 02:49:29 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	token_list_generator(t_list *tokens,
 		add_token(tokens, &start, &mover, which_token(start));
 }
 
-/*remove list_printer and ft_lstclear*/
 t_list	*tokenizer(const char *str)
 {
 	t_list	*tokens;

@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 02:10:51 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/03 02:34:04 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*validate_path(char *exec_name)
 	int		i;
 
 	paths = ft_split(ft_getenv("PATH"), ':');
-	if (access(exec_name, X_OK) == 0)
+	if (access(exec_name, X_OK) == 0 || !paths)
 	{
 		ft_clear_list(paths);
 		return (ft_strdup(exec_name));
