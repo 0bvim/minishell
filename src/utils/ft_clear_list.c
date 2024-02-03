@@ -3,32 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clear_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:05:25 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/03 02:28:28 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/03 09:41:59 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_clear_list(char **list)
+void	ft_clear_list(char ***list)
 {
 	int		i;
 
-	if (!list)
+	if (!*list)
 		return ;
 	i = 0;
-	while (list[i])
+	while ((*list)[i])
 	{
-		if (list[i] != NULL)
-		{
-			free(list[i]);
-			list[i++] = NULL;
-		}
-		else
-			i++;
+		free((*list)[i]);
+		(*list)[i++] = NULL;
 	}
-	free(list);
-	list = NULL;
+	free(*list);
+	*list = NULL;
 }
