@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:49:49 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 03:00:34 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/03 18:33:42 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	heredoc(t_token *token, char *count)
+static void	heredoc(t_token *token, int count)
 {
 	int			fd;
 	char		*buff;
 	char		*fl_name;
 
-	fl_name = ft_strmerge(ft_strdup("/tmp/heredoc"), ft_strdup(count));
+	fl_name = ft_strmerge(ft_strdup("/tmp/heredoc"), ft_itoa(count));
 	fd = open(fl_name, HERE, 0644);
 	if (fd < 0)
 		exit (EXIT_FAILURE); //panic
@@ -42,16 +42,16 @@ void	heredoc_substitution(t_list *tokens)
 {
 	t_element	*el;
 	t_token		*token;
-	char		count;
+	int			count;
 
-	count = '0';
+	count = 0;
 	el = tokens->first;
 	while (el)
 	{
 		token = el->content;
 		if (token->type == HEREDOC)
 		{
-			heredoc(el->next->content, &count);
+			heredoc(el->next->content, count);
 			count++;
 		}
 		el = el->next;

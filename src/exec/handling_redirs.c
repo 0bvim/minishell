@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 12:59:06 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/03 19:12:58 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	handle_redirs(t_ast *node_pipe)
 	int				file;
 	const int		tmp = dup(STDOUT_FILENO);
 
+	file = 0;
 	token = node_pipe->right->exec->first->content;
 	if (node_pipe->type == L_REDIR || node_pipe->type == HEREDOC)
 		input_redir(node_pipe);
@@ -48,22 +49,22 @@ static void	input_redir(t_ast *node_pipe)
 	int			tmp;
 
 	token = node_pipe->right->exec->first->content;
+	if (node_pipe->type == HEREDOC)
+		heredoc_expansion(token);
 	file = open(token->str, O_RDONLY);
 	if (file == -1)
 	{
 		ft_putstr_fd("minishell: No such file or directory\n", 2);
 		return ;
 	}
-	if (node_pipe->type == HEREDOC)
-		heredoc_expansion(token, &file);
 	tmp = dup(STDIN_FILENO);
 	dup2(file, STDIN_FILENO);
 	close(file);
 	execution(node_pipe->left);
 	dup2(tmp, STDIN_FILENO);
 	close (tmp);
-	// if (node_pipe->type == HEREDOC)
-	// 	unlink(token->str);
+	if (node_pipe->type == HEREDOC)
+		unlink(token->str);
 }
 
 static int	append_trunc(t_ast *node_pipe, t_token *token, int flag)
