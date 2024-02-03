@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 03:00:04 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/03 12:11:15 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	handle_redirs(t_ast *node_pipe)
 		file = append_trunc(node_pipe, token, TRUN);
 	else if (node_pipe->type == APPEND)
 		file = append_trunc(node_pipe, token, APEN);
-	if (node_pipe->type == R_REDIR || node_pipe->type == APPEND)
+	if (file == -1)
+		ft_putstr_fd("minishell: No such file or directory\n", 2);
+	else if (node_pipe->type == R_REDIR || node_pipe->type == APPEND)
 	{
-		if (file == -1)
-			exit(1); //panic
 		if (node_pipe->type_prev == 0)
 			dup2(file, STDOUT_FILENO);
 		close(file);
@@ -47,11 +47,14 @@ static void	input_redir(t_ast *node_pipe)
 	int			file;
 	int			tmp;
 
-	tmp = dup(STDIN_FILENO);
 	token = node_pipe->right->exec->first->content;
 	file = open(token->str, O_RDONLY);
 	if (file == -1)
-		exit(1); //panic
+	{
+		ft_putstr_fd("minishell: No such file or directory\n", 2);
+		return ;
+	}
+	tmp = dup(STDIN_FILENO);
 	//create heredoc expansions
 	dup2(file, STDIN_FILENO);
 	close(file);
