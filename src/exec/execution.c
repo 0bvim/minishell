@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 09:47:28 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/03 11:28:11 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	fork_and_execve(char **tokens, char *path)
 	pid = fork();
 	if (pid == -1)
 		panic_ast(1, "fork error");
-	if (!pid && execve(path, tokens, __environ) < 0)
+	if (!pid && execve(path, tokens, environ_holder(NULL, 0)) < 0)
 	{
 		if (errno == EACCES)
 		{
