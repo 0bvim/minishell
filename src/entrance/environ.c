@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environ.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:17:48 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/02 11:49:45 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/03 02:10:51 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	environ_initializer(void)
 		new_environ[i] = ft_strdup(__environ[i]);
 		if (!new_environ[i++])
 		{
-			ft_clear_list(&new_environ);
+			ft_clear_list(new_environ);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -43,7 +43,7 @@ char	**environ_holder(char **new_environ, int to_free)
 		environ_holder = new_environ;
 	if (environ_holder && to_free)
 	{
-		ft_clear_list(&environ_holder);
+		ft_clear_list(environ_holder);
 		environ_holder = NULL;
 	}
 	return (environ_holder);

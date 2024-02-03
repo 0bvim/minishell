@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/02 20:04:12 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/03 02:10:51 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	fork_and_execve(char **tokens, char *path)
 			panic_ast(127, "minishell: Command not found");
 		else
 			panic_ast(!!errno, NULL);
-		ft_clear_list(&tokens);
+		ft_clear_list(tokens);
 		free(path);
 		exit(last_exit_status(-1));
 	}
@@ -78,7 +78,7 @@ void	execute(char **tokens)
 	}
 	if (g_last_signal == SIGINT)
 		last_exit_status(130);
-	ft_clear_list(&tokens);
+	ft_clear_list(tokens);
 }
 
 char	*validate_path(char *exec_name)
@@ -90,7 +90,7 @@ char	*validate_path(char *exec_name)
 	paths = ft_split(ft_getenv("PATH"), ':');
 	if (access(exec_name, X_OK) == 0)
 	{
-		ft_clear_list(&paths);
+		ft_clear_list(paths);
 		return (ft_strdup(exec_name));
 	}
 	i = 0;
@@ -99,14 +99,14 @@ char	*validate_path(char *exec_name)
 		cmd = ft_strmerge(ft_strjoin(paths[i], "/"), ft_strdup(exec_name));
 		if (access(cmd, X_OK) == 0)
 		{
-			ft_clear_list(&paths);
+			ft_clear_list(paths);
 			return (cmd);
 		}
 		free(cmd);
 		cmd = NULL;
 		i++;
 	}
-	ft_clear_list(&paths);
+	ft_clear_list(paths);
 	return (ft_strdup(exec_name));
 }
 

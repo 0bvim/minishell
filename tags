@@ -221,7 +221,7 @@ ft_atoi	lib/libft/src/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f	typeref:ty
 ft_atoll	lib/libft/src/ft_atoll.c	/^long long	ft_atoll(const char *nptr)$/;"	f	typeref:typename:long long
 ft_bzero	lib/libft/src/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f	typeref:typename:void
 ft_calloc	lib/libft/src/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f	typeref:typename:void *
-ft_clear_list	src/utils/ft_clear_list.c	/^void	ft_clear_list(char ***list)$/;"	f	typeref:typename:void
+ft_clear_list	src/utils/ft_clear_list.c	/^void	ft_clear_list(char **list)$/;"	f	typeref:typename:void
 ft_clear_split	lib/libft/src/ft_split.c	/^char	**ft_clear_split(char **tab)$/;"	f	typeref:typename:char **
 ft_copy_split	lib/libft/src/ft_split.c	/^static char	*ft_copy_split(char *dest, char *src, char c)$/;"	f	typeref:typename:char *	file:
 ft_count_tokens	lib/libft/src/ft_split.c	/^static unsigned int	ft_count_tokens(char const *s, char c)$/;"	f	typeref:typename:unsigned int	file:

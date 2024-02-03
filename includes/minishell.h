@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/02 18:36:51 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/03 02:11:15 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ int			which_token(const char *str);
 t_list		*ft_lstsplit(t_list *lst, t_element *el);
 int			last_exit_status(int exit_status);
 void		pid_last_exit_status(pid_t pid);
-void		ft_clear_list(char ***list);
+void		ft_clear_list(char **list);
 char		*ft_getenv(const char *name);
 
 //TOKENIZER
