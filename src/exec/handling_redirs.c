@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 12:11:15 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/03 12:59:06 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,16 @@ static void	input_redir(t_ast *node_pipe)
 		ft_putstr_fd("minishell: No such file or directory\n", 2);
 		return ;
 	}
+	if (node_pipe->type == HEREDOC)
+		heredoc_expansion(token, &file);
 	tmp = dup(STDIN_FILENO);
-	//create heredoc expansions
 	dup2(file, STDIN_FILENO);
 	close(file);
 	execution(node_pipe->left);
 	dup2(tmp, STDIN_FILENO);
 	close (tmp);
-	if (node_pipe->type == HEREDOC)
-		unlink(token->str);
+	// if (node_pipe->type == HEREDOC)
+	// 	unlink(token->str);
 }
 
 static int	append_trunc(t_ast *node_pipe, t_token *token, int flag)

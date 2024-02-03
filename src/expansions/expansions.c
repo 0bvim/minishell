@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/26 17:21:48 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/03 12:33:07 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static char	*split_and_call_substitution(char *str, char **mover)
 	return (NULL);
 }
 
-static void	token_expansion(void *p_token)
+void	token_expansion(void *p_token)
 {
 	t_token	*token;
 	char	*str;
