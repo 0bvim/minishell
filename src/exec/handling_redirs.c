@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/02 20:06:30 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/02 20:58:11 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ static void	input_redir(t_ast *node_pipe)
 {
 	t_token		*token;
 	int			file;
-	const int	tmp = dup(STDIN_FILENO);
+	int tmp;
 
+	tmp = dup(STDIN_FILENO);
 	token = node_pipe->right->exec->first->content;
 	file = open(token->str, O_RDONLY);
 	if (file == -1)
@@ -56,9 +57,9 @@ static void	input_redir(t_ast *node_pipe)
 	close(file);
 	execution(node_pipe->left);
 	dup2(tmp, STDIN_FILENO);
+	close (tmp);
 	if (node_pipe->type == HEREDOC)
 		unlink(token->str);
-	close (tmp);
 }
 
 static int	append_trunc(t_ast *node_pipe, t_token *token, int flag)
