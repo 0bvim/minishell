@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/03 12:33:07 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/03 15:35:10 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	token_expansion(void *p_token)
 	char	*mover;
 
 	token = p_token;
+	if (token->type == QUOTE || token->type == DOUBLE_QUOTE)
+		trim_quotes(&token->str);
 	if (token->type == QUOTE)
 		return ;
 	str = token->str;

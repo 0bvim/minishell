@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 12:59:23 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/03 15:37:10 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,6 @@ void		clear_tree(t_ast *root);
 t_ast		*ast_constructor(t_list *tokens);
 int			ast_split_node(t_ast *ast_node, t_list *tokens,
 				t_element *el_to_split);
-void		expansions(t_list *tokens);
-void		token_expansion(void *p_token);
 void		heredoc_expansion(t_token *token, int *fd);
 t_ast		*ast_holder(t_ast *root, int to_free);
 void		panic_ast(int error, char *msg);
@@ -147,6 +145,12 @@ t_element	*search_and_or(t_list *tokens);
 t_element	*search_pipe(t_list *tokens);
 t_element	*search_outfile_redir(t_list *tokens);
 t_element	*search_infile_redir(t_list *tokens);
+
+//EXPANSIONS
+void		expansions(t_list *tokens);
+void		token_expansion(void *p_token);
+void		heredoc_expansion(t_token *token, int *fd);
+void		trim_quotes(char **str);
 
 // execve
 void		execution(t_ast *root);
