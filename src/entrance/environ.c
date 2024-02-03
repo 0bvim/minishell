@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:17:48 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/03 09:43:52 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/03 09:49:53 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ char	**environ_holder(char **new_environ, int to_free)
 	if (new_environ)
 		environ_holder = new_environ;
 	if (environ_holder && to_free)
-	{
 		ft_clear_list(&environ_holder);
-		environ_holder = NULL;
-	}
 	return (environ_holder);
 }
