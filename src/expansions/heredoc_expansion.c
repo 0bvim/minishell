@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:23:09 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/03 19:12:34 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/03 20:32:11 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void heredoc_expansion(t_token *token)
 	}
 	tmp.type = DOUBLE_QUOTE;
 	tmp.str = text;
-	//printf("aqui: %s\n", token->str);
 	close (fd);
 	fd = open(token->str, TRUN, 0644);
 	if (fd == -1) {
@@ -40,9 +39,7 @@ void heredoc_expansion(t_token *token)
 		return;
 	}
 	token_expansion((void *)(&tmp));
-	//printf("aqui %s\n", tmp.str);
 	ft_putstr_fd(tmp.str, fd);
+	free(tmp.str);
 	close (fd);
-	//unlink(token->str);
-	//close(*fd);
 }
