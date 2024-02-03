@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/02 20:58:11 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/03 03:00:04 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	input_redir(t_ast *node_pipe)
 {
 	t_token		*token;
 	int			file;
-	int tmp;
+	int			tmp;
 
 	tmp = dup(STDIN_FILENO);
 	token = node_pipe->right->exec->first->content;

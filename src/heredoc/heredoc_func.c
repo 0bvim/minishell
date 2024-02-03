@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:49:49 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 02:53:38 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/03 03:00:34 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	heredoc(t_token *token, char *count)
 {
 	int			fd;
 	char		*buff;
-	char	*fl_name;
+	char		*fl_name;
 
 	fl_name = ft_strmerge(ft_strdup("/tmp/heredoc"), ft_strdup(count));
 	fd = open(fl_name, HERE, 0644);
