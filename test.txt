@@ -1,7 +1,5 @@
-# cat
 cat | cat | cat file.txt | cat
 
-# heredoc with pipes
 << eof | echo oi
 echo oi | echo iu | << eof | echo ooo
 echo oi | echo iu | echo ooo | cat << eof
@@ -9,7 +7,6 @@ echo oi | << eof
 echo oi | echo iu | echo ooo | << eof
 echo oi | echo oi1 | cat << eof | echo ultimo | echo ooooo
 
-# expansion
 ARG=(1 + 2); echo $ARG
 ARG=(1+ 2); echo $ARG
 ARG=(1+2); echo $ARG
@@ -21,9 +18,27 @@ ARG=$(1+2); echo $ARG
 echo "o valor e $(expr 1 + 2)"
 echo 'o valor e $(expr 1 + 2)'
 
-
 < zzz grep a | ./Makefile > b
 < zzz ./Makefile | grep a > b
 
-#grammar
 echo <(echo foo)
+
+echo oi | wc < Makefile > 1 < 1 > 2 < 2 > 3
+
+ls "-al Makefile"
+
+export fucker=$USER
+export
+export
+
+echo $fucker
+
+unset PATH # esse da segfault
+ls
+
+# esses dois falta printar a mensagem
+cat < not_found.txt | wc 
+cat < not_found.txt | sort | wc
+
+
+cat < not_found.txt # sai do programa
