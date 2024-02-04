@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:49:49 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 21:03:19 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/04 15:37:21 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	heredoc(t_token *token, int count)
 	fd = open(fl_name, HERE, 0644);
 	if (fd < 0)
 		return ;
-	if (token->type == QUOTE || token->type == DOUBLE_QUOTE)
-		trim_quotes(&token->str);
 	while (1)
 	{
 		buff = readline("> ");

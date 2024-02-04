@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 20:45:58 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/04 15:57:15 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	input_redir(t_ast *node_pipe);
 static int	append_trunc(t_ast *node_pipe, t_token *token, int flag);
+static void	open_file_error(char *file_name);
 
 void	handle_redirs(t_ast *node_pipe)
 {
@@ -30,7 +31,7 @@ void	handle_redirs(t_ast *node_pipe)
 	else if (node_pipe->type == APPEND)
 		file = append_trunc(node_pipe, token, APEN);
 	if (file == -1)
-		ft_putstr_fd("minishell: No such file or directory\n", 2);
+		open_file_error(token->str);
 	else if (node_pipe->type == R_REDIR || node_pipe->type == APPEND)
 	{
 		if (node_pipe->type_prev == 0)
@@ -55,7 +56,7 @@ static void	input_redir(t_ast *node_pipe)
 	file = open(token->str, O_RDONLY);
 	if (file == -1)
 	{
-		ft_putstr_fd("minishell: No such file or directory\n", 2);
+		open_file_error(token->str);
 		return ;
 	}
 	tmp = dup(STDIN_FILENO);
@@ -72,4 +73,13 @@ static int	append_trunc(t_ast *node_pipe, t_token *token, int flag)
 {
 	node_pipe->left->type_prev = node_pipe->type;
 	return (open(token->str, flag, 0644));
+}
+
+static void	open_file_error(char *file_name)
+{
+	if (!access(file_name, F_OK))
+		ft_putstr_fd("minishell: Permission denied\n", 2);
+	else
+		ft_putstr_fd("minishell: No such file or directory\n", 2);
+	last_exit_status(1);
 }

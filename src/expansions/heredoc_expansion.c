@@ -6,11 +6,13 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:23:09 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/03 21:05:27 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/04 16:06:01 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static int	check_fd(int fd, char **text);
 
 void	heredoc_expansion(t_token *token)
 {
@@ -33,14 +35,21 @@ void	heredoc_expansion(t_token *token)
 	tmp.str = text;
 	close (fd);
 	fd = open(token->str, TRUN, 0644);
-	if (fd == -1)
-	{
-		perror("Error opening file");
-		free(text);
+	if (check_fd(fd, &text))
 		return ;
-	}
 	token_expansion((void *)(&tmp));
 	ft_putstr_fd(tmp.str, fd);
 	free(tmp.str);
 	close (fd);
+}
+
+static int	check_fd(int fd, char **text)
+{
+	if (fd == -1)
+	{
+		perror("Error opening file");
+		free(*text);
+		return (1);
+	}
+	return (0);
 }
