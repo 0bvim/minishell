@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:54:12 by brmoretti         #+#    #+#             */
-/*   Updated: 2023/12/30 11:35:35 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/04 19:24:52 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ int	ft_strisnumber(const char *str)
 	if (*str == '-' || *str == '+')
 		str++;
 	while (*str)
+	{
 		if (!('0' <= *str && *str <= '9') || *str != '.')
 			return (0);
+	}
 	return (1);
 }
