@@ -6,37 +6,11 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 11:28:11 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/04 12:29:03 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-char	**splited_args(t_list *tokens)
-{
-	size_t		index;
-	t_element	*el;
-	t_token		*token;
-	char		**splited;
-
-	el = tokens->first;
-	splited = ft_calloc(tokens->size + 1, sizeof(char *));
-	if (!splited)
-		panic_ast(1, "malloc error");
-	index = 0;
-	while (el)
-	{
-		token = el->content;
-		splited[index] = ft_strdup(token->str);
-		if (!splited[index++])
-		{
-			ft_clear_split(splited);
-			panic_ast(1, "malloc error");
-		}
-		el = el->next;
-	}
-	return (splited);
-}
 
 void	fork_and_execve(char **tokens, char *path)
 {
@@ -69,6 +43,8 @@ void	execute(char **tokens)
 {
 	char	*path;
 
+	if (!tokens || !tokens[0])
+		return ;
 	g_last_signal = 0;
 	if (builtins_caller(tokens) == -1)
 	{
@@ -121,8 +97,5 @@ void	execution(t_ast *root)
 	else if (root->right)
 		execution(root->right);
 	else if (root->exec && root->exec->first)
-	{
-		expansions(root->exec);
-		execute(splited_args(root->exec));
-	}
+		execute(tokens_to_args(root->exec));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:20:35 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/26 12:11:32 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/04 11:50:46 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	add_token(t_list *tokens,
 	if (!content->str)
 		panic_tokenizer(1, "memory allocation failure\n");
 	content->type = token_type;
+	content->next_char = **mover;
 	el = ft_lstnewelement(content);
 	if (!el)
 		panic_tokenizer(1, "memory allocation failure\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 19:13:48 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/04 12:30:44 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_token
 {
 	int		type;
 	char	*str;
+	char	next_char;
 }	t_token;
 
 typedef struct s_ast
@@ -150,12 +151,12 @@ void		expansions(t_list *tokens);
 void		token_expansion(void *p_token);
 void		heredoc_expansion(t_token *token);
 void		trim_quotes(char **str);
+char		**tokens_to_args(t_list *tokens);
 
 // execve
 void		execution(t_ast *root);
 void		execute(char **tokens);
 char		*validate_path(char *exec_name);
-char		**splited_args(t_list *tokens);
 
 //GRAMMAR CHECK
 int			grammar_checker(t_list *tokens);
