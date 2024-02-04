@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/04 12:30:44 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/04 19:46:31 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ t_element	*search_infile_redir(t_list *tokens);
 void		expansions(t_list *tokens);
 void		token_expansion(void *p_token);
 void		heredoc_expansion(t_token *token);
-void		trim_quotes(char **str);
 char		**tokens_to_args(t_list *tokens);
 
 // execve
