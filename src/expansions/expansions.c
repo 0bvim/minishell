@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/04 14:52:23 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/04 14:55:07 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static char	*split_and_call_substitution(char *str, char **mover)
 	if (head)
 	{
 		mover_2 = *mover + 1;
-		//if (*mover_2 == '?' && (!*(mover_2 + 1) || ft_isspace(*(mover_2 + 1))))
 		if (*mover_2 == '?')
 			mover_2++;
 		else
