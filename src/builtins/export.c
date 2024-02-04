@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:08:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/03 16:23:02 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/04 18:59:43 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,18 @@ static void	ft_setenv(const char *name, const char *value)
 	add_to_env(new_env_var);
 }
 
-static int	export_validation(char *str_from_equal, int silent)
+int	is_valid_identifier(char *str)
 {
-	if (!*(str_from_equal + 1))
+	if (*str != '=' && !ft_isdigit(*str))
 	{
-		if (!silent)
-			ft_putendl_fd("minishell: export: `=': not a valid identifier", 2);
-		return (0);
+		while (*str && *str != '=' && (ft_isalnum(*str) || *str == '_'))
+			str++;
+		if (*str == '=' || !*str)
+			return (1);
 	}
-	return (1);
+	ft_putendl_fd("minishell: export: not a valid identifier", 2);
+	last_exit_status(1);
+	return (0);
 }
 
 int	export(char **args)
@@ -79,19 +82,16 @@ int	export(char **args)
 	status = 0;
 	while (args[++i])
 	{
+		if (!is_valid_identifier(args[i]) && status++)
+			continue ;
 		equal_sign = ft_strchr(args[i], '=');
 		if (equal_sign)
 		{
-			if (!export_validation(equal_sign, status))
-				status++;
-			else
-			{
-				name = ft_strndup(args[i], equal_sign - args[i]);
-				if (!name)
-					return (EXIT_FAILURE);
-				ft_setenv(name, equal_sign + 1);
-				free(name);
-			}
+			name = ft_strndup(args[i], equal_sign - args[i]);
+			if (!name)
+				return (EXIT_FAILURE);
+			ft_setenv(name, equal_sign + 1);
+			free(name);
 		}
 	}
 	return (!!status);

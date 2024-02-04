@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:02:26 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/02 13:25:36 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/04 19:02:30 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static int	success(void)
 	char	*export_args[3];
 	char	*pwd;
 
-	printf("oi\n");
 	export_args[0] = NULL;
 	export_args[2] = NULL;
 	export_args[1] = ft_strjoin("OLDPWD=", ft_getenv("PWD"));
@@ -45,7 +44,7 @@ int	cd(char **args)
 	}
 	else if (args[2])
 	{
-		ft_putendl_fd("minishell: too many arguments to \"cd\"", 2);
+		ft_putendl_fd("minishell: too many arguments", 2);
 		return (EXIT_FAILURE);
 	}
 	else if (chdir(args[1]))
