@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:00:13 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/04 13:34:12 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/04 20:05:49 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,19 @@ static char	**fill_args(char **args, t_element *el)
 	while (el)
 	{
 		token = el->content;
-		args[i] = ft_strdup(token->str);
-		if (!args[i++])
-			return (malloc_error(args));
-		while (!ft_isspace(token->next_char) && el->next)
+		if (token->str[0])
 		{
-			el = el->next;
-			token = el->content;
-			args[i - 1] = ft_strmerge(args[i - 1], ft_strdup(token->str));
-			if (!args[i - 1])
+			args[i] = ft_strdup(token->str);
+			if (!args[i++])
 				return (malloc_error(args));
+			while (!ft_isspace(token->next_char) && el->next)
+			{
+				el = el->next;
+				token = el->content;
+				args[i - 1] = ft_strmerge(args[i - 1], ft_strdup(token->str));
+				if (!args[i - 1])
+					return (malloc_error(args));
+			}
 		}
 		el = el->next;
 	}
