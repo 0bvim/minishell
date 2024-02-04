@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/04 12:29:03 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/04 13:55:12 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	fork_and_execve(char **tokens, char *path)
 				panic_ast(126, "minishell: Permission denied");
 		}
 		else if (errno == ENOENT)
-			panic_ast(127, "minishell: Command not found");
+			panic_ast(127, "minishell: command not found");
 		else
 			panic_ast(!!errno, NULL);
 		ft_clear_list(&tokens);

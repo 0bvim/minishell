@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/03 21:25:59 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/04 14:52:23 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static char	*split_and_call_substitution(char *str, char **mover)
 	if (head)
 	{
 		mover_2 = *mover + 1;
-		if (!ft_strncmp(mover_2, "?", 2))
+		//if (*mover_2 == '?' && (!*(mover_2 + 1) || ft_isspace(*(mover_2 + 1))))
+		if (*mover_2 == '?')
 			mover_2++;
 		else
 			while (*mover_2 && (ft_isalnum(*mover_2) || *mover_2 == '_' ))
@@ -73,16 +74,16 @@ void	token_expansion(void *p_token)
 	char	*mover;
 
 	token = p_token;
-	str = token->str;
 	if ((token->type == QUOTE || token->type == DOUBLE_QUOTE)
-		&& (*str == '\'' || *str == '\"'))
+		&& (*token->str == '\'' || *token->str == '\"'))
 		trim_quotes(&token->str);
 	if (token->type == QUOTE)
 		return ;
+	str = token->str;
 	mover = str;
 	while (*mover)
 	{
-		if (*mover == '$' && *(mover + 1) && *(mover + 1) != '\"')
+		if (*mover == '$' && *(mover + 1) && !ft_isspace(*(mover + 1)))
 		{
 			token->str = split_and_call_substitution(str, &mover);
 			if (!token->str)
