@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 19:12:58 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/03 20:45:58 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	input_redir(t_ast *node_pipe)
 	int			tmp;
 
 	token = node_pipe->right->exec->first->content;
-	if (node_pipe->type == HEREDOC)
+	if (node_pipe->type == HEREDOC && token->type != QUOTE \
+		&& token->type != DOUBLE_QUOTE)
 		heredoc_expansion(token);
 	file = open(token->str, O_RDONLY);
 	if (file == -1)

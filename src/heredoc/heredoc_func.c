@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:49:49 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/03 18:33:42 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/03 21:03:19 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static void	heredoc(t_token *token, int count)
 	fl_name = ft_strmerge(ft_strdup("/tmp/heredoc"), ft_itoa(count));
 	fd = open(fl_name, HERE, 0644);
 	if (fd < 0)
-		exit (EXIT_FAILURE); //panic
+		return ;
+	if (token->type == QUOTE || token->type == DOUBLE_QUOTE)
+		trim_quotes(&token->str);
 	while (1)
 	{
 		buff = readline("> ");
