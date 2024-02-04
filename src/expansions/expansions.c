@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/03 18:16:21 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/03 21:25:59 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	token_expansion(void *p_token)
 	token = p_token;
 	str = token->str;
 	if ((token->type == QUOTE || token->type == DOUBLE_QUOTE)
-		&& (*str =='\'' || *str == '\"'))
+		&& (*str == '\'' || *str == '\"'))
 		trim_quotes(&token->str);
 	if (token->type == QUOTE)
 		return ;
