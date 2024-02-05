@@ -1,5 +1,0 @@
-execution.c
-handling_pipe.c
-handling_redirs.c
-ls
-tokens_to_args.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 13:53:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/02 13:53:56 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/05 11:19:52 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,22 @@ t_element	*search_outfile_redir(t_list *tokens)
 	return (NULL);
 }
 
+// t_element	*search_infile_redir(t_list *tokens)
+// {
+// 	t_token		*token;
+// 	t_element	*el;
+
+// 	el = tokens->first;
+// 	while (el)
+// 	{
+// 		token = el->content;
+// 		if (token->type == L_REDIR || token->type == HEREDOC)
+// 			return (el);
+// 		el = el->next;
+// 	}
+// 	return (NULL);
+// }
+
 t_element	*search_infile_redir(t_list *tokens)
 {
 	t_token		*token;
@@ -69,6 +85,17 @@ t_element	*search_infile_redir(t_list *tokens)
 	while (el)
 	{
 		token = el->content;
+		if (token->type == R_REDIR ||token->type == APPEND)
+		{
+			el = tokens->last;
+			while (el)
+			{
+				token = el->content;
+				if (token->type == R_REDIR ||token->type == APPEND)
+					return (el);
+				el = el->prev;
+			}
+		}
 		if (token->type == L_REDIR || token->type == HEREDOC)
 			return (el);
 		el = el->next;
