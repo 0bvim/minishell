@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/05 16:18:33 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:45:05 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+void	get_fd_content(pid_t *fd, int flag, char *file_name);
 
-static int	append_trunc(t_ast *node, int flag)
-{
-	t_token	*token;
-	t_list	*right_tokens;
+// static int	append_trunc(t_ast *node, int flag)
+// {
+// 	t_token	*token;
+// 	t_list	*right_tokens;
 
-	node->left->type_prev = node->type;
-	token = node->right->exec->first->content;
-	right_tokens = node->right->exec;
-	substitute_first_token_str(right_tokens);
-	return (open(token->str, flag, 0644));
-}
+// 	node->left->type_prev = node->type;
+// 	token = node->right->exec->first->content;
+// 	right_tokens = node->right->exec;
+// 	substitute_first_token_str(right_tokens);
+// 	return (open(token->str, flag, 0644));
+// }
 
 static void	open_file_error(char *file_name)
 {
@@ -35,15 +36,15 @@ static void	open_file_error(char *file_name)
 
 static void	input_redir(t_ast *node)
 {
-	t_list		*right_tokens;
-	t_token		*token;
-	int			file;
-	int			tmp;
+	t_list	*right_tokens;
+	t_token	*token;
+	int		file;
+	int		tmp;
 
 	right_tokens = node->right->exec;
 	substitute_first_token_str(right_tokens);
 	token = right_tokens->first->content;
-	if (node->type == HEREDOC && token->type != QUOTE \
+	if (node->type == HEREDOC && token->type != QUOTE
 		&& token->type != DOUBLE_QUOTE)
 		heredoc_expansion(token);
 	file = open(token->str, O_RDONLY);
@@ -57,34 +58,69 @@ static void	input_redir(t_ast *node)
 	close(file);
 	execution(node->left);
 	dup2(tmp, STDIN_FILENO);
-	close (tmp);
+	close(tmp);
 	if (node->type == HEREDOC)
 		unlink(token->str);
 }
 
-void	handle_redirs(t_ast *node)
+void	infile_redirs(t_ast *node)
 {
-	t_token			*token;
-	int				file;
-	const int		tmp = dup(STDOUT_FILENO);
+	t_token		*token;
 
-	file = 0;
 	token = node->right->exec->first->content;
 	if (node->type == L_REDIR || node->type == HEREDOC)
 		input_redir(node);
-	else if (node->type == R_REDIR)
-		file = append_trunc(node, TRUN);
-	else if (node->type == APPEND)
-		file = append_trunc(node, APEN);
-	if (file == -1)
-		open_file_error(token->str);
-	else if (node->type == R_REDIR || node->type == APPEND)
+}
+
+void	handle_redirs(t_ast *node)
+{
+	t_token		*token;
+	int			file;
+	pid_t		fd[2];
+	const int	tmp = dup(STDOUT_FILENO);
+
+	file = 0;
+	if (pipe(fd) == -1)
 	{
-		if (node->type_prev == 0)
-			dup2(file, STDOUT_FILENO);
-		close(file);
-		execution(node->left);
-		dup2(tmp, STDOUT_FILENO);
+		close (tmp);
+		ft_putstr_fd("pipe error", 2);
+		return ;
 	}
-	close (tmp);
+	dup2(fd[1], STDOUT_FILENO);
+	token = node->right->exec->first->content;
+	execution(node->left);
+	close (fd[1]);
+	close (fd[0]);
+	if (!last_exit_status(-1))
+	{
+		substitute_first_token_str(node->right->exec);
+		if (node->type == R_REDIR)
+			get_fd_content(fd, TRUN, token->str);
+		else if (node->type == APPEND)
+			get_fd_content(fd, APEN, token->str);
+	}
+	dup2(tmp, STDOUT_FILENO);
+	close(tmp);
+}
+
+void	get_fd_content(pid_t *fd, int flag, char *file_name)
+{
+	char	*text;
+	char	*str;
+	int		file;
+
+	file = open(file_name, flag, 0644);
+	if (file == -1)
+		open_file_error(file_name);
+	text = ft_calloc(1, 1);
+	str = get_next_line(fd[0]);
+	while (str)
+	{
+		text = ft_strmerge(text, str);
+		str = get_next_line(fd[0]);
+	}
+	write(file, text, ft_strlen(text));
+	close (fd[0]);
+	free(text);
+	close(file);
 }
