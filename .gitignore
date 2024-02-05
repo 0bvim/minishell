@@ -52,3 +52,5 @@ Mkfile.old
 dkms.conf
 minishell
 minishell_tester/
+test_files/
+outfiles/
