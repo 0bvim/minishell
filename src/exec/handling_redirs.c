@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/04 15:57:15 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/04 22:41:31 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,23 @@ static void	input_redir(t_ast *node_pipe)
 
 static int	append_trunc(t_ast *node_pipe, t_token *token, int flag)
 {
+	char	**tokens;
+	int		i;
+	char	*path;
+	t_token	*token1;
+
+	(void)token;
+	token1 = node_pipe->right->exec->first->content;
 	node_pipe->left->type_prev = node_pipe->type;
-	return (open(token->str, flag, 0644));
+	tokens = tokens_to_args(node_pipe->right->exec);
+	path = ft_calloc(1, sizeof(char));
+	i = -1;
+	while (tokens[++i])
+		path = ft_strmerge(path, tokens[i]);
+	free (tokens);
+	free (token1->str);
+	token1->str = path;
+	return (open(token1->str, flag, 0644));
 }
 
 static void	open_file_error(char *file_name)

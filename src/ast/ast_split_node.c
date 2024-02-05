@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 10:16:44 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/01/31 18:01:59 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/04 22:58:14 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,24 @@
  */
 static void	transfer_all_elements_keep_first(t_list *dest, t_list *src)
 {
+	size_t			i;
+	t_element	*el;
+	t_token		*token;
+
 	if (!dest || !src)
 		return ;
-	while (src->size > 1)
-		ft_lstadd_back(dest, ft_lstpop(src, 1));
+	el = src->first;
+	token = el->content;
+	i = 1;
+	while (el && !ft_isspace(token->next_char))
+	{
+		i++;
+		el = el->next;
+		if (el)
+			token = el->content;	
+	}
+	while (src->size > i)
+		ft_lstadd_back(dest, ft_lstpop(src, i));
 }
 
 int	ast_split_node(t_ast *ast_node, t_list *tokens,
