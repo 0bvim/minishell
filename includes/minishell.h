@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/08 13:50:29 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:56:36 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_ast
 	int					type;
 	int					type_prev;
 	int					set_fd;
+	int					fd;
 	int					success;
 	struct s_ast		*left;
 	struct s_ast		*right;

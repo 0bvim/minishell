@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/08 19:13:59 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:00:24 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ static int	open_file_error(char *file_name)
 	return (0);
 }
 
-static void	set_fd(t_ast *node)
+static void	set_fd(t_ast *node, int token)
 {
 	static int	have_prev;
 
 	if (have_prev)
 		return ;
-	if (is_redirect(node->type) && node->type_prev != L_REDIR)
+	if (is_redirect(node->type) && node->type_prev != token)
 	{
 		have_prev = 0;
 		node->set_fd = 1;
@@ -85,6 +85,16 @@ static int	input_redir(t_ast *node)
 	return (0);
 }
 
+void	temp_fd(t_ast *node, int flag)
+{
+	int	fd;
+
+	fd = open("/temp/outfile", flag, 0644);
+	node->fd = fd;
+	dup2(fd, STDOUT_FILENO);
+	close (fd);
+}
+
 void	handle_redirs(t_ast *node)
 {
 	t_token		*token;
@@ -93,14 +103,19 @@ void	handle_redirs(t_ast *node)
 
 	file = 0;
 	node->left->type_prev = node->type;
-	set_fd(node);
 	if (node->type == L_REDIR || node->type == HEREDOC)
 	{
+		set_fd(node, L_REDIR);
 		if (input_redir(node))
-		{
-			file = -1;
 			return ;
-		}
+	}
+	else
+	{
+		set_fd(node, node->type);
+		if (node->type == R_REDIR)
+			temp_fd(node, TRUN);
+		else
+			temp_fd(node, APEN);
 	}
 	if (node->left)
 		execution(node->left);
@@ -126,15 +141,16 @@ void	handle_redirs(t_ast *node)
 	}
 	if (node->type == R_REDIR || node->type == APPEND)
 	{
-		if (node->type_prev == 0)
+		if (node->set_fd)
+			//create function to get written content in fd of temp_fd and writes on right fd
 			dup2(file, STDOUT_FILENO);
 		close(file);
 		dup2(tmp[1], STDOUT_FILENO);
+		close(tmp[0]);
+		close(tmp[1]);
 	}
 	if (node->type == L_REDIR || node->type == HEREDOC)
-	{
 		dup2(tmp[0], STDIN_FILENO);
-	}
 	close (tmp[0]);
 	close (tmp[1]);
 }
