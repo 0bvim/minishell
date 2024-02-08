@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/08 14:25:00 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:13:59 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,10 @@ void	handle_redirs(t_ast *node)
 	if (node->type == L_REDIR || node->type == HEREDOC)
 	{
 		if (input_redir(node))
+		{
 			file = -1;
+			return ;
+		}
 	}
 	if (node->left)
 		execution(node->left);
