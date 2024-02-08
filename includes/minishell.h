@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/08 01:15:45 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/08 13:50:29 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_ast
 {
 	int					type;
 	int					type_prev;
+	int					set_fd;
 	int					success;
 	struct s_ast		*left;
 	struct s_ast		*right;
@@ -147,6 +148,7 @@ t_element	*search_and_or(t_list *tokens);
 t_element	*search_pipe(t_list *tokens);
 t_element	*search_outfile_redir(t_list *tokens);
 t_element	*search_infile_redir(t_list *tokens);
+t_element	*search_redir(t_list *tokens);
 
 //EXPANSIONS
 void		expansions(t_list *tokens);

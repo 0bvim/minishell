@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:17:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/05 11:18:22 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:23:13 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	try_split_else_exec(t_ast *ast_node, t_list *tokens)
 		return ;
 	if (ast_split_node(ast_node, tokens, search_pipe(tokens)))
 		return ;
-	if (ast_split_node(ast_node, tokens, search_infile_redir(tokens)))
+	if (ast_split_node(ast_node, tokens, search_redir(tokens)))
 		return ;
-	if (ast_split_node(ast_node, tokens, search_outfile_redir(tokens)))
-		return ;
+	// if (ast_split_node(ast_node, tokens, search_infile_redir(tokens)))
+	// 	return ;
 	ast_node->type = EXEC;
 	ast_node->exec = tokens;
 }

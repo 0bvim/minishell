@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/08 02:07:44 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:25:00 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,33 @@ static int	open_file_error(char *file_name)
 			return (0);
 		}
 	}
-	else if (!access(file_name, F_OK))
+	else if (access(file_name, F_OK))
 	{
 		ft_putstr_fd("minishell: No such file or directory\n", 2);
-		last_exit_status(1);
-		return (1);
+		return (last_exit_status(1));
+
 	}
 	return (0);
 }
 
-static void	input_redir(t_ast *node)
+static void	set_fd(t_ast *node)
+{
+	static int	have_prev;
+
+	if (have_prev)
+		return ;
+	if (is_redirect(node->type) && node->type_prev != L_REDIR)
+	{
+		have_prev = 0;
+		node->set_fd = 1;
+	}
+}
+
+static int	input_redir(t_ast *node)
 {
 	t_list		*right_tokens;
 	t_token		*token;
 	int			file;
-	int			tmp;
 
 	right_tokens = node->right->exec;
 	substitute_first_token_str(right_tokens);
@@ -64,36 +76,36 @@ static void	input_redir(t_ast *node)
 		heredoc_expansion(token);
 	file = open(token->str, O_RDONLY);
 	if (file == -1)
-	{
-		open_file_error(token->str);
-		return ;
-	}
-	tmp = dup(STDIN_FILENO);
-	dup2(file, STDIN_FILENO);
+		return (open_file_error(token->str));
+	if (node->left && node->set_fd)
+		dup2(file, STDIN_FILENO);
 	close(file);
-	execution(node->left);
-	dup2(tmp, STDIN_FILENO);
-	close (tmp);
 	if (node->type == HEREDOC)
 		unlink(token->str);
+	return (0);
 }
 
 void	handle_redirs(t_ast *node)
 {
 	t_token		*token;
 	int			file;
-	const int	tmp = dup(STDOUT_FILENO);
+	const int	tmp[2] = { dup(STDIN_FILENO), dup(STDOUT_FILENO) };
 
 	file = 0;
-	if (node->type == L_REDIR || node->type == HEREDOC)
-		input_redir(node);
 	node->left->type_prev = node->type;
+	set_fd(node);
+	if (node->type == L_REDIR || node->type == HEREDOC)
+	{
+		if (input_redir(node))
+			file = -1;
+	}
 	if (node->left)
 		execution(node->left);
 	if (node->left && node->left->success == 1)
 	{
 		node->success = 1;
-		close (tmp);
+		close (tmp[0]);
+		close (tmp[1]);
 		return ;
 	}
 	if (node->type == R_REDIR)
@@ -103,15 +115,23 @@ void	handle_redirs(t_ast *node)
 	if (file == -1)
 	{
 		node->success = 1;
-		token = node->right->exec->first->content;
-		open_file_error(token->str);
+		if (node->type == R_REDIR || node->type == APPEND)
+		{
+			token = node->right->exec->first->content;
+			open_file_error(token->str);
+		}
 	}
 	if (node->type == R_REDIR || node->type == APPEND)
 	{
 		if (node->type_prev == 0)
 			dup2(file, STDOUT_FILENO);
 		close(file);
-		dup2(tmp, STDOUT_FILENO);
+		dup2(tmp[1], STDOUT_FILENO);
 	}
-	close (tmp);
+	if (node->type == L_REDIR || node->type == HEREDOC)
+	{
+		dup2(tmp[0], STDIN_FILENO);
+	}
+	close (tmp[0]);
+	close (tmp[1]);
 }
