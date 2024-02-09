@@ -51,7 +51,21 @@ static int	is_redirect_out(int type)
 	return (type == R_REDIR || type == APPEND);
 }
 
-static void	set_next(t_ast *node)
+static void	set_next_node_err(t_ast *node)
+{
+	t_ast	*tmp;
+
+	tmp = 0;
+	if (node->left)
+		tmp = node->left;
+	while (tmp)
+	{
+		tmp->first_infile_err = node->first_infile_err;
+		tmp = tmp->left;
+	}
+}
+
+static void	set_next_node(t_ast *node)
 {
 	t_ast	*tmp;
 
@@ -82,7 +96,7 @@ static void	set_fd_out(t_ast *node, int token)
 	{
 		have_prev = 0;
 		node->set_fd = 1;
-		set_next(node);
+		set_next_node(node);
 	}
 }
 
@@ -97,7 +111,7 @@ static void	set_fd_in(t_ast *node, int token)
 	{
 		have_prev = 0;
 		node->set_fd = 1;
-		set_next(node);
+		set_next_node(node);
 	}
 }
 
@@ -149,7 +163,14 @@ void	handle_redirs(t_ast *node)
 	{
 		set_fd_in(node, node->type);
 		if (input_redir(node))
+		{
+			if (node->set_fd)
+			{
+				node->first_infile_err = 1;
+				set_next_node_err(node);
+			}
 			file = -1;
+		}
 	}
 	else
 	{
@@ -179,11 +200,13 @@ void	handle_redirs(t_ast *node)
 			dup2(tmp[0], STDIN_FILENO);
 		close (tmp[0]);
 		close (tmp[1]);
+		if (file)
+			close(file);
 		return ;
 	}
 	if (node->type == R_REDIR || node->type == APPEND)
 	{
-		if (node->set_fd)
+		if (node->set_fd && !node->first_infile_err)
 		{
 			node->fd = open("/tmp/outfile", O_RDONLY, 0644);
 			char buff[1];
@@ -192,6 +215,12 @@ void	handle_redirs(t_ast *node)
 			close(node->fd);
 			unlink("/tmp/outfile");
 			dup2(tmp[1], STDOUT_FILENO);
+		}
+		else
+		{
+			close(node->fd);
+			dup2(tmp[1], STDOUT_FILENO);
+			dup2(tmp[0], STDIN_FILENO);
 		}
 		close(file);
 	}

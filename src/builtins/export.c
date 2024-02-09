@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:08:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/04 18:59:43 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/09 14:42:07 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static void	ft_setenv(const char *name, const char *value)
 			free(temp);
 			free(env_vars[i]);
 			env_vars[i] = ft_strdup(new_env_var);
+			free(new_env_var);
 			return ;
 		}
 	}
