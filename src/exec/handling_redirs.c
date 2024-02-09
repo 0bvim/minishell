@@ -41,16 +41,48 @@ static int	open_file_error(char *file_name)
 	return (0);
 }
 
+static int	is_redirect_in(int type)
+{
+	return (type == L_REDIR || type == HEREDOC);
+}
+
+static int	is_redirect_out(int type)
+{
+	return (type == R_REDIR || type == APPEND);
+}
+
+static void	set_next(t_ast *node)
+{
+	t_ast	*tmp;
+
+	tmp = 0;
+	if (node->left)
+		tmp = node->left;
+	while (tmp)
+	{
+		if (tmp->type == node->type)
+		{
+			if (is_redirect_in(node->type))
+				tmp->infile_set = 1;
+			else if (is_redirect_out(node->type))
+				tmp->outfile_set = 1;
+		}
+		tmp = tmp->left;
+	}
+}
+
 static void	set_fd_out(t_ast *node, int token)
 {
 	static int	have_prev;
 
-	if (have_prev)
+	(void)token;
+	if (have_prev || node->outfile_set)
 		return ;
-	if (is_redirect(node->type) && node->type_prev != token)
+	if (is_redirect(node->type) && !is_redirect_out(node->type_prev))
 	{
 		have_prev = 0;
 		node->set_fd = 1;
+		set_next(node);
 	}
 }
 
@@ -58,12 +90,14 @@ static void	set_fd_in(t_ast *node, int token)
 {
 	static int	have_prev;
 
-	if (have_prev)
+	(void)token;
+	if (have_prev || node->infile_set)
 		return ;
-	if (is_redirect(node->type) && node->type_prev != token)
+	if (is_redirect(node->type) && !is_redirect_in(node->type_prev))
 	{
 		have_prev = 0;
 		node->set_fd = 1;
+		set_next(node);
 	}
 }
 
@@ -94,6 +128,8 @@ void	temp_fd(t_ast *node)
 {
 	int	fd;
 
+	if (!node->set_fd)
+		return ;
 	fd = open("/tmp/outfile", O_CREAT | O_TRUNC | O_RDWR, 0644);
 	node->fd = fd;
 	dup2(fd, STDOUT_FILENO);

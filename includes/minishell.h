@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/09 00:38:37 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:20:34 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ typedef struct s_ast
 	int					fd;
 	int					error;
 	int					old_file;
+	int					infile_set;
+	int					outfile_set;
 	struct s_ast		*left;
 	struct s_ast		*right;
 	t_list				*exec;
