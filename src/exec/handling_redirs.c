@@ -28,6 +28,8 @@ static int	append_trunc(t_ast *node, int flag)
 
 static int	open_file_error(char *file_name)
 {
+	if (last_exit_status(-1) == 1)
+		return (1);
 	if (!access(file_name, F_OK) && access(file_name, W_OK | R_OK))
 	{
 		ft_putstr_fd("minishell: Permission denied\n", 2);
@@ -60,7 +62,10 @@ static void	set_next_node_err(t_ast *node)
 		tmp = node->left;
 	while (tmp)
 	{
-		tmp->first_infile_err = node->first_infile_err;
+		if (is_redirect_in(tmp->type))
+			tmp->first_infile_err = node->first_infile_err;
+		else if (is_redirect_out(tmp->type))
+			tmp->first_outfile_err = node->first_outfile_err;
 		tmp = tmp->left;
 	}
 }
@@ -184,6 +189,7 @@ void	handle_redirs(t_ast *node)
 			{
 				node->first_infile_err = 1;
 				set_next_node_err(node);
+				open_file_error(token->str);
 			}
 			file = -1;
 		}
@@ -200,13 +206,32 @@ void	handle_redirs(t_ast *node)
 	if (file == -1)
 	{
 		node->error = 1;
-		if (node->type == R_REDIR || node->type == APPEND)
-			open_file_error(token->str);
+		if (is_redirect_out(node->type))
+		{
+			if (node->set_fd)
+			{
+				node->first_outfile_err = 1;
+				set_next_node_err(node);
+			}
+		}
 		if (check_infile(node))
 			return ;
+		else if (node->left->first_infile_err)
+		{
+			close(node->fd);
+			dup2(tmp[0], STDIN_FILENO);
+			close(tmp[0]);
+			close(tmp[1]);
+			return ;
+		}
 	}
 	if (node->left)
 		execution(node->left);
+	if (node->first_outfile_err || node->left->error)
+	{
+		open_file_error(token->str);
+		last_exit_status(1);
+	}
 	if (node->left && node->left->error == 1)
 	{
 		if (node->old_file == 0)
@@ -246,4 +271,6 @@ void	handle_redirs(t_ast *node)
 		dup2(tmp[0], STDIN_FILENO);
 	close (tmp[0]);
 	close (tmp[1]);
+	if (node->first_outfile_err)
+		last_exit_status(1);
 }
