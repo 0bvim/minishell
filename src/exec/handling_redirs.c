@@ -100,7 +100,7 @@ void	handle_redirs(t_ast *node)
 	{
 		set_fd(node, node->type);
 		if (input_redir(node))
-			return ;
+			file = -1;
 	}
 	else
 	{
