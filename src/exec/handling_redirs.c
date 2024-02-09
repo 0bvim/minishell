@@ -41,7 +41,20 @@ static int	open_file_error(char *file_name)
 	return (0);
 }
 
-static void	set_fd(t_ast *node, int token)
+static void	set_fd_out(t_ast *node, int token)
+{
+	static int	have_prev;
+
+	if (have_prev)
+		return ;
+	if (is_redirect(node->type) && node->type_prev != token)
+	{
+		have_prev = 0;
+		node->set_fd = 1;
+	}
+}
+
+static void	set_fd_in(t_ast *node, int token)
 {
 	static int	have_prev;
 
@@ -98,13 +111,13 @@ void	handle_redirs(t_ast *node)
 	token = node->right->exec->first->content;
 	if (node->type == L_REDIR || node->type == HEREDOC)
 	{
-		set_fd(node, node->type);
+		set_fd_in(node, node->type);
 		if (input_redir(node))
 			file = -1;
 	}
 	else
 	{
-		set_fd(node, node->type);
+		set_fd_out(node, node->type);
 		temp_fd(node);
 	}
 	if (node->type == R_REDIR)
@@ -144,8 +157,6 @@ void	handle_redirs(t_ast *node)
 			unlink("/tmp/outfile");
 			dup2(tmp[1], STDOUT_FILENO);
 		}
-		// create function to get written content in fd of temp_fd and writes on right fd
-		// dup2(file, STDOUT_FILENO);
 		close(file);
 	}
 	if (node->type == L_REDIR || node->type == HEREDOC)
