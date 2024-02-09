@@ -128,8 +128,10 @@ static int	input_redir(t_ast *node)
 		&& token->type != DOUBLE_QUOTE)
 		heredoc_expansion(token);
 	file = open(token->str, O_RDONLY);
-	if (file == -1)
+	if (file == -1 && !node->first_infile_err)
 		return (open_file_error(token->str));
+	else if (file == -1)
+		return (last_exit_status(1));
 	if (node->left && node->set_fd)
 		dup2(file, STDIN_FILENO);
 	close(file);
@@ -148,6 +150,20 @@ void	temp_fd(t_ast *node)
 	node->fd = fd;
 	dup2(fd, STDOUT_FILENO);
 	close (fd);
+}
+
+static int	check_infile(t_ast *node)
+{
+	t_ast	*tmp;
+
+	tmp = node->left;
+	while (tmp)
+	{
+		if (is_redirect(tmp->type))
+			return (0);
+		tmp = tmp->left;	
+	}
+	return (1);
 }
 
 void	handle_redirs(t_ast *node)
@@ -186,6 +202,8 @@ void	handle_redirs(t_ast *node)
 		node->error = 1;
 		if (node->type == R_REDIR || node->type == APPEND)
 			open_file_error(token->str);
+		if (check_infile(node))
+			return ;
 	}
 	if (node->left)
 		execution(node->left);
