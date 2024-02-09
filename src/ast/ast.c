@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:17:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/08 10:23:13 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/08 23:19:38 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void	try_split_else_exec(t_ast *ast_node, t_list *tokens)
 		return ;
 	if (ast_split_node(ast_node, tokens, search_redir(tokens)))
 		return ;
-	// if (ast_split_node(ast_node, tokens, search_infile_redir(tokens)))
-	// 	return ;
 	ast_node->type = EXEC;
 	ast_node->exec = tokens;
 }

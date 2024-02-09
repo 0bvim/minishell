@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/08 20:00:24 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/08 23:43:37y nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,22 @@ static int	append_trunc(t_ast *node, int flag)
 	token = node->right->exec->first->content;
 	right_tokens = node->right->exec;
 	substitute_first_token_str(right_tokens);
+	if (!access(token->str, F_OK))
+		node->old_file = 1;
 	return (open(token->str, flag, 0644));
 }
 
 static int	open_file_error(char *file_name)
 {
-	if (!access(file_name, F_OK))
+	if (!access(file_name, F_OK) && access(file_name, W_OK | R_OK))
 	{
-		if (access(file_name, W_OK | R_OK))
-		{
-			ft_putstr_fd("minishell: Permission denied\n", 2);
-			last_exit_status(1);
-			return (1);
-		}
-		else
-		{
-			last_exit_status(0);
-			return (0);
-		}
+		ft_putstr_fd("minishell: Permission denied\n", 2);
+		return (last_exit_status(1));
 	}
 	else if (access(file_name, F_OK))
 	{
 		ft_putstr_fd("minishell: No such file or directory\n", 2);
 		return (last_exit_status(1));
-
 	}
 	return (0);
 }
@@ -85,11 +77,11 @@ static int	input_redir(t_ast *node)
 	return (0);
 }
 
-void	temp_fd(t_ast *node, int flag)
+void	temp_fd(t_ast *node)
 {
 	int	fd;
 
-	fd = open("/temp/outfile", flag, 0644);
+	fd = open("/tmp/outfile", O_CREAT | O_TRUNC | O_RDWR, 0644);
 	node->fd = fd;
 	dup2(fd, STDOUT_FILENO);
 	close (fd);
@@ -103,28 +95,17 @@ void	handle_redirs(t_ast *node)
 
 	file = 0;
 	node->left->type_prev = node->type;
+	token = node->right->exec->first->content;
 	if (node->type == L_REDIR || node->type == HEREDOC)
 	{
-		set_fd(node, L_REDIR);
+		set_fd(node, node->type);
 		if (input_redir(node))
 			return ;
 	}
 	else
 	{
 		set_fd(node, node->type);
-		if (node->type == R_REDIR)
-			temp_fd(node, TRUN);
-		else
-			temp_fd(node, APEN);
-	}
-	if (node->left)
-		execution(node->left);
-	if (node->left && node->left->success == 1)
-	{
-		node->success = 1;
-		close (tmp[0]);
-		close (tmp[1]);
-		return ;
+		temp_fd(node);
 	}
 	if (node->type == R_REDIR)
 		file = append_trunc(node, TRUN);
@@ -132,22 +113,40 @@ void	handle_redirs(t_ast *node)
 		file = append_trunc(node, APEN);
 	if (file == -1)
 	{
-		node->success = 1;
+		node->error = 1;
 		if (node->type == R_REDIR || node->type == APPEND)
-		{
-			token = node->right->exec->first->content;
 			open_file_error(token->str);
-		}
+	}
+	if (node->left)
+		execution(node->left);
+	if (node->left && node->left->error == 1)
+	{
+		if (node->old_file == 0)
+			unlink(token->str);
+		node->error = 1;
+		if (node->type == R_REDIR || node->type == APPEND)
+			dup2(tmp[1], STDOUT_FILENO);
+		if (node->type == L_REDIR|| node->type == HEREDOC)
+			dup2(tmp[0], STDIN_FILENO);
+		close (tmp[0]);
+		close (tmp[1]);
+		return ;
 	}
 	if (node->type == R_REDIR || node->type == APPEND)
 	{
 		if (node->set_fd)
-			//create function to get written content in fd of temp_fd and writes on right fd
-			dup2(file, STDOUT_FILENO);
+		{
+			node->fd = open("/tmp/outfile", O_RDONLY, 0644);
+			char buff[1];
+			while (read(node->fd, buff, 1))
+				write(file, buff, 1);
+			close(node->fd);
+			unlink("/tmp/outfile");
+			dup2(tmp[1], STDOUT_FILENO);
+		}
+		// create function to get written content in fd of temp_fd and writes on right fd
+		// dup2(file, STDOUT_FILENO);
 		close(file);
-		dup2(tmp[1], STDOUT_FILENO);
-		close(tmp[0]);
-		close(tmp[1]);
 	}
 	if (node->type == L_REDIR || node->type == HEREDOC)
 		dup2(tmp[0], STDIN_FILENO);
