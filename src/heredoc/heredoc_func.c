@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:49:49 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/04 15:37:21 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:18:45 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	heredoc(t_token *token, int count)
+static int	heredoc(t_token *token, int count)
 {
 	int			fd;
 	char		*buff;
@@ -21,24 +21,28 @@ static void	heredoc(t_token *token, int count)
 	fl_name = ft_strmerge(ft_strdup("/tmp/heredoc"), ft_itoa(count));
 	fd = open(fl_name, HERE, 0644);
 	if (fd < 0)
-		return ;
+		return (0);
 	while (1)
 	{
 		buff = readline("> ");
-		if (ft_strncmp(buff, token->str, ft_strlen(token->str) + 1) == 0)
+		if (!buff || !ft_strncmp(buff, token->str, ft_strlen(token->str) + 1))
 			break ;
 		ft_putstr_fd(buff, fd);
 		write(fd, "\n", 1);
 		free(buff);
 		buff = NULL;
 	}
-	free(buff);
+	if (buff)
+		free(buff);
+	else
+		ft_putstr_fd("warning: here-document delimited by end-of-file\n", 2);
 	free (token->str);
 	close(fd);
 	token->str = fl_name;
+	return (1);
 }
 
-void	heredoc_substitution(t_list *tokens)
+int	heredoc_substitution(t_list *tokens)
 {
 	t_element	*el;
 	t_token		*token;
@@ -51,9 +55,14 @@ void	heredoc_substitution(t_list *tokens)
 		token = el->content;
 		if (token->type == HEREDOC)
 		{
-			heredoc(el->next->content, count);
+			if (!heredoc(el->next->content, count))
+			{
+				token_list_holder(tokens, 1);
+				return (0);
+			}
 			count++;
 		}
 		el = el->next;
 	}
+	return (1);
 }

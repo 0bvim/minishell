@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/09 16:48:16 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/10 17:40:57 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int			handle_pipe(t_ast *node_pipe);
 
 //handle redirs
 void		handle_redirs(t_ast *node_pipe);
-void		heredoc_substitution(t_list *tokens);
+int			heredoc_substitution(t_list *tokens);
 void		substitute_first_token_str(t_list *tokens);
 
 // code_pieces

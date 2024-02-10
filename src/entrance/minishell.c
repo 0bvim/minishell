@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/04 15:13:40 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/10 17:50:13 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static void	parser(char *input)
 	if (grammar_checker(tokens))
 		return ;
 	ft_lstiter(tokens, remove_quotes);
-	heredoc_substitution(tokens);
+	if (!heredoc_substitution(tokens))
+		return ;
 	root = ast_constructor(tokens);
 	if (!root)
 		return ;
