@@ -90,11 +90,10 @@ static void	set_next_node(t_ast *node)
 	}
 }
 
-static void	set_fd_out(t_ast *node, int token)
+static void	set_fd_out(t_ast *node)
 {
 	static int	have_prev;
 
-	(void)token;
 	if (have_prev || node->outfile_set)
 		return ;
 	if (is_redirect(node->type) && !is_redirect_out(node->type_prev))
@@ -105,11 +104,10 @@ static void	set_fd_out(t_ast *node, int token)
 	}
 }
 
-static void	set_fd_in(t_ast *node, int token)
+static void	set_fd_in(t_ast *node)
 {
 	static int	have_prev;
 
-	(void)token;
 	if (have_prev || node->infile_set)
 		return ;
 	if (is_redirect(node->type) && !is_redirect_in(node->type_prev))
@@ -182,7 +180,7 @@ void	handle_redirs(t_ast *node)
 	token = node->right->exec->first->content;
 	if (node->type == L_REDIR || node->type == HEREDOC)
 	{
-		set_fd_in(node, node->type);
+		set_fd_in(node);
 		if (input_redir(node))
 		{
 			if (node->set_fd)
@@ -196,7 +194,7 @@ void	handle_redirs(t_ast *node)
 	}
 	else
 	{
-		set_fd_out(node, node->type);
+		set_fd_out(node);
 		temp_fd(node);
 	}
 	if (node->type == R_REDIR)
@@ -205,14 +203,16 @@ void	handle_redirs(t_ast *node)
 		file = append_trunc(node, APEN);
 	if (file == -1)
 	{
-		node->error = 1;
 		if (is_redirect_out(node->type))
 		{
+			node->error = 1;
 			if (node->set_fd)
 			{
 				node->first_outfile_err = 1;
 				set_next_node_err(node);
 			}
+			else
+				open_file_error(token->str);
 		}
 		if (check_infile(node))
 			return ;
@@ -229,8 +229,10 @@ void	handle_redirs(t_ast *node)
 		execution(node->left);
 	if (node->first_outfile_err || node->left->error)
 	{
-		open_file_error(token->str);
-		last_exit_status(1);
+		if (node->set_fd || node->left->error)
+			open_file_error(token->str);
+		// else if (node->left->error || node->error)
+		// 	last_exit_status(1);
 	}
 	if (node->left && node->left->error == 1)
 	{
@@ -245,6 +247,7 @@ void	handle_redirs(t_ast *node)
 		close (tmp[1]);
 		if (file)
 			close(file);
+		last_exit_status(1);
 		return ;
 	}
 	if (node->type == R_REDIR || node->type == APPEND)
@@ -271,6 +274,4 @@ void	handle_redirs(t_ast *node)
 		dup2(tmp[0], STDIN_FILENO);
 	close (tmp[0]);
 	close (tmp[1]);
-	if (node->first_outfile_err)
-		last_exit_status(1);
 }
