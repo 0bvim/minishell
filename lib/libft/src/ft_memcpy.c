@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:39:49 by bmoretti          #+#    #+#             */
-/*   Updated: 2023/11/14 10:34:14 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/01/06 10:18:30 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	unsigned char	*dest_cpy;
+	unsigned char	*src_cpy;
 
 	if (!dest && !src)
 		return (dest);
 	dest_cpy = (unsigned char *)dest;
+	src_cpy = (unsigned char *)src;
 	while (n-- > 0)
-		*(dest_cpy++) = *((unsigned char *)src++);
+		*(dest_cpy++) = *(src_cpy++);
 	return (dest);
 }

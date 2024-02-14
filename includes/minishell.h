@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 10:48:45 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 15:47:59 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ void		expansions(t_list *tokens);
 void		token_expansion(void *p_token);
 void		heredoc_expansion(t_token *token);
 char		**tokens_to_args(t_list *tokens);
+void		asterisk(t_list	*tokens, t_element *el);
 
 // execve
 void		execution(t_ast *root);

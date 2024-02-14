@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:55:00 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/05 12:59:09 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:43:15 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int			ft_strisnumber(const char *str);
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                                 STR
 */
-
 size_t		ft_strlen(const char *s);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
 char		*ft_strchr(const char *s, int c);
+int			ft_strcmp(const char *s1, const char *s2);
 char		*ft_strrchr(const char *s, int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_strnstr(const char *big, const char *little, size_t len);
@@ -54,7 +54,6 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strmerge(char *s1, char *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
-char		**ft_clear_split(char **tab);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 
@@ -131,16 +130,17 @@ typedef struct s_list
 	size_t		size;
 }	t_list;
 
-t_element	*ft_lstnewelement(void *content);
-t_element	*ft_lstsecondlast(t_list *lst);
-void		ft_lstadd_front(t_list *lst, t_element *el);
-int			ft_lstsize(t_list *lst);
+void		ft_lstadd_after(t_list *lst, t_element *ref, t_element *el);
 void		ft_lstadd_back(t_list *lst, t_element *el);
-void		ft_lstdelone(t_list *lst, t_element *el, void (*del)(void*));
+void		ft_lstadd_before(t_list *lst, t_element *ref, t_element *el);
+void		ft_lstadd_front(t_list *lst, t_element *el);
 void		ft_lstclear(t_list *lst, void (*del)(void*));
+void		ft_lstdelone(t_list *lst, t_element *el, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-t_element	*ft_lstpop(t_list *lst, int index);
+t_element	*ft_lstnewelement(void *content);
 t_element	*ft_lstpickel(t_list *lst, int index);
+t_element	*ft_lstpop(t_list *lst, int index);
+int			ft_lstsize(t_list *lst);
 
 #endif

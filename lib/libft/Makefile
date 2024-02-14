@@ -4,7 +4,7 @@ LIB				=	libft.a
 AR				=	ar
 AR_FLAGS		=	rcs
 CC				=	cc
-CC_FLAGS 		=	-Wall -Werror -Wextra -g3
+CC_FLAGS 		=	-Wall -Werror -Wextra -g3 -pedantic
 
 #≻───░⋆ ✪ PROJECT DIRECTORIES & FILES ✪ ⋆░───────────────────────────────────≺#
 INCLUDES		=	-I./include
@@ -22,9 +22,11 @@ SRC_FILES		=	ft_abs.c					\
 					ft_isdigit.c				\
 					ft_isprint.c				\
 					ft_isspace.c				\
-					ft_itoa.c					\
 					ft_itoa_base.c				\
+					ft_itoa.c					\
+					ft_lstadd_after.c			\
 					ft_lstadd_back.c			\
+					ft_lstadd_before.c			\
 					ft_lstadd_front.c			\
 					ft_lstclear.c				\
 					ft_lstdelone.c				\
@@ -33,7 +35,6 @@ SRC_FILES		=	ft_abs.c					\
 					ft_lstnewelement.c			\
 					ft_lstpickel.c				\
 					ft_lstpop.c					\
-					ft_lstsecondlast.c			\
 					ft_lstsize.c				\
 					ft_memchr.c					\
 					ft_memcmp.c					\
@@ -46,6 +47,7 @@ SRC_FILES		=	ft_abs.c					\
 					ft_putstr_fd.c				\
 					ft_split.c					\
 					ft_strchr.c					\
+					ft_strcmp.c					\
 					ft_strdup.c					\
 					ft_strisinteger.c			\
 					ft_strisnumber.c			\
@@ -90,7 +92,7 @@ DEFAULT 		=	\033[0:0m
 all: $(NAME)
 
 $(NAME) : $(BUILD_DIR) $(OBJS)
-	@ printf "$(GREEN)$(LIB)$(DEFAULT) successfully generated\n"
+	@ printf "$(CYAN)libft: $(GREEN)$(LIB)$(DEFAULT) successfully generated\n"
 
 $(BUILD_DIR):
 	@ mkdir $(BUILD_DIR)
@@ -102,10 +104,11 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	@ rm -rf $(BUILD_DIR)
-	@ printf "build directory have been cleaned\n"
+	@ printf "$(CYAN)libft: $(DEFAULT)$(MAGENTA)\
+	$(BUILD_DIR)$(DEFAULT) directory have been cleaned\n"
 
 fclean: clean
 	@ rm -f $(LIB)
-	@ printf "$(MAGENTA)$(LIB)$(DEFAULT) have been cleaned\n"
+	@ printf "$(CYAN)libft: $(MAGENTA)$(LIB)$(DEFAULT) have been cleaned\n"
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/04 19:46:09 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 17:01:34 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,30 @@ void	token_expansion(void *p_token)
 	}
 }
 
+void	asterisk_expansion(t_list *tokens)
+{
+	t_element	*el;
+	t_element	*next;
+	t_token		*token;
+
+	el = tokens->first;
+	while (el)
+	{
+		token = el->content;
+		if (token->type == ARGUMENT && ft_strchr(token->str, '*'))
+		{
+			asterisk(tokens, el);
+			next = el->next;
+			ft_lstdelone(tokens, el, free_token);
+			el = next;
+		}
+		else
+			el = el->next;
+	}
+}
+
 void	expansions(t_list *tokens)
 {
+	asterisk_expansion(tokens);
 	ft_lstiter(tokens, token_expansion);
 }
