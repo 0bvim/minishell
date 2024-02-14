@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 15:47:59 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 18:59:26 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ typedef struct s_cmd
 
 //ENTRANCE
 void		environ_initializer(void);
+char		*static_pwd(char *new_pwd, int to_free);
+char		*static_old_pwd(char *new_pwd, int to_free);
 char		**environ_holder(char **new_environ, int to_free);
 
 //BUILTINS

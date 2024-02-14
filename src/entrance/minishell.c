@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 17:00:37 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 18:00:28 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(void)
 {
 	signals_initializer();
 	environ_initializer();
+	static_pwd(malloc_pwd(), 0);
 	while (true)
 	{
 		g_last_signal = 0;

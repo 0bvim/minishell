@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:51:33 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/01 16:35:43 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 19:00:21 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,7 @@ char	*malloc_pwd(void)
 
 int	pwd(const char **args)
 {
-	char	*wd;
-
 	(void)args;
-	wd = malloc_pwd();
-	if (!wd)
-		return (EXIT_FAILURE);
-	ft_putendl_fd(wd, STDOUT_FILENO);
-	free (wd);
+	ft_putendl_fd(static_pwd(NULL, 0), STDOUT_FILENO);
 	return (EXIT_SUCCESS);
 }

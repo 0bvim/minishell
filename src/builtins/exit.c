@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:19:57 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/04 19:34:51 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 18:59:43 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	builtin_exit(char **args)
 	ft_clear_list(&args);
 	ast_holder(NULL, 1);
 	environ_holder(NULL, 1);
+	static_pwd(NULL, 1);
+	static_old_pwd(NULL, 1);
 	ft_putendl_fd("exit", 1);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
