@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 16:32:05 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/10 18:11:29 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 10:53:48 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,13 @@ int	is_after_prompt(int is_after)
 	if (is_after != -1)
 		after = is_after;
 	return (after);
+}
+
+int	on_heredoc(int on_heredoc)
+{
+	static int	heredoc;
+
+	if (on_heredoc != -1)
+		heredoc = on_heredoc;
+	return (heredoc);
 }

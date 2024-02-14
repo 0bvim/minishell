@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 10:16:44 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/04 22:58:14 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 10:53:37 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 static void	transfer_all_elements_keep_first(t_list *dest, t_list *src)
 {
 	size_t			i;
-	t_element	*el;
-	t_token		*token;
+	t_element		*el;
+	t_token			*token;
 
 	if (!dest || !src)
 		return ;
@@ -43,7 +43,7 @@ static void	transfer_all_elements_keep_first(t_list *dest, t_list *src)
 		i++;
 		el = el->next;
 		if (el)
-			token = el->content;	
+			token = el->content;
 	}
 	while (src->size > i)
 		ft_lstadd_back(dest, ft_lstpop(src, i));

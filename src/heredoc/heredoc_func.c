@@ -6,39 +6,76 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:49:49 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/10 19:18:45 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 11:37:34 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static int	heredoc_file_creation(int count, int *fd, char **fl_name)
+{
+	*fl_name = ft_strmerge(ft_strdup("/tmp/heredoc"), ft_itoa(count));
+	if (!*fl_name)
+		return (0);
+	*fd = open(*fl_name, HERE, 0644);
+	if (*fd >= 0)
+		return (1);
+	free (*fl_name);
+	return (0);
+}
+
+static void	clean_heredoc_variables(char *buff, const int std_in, int fd)
+{
+	if (buff)
+		free(buff);
+	else if (g_last_signal != SIGINT)
+		ft_putstr_fd("warning: here-document delimited by end-of-file\n", 2);
+	close(fd);
+	close (std_in);
+}
+
+static int	heredoc_loop(char **buff, t_token *token, const int std_in, int fd)
+{
+	on_heredoc(1);
+	*buff = readline("> ");
+	on_heredoc(0);
+	if (g_last_signal == SIGINT)
+	{
+		dup2(std_in, STDIN_FILENO);
+		if (*buff)
+		{
+			free (*buff);
+			*buff = NULL;
+		}
+	}
+	if (!*buff || !ft_strncmp(*buff, token->str, ft_strlen(token->str) + 1))
+		return (0);
+	ft_putstr_fd(*buff, fd);
+	write(fd, "\n", 1);
+	free(*buff);
+	*buff = NULL;
+	return (1);
+}
 
 static int	heredoc(t_token *token, int count)
 {
 	int			fd;
 	char		*buff;
 	char		*fl_name;
+	const int	std_in = dup(STDIN_FILENO);
 
-	fl_name = ft_strmerge(ft_strdup("/tmp/heredoc"), ft_itoa(count));
-	fd = open(fl_name, HERE, 0644);
-	if (fd < 0)
+	if (!heredoc_file_creation(count, &fd, &fl_name))
 		return (0);
-	while (1)
-	{
-		buff = readline("> ");
-		if (!buff || !ft_strncmp(buff, token->str, ft_strlen(token->str) + 1))
-			break ;
-		ft_putstr_fd(buff, fd);
-		write(fd, "\n", 1);
-		free(buff);
-		buff = NULL;
-	}
-	if (buff)
-		free(buff);
-	else
-		ft_putstr_fd("warning: here-document delimited by end-of-file\n", 2);
+	while (heredoc_loop(&buff, token, std_in, fd))
+		;
+	clean_heredoc_variables(buff, std_in, fd);
 	free (token->str);
-	close(fd);
 	token->str = fl_name;
+	if (g_last_signal == SIGINT)
+	{
+		unlink(fl_name);
+		return (0);
+	}
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/10 17:40:57 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 10:48:45 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define BLANK ""
 # define TRUN 0x00000242
 # define APEN 0x00000442
-# define HERE 0x00000441
+# define HERE O_CREAT | O_TRUNC | O_WRONLY
 
 extern volatile int	g_last_signal;
 
@@ -201,6 +201,7 @@ int			parenthesis_validation(const char *str);
 void		signals_initializer(void);
 void		signal_handler(int signal);
 int			is_after_prompt(int is_after);
+int			on_heredoc(int on_heredoc);
 
 //DEBUGGERS
 void		list_printer(t_list *tokens);
