@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:15:21 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/10 19:17:55 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 10:32:59 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	signal_handler(int signal)
 			ast_holder(NULL, 1);
 		else
 			token_list_holder(NULL, 1);
+		if (on_heredoc(-1))
+			close(STDIN_FILENO);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		ft_putstr_fd("\n", 1);
