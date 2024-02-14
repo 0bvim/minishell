@@ -208,9 +208,9 @@ void	handle_redirs(t_ast *node)
 		file = append_trunc(node, APEN);
 	if (file == -1)
 	{
+		node->error = 1;
 		if (is_redirect_out(node->type))
 		{
-			node->error = 1;
 			if (node->set_fd)
 			{
 				node->first_outfile_err = 1;
