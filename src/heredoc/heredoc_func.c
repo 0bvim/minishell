@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:49:49 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 11:02:34 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 11:37:34 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	heredoc_file_creation(int count, int *fd, char **fl_name)
 	*fd = open(*fl_name, HERE, 0644);
 	if (*fd >= 0)
 		return (1);
+	free (*fl_name);
 	return (0);
 }
 
@@ -70,6 +71,11 @@ static int	heredoc(t_token *token, int count)
 	clean_heredoc_variables(buff, std_in, fd);
 	free (token->str);
 	token->str = fl_name;
+	if (g_last_signal == SIGINT)
+	{
+		unlink(fl_name);
+		return (0);
+	}
 	return (1);
 }
 
@@ -86,7 +92,7 @@ int	heredoc_substitution(t_list *tokens)
 		token = el->content;
 		if (token->type == HEREDOC)
 		{
-			if (!heredoc(el->next->content, count) || g_last_signal == SIGINT)
+			if (!heredoc(el->next->content, count))
 			{
 				token_list_holder(tokens, 1);
 				return (0);
