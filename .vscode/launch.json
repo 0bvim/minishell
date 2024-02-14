@@ -5,6 +5,25 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "(gdb) Attach",
+			"type": "cppdbg",
+			"request": "attach",
+			"program": "${workspaceFolder}/minishell",
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "Set Disassembly Flavor to Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
@@ -26,11 +45,6 @@
 					"text": "-gdb-set disassembly-flavor intel",
 					"ignoreFailures": true
 				}
-				// {
-				// 	"description": "Set follow-fork-mode to child",
-				// 	"text": "set follow-fork-mode child",
-				// 	"ignoreFailures": false
-				// },
 				// {
 				// 	"description": "Set detach-on-fork to off",
 				// 	"text": "set detach-on-fork off",
