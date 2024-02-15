@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 01:24:09 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/15 01:28:50 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,9 @@ void		set_fd_out(t_ast *node);
 void		set_next_node(t_ast *node);
 void		set_next_node_err(t_ast *node);
 void		temp_fd(t_ast *node);
+
+//handle && and ||
+void		handle_and_or(t_ast *node);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);
