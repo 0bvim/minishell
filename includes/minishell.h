@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 02:48:51 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 02:59:11 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ int			check_infile(t_ast *node);
 int			append_trunc(t_ast *node, int flag);
 int			open_file_error(char *file_name);
 int			input_redir(t_ast *node);
+int			file_err(t_ast *node, t_token *tk, const int *tmp);
 void		handle_redirs(t_ast *node_pipe);
 void		substitute_first_token_str(t_list *tokens);
 void		set_fd_in(t_ast *node);
@@ -157,7 +158,8 @@ void		outfile_error(t_ast *node, t_token *token);
 void		node_left_error(t_ast *node,t_token *tk, const int *tmp, int *file);
 void		close_tmp(const int *tmp);
 void		after_ex(t_ast *node, int *file, const int *tmp);
-int			file_err(t_ast *node, t_token *tk, const int *tmp);
+void		infile_after(t_ast *node, const int *tmp);
+void		init_redirs(t_ast *node, t_token **tk, int *file);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);

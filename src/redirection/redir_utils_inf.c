@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 02:43:22 by nivicius          #+#    #+#             */
-/*   Updated: 2024/02/15 02:48:39 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 02:58:42 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,21 @@ int	file_err(t_ast *node, t_token *tk, const int *tmp)
 		return (1);
 	}
 	return (0);
+}
+
+void	infile_after(t_ast *node, const int *tmp)
+{
+	if (node->fake_file)
+	{
+		last_exit_status(1);
+		close(node->fake_file);
+	}
+	dup2(tmp[0], STDIN_FILENO);
+}
+
+void	init_redirs(t_ast *node, t_token **tk, int *file)
+{
+	*file = 0;
+	node->left->type_prev = node->type;
+	*tk = node->right->exec->first->content;
 }

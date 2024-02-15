@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 02:49:11 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 02:58:56 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,7 @@ void	handle_redirs(t_ast *node)
 	int			file;
 	const int	tmp[2] = { dup(STDIN_FILENO), dup(STDOUT_FILENO) };
 
-	file = 0;
-	node->left->type_prev = node->type;
-	token = node->right->exec->first->content;
+	init_redirs(node, &token, &file);
 	if (is_redirect_in(node->type))
 		handle_infile(node, token, &file);
 	else
@@ -102,14 +100,7 @@ void	handle_redirs(t_ast *node)
 	if (is_redirect_out(node->type))
 		after_ex(node, &file, tmp);
 	if (is_redirect_in(node->type))
-	{
-		if (node->fake_file)
-		{
-			last_exit_status(1);
-			close(node->fake_file);
-		}
-		dup2(tmp[0], STDIN_FILENO);
-	}
+		infile_after(node, tmp);
 	close_tmp(tmp);
 	return;
 }
