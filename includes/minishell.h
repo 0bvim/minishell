@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 01:28:50 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/15 02:05:16 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,9 @@ int			heredoc_substitution(t_list *tokens);
 int			is_redirect_in(int type);
 int			is_redirect_out(int type);
 int			check_infile(t_ast *node);
+int			append_trunc(t_ast *node, int flag);
+int			open_file_error(char *file_name);
+int			input_redir(t_ast *node);
 void		handle_redirs(t_ast *node_pipe);
 void		substitute_first_token_str(t_list *tokens);
 void		set_fd_in(t_ast *node);
@@ -148,6 +151,8 @@ void		set_fd_out(t_ast *node);
 void		set_next_node(t_ast *node);
 void		set_next_node_err(t_ast *node);
 void		temp_fd(t_ast *node);
+void		handle_infile(t_ast *node, t_token *token, int *file);
+void		handle_outfile(t_ast *node, int *file);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);

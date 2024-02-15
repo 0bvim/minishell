@@ -6,13 +6,13 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 01:43:15 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 02:04:02 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	append_trunc(t_ast *node, int flag)
+int	append_trunc(t_ast *node, int flag)
 {
 	t_token	*token;
 	t_list	*right_tokens;
@@ -26,7 +26,7 @@ static int	append_trunc(t_ast *node, int flag)
 	return (open(token->str, flag, 0644));
 }
 
-static int	open_file_error(char *file_name)
+int	open_file_error(char *file_name)
 {
 	if (last_exit_status(-1) == 1)
 		return (1);
@@ -43,7 +43,7 @@ static int	open_file_error(char *file_name)
 	return (0);
 }
 
-static int	input_redir(t_ast *node)
+int	input_redir(t_ast *node)
 {
 	t_list		*right_tokens;
 	t_token		*token;
@@ -68,20 +68,6 @@ static int	input_redir(t_ast *node)
 	return (0);
 }
 
-void	handle_infile(t_ast *node, t_token *token, int *file)
-{
-		set_fd_in(node);
-		if (input_redir(node))
-		{
-			if (node->set_fd)
-			{
-				node->first_infile_err = 1;
-				set_next_node_err(node);
-				open_file_error(token->str);
-			}
-			*file = -1;
-		}
-}
 
 void	handle_redirs(t_ast *node)
 {
@@ -95,14 +81,7 @@ void	handle_redirs(t_ast *node)
 	if (is_redirect_in(node->type))
 		handle_infile(node, token, &file);
 	else
-	{
-		set_fd_out(node);
-		temp_fd(node);
-	}
-	if (node->type == R_REDIR)
-		file = append_trunc(node, TRUN);
-	else if (node->type == APPEND)
-		file = append_trunc(node, APEN);
+		handle_outfile(node, &file);
 	if (file == -1)
 	{
 		node->error = 1;
