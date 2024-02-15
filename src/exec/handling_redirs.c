@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/08 23:43:37y nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/14 23:41:14 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,6 @@ static int	open_file_error(char *file_name)
 		return (last_exit_status(1));
 	}
 	return (0);
-}
-
-static int	is_redirect_in(int type)
-{
-	return (type == L_REDIR || type == HEREDOC);
-}
-
-static int	is_redirect_out(int type)
-{
-	return (type == R_REDIR || type == APPEND);
 }
 
 static void	set_next_node_err(t_ast *node)
@@ -167,7 +157,7 @@ static int	check_infile(t_ast *node)
 	tmp = node->left;
 	while (tmp)
 	{
-		if (is_redirect(tmp->type))
+		if (is_redirect_in(tmp->type))
 			return (0);
 		tmp = tmp->left;	
 	}
@@ -219,8 +209,17 @@ void	handle_redirs(t_ast *node)
 			else
 				open_file_error(token->str);
 		}
-		if (check_infile(node))
-			return ;
+		if (is_redirect_in(node->type) && check_infile(node))
+		{
+			if (!is_redirect(node->left->type))
+			{
+				close(tmp[0]);
+				close(tmp[1]);
+				return;
+			}
+			node->fake_file = open("/tmp/dopel_file", TRUN, 0644);
+			dup2(node->fake_file, STDIN_FILENO);
+		}
 		else if (node->left->first_infile_err)
 		{
 			close(node->fd);
@@ -260,7 +259,7 @@ void	handle_redirs(t_ast *node)
 	}
 	if (node->type == R_REDIR || node->type == APPEND)
 	{
-		if (node->set_fd && !node->first_infile_err)
+		if (node->set_fd && !node->first_infile_err && file != -1)
 		{
 			node->fd = open(node->tmp_file, O_RDONLY, 0644);
 			char buff[1];
@@ -276,11 +275,19 @@ void	handle_redirs(t_ast *node)
 			dup2(tmp[1], STDOUT_FILENO);
 			dup2(tmp[0], STDIN_FILENO);
 		}
-		close(file);
+		if (file != -1)
+			close(file);
 		free(node->tmp_file);
 	}
-	if (node->type == L_REDIR || node->type == HEREDOC)
+	if (is_redirect_in(node->type))
+	{
+		if (node->fake_file)
+		{
+			last_exit_status(1);
+			close(node->fake_file);
+		}
 		dup2(tmp[0], STDIN_FILENO);
+	}
 	close (tmp[0]);
 	close (tmp[1]);
 }

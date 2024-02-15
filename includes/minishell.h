@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 21:27:22 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 23:39:22 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define BLANK ""
 # define TRUN 0x00000242
 # define APEN 0x00000442
-# define HERE O_CREAT | O_TRUNC | O_WRONLY
+# define HERE 0x00000241
 
 extern volatile int	g_last_signal;
 
@@ -99,6 +99,7 @@ typedef struct s_ast
 	int					outfile_set;
 	int					first_infile_err;
 	int					first_outfile_err;
+	int					fake_file;
 	char				*tmp_file;
 	struct s_ast		*left;
 	struct s_ast		*right;
@@ -139,6 +140,8 @@ int			handle_pipe(t_ast *node_pipe);
 void		handle_redirs(t_ast *node_pipe);
 int			heredoc_substitution(t_list *tokens);
 void		substitute_first_token_str(t_list *tokens);
+int			is_redirect_in(int type);
+int			is_redirect_out(int type);
 
 // code_pieces
 char		*getenv_or_blank(const char *name);

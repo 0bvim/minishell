@@ -44,12 +44,12 @@
 					"description": "Set Disassembly Flavor to Intel",
 					"text": "-gdb-set disassembly-flavor intel",
 					"ignoreFailures": true
+				},
+				{
+					"description": "Set detach-on-fork to off",
+					"text": "set detach-on-fork off",
+					"ignoreFailures": false
 				}
-				// {
-				// 	"description": "Set detach-on-fork to off",
-				// 	"text": "set detach-on-fork off",
-				// 	"ignoreFailures": false
-				// }
 			]
 		}
 	]

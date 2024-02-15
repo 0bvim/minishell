@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:30:51 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 16:56:18 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/14 22:27:43 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ static void	fork_process(int *fildes, t_ast *node_pipe,
 	close(fildes[1]);
 	close(tmp[0]);
 	close(tmp[1]);
-	if (left_right == 0)
+	if (left_right == 0 && node_pipe->left->type != R_REDIR)
 		execution(node_pipe->left);
-	else
+	else if (left_right == 1)
 		execution(node_pipe->right);
 	ast_holder(NULL, 1);
 	environ_holder(NULL, 1);
+	static_pwd(NULL, 1);
+	static_old_pwd(NULL, 1);
 	exit(last_exit_status(-1));
 }
 
