@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 00:27:13 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/15 01:28:50 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,12 @@ void		set_fd_out(t_ast *node);
 void		set_next_node(t_ast *node);
 void		set_next_node_err(t_ast *node);
 void		temp_fd(t_ast *node);
+
+//handle && and ||
+void		handle_and_or(t_ast *node);
+
+//handle && and ||
+void		handle_and_or(t_ast *node);
 
 // code_pieces
 char		*getenv_or_blank(const char *name);
