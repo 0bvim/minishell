@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_fd_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 00:17:19 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 00:23:40 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/15 01:36:05 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void	temp_fd(t_ast *node)
 	if (!node->set_fd)
 		return ;
 	tk = node->right->exec->first->content;
-	str = (ft_strdup(ft_strrchr(tk->str, '/') + 1));
+	if (ft_strrchr(tk->str, '/'))
+		str = (ft_strdup(ft_strrchr(tk->str, '/') + 1));
+	else	
+		str = ft_strdup(tk->str);
 	node->tmp_file = ft_strmerge(ft_strdup("/tmp/_"), str);
 	fd = open(node->tmp_file, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	node->fd = fd;
