@@ -220,7 +220,11 @@ void	handle_redirs(t_ast *node)
 				open_file_error(token->str);
 		}
 		if (check_infile(node))
+		{
+			close (tmp[0]);
+			close (tmp[1]);
 			return ;
+		}
 		else if (node->left->first_infile_err)
 		{
 			close(node->fd);
