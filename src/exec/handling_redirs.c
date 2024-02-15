@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 02:35:11 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 02:39:14 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,27 +118,7 @@ void	handle_redirs(t_ast *node)
 		return ;
 	}
 	if (is_redirect_out(node->type))
-	{
-		if (node->set_fd && !node->first_infile_err && file != -1)
-		{
-			node->fd = open(node->tmp_file, O_RDONLY, 0644);
-			char buff[1];
-			while (read(node->fd, buff, 1))
-				write(file, buff, 1);
-			close(node->fd);
-			unlink(node->tmp_file);
-			dup2(tmp[1], STDOUT_FILENO);
-		}
-		else
-		{
-			close(node->fd);
-			dup2(tmp[1], STDOUT_FILENO);
-			dup2(tmp[0], STDIN_FILENO);
-		}
-		if (file != -1)
-			close(file);
-		free(node->tmp_file);
-	}
+		after_ex(node, &file, tmp);
 	if (is_redirect_in(node->type))
 	{
 		if (node->fake_file)

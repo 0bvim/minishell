@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 01:51:52 by nivicius          #+#    #+#             */
-/*   Updated: 2024/02/15 02:33:12 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 02:41:01 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,27 @@ void	node_left_error(t_ast *node,t_token *token, const int *tmp, int *file)
 			free(node->tmp_file);
 		}
 		last_exit_status(1);
+}
+
+void	after_ex(t_ast *node, int *file, const int *tmp)
+{
+	if (node->set_fd && !node->first_infile_err && *file != -1)
+	{
+		node->fd = open(node->tmp_file, O_RDONLY, 0644);
+		char buff[1];
+		while (read(node->fd, buff, 1))
+			write(*file, buff, 1);
+		close(node->fd);
+		unlink(node->tmp_file);
+		dup2(tmp[1], STDOUT_FILENO);
+	}
+	else
+	{
+		close(node->fd);
+		dup2(tmp[1], STDOUT_FILENO);
+		dup2(tmp[0], STDIN_FILENO);
+	}
+	if (*file != -1)
+		close(*file);
+	free(node->tmp_file);
 }
