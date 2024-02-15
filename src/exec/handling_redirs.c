@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 02:04:02 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 02:35:11 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,12 @@ void	handle_redirs(t_ast *node)
 	{
 		node->error = 1;
 		if (is_redirect_out(node->type))
-		{
-			if (node->set_fd)
-			{
-				node->first_outfile_err = 1;
-				set_next_node_err(node);
-			}
-			else
-				open_file_error(token->str);
-		}
+			outfile_error(node, token);
 		if (is_redirect_in(node->type) && check_infile(node))
 		{
 			if (!is_redirect(node->left->type))
 			{
-				close(tmp[0]);
-				close(tmp[1]);
+				close_tmp(tmp);
 				return;
 			}
 			node->fake_file = open("/tmp/dopel_file", TRUN, 0644);
@@ -110,9 +101,8 @@ void	handle_redirs(t_ast *node)
 		{
 			close(node->fd);
 			dup2(tmp[0], STDIN_FILENO);
-			close(tmp[0]);
-			close(tmp[1]);
-			return ;
+			close_tmp(tmp);
+			return;
 		}
 	}
 	if (node->left)
@@ -124,26 +114,10 @@ void	handle_redirs(t_ast *node)
 	}
 	if (node->left && node->left->error == 1)
 	{
-		if (node->old_file == 0)
-			unlink(token->str);
-		node->error = 1;
-		if (node->type == R_REDIR || node->type == APPEND)
-			dup2(tmp[1], STDOUT_FILENO);
-		if (node->type == L_REDIR|| node->type == HEREDOC)
-			dup2(tmp[0], STDIN_FILENO);
-		close (tmp[0]);
-		close (tmp[1]);
-		if (file)
-			close(file);
-		if (node->tmp_file)
-		{
-			close(node->fd);
-			free(node->tmp_file);
-		}
-		last_exit_status(1);
+		node_left_error(node, token, tmp, &file);
 		return ;
 	}
-	if (node->type == R_REDIR || node->type == APPEND)
+	if (is_redirect_out(node->type))
 	{
 		if (node->set_fd && !node->first_infile_err && file != -1)
 		{
@@ -174,6 +148,6 @@ void	handle_redirs(t_ast *node)
 		}
 		dup2(tmp[0], STDIN_FILENO);
 	}
-	close (tmp[0]);
-	close (tmp[1]);
+	close_tmp(tmp);
+	return;
 }

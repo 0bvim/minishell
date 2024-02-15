@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 02:05:16 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 02:31:15 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,9 +153,9 @@ void		set_next_node_err(t_ast *node);
 void		temp_fd(t_ast *node);
 void		handle_infile(t_ast *node, t_token *token, int *file);
 void		handle_outfile(t_ast *node, int *file);
-
-//handle && and ||
-void		handle_and_or(t_ast *node);
+void		outfile_error(t_ast *node, t_token *token);
+void		node_left_error(t_ast *node,t_token *tk, const int *tmp, int *file);
+void		close_tmp(const int *tmp);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);

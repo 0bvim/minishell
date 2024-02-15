@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 01:51:52 by nivicius          #+#    #+#             */
-/*   Updated: 2024/02/15 02:02:32 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 02:33:12 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,35 @@ void	handle_outfile(t_ast *node, int *file)
 	else if (node->type == APPEND)
 		*file = append_trunc(node, APEN);
 
+}
+
+void	outfile_error(t_ast *node, t_token *token)
+{
+	if (node->set_fd)
+	{
+		node->first_outfile_err = 1;
+		set_next_node_err(node);
+	}
+	else
+		open_file_error(token->str);
+}
+
+void	node_left_error(t_ast *node,t_token *token, const int *tmp, int *file)
+{
+		if (node->old_file == 0)
+			unlink(token->str);
+		node->error = 1;
+		if (node->type == R_REDIR || node->type == APPEND)
+			dup2(tmp[1], STDOUT_FILENO);
+		if (node->type == L_REDIR|| node->type == HEREDOC)
+			dup2(tmp[0], STDIN_FILENO);
+		close_tmp(tmp);
+		if (*file)
+			close(*file);
+		if (node->tmp_file)
+		{
+			close(node->fd);
+			free(node->tmp_file);
+		}
+		last_exit_status(1);
 }
