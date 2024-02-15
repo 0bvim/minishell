@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 00:34:43 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/15 11:55:26 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,10 @@ void	execution(t_ast *root)
 	else if (root->right)
 		execution(root->right);
 	else if (root->exec && root->exec->first)
-		execute(tokens_to_args(root->exec));
+	{
+		if (((t_token *)root->exec->first->content)->type == BLOCK)
+			handle_block(((t_token *)root->exec->first->content));
+		else
+			execute(tokens_to_args(root->exec));
+	}
 }

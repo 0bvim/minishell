@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 03:20:52 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 11:56:21 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,9 @@ void		seek_and_destroy(t_ast *node, int *file, const int *tmp);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);
+
+//handle block
+void		handle_block(t_token *block);
 
 // code_pieces
 char		*getenv_or_blank(const char *name);

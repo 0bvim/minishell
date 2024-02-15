@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 18:00:28 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/15 13:58:36 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ static void	parser(char *input)
 	ast_holder(NULL, 1);
 }
 
-static void	remove_quotes(void *content)
+static void	remove_quotes(void *content) //change to remove quotes from tokens
 {
 	t_token	*token;
 	char	*tmp;
 
 	token = content;
-	if (token->type == QUOTE || token->type == DOUBLE_QUOTE)
+	if (token->type == QUOTE || token->type == DOUBLE_QUOTE || token->type == BLOCK)
 	{
 		tmp = ft_strndup(token->str + 1, ft_strlen(token->str) - 2);
 		free(token->str);
