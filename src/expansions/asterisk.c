@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:48:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/14 17:24:44 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/15 00:00:16 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,9 @@ void	asterisk(t_list	*tokens, t_element *el)
 	entry = readdir(dir);
 	while (entry)
 	{
-		if (ft_strncmp((char *)entry->d_name, ".", 2)
-			&& ft_strncmp((char *)entry->d_name, "..", 3))
-		{
-			if (word_comparison(compare, (char *)entry->d_name))
-				match_insertion(tokens, el, (char *)entry->d_name);
-		}
+		if (*(char *)entry->d_name != '.'
+			&& word_comparison(compare, (char *)entry->d_name))
+			match_insertion(tokens, el, (char *)entry->d_name);
 		entry = readdir(dir);
 	}
 	closedir(dir);
