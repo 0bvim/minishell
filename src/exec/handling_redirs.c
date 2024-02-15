@@ -221,9 +221,14 @@ void	handle_redirs(t_ast *node)
 		}
 		if (is_redirect_in(node->type) && check_infile(node))
 		{
-			close (tmp[0]);
-			close (tmp[1]);
-			return ;
+			if (!is_redirect(node->left->type))
+			{
+				close(tmp[0]);
+				close(tmp[1]);
+				return;
+			}
+			node->fake_file = open("/tmp/dopel_file", TRUN, 0644);
+			dup2(node->fake_file, STDIN_FILENO);
 		}
 		else if (node->left->first_infile_err)
 		{
@@ -284,8 +289,15 @@ void	handle_redirs(t_ast *node)
 			close(file);
 		free(node->tmp_file);
 	}
-	if (node->type == L_REDIR || node->type == HEREDOC)
+	if (is_redirect_in(node->type))
+	{
+		if (node->fake_file)
+		{
+			last_exit_status(1);
+			close(node->fake_file);
+		}
 		dup2(tmp[0], STDIN_FILENO);
+	}
 	close (tmp[0]);
 	close (tmp[1]);
 }
