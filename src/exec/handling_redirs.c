@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/08 23:43:37y nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/14 23:41:14 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,6 @@ static int	open_file_error(char *file_name)
 		return (last_exit_status(1));
 	}
 	return (0);
-}
-
-static int	is_redirect_in(int type)
-{
-	return (type == L_REDIR || type == HEREDOC);
-}
-
-static int	is_redirect_out(int type)
-{
-	return (type == R_REDIR || type == APPEND);
 }
 
 static void	set_next_node_err(t_ast *node)
