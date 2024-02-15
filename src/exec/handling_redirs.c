@@ -149,11 +149,11 @@ void	temp_fd(t_ast *node)
 	t_token	*tk;
 	char	*str;
 
+	if (!node->set_fd)
+		return ;
 	tk = node->right->exec->first->content;
 	str = (ft_strdup(ft_strrchr(tk->str, '/') + 1));
 	node->tmp_file = ft_strmerge(ft_strdup("/tmp/_"), str);
-	if (!node->set_fd)
-		return ;
 	fd = open(node->tmp_file, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	node->fd = fd;
 	dup2(fd, STDOUT_FILENO);
@@ -250,6 +250,11 @@ void	handle_redirs(t_ast *node)
 		close (tmp[1]);
 		if (file)
 			close(file);
+		if (node->tmp_file)
+		{
+			close(node->fd);
+			free(node->tmp_file);
+		}
 		last_exit_status(1);
 		return ;
 	}
@@ -263,7 +268,6 @@ void	handle_redirs(t_ast *node)
 				write(file, buff, 1);
 			close(node->fd);
 			unlink(node->tmp_file);
-			free(node->tmp_file);
 			dup2(tmp[1], STDOUT_FILENO);
 		}
 		else
@@ -273,6 +277,7 @@ void	handle_redirs(t_ast *node)
 			dup2(tmp[0], STDIN_FILENO);
 		}
 		close(file);
+		free(node->tmp_file);
 	}
 	if (node->type == L_REDIR || node->type == HEREDOC)
 		dup2(tmp[0], STDIN_FILENO);
