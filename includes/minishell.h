@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 23:39:22 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/15 00:33:01 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,9 @@ int			heredoc_substitution(t_list *tokens);
 void		substitute_first_token_str(t_list *tokens);
 int			is_redirect_in(int type);
 int			is_redirect_out(int type);
+
+//handle && and ||
+void		handle_and_or(t_ast *node);
 
 // code_pieces
 char		*getenv_or_blank(const char *name);
