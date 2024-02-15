@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 00:17:19 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 01:36:05 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 03:18:11 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	temp_fd(t_ast *node)
 	tk = node->right->exec->first->content;
 	if (ft_strrchr(tk->str, '/'))
 		str = (ft_strdup(ft_strrchr(tk->str, '/') + 1));
-	else	
+	else
 		str = ft_strdup(tk->str);
 	node->tmp_file = ft_strmerge(ft_strdup("/tmp/_"), str);
 	fd = open(node->tmp_file, O_CREAT | O_TRUNC | O_RDWR, 0644);

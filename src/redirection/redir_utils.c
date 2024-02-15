@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 23:37:33 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 00:27:00 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/15 03:18:53 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	check_infile(t_ast *node)
 	{
 		if (is_redirect_in(tmp->type))
 			return (0);
-		tmp = tmp->left;	
+		tmp = tmp->left;
 	}
 	return (1);
 }

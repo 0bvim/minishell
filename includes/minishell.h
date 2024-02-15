@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 03:12:42 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 03:20:52 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct s_ast
 	int					first_infile_err;
 	int					first_outfile_err;
 	int					fake_file;
+	char				buff[1];
 	char				*tmp_file;
 	struct s_ast		*left;
 	struct s_ast		*right;
@@ -155,7 +156,7 @@ void		temp_fd(t_ast *node);
 void		handle_infile(t_ast *node, t_token *token, int *file);
 void		handle_outfile(t_ast *node, int *file);
 void		outfile_error(t_ast *node, t_token *token);
-void		node_left_error(t_ast *node,t_token *tk, const int *tmp, int *file);
+void		node_left_error(t_ast *nod, t_token *tk, const int *tmp, int *file);
 void		close_tmp(const int *tmp);
 void		after_ex(t_ast *node, int *file, const int *tmp);
 void		infile_after(t_ast *node, const int *tmp);

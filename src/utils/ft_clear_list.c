@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:05:25 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/15 02:31:57 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 03:24:07 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	ft_clear_list(char ***list)
 
 void	close_tmp(const int *tmp)
 {
-		close (tmp[0]);
-		close (tmp[1]);
+	close (tmp[0]);
+	close(tmp[1]);
 }

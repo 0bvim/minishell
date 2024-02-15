@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 02:43:22 by nivicius          #+#    #+#             */
-/*   Updated: 2024/02/15 03:13:22 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 03:24:31 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	file_err(t_ast *node, t_token *tk, const int *tmp)
 		if (!is_redirect(node->left->type))
 		{
 			close_tmp(tmp);
-			return(1);
+			return (1);
 		}
 		node->fake_file = open("/tmp/dopel_file", TRUN, 0644);
 		dup2(node->fake_file, STDIN_FILENO);
