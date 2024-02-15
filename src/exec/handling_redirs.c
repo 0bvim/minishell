@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 23:41:14 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/15 00:33:09 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,71 +43,6 @@ static int	open_file_error(char *file_name)
 	return (0);
 }
 
-static void	set_next_node_err(t_ast *node)
-{
-	t_ast	*tmp;
-
-	tmp = 0;
-	if (node->left)
-		tmp = node->left;
-	while (tmp)
-	{
-		if (is_redirect_in(tmp->type))
-			tmp->first_infile_err = node->first_infile_err;
-		else if (is_redirect_out(tmp->type))
-			tmp->first_outfile_err = node->first_outfile_err;
-		tmp = tmp->left;
-	}
-}
-
-static void	set_next_node(t_ast *node)
-{
-	t_ast	*tmp;
-
-	tmp = 0;
-	if (node->left)
-		tmp = node->left;
-	while (tmp)
-	{
-		if (tmp->type == node->type)
-		{
-			if (is_redirect_in(node->type))
-				tmp->infile_set = 1;
-			else if (is_redirect_out(node->type))
-				tmp->outfile_set = 1;
-		}
-		tmp = tmp->left;
-	}
-}
-
-static void	set_fd_out(t_ast *node)
-{
-	static int	have_prev;
-
-	if (have_prev || node->outfile_set)
-		return ;
-	if (is_redirect(node->type) && !is_redirect_out(node->type_prev))
-	{
-		have_prev = 0;
-		node->set_fd = 1;
-		set_next_node(node);
-	}
-}
-
-static void	set_fd_in(t_ast *node)
-{
-	static int	have_prev;
-
-	if (have_prev || node->infile_set)
-		return ;
-	if (is_redirect(node->type) && !is_redirect_in(node->type_prev))
-	{
-		have_prev = 0;
-		node->set_fd = 1;
-		set_next_node(node);
-	}
-}
-
 static int	input_redir(t_ast *node)
 {
 	t_list		*right_tokens;
@@ -133,35 +68,19 @@ static int	input_redir(t_ast *node)
 	return (0);
 }
 
-void	temp_fd(t_ast *node)
+void	handle_infile(t_ast *node, t_token *token, int *file)
 {
-	int		fd;
-	t_token	*tk;
-	char	*str;
-
-	if (!node->set_fd)
-		return ;
-	tk = node->right->exec->first->content;
-	str = (ft_strdup(ft_strrchr(tk->str, '/') + 1));
-	node->tmp_file = ft_strmerge(ft_strdup("/tmp/_"), str);
-	fd = open(node->tmp_file, O_CREAT | O_TRUNC | O_RDWR, 0644);
-	node->fd = fd;
-	dup2(fd, STDOUT_FILENO);
-	close (fd);
-}
-
-static int	check_infile(t_ast *node)
-{
-	t_ast	*tmp;
-
-	tmp = node->left;
-	while (tmp)
-	{
-		if (is_redirect_in(tmp->type))
-			return (0);
-		tmp = tmp->left;	
-	}
-	return (1);
+		set_fd_in(node);
+		if (input_redir(node))
+		{
+			if (node->set_fd)
+			{
+				node->first_infile_err = 1;
+				set_next_node_err(node);
+				open_file_error(token->str);
+			}
+			*file = -1;
+		}
 }
 
 void	handle_redirs(t_ast *node)
@@ -173,20 +92,8 @@ void	handle_redirs(t_ast *node)
 	file = 0;
 	node->left->type_prev = node->type;
 	token = node->right->exec->first->content;
-	if (node->type == L_REDIR || node->type == HEREDOC)
-	{
-		set_fd_in(node);
-		if (input_redir(node))
-		{
-			if (node->set_fd)
-			{
-				node->first_infile_err = 1;
-				set_next_node_err(node);
-				open_file_error(token->str);
-			}
-			file = -1;
-		}
-	}
+	if (is_redirect_in(node->type))
+		handle_infile(node, token, &file);
 	else
 	{
 		set_fd_out(node);

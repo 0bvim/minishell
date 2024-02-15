@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 23:39:22 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/15 00:27:13 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,11 +137,17 @@ int			is_after_prompt(int is_after);
 int			handle_pipe(t_ast *node_pipe);
 
 //handle redirs
-void		handle_redirs(t_ast *node_pipe);
 int			heredoc_substitution(t_list *tokens);
-void		substitute_first_token_str(t_list *tokens);
 int			is_redirect_in(int type);
 int			is_redirect_out(int type);
+int			check_infile(t_ast *node);
+void		handle_redirs(t_ast *node_pipe);
+void		substitute_first_token_str(t_list *tokens);
+void		set_fd_in(t_ast *node);
+void		set_fd_out(t_ast *node);
+void		set_next_node(t_ast *node);
+void		set_next_node_err(t_ast *node);
+void		temp_fd(t_ast *node);
 
 // code_pieces
 char		*getenv_or_blank(const char *name);
