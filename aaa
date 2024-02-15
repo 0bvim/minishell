@@ -1,0 +1,262 @@
+minishell>$ # **************************************************************************** #
+minishell>$ #                                COMPARE PARSING                               #
+minishell>$ # **************************************************************************** #
+minishell>$ 
+minishell>$ ### comparing your input parsing to bash ###
+minishell>$ /bin/echo ""$?""
+127
+minishell>$ 
+minishell>$ /bin/echo $?"42"
+042
+minishell>$ 
+minishell>$ /bin/echo ''$?''"42"
+042
+minishell>$ 
+minishell>$ /bin/echo '"$USER"'
+"$USER"
+minishell>$ 
+minishell>$ /bin/echo "'$USER'"
+'brmoretti'
+minishell>$ 
+minishell>$ /bin/echo ""'$USER'""
+$USER
+minishell>$ 
+minishell>$ /bin/echo '"'$USER'"'
+"brmoretti"
+minishell>$ 
+minishell>$ /bin/echo "''$USER''"
+''brmoretti''
+minishell>$ 
+minishell>$ /bin/echo "'"'$USER'"'"
+'$USER'
+minishell>$ 
+minishell>$ /bin/echo '"'"$USER"'"'
+"brmoretti"
+minishell>$ 
+minishell>$ /bin/echo $"HOME"$USER
+$HOMEbrmoretti
+minishell>$ 
+minishell>$ /bin/echo $"HOM"E$USER
+$HOMEbrmoretti
+minishell>$ 
+minishell>$ /bin/echo "exit_code ->$? user ->$USER home -> $HOME"
+exit_code ->0 user ->brmoretti home -> /home/brmoretti
+minishell>$ 
+minishell>$ /bin/echo $"HOME"
+$HOME
+minishell>$ 
+minishell>$ /bin/echo $"42$"
+$42$
+minishell>$ 
+minishell>$ /bin/echo "$ "
+$ 
+minishell>$ 
+minishell>$ /bin/echo hi >./outfiles/outfile01 | /bin/echo bye
+bye
+minishell>$ 
+minishell>$ /bin/echo <123 <456 hi | /bin/echo 42
+42
+minishell>$ 
+minishell>$ /bin/echo '$='
+$=
+minishell>$ 
+minishell>$ /bin/echo '$ '
+$ 
+minishell>$ 
+minishell>$ /bin/echo "$?"
+0
+minishell>$ 
+minishell>$ /bin/echo '$?'
+$?
+minishell>$ 
+minishell>$ /bin/echo "'$?'"
+'0'
+minishell>$ 
+minishell>$ /bin/echo \$USER
+\brmoretti
+minishell>$ 
+minishell>$ /bin/echo \\$USER
+\\brmoretti
+minishell>$ 
+minishell>$ /bin/echo \\\$USER
+\\\brmoretti
+minishell>$ 
+minishell>$ /bin/echo \\\\$USER
+\\\\brmoretti
+minishell>$ 
+minishell>$ /bin/echo \\\\\$USER
+\\\\\brmoretti
+minishell>$ 
+minishell>$ /bin/echo \\\\\\\\\$USER
+\\\\\\\\\brmoretti
+minishell>$ 
+minishell>$ /bin/echo \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\$USER \$PATH \\$PWD
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\brmoretti \/usr/local/sbin:/usr/local/bin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/brmoretti/.local/bin:/home/brmoretti/.local/bin \\/home/brmoretti/Projects/42/minishell/minishell
+minishell>$ 
+minishell>$ /bin/echo "cat lol.c | cat > lol.c"
+cat lol.c | cat > lol.c
+minishell>$ 
+minishell>$ /bin/echo "cat lol.c '|' cat > lol.c"
+cat lol.c '|' cat > lol.c
+minishell>$ 
+minishell>$ /bin/echo '$USER' "$USER" "text  ' text"
+$USER brmoretti text  ' text
+minishell>$ 
+minishell>$ /bin/echo $USER =intergalaktikus miaf*szomez
+brmoretti =intergalaktikus
+minishell>$ 
+minishell>$ /bin/echo -n"-n" bonjour
+-n-n bonjour
+minishell>$ 
+minishell>$ /bin/echo "'$USER'"
+'brmoretti'
+minishell>$ 
+minishell>$ /bin/echo " '$USER' "
+ 'brmoretti' 
+minishell>$ 
+minishell>$ /bin/echo text"$USER"
+textbrmoretti
+minishell>$ 
+minishell>$ /bin/echo text"'$USER'" ' $USER '
+text'brmoretti'  $USER 
+minishell>$ 
+minishell>$ /bin/echo "text"   "$USER"    "$USER"
+text brmoretti brmoretti
+minishell>$ 
+minishell>$ /bin/echo '              $USER          '
+              $USER          
+minishell>$ 
+minishell>$ /bin/echo ''''''''''$USER''''''''''
+brmoretti
+minishell>$ 
+minishell>$ /bin/echo """"""""$USER""""""""
+brmoretti
+minishell>$ 
+minishell>$ /bin/echo '""""""""$USER""""""""'
+""""""""$USER""""""""
+minishell>$ 
+minishell>$ /bin/echo ""'""""""$USER""""""'""
+""""""$USER""""""
+minishell>$ 
+minishell>$ /bin/echo """"""""'$USER'""""""""
+$USER
+minishell>$ 
+minishell>$ /bin/echo """""""'"$USER"'"""""""
+'brmoretti'
+minishell>$ 
+minishell>$ /bin/echo """"""'""$USER""'""""""
+""$USER""
+minishell>$ 
+minishell>$ /bin/echo ""'""'""""$USER""""'""'""
+""brmoretti""
+minishell>$ 
+minishell>$ /bin/echo '""'""'""""$USER""""'""'""'
+""""""$USER""""""
+minishell>$ 
+minishell>$ /bin/echo $USER'$USER'text oui oui     oui  oui $USER oui      $USER ''
+brmoretti$USERtext oui oui oui oui brmoretti oui brmoretti
+minishell>$ 
+minishell>$ /bin/echo "text" "text$USER" ... "$USER"
+text textbrmoretti ... brmoretti
+minishell>$ 
+minishell>$ /bin/echo
+
+minishell>$ 
+minishell>$ /bin/echo ''
+
+minishell>$ 
+minishell>$ /bin/echo ""
+
+minishell>$ 
+minishell>$ /bin/echo '' ""
+
+minishell>$ 
+minishell>$ /bin/echo /bin/echo
+/bin/echo
+minishell>$ 
+minishell>$ /bin/echo test1
+test1
+minishell>$ 
+minishell>$ /bin/echo 'test1'
+test1
+minishell>$ 
+minishell>$ /bin/echo "/bin/echo hallo"
+/bin/echo hallo
+minishell>$ 
+minishell>$ /bin/echo /bin/echo"1"
+/bin/echo1
+minishell>$ 
+minishell>$ /bin/echo "test1 test2"
+test1 test2
+minishell>$ 
+minishell>$ /bin/echo "test1  test2" test3
+test1  test2 test3
+minishell>$ 
+minishell>$ /bin/echo " test1 test2 " 'test3 '
+ test1 test2  test3 
+minishell>$ 
+minishell>$ /bin/echo $USER$TESTNOTFOUND$HOME$
+brmoretti/home/brmoretti$
+minishell>$ 
+minishell>$ /bin/echo $USER$TESTNOTFOUND$HOME$WTF$PWD
+brmoretti/home/brmoretti/home/brmoretti/Projects/42/minishell/minishell
+minishell>$ 
+minishell>$ #/bin/echo -n test1
+minishell>$ 
+minishell>$ /bin/echo -n "test1 test2"
+test1 test2minishell>$ 
+minishell>$ #/bin/echo -n "test1 test2" test3
+minishell>$ 
+minishell>$ #/bin/echo -n " test1 test2 " 'test3 '
+minishell>$ 
+minishell>$ #/bin/echo -n test1test2
+minishell>$ 
+minishell>$ /bin/echo test1 -n
+test1 -n
+minishell>$ 
+minishell>$ /bin/echo "test1 -n"
+test1 -n
+minishell>$ 
+minishell>$ #/bin/echo -n -n test1
+minishell>$ 
+minishell>$ #/bin/echo -n -n -n -n -n test1
+minishell>$ 
+minishell>$ /bin/echo "  -nn "
+  -nn 
+minishell>$ 
+minishell>$ /bin/echo "-n test1 -n test2"
+-n test1 -n test2
+minishell>$ 
+minishell>$ /bin/echo "test1 -n test2"
+test1 -n test2
+minishell>$ 
+minishell>$ /bin/echo ~42
+~42
+minishell>$ 
+minishell>$ #/bin/echo -n -n -nasd
+minishell>$ 
+minishell>$ /bin/echo -n -n -n-nnnnn
+-n-nnnnnminishell>$ 
+minishell>$ #/bin/echo -n -nnnnnnn -n -nnn -nnnnn -n-n
+minishell>$ 
+minishell>$ #/bin/echo -n -nnnnnnn -n -nnn -nnnnn -n feel my pain
+minishell>$ 
+minishell>$ #/bin/echo -n -n -n-n
+minishell>$ 
+minishell>$ /bin/echo "'totally logical'"
+'totally logical'
+minishell>$ 
+minishell>$ /bin/echo 'totally logical'
+totally logical
+minishell>$ 
+minishell>$ /bin/echo ''totally logical''
+totally logical
+minishell>$ 
+minishell>$ /bin/echo ""'totally logical'"" # **************************************************************************** #
+totally logical # lib LICENSE README.md includes src drawio readline_supp.supp readline.supp test.txt minishell_tester tags outfiles test_files obj Makefile aaa main.c minishell testes_minishell.txt a.out #
+minishell>$ #                                PARSING HELL                                  #
+minishell>$ # **************************************************************************** #
+minishell>$ 
+minishell>$ ">>" asd
+minishell>$ 
+minishell>$ >">" asd
