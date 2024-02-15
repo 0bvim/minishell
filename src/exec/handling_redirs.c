@@ -167,7 +167,7 @@ static int	check_infile(t_ast *node)
 	tmp = node->left;
 	while (tmp)
 	{
-		if (is_redirect(tmp->type))
+		if (is_redirect_in(tmp->type))
 			return (0);
 		tmp = tmp->left;	
 	}
@@ -219,7 +219,7 @@ void	handle_redirs(t_ast *node)
 			else
 				open_file_error(token->str);
 		}
-		if (check_infile(node))
+		if (is_redirect_in(node->type) && check_infile(node))
 		{
 			close (tmp[0]);
 			close (tmp[1]);
@@ -264,7 +264,7 @@ void	handle_redirs(t_ast *node)
 	}
 	if (node->type == R_REDIR || node->type == APPEND)
 	{
-		if (node->set_fd && !node->first_infile_err)
+		if (node->set_fd && !node->first_infile_err && file != -1)
 		{
 			node->fd = open(node->tmp_file, O_RDONLY, 0644);
 			char buff[1];
@@ -280,7 +280,8 @@ void	handle_redirs(t_ast *node)
 			dup2(tmp[1], STDOUT_FILENO);
 			dup2(tmp[0], STDIN_FILENO);
 		}
-		close(file);
+		if (file != -1)
+			close(file);
 		free(node->tmp_file);
 	}
 	if (node->type == L_REDIR || node->type == HEREDOC)
