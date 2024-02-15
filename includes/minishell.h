@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 18:59:26 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/14 21:27:22 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_ast
 	int					outfile_set;
 	int					first_infile_err;
 	int					first_outfile_err;
+	char				*tmp_file;
 	struct s_ast		*left;
 	struct s_ast		*right;
 	t_list				*exec;

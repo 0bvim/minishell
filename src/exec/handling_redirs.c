@@ -145,11 +145,16 @@ static int	input_redir(t_ast *node)
 
 void	temp_fd(t_ast *node)
 {
-	int	fd;
+	int		fd;
+	t_token	*tk;
+	char	*str;
 
+	tk = node->right->exec->first->content;
+	str = (ft_strdup(ft_strrchr(tk->str, '/') + 1));
+	node->tmp_file = ft_strmerge(ft_strdup("/tmp/_"), str);
 	if (!node->set_fd)
 		return ;
-	fd = open("/tmp/outfile", O_CREAT | O_TRUNC | O_RDWR, 0644);
+	fd = open(node->tmp_file, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	node->fd = fd;
 	dup2(fd, STDOUT_FILENO);
 	close (fd);
@@ -203,9 +208,9 @@ void	handle_redirs(t_ast *node)
 		file = append_trunc(node, APEN);
 	if (file == -1)
 	{
+		node->error = 1;
 		if (is_redirect_out(node->type))
 		{
-			node->error = 1;
 			if (node->set_fd)
 			{
 				node->first_outfile_err = 1;
@@ -231,8 +236,6 @@ void	handle_redirs(t_ast *node)
 	{
 		if (node->set_fd || node->left->error)
 			open_file_error(token->str);
-		// else if (node->left->error || node->error)
-		// 	last_exit_status(1);
 	}
 	if (node->left && node->left->error == 1)
 	{
@@ -254,12 +257,13 @@ void	handle_redirs(t_ast *node)
 	{
 		if (node->set_fd && !node->first_infile_err)
 		{
-			node->fd = open("/tmp/outfile", O_RDONLY, 0644);
+			node->fd = open(node->tmp_file, O_RDONLY, 0644);
 			char buff[1];
 			while (read(node->fd, buff, 1))
 				write(file, buff, 1);
 			close(node->fd);
-			unlink("/tmp/outfile");
+			unlink(node->tmp_file);
+			free(node->tmp_file);
 			dup2(tmp[1], STDOUT_FILENO);
 		}
 		else
