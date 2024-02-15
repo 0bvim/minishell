@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 02:58:56 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 03:12:58 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,26 +81,19 @@ void	handle_redirs(t_ast *node)
 	else
 		handle_outfile(node, &file);
 	if (file == -1)
-	{
 		if (file_err(node, token, tmp))
 			return ;
-	}
 	if (node->left)
 		execution(node->left);
 	if (node->first_outfile_err || node->left->error)
-	{
 		if (node->set_fd || node->left->error)
 			open_file_error(token->str);
-	}
 	if (node->left && node->left->error == 1)
 	{
 		node_left_error(node, token, tmp, &file);
 		return ;
 	}
-	if (is_redirect_out(node->type))
-		after_ex(node, &file, tmp);
-	if (is_redirect_in(node->type))
-		infile_after(node, tmp);
+	seek_and_destroy(node, &file, tmp);
 	close_tmp(tmp);
 	return;
 }

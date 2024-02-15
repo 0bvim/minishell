@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 02:59:11 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/15 03:12:42 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ void		close_tmp(const int *tmp);
 void		after_ex(t_ast *node, int *file, const int *tmp);
 void		infile_after(t_ast *node, const int *tmp);
 void		init_redirs(t_ast *node, t_token **tk, int *file);
+void		seek_and_destroy(t_ast *node, int *file, const int *tmp);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);
