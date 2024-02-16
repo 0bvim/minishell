@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:39:19 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/16 00:16:44 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/16 13:54:01 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,24 @@
 
 void	handle_block(t_token *block)
 {
-	parser(block->str);
+	pid_t	pid;
+	char	*str;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		ft_putendl_fd("fork error", 2);
+		last_exit_status(1);
+		return ;
+	}
+	if (!pid)
+	{
+		str = block->str;
+		block->str = NULL;
+		ast_holder(NULL, 1);
+		parser(str);
+		clear_everything();
+		exit(last_exit_status(-1));
+	}
+	pid_last_exit_status(pid);
 }

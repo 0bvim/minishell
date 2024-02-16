@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/16 00:04:15 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/16 12:52:51 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void		builtin_exit(char **args);
 int			export(char **args);
 int			pwd(const char **args);
 int			unset(char **args);
+void		clear_everything(void);
 
 //prompt
 char		*prompt(void);
