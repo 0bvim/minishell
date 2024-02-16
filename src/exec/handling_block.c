@@ -6,56 +6,42 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:39:19 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/15 18:34:11 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/15 20:53:48 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <unistd.h>
 
 void	handle_block(t_token *block)
 {
-	int		pipe1[2];
-	int		pipe2[2];
+	int		to_child[2];
+	int		from_child[2];
 	pid_t	pid;
-	char	*args[2] = {"minishell", NULL};
-	int		dups[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
+	char	*args[2] = {"./minishell", NULL};
+	int		bkp[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
 
-	pipe(pipe1);
-	pipe(pipe2);
+	pipe(to_child);
+	pipe(from_child);
 	pid = fork();
 	if (!pid)
 	{
-		close(pipe1[0]);
-		close(pipe2[1]);
-		dup2(pipe1[0], STDIN_FILENO);
-		dup2(pipe2[1], STDOUT_FILENO);
-		close(pipe1[1]);
-		close(pipe2[0]);
+		close(to_child[1]);
+		close(from_child[0]);
+		dup2(to_child[0], STDIN_FILENO);
+		dup2(from_child[1], STDOUT_FILENO);
+		close(STDIN_FILENO);
+		close(STDOUT_FILENO);
 		execve("./minishell", args, environ_holder(NULL, 0));
+		ft_putstr_fd("deu ruim", STDERR_FILENO);
 	}
-	close(pipe1[1]);
-	close(pipe2[0]);
-	dup2(pipe1[1], STDOUT_FILENO);
-	write(pipe1[1], block->str, ft_strlen(block->str));
-	close(pipe1[1]);
+	close(to_child[0]);
+	close(from_child[1]);
+	write(to_child[1], block->str, strlen(block->str) + 1);
+	close(to_child[1]);
+	dup2(from_child[0], STDOUT_FILENO);
 	wait(NULL);
-	dup2(dups[0], STDIN_FILENO);
-	dup2(dups[1], STDOUT_FILENO);
-	close(pipe2[1]);
+	close(from_child[0]);
+	dup2(bkp[0], STDIN_FILENO);
+	dup2(bkp[1], STDOUT_FILENO);
 }
-
-// void	handle_block(t_token *node_block)
-// {
-// 	pid_t	pid;
-// 	char	*args[2] = {"minishell", NULL};
-
-// 	pid = fork();
-// 	if (!pid)
-// 	{
-// 		int	file = open("/tmp/test", O_CREAT, O_RDWR, O_TRUNC, 0644);
-// 		ft_putendl_fd(node_block->str, file);
-// 		dup2(file, 0);
-// 		close(file);
-// 		execve("./minishell", args, environ_holder(NULL, 0));
-// 	}
-// }
