@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 13:58:36 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/16 00:05:24 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 volatile int	g_last_signal;
 
-static void	parser(char *input);
+//void	parser(char *input);
 static void	remove_quotes(void *content);
 
 int	main(void)
@@ -51,7 +51,7 @@ char	*prompt(void)
 	return (input);
 }
 
-static void	parser(char *input)
+void	parser(char *input)
 {
 	t_list	*tokens;
 	t_ast	*root;

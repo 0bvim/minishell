@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 11:56:21 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/16 00:04:15 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ int			unset(char **args);
 //prompt
 char		*prompt(void);
 int			is_after_prompt(int is_after);
+void		parser(char *input);
 
 //pipe handling
 int			handle_pipe(t_ast *node_pipe);
