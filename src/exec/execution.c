@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 00:34:43 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/15 22:03:31 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	fork_and_execve(char **tokens, char *path)
 			panic_ast(!!errno, NULL);
 		ft_clear_list(&tokens);
 		free(path);
+		static_pwd(NULL, 1);
+		static_old_pwd(NULL, 1);
 		exit(last_exit_status(-1));
 	}
 	pid_last_exit_status(pid);
