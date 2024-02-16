@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 20:06:17 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:49:23 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,12 @@ void		builtin_exit(char **args);
 int			export(char **args);
 int			pwd(const char **args);
 int			unset(char **args);
+void		clear_everything(void);
 
 //prompt
 char		*prompt(void);
 int			is_after_prompt(int is_after);
+void		parser(char *input);
 
 //pipe handling
 int			handle_pipe(t_ast *node_pipe);
@@ -162,6 +164,9 @@ void		seek_and_destroy(t_ast *node, int *file, const int *tmp);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);
+
+//handle block
+void		handle_block(t_token *block);
 
 // code_pieces
 char		*getenv_or_blank(const char *name);

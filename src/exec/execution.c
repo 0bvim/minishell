@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 22:03:31 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/16 15:49:42 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,10 @@ void	execution(t_ast *root)
 	else if (root->right)
 		execution(root->right);
 	else if (root->exec && root->exec->first)
-		execute(tokens_to_args(root->exec));
+	{
+		if (((t_token *)root->exec->first->content)->type == BLOCK)
+			handle_block(((t_token *)root->exec->first->content));
+		else
+			execute(tokens_to_args(root->exec));
+	}
 }
