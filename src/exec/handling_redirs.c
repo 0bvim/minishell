@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 03:23:43 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:59:27 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,38 @@ int	input_redir(t_ast *node)
 	return (0);
 }
 
+void	before_recursion(t_ast *node, t_token **token, int *file)
+{
+	init_redirs(node, token, file);
+	if (is_redirect_in(node->type))
+	{
+		set_fd_in(node);
+		handle_infile(node, *token, file);
+	}
+	else
+	{
+		set_fd_out(node);
+		temp_fd(node);
+		handle_outfile(node, file);
+	}
+}
+
 void	handle_redirs(t_ast *node)
 {
 	t_token		*token;
 	int			file;
 	const int	tmp[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
 
-	init_redirs(node, &token, &file);
-	if (is_redirect_in(node->type))
-		handle_infile(node, token, &file);
-	else
-		handle_outfile(node, &file);
+	before_recursion(node, &token, &file);
+	if (node->left)
+		execution(node->left);
+	// if (is_redirect_in(node->type))
+	// 	handle_infile(node, token, &file);
+	// else
+	// 	handle_outfile(node, &file);
 	if (file == -1)
 		if (file_err(node, token, tmp))
 			return ;
-	if (node->left)
-		execution(node->left);
 	if (node->first_outfile_err || node->left->error)
 		if (node->set_fd || node->left->error)
 			open_file_error(token->str);
