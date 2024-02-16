@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 01:51:52 by nivicius          #+#    #+#             */
-/*   Updated: 2024/02/15 03:22:20 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/16 01:54:54 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,25 @@ void	handle_infile(t_ast *node, t_token *token, int *file)
 
 void	handle_outfile(t_ast *node, int *file)
 {
+	t_ast	*tmp;
+
 	set_fd_out(node);
 	temp_fd(node);
+	if (!node->set_fd)
+		return ;
 	if (node->type == R_REDIR)
 		*file = append_trunc(node, TRUN);
 	else if (node->type == APPEND)
 		*file = append_trunc(node, APEN);
+	tmp = node->left;
+	while (tmp)
+	{
+		if (tmp->type == R_REDIR)
+			append_trunc(tmp, TRUN);
+		else if (tmp->type == APPEND)
+			append_trunc(tmp, APEN);
+		tmp = tmp->left;
+	}
 }
 
 void	outfile_error(t_ast *node, t_token *token)
