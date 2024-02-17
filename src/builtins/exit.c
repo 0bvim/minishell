@@ -6,12 +6,19 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:19:57 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/16 12:51:54 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/17 13:32:51 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+/**
+ * Sets the exit status code based on the arguments provided.
+ * The exit code is converted firstly to an unsigned char to guarantee that
+ * the exit status code is between 0 and 255. Then it is converted to an int.
+ * @param args The arguments passed to the function.
+ * @param exit_code A pointer to the exit status code variable.
+ */
 void	exit_status_code(char **args, int *exit_code)
 {
 	*exit_code = 0;
@@ -51,5 +58,5 @@ void	builtin_exit(char **args)
 	ft_putendl_fd("exit", 1);
 	ft_clear_list(&args);
 	clear_everything();
-	exit((int)exit_code);
+	exit(exit_code);
 }
