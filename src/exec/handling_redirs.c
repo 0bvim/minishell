@@ -3,51 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/15 03:23:43 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/17 02:55:27 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	append_trunc(t_ast *node, int flag)
+static void	open_file_error(char *file_name)
 {
-	t_token	*token;
-	t_list	*right_tokens;
-
-	node->left->type_prev = node->type;
-	token = node->right->exec->first->content;
-	right_tokens = node->right->exec;
-	substitute_first_token_str(right_tokens);
-	if (!access(token->str, F_OK))
-		node->old_file = 1;
-	return (open(token->str, flag, 0644));
-}
-
-int	open_file_error(char *file_name)
-{
-	if (last_exit_status(-1) == 1)
-		return (1);
+	if (last_exit_status(-1))
+		return ;
 	if (!access(file_name, F_OK) && access(file_name, W_OK | R_OK))
 	{
 		ft_putstr_fd("minishell: Permission denied\n", 2);
-		return (last_exit_status(1));
+		last_exit_status(1);
 	}
 	else if (access(file_name, F_OK))
 	{
 		ft_putstr_fd("minishell: No such file or directory\n", 2);
-		return (last_exit_status(1));
+		last_exit_status(1);
 	}
-	return (0);
 }
 
-int	input_redir(t_ast *node)
+static void	handle_outfile(t_ast *node)
 {
-	t_list		*right_tokens;
-	t_token		*token;
-	int			file;
+	t_token	*token;
+	t_list	*right_tokens;
+
+	token = node->right->exec->first->content;
+	right_tokens = node->right->exec;
+	substitute_first_token_str(right_tokens);
+	if (node->type == R_REDIR)
+		node->fd = open(token->str, TRUN, 0666);
+	else if (node->type == APPEND)
+		node->fd = open(token->str, APEN, 0666);
+	open_file_error(token->str);
+}
+
+void	handle_infile(t_ast *node)
+{
+	t_list	*right_tokens;
+	t_token	*token;
 
 	right_tokens = node->right->exec;
 	substitute_first_token_str(right_tokens);
@@ -55,44 +54,47 @@ int	input_redir(t_ast *node)
 	if (node->type == HEREDOC && token->type != QUOTE \
 		&& token->type != DOUBLE_QUOTE)
 		heredoc_expansion(token);
-	file = open(token->str, O_RDONLY);
-	if (file == -1 && !node->first_infile_err)
-		return (open_file_error(token->str));
-	else if (file == -1)
-		return (last_exit_status(1));
-	if (node->left && node->set_fd)
-		dup2(file, STDIN_FILENO);
-	close(file);
-	if (node->type == HEREDOC)
-		unlink(token->str);
-	return (0);
+	node->fd = open(token->str, O_RDONLY);
+	open_file_error(token->str);
+}
+
+void	open_dup_close(t_ast *node)
+{
+	if (is_redirect(node->left->type))
+		open_dup_close(node->left);
+	if (is_redirect_out(node->type) && !last_exit_status(-1))
+	{
+		handle_outfile(node);
+		if (node->fd != -1)
+		{
+			dup2(node->fd, STDOUT_FILENO);
+			close(node->fd);
+		}
+	}
+	else if (is_redirect_in(node->type) && !last_exit_status(-1))
+	{
+		handle_infile(node);
+		if (node->fd != -1)
+		{
+			dup2(node->fd, STDIN_FILENO);
+			close(node->fd);
+		}
+		if (node->type == HEREDOC)
+			unlink(node->right->exec->first->content);
+	}
 }
 
 void	handle_redirs(t_ast *node)
 {
-	t_token		*token;
-	int			file;
 	const int	tmp[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
 
-	init_redirs(node, &token, &file);
-	if (is_redirect_in(node->type))
-		handle_infile(node, token, &file);
-	else
-		handle_outfile(node, &file);
-	if (file == -1)
-		if (file_err(node, token, tmp))
-			return ;
-	if (node->left)
-		execution(node->left);
-	if (node->first_outfile_err || node->left->error)
-		if (node->set_fd || node->left->error)
-			open_file_error(token->str);
-	if (node->left && node->left->error == 1)
+	if (!node->fd)
+		open_dup_close(node);
+	if (last_exit_status(-1))
 	{
-		node_left_error(node, token, tmp, &file);
+		dup_close_tmp(tmp);
 		return ;
 	}
-	seek_and_destroy(node, &file, tmp);
-	close_tmp(tmp);
-	return ;
+	execution(node->left);
+	dup_close_tmp(tmp);
 }

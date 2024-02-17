@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/17 00:23:32 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/17 03:02:10 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-/* display the prompt */
-/* read user input */
-/* parser user input into commands and expand variables if have one. */
-/* search the command */
-/* create a child process (fork) */
-/* execute the command(s) (execv)*/
-/* wait for command completion */
-/* remember to use extern **environ */
 
 volatile int	g_last_signal;
 

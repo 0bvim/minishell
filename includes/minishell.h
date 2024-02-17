@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/16 17:36:49 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/17 03:01:49 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@
 # define BLANK ""
 # define TRUN 0x00000242
 # define APEN 0x00000442
-# define HERE 0x00000241
-
-extern volatile int	g_last_signal;
+# define HERE 0x000000C2
 
 /* enum and struct */
 
@@ -87,18 +85,7 @@ typedef struct s_token
 typedef struct s_ast
 {
 	int					type;
-	int					type_prev;
-	int					set_fd;
 	int					fd;
-	int					error;
-	int					old_file;
-	int					infile_set;
-	int					outfile_set;
-	int					first_infile_err;
-	int					first_outfile_err;
-	int					fake_file;
-	char				buff[1];
-	char				*tmp_file;
 	struct s_ast		*left;
 	struct s_ast		*right;
 	t_list				*exec;
@@ -140,27 +127,9 @@ int			handle_pipe(t_ast *node_pipe);
 int			heredoc_substitution(t_list *tokens);
 int			is_redirect_in(int type);
 int			is_redirect_out(int type);
-int			check_infile(t_ast *node);
-int			append_trunc(t_ast *node, int flag);
-int			open_file_error(char *file_name);
-int			input_redir(t_ast *node);
-int			file_err(t_ast *node, t_token *tk, const int *tmp);
+void		dup_close_tmp(const int *tmp);
 void		handle_redirs(t_ast *node_pipe);
 void		substitute_first_token_str(t_list *tokens);
-void		set_fd_in(t_ast *node);
-void		set_fd_out(t_ast *node);
-void		set_next_node(t_ast *node);
-void		set_next_node_err(t_ast *node);
-void		temp_fd(t_ast *node);
-void		handle_infile(t_ast *node, t_token *token, int *file);
-void		handle_outfile(t_ast *node, int *file);
-void		outfile_error(t_ast *node, t_token *token);
-void		node_left_error(t_ast *nod, t_token *tk, const int *tmp, int *file);
-void		close_tmp(const int *tmp);
-void		after_ex(t_ast *node, int *file, const int *tmp);
-void		infile_after(t_ast *node, const int *tmp);
-void		init_redirs(t_ast *node, t_token **tk, int *file);
-void		seek_and_destroy(t_ast *node, int *file, const int *tmp);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);

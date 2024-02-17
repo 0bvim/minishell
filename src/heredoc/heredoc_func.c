@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:49:49 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/14 11:37:34 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/17 00:56:58 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	heredoc_file_creation(int count, int *fd, char **fl_name)
 	*fl_name = ft_strmerge(ft_strdup("/tmp/heredoc"), ft_itoa(count));
 	if (!*fl_name)
 		return (0);
-	*fd = open(*fl_name, HERE, 0644);
+	*fd = open(*fl_name, HERE, 0600);
 	if (*fd >= 0)
 		return (1);
 	free (*fl_name);
