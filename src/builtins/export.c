@@ -6,11 +6,13 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:08:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/14 20:49:40 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/17 20:46:05 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	print_environ_sorted(void);
 
 static void	add_to_env(char *new_env_var)
 {
@@ -57,7 +59,7 @@ static void	ft_setenv(const char *name, const char *value)
 	add_to_env(new_env_var);
 }
 
-int	is_valid_identifier(char *str)
+static int	is_valid_identifier(char *str)
 {
 	if (*str != '=' && !ft_isdigit(*str))
 	{
@@ -80,6 +82,8 @@ int	export(char **args)
 
 	i = 0;
 	status = 0;
+	if (!args[1])
+		print_environ_sorted();
 	while (args[++i])
 	{
 		if (!is_valid_identifier(args[i]) && status++)
