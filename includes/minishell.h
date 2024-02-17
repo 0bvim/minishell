@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/17 14:14:54 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/17 17:26:13 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,8 @@ void		token_expansion(void *p_token);
 void		heredoc_expansion(t_token *token);
 char		**tokens_to_args(t_list *tokens);
 void		asterisk(t_list	*tokens, t_element *el);
+int			is_quotes(int type);
+void		split_tk_str(t_list *toks);
 
 // execve
 void		execution(t_ast *root);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/14 17:01:34 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/17 17:50:45 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,51 @@ void	expansions(t_list *tokens)
 {
 	asterisk_expansion(tokens);
 	ft_lstiter(tokens, token_expansion);
+	split_tk_str(tokens);
+}
+
+int	is_quotes(int type)
+{
+	return (type == QUOTE || type == DOUBLE_QUOTE);
+}
+
+void	split_tk_str(t_list *toks)
+{
+	t_element	*el;
+	t_token		*tk;
+	t_token		*new_token;
+	char		**splited;
+	int			i;
+	
+	el = toks->first;
+	i = -1;
+	while (el)
+	{
+		tk = el->content;
+		if (!ft_strchr(tk->str, ' ') || is_quotes(tk->type))
+		{
+			el = el->next;
+			continue;
+		}
+		splited = ft_split(tk->str, 32);
+		while (splited[++i])
+		{
+			new_token = ft_calloc(1, sizeof(t_token));
+			new_token->type = tk->type;
+			new_token->next_char = ' ';
+			new_token->str = ft_strdup(tk->str);
+			ft_lstadd_before(toks, el,ft_lstnewelement(new_token));
+		}
+		ft_clear_list(&splited);
+		if (el->next)
+		{
+			el = el->next;
+			ft_lstdelone(toks, el->prev, free_token);
+		}
+		else
+		{
+			ft_lstdelone(toks, el, free_token);
+			break;
+		}
+	}
 }
