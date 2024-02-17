@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/16 00:05:24 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/16 17:45:29 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@
 /* remember to use extern **environ */
 
 volatile int	g_last_signal;
-
-//void	parser(char *input);
-static void	remove_quotes(void *content);
 
 int	main(void)
 {
@@ -60,9 +57,9 @@ void	parser(char *input)
 	free(input);
 	if (!tokens)
 		return ;
+	ft_lstiter(tokens, trim_edges);
 	if (grammar_checker(tokens))
 		return ;
-	ft_lstiter(tokens, remove_quotes);
 	if (!heredoc_substitution(tokens))
 		return ;
 	root = ast_constructor(tokens);
@@ -71,18 +68,4 @@ void	parser(char *input)
 	ast_holder(root, 0);
 	execution(root);
 	ast_holder(NULL, 1);
-}
-
-static void	remove_quotes(void *content) //change to remove quotes from tokens
-{
-	t_token	*token;
-	char	*tmp;
-
-	token = content;
-	if (token->type == QUOTE || token->type == DOUBLE_QUOTE || token->type == BLOCK)
-	{
-		tmp = ft_strndup(token->str + 1, ft_strlen(token->str) - 2);
-		free(token->str);
-		token->str = tmp;
-	}
 }

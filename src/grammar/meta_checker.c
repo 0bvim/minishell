@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   meta_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:13:42 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/09 11:10:03 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:09:54 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,9 @@ int	is_redirect(int type)
 int	is_and_or(int type)
 {
 	return (type == AND || type == OR);
+}
+
+int	is_metacharacter(int type)
+{
+	return (is_redirect(type) || is_and_or(type) || type == PIPE);
 }

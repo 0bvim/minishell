@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/16 15:49:23 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:36:49 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,9 @@ char		*validate_path(char *exec_name);
 int			grammar_checker(t_list *tokens);
 int			is_redirect(int type);
 int			is_and_or(int type);
+int			is_metacharacter(int type);
 int			redir_and_or_pipe_rule(t_element *el);
+int			block_rule(t_element *el);
 
 //UTILS
 int			ft_issymbol(char c);
@@ -228,6 +230,7 @@ int			add_special_token(t_list *tokens,
 				const char **start, const char **mover, int token_type);
 int			quotes_validation(const char *str);
 int			parenthesis_validation(const char *str);
+void		trim_edges(void *content);
 
 //SIGNALS
 void		signals_initializer(void);

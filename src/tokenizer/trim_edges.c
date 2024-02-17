@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grammar_checker.c                                  :+:      :+:    :+:   */
+/*   trim_edges.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 15:37:13 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/16 17:09:22 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/02/16 17:34:40 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/02/16 17:41:09 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	grammar_checker(t_list *tokens)
+void	trim_edges(void *content)
 {
-	t_element	*el;
+	t_token	*token;
+	char	*tmp;
 
-	if (!tokens || !tokens->first)
-		panic_tokenizer(0, NULL);
-	el = tokens->first;
-	while (el)
+	token = content;
+	if (token->type == QUOTE
+		|| token->type == DOUBLE_QUOTE
+		|| token->type == BLOCK)
 	{
-		if (redir_and_or_pipe_rule(el) || block_rule(el))
-			return (1);
-		el = el->next;
+		tmp = ft_strndup(token->str + 1, ft_strlen(token->str) - 2);
+		free(token->str);
+		token->str = tmp;
 	}
-	return (0);
 }
