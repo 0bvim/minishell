@@ -6,11 +6,13 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/14 17:01:34 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/17 19:47:22 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	split_spaces(t_list *tokens);
 
 static char	*merged_substitution(char *head, char *middle, char *tail,
 	char **mover)
@@ -118,4 +120,5 @@ void	expansions(t_list *tokens)
 {
 	asterisk_expansion(tokens);
 	ft_lstiter(tokens, token_expansion);
+	split_spaces(tokens);
 }
