@@ -106,7 +106,7 @@ CFILES += $(addprefix $(REDIR)/, redir_utils.c)
 CFILES += $(addprefix $(AST)/, ast.c ast_split_node.c ast_memory_handler.c search_tokens.c)
 CFILES += $(addprefix $(EXEC)/, execution.c handling_pipe.c handling_redirs.c tokens_to_args.c handling_and_or.c handling_block.c)
 CFILES += $(addprefix $(EXPANSIONS)/, expansions.c heredoc_expansion.c redirs_expansions.c asterisk.c split_spaces.c)
-CFILES += $(addprefix $(BUILTINS)/, builtins_caller.c cd.c cd_helper.c echo.c env.c exit.c export.c pwd.c unset.c)
+CFILES += $(addprefix $(BUILTINS)/, builtins_caller.c cd.c cd_helper.c echo.c env.c exit.c export.c pwd.c unset.c export_sorting.c)
 CFILES += $(addprefix $(SIGNALS)/, signal_handler.c signals_initializer.c)
 CFILES += $(addprefix $(HEREDOC)/, heredoc_func.c)
 
