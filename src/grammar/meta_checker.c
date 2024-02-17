@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   meta_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:13:42 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/16 17:09:54 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:50:12 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	is_redirect(int type)
 int	is_and_or(int type)
 {
 	return (type == AND || type == OR);
+}
+
+int	is_quotes(int type)
+{
+	return (type == QUOTE || type == DOUBLE_QUOTE);
 }
 
 int	is_metacharacter(int type)

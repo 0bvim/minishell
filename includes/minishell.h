@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/17 17:26:13 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/17 19:48:53 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,6 @@ t_ast		*ast_holder(t_ast *root, int to_free);
 void		panic_ast(int error, char *msg);
 t_element	*search_and_or(t_list *tokens);
 t_element	*search_pipe(t_list *tokens);
-t_element	*search_outfile_redir(t_list *tokens);
-t_element	*search_infile_redir(t_list *tokens);
 t_element	*search_redir(t_list *tokens);
 
 //EXPANSIONS
@@ -164,8 +162,6 @@ void		token_expansion(void *p_token);
 void		heredoc_expansion(t_token *token);
 char		**tokens_to_args(t_list *tokens);
 void		asterisk(t_list	*tokens, t_element *el);
-int			is_quotes(int type);
-void		split_tk_str(t_list *toks);
 
 // execve
 void		execution(t_ast *root);
@@ -176,6 +172,7 @@ char		*validate_path(char *exec_name);
 int			grammar_checker(t_list *tokens);
 int			is_redirect(int type);
 int			is_and_or(int type);
+int			is_quotes(int type);
 int			is_metacharacter(int type);
 int			redir_and_or_pipe_rule(t_element *el);
 int			block_rule(t_element *el);
