@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rules.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:44:34 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/16 21:34:43 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/17 02:57:09 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_block_grammar(t_element *el)
 	block_tokens = tokenizer(((t_token *)el->content)->str);
 	ft_lstiter(block_tokens, trim_edges);
 	grammar = grammar_checker(block_tokens);
-	ft_lstclear(block_tokens, free_token);
+	token_list_holder(NULL, 1);
 	token_list_holder(tokens_backup, 0);
 	if (grammar)
 	{
@@ -73,7 +73,7 @@ int	block_rule(t_element *el)
 	if (el->next)
 		next_type = ((t_token *)el->next->content)->type;
 	if (!((prev_type == -1 || is_metacharacter(prev_type))
-		&& (next_type == -1 || is_metacharacter(next_type))))
+			&& (next_type == -1 || is_metacharacter(next_type))))
 	{
 		panic_tokenizer(2, "syntax error near unexpected token");
 		return (1);
