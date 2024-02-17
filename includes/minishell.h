@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/17 03:01:49 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/17 05:59:58 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define TRUN 0x00000242
 # define APEN 0x00000442
 # define HERE 0x000000C2
+
+extern volatile int	g_last_signal;
 
 /* enum and struct */
 
@@ -187,6 +189,7 @@ int			last_exit_status(int exit_status);
 void		pid_last_exit_status(pid_t pid);
 void		ft_clear_list(char ***list);
 char		*ft_getenv(const char *name);
+void		close_fds(void);
 
 //TOKENIZER
 t_list		*tokenizer(const char *str);

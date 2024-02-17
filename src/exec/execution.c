@@ -6,11 +6,17 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/16 15:49:42 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/17 06:07:57 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	clean_pwd(void)
+{
+	static_pwd(NULL, 1);
+	static_old_pwd(NULL, 1);
+}
 
 void	fork_and_execve(char **tokens, char *path)
 {
@@ -34,8 +40,8 @@ void	fork_and_execve(char **tokens, char *path)
 			panic_ast(!!errno, NULL);
 		ft_clear_list(&tokens);
 		free(path);
-		static_pwd(NULL, 1);
-		static_old_pwd(NULL, 1);
+		close_fds();
+		clean_pwd();
 		exit(last_exit_status(-1));
 	}
 	pid_last_exit_status(pid);
