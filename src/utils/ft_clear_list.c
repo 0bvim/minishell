@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clear_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:05:25 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/15 03:24:07 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/17 02:01:35 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	ft_clear_list(char ***list)
 
 void	close_tmp(const int *tmp)
 {
-	close (tmp[0]);
+	close(tmp[0]);
 	close(tmp[1]);
 }

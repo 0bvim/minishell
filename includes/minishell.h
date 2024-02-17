@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/16 15:49:23 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/17 01:54:11 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define BLANK ""
 # define TRUN 0x00000242
 # define APEN 0x00000442
-# define HERE 0x00000241
+# define HERE 0x000000C2
 
 extern volatile int	g_last_signal;
 
@@ -87,18 +87,7 @@ typedef struct s_token
 typedef struct s_ast
 {
 	int					type;
-	int					type_prev;
-	int					set_fd;
 	int					fd;
-	int					error;
-	int					old_file;
-	int					infile_set;
-	int					outfile_set;
-	int					first_infile_err;
-	int					first_outfile_err;
-	int					fake_file;
-	char				buff[1];
-	char				*tmp_file;
 	struct s_ast		*left;
 	struct s_ast		*right;
 	t_list				*exec;
@@ -153,7 +142,7 @@ void		set_next_node(t_ast *node);
 void		set_next_node_err(t_ast *node);
 void		temp_fd(t_ast *node);
 void		handle_infile(t_ast *node, t_token *token, int *file);
-void		handle_outfile(t_ast *node, int *file);
+void		handle_outfile(t_ast *node);
 void		outfile_error(t_ast *node, t_token *token);
 void		node_left_error(t_ast *nod, t_token *tk, const int *tmp, int *file);
 void		close_tmp(const int *tmp);
