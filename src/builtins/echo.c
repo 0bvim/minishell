@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:51:42 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/04 15:34:42 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:34:39 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	check_if_arg_minus_n(const char *arg)
+{
+	int	i;
+
+	if (arg && !ft_strncmp(arg, "-n", 2))
+	{
+		i = 2;
+		while (arg[i] == 'n')
+			i++;
+		if (!arg[i])
+			return (1);
+	}
+	return (0);
+}
 
 int	echo(char **args)
 {
@@ -21,8 +36,11 @@ int	echo(char **args)
 	i = 1;
 	space = 0;
 	new_line = 1;
-	if (args[1] && !ft_strncmp(args[1], "-n", 3) && ++i)
+	while (check_if_arg_minus_n(args[i]))
+	{
+		i++;
 		new_line = 0;
+	}
 	while (args[i])
 	{
 		if (space)
