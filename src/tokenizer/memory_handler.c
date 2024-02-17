@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:22:42 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/01 13:26:32 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/17 00:56:10 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_list	*token_list_holder(t_list *tokens, int to_free)
 		lst_address = tokens;
 	if (lst_address && to_free)
 	{
-		ft_lstclear(tokens, free_token);
+		ft_lstclear(lst_address, free_token);
 		lst_address = NULL;
 	}
 	return (lst_address);
