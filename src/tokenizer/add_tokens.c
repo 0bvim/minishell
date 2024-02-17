@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:20:35 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/16 12:17:53 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/17 02:58:03 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ static void	add_symbols_token(t_list *tokens,
 static void	add_block_token(t_list *tokens,
 					const char **start, const char **mover)
 {
-	//while (**mover && **mover != ')')
-	//	(*mover)++;
 	*mover = ft_strrchr(*mover, ')');
 	if (**mover)
 		(*mover)++;
