@@ -3,84 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   asterisk.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:48:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/16 18:15:44 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:51:28 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static char	**malloc_subpatterns_tab(const char *pattern)
+static int	word_comparison(const char *word,
+	const char **subpatterns, int comp_type)
 {
-	size_t	i;
-	char	**subpaterns_array;
-
-	i = 2;
-	while (*pattern)
-	{
-		if (*pattern++ == '*')
-		{
-			while (*pattern == '*')
-				pattern++;
-			i++;
-		}
-	}
-	subpaterns_array = ft_calloc(i, sizeof(char *));
-	return (subpaterns_array);
-}
-
-static char	**malloc_subpatterns(const char *pattern, char **subpatterns_array)
-{
-	size_t			i;
-	const char		*start;
-	const char		*end;
-
-	start = pattern;
-	i = 0;
-	while (*start)
-	{
-		while (*start == '*')
-			start++;
-		end = start;
-		if (*end)
-			end++;
-		while (*end && *end != '*')
-			end++;
-		subpatterns_array[i] = ft_strndup(start, end - start);
-		if (!subpatterns_array[i++])
-		{
-			ft_clear_list(&subpatterns_array);
-			return (NULL);
-		}
-		start = end;
-	}
-	return (subpatterns_array);
-}
-
-static int	word_comparison(const char *pattern, const char *word)
-{
-	char		**subpatterns;
-	char		**mover;
 	const char	*start;
+	int			begin_ok;
 
-	subpatterns = malloc_subpatterns_tab(pattern);
-	if (!subpatterns)
-		return (0);
-	subpatterns = malloc_subpatterns(pattern, subpatterns);
-	if (!subpatterns)
-		return (0);
 	start = word;
-	mover = subpatterns;
-	while (*mover)
+	begin_ok = 0;
+	while (*subpatterns)
 	{
-		start = ft_strnstr(start, *mover, ft_strlen(start));
+		start = ft_strnstr(start, *subpatterns, ft_strlen(start));
 		if (!start)
 			return (0);
-		start += ft_strlen(*(mover++));
+		if (!begin_ok 
+			&& ((comp_type == M_NONE || comp_type == M_END)
+			|| start == word))
+			begin_ok = 1;
+		if (begin_ok)
+			start += ft_strlen(*(subpatterns++));
+		else
+			return (0);
 	}
-	ft_clear_list(&subpatterns);
+	if (comp_type >= M_END && *start)
+		return (0);
 	return (1);
 }
 
@@ -110,22 +65,40 @@ static void	match_insertion(t_list *tokens, t_element *ref, const char *str)
 	ft_lstadd_before(tokens, ref, el);
 }
 
+void	define_subpatterns(char	***subpatterns,
+	const char *pattern, int *comp_type)
+{
+	*subpatterns = ft_split(pattern, '*');
+	*comp_type = M_NONE;
+	if (pattern[0] != '*')
+		*comp_type += M_START;
+	if (pattern[ft_strlen(pattern) - 1] != '*')
+		*comp_type += M_END;
+}
+
 void	asterisk(t_list	*tokens, t_element *el)
 {
 	DIR				*dir;
 	struct dirent	*entry;
 	const char		*compare = ((t_token *)el->content)->str;
+	int				comp_type;
+	char			**subpaterns;
 
 	dir = opendir(".");
 	if (!dir)
 		return ;
+	define_subpatterns(&subpaterns, compare, &comp_type);
+	if (!subpaterns)
+		return;
 	entry = readdir(dir);
 	while (entry)
 	{
+		
 		if (*(char *)entry->d_name != '.'
-			&& word_comparison(compare, (char *)entry->d_name))
+			&& word_comparison(((const char *)entry->d_name), (const char **)subpaterns, comp_type))
 			match_insertion(tokens, el, (char *)entry->d_name);
 		entry = readdir(dir);
 	}
 	closedir(dir);
+	ft_clear_list(&subpaterns);
 }

@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/17 19:47:22 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 18:05:48 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	asterisk_expansion(t_list *tokens)
 	t_element	*el;
 	t_element	*next;
 	t_token		*token;
+	size_t		lst_size;
 
 	el = tokens->first;
 	while (el)
@@ -106,9 +107,11 @@ void	asterisk_expansion(t_list *tokens)
 		token = el->content;
 		if (token->type == ARGUMENT && ft_strchr(token->str, '*'))
 		{
+			lst_size = tokens->size;
 			asterisk(tokens, el);
 			next = el->next;
-			ft_lstdelone(tokens, el, free_token);
+			if (lst_size <  tokens->size)
+				ft_lstdelone(tokens, el, free_token);
 			el = next;
 		}
 		else

@@ -6,11 +6,13 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 00:25:53 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 19:51:52 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	expand_redirs(t_list *right_tokens);
 
 static void	open_file_error(char *file_name)
 {
@@ -32,13 +34,14 @@ static void	handle_outfile(t_ast *node)
 {
 	t_token	*token;
 	t_list	*right_tokens;
-	char	**args;
 
 	right_tokens = node->right->exec;
-	token = node->right->exec->first->content;
-	args = tokens_to_args(right_tokens);
-	token->str = ft_strdup(args[0]);
-	ft_clear_list(&args);
+	if (!expand_redirs(right_tokens))
+	{
+		node->fd = -1;
+		return ;
+	}
+	token = right_tokens->first->content;
 	if (node->type == R_REDIR)
 		node->fd = open(token->str, TRUN, 0666);
 	else if (node->type == APPEND)
@@ -50,13 +53,14 @@ void	handle_infile(t_ast *node)
 {
 	t_list	*right_tokens;
 	t_token	*token;
-	char	**args;
 
 	right_tokens = node->right->exec;
+	if (!expand_redirs(right_tokens) && !(node->type == HEREDOC))
+	{
+		node->fd = -1;
+		return ;
+	}
 	token = right_tokens->first->content;
-	args = tokens_to_args(right_tokens);
-	token->str = ft_strdup(args[0]);
-	ft_clear_list(&args);
 	if (node->type == HEREDOC && token->type != QUOTE \
 		&& token->type != DOUBLE_QUOTE)
 		heredoc_expansion(token);
