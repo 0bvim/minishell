@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/17 02:55:27 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/18 00:25:53 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,13 @@ static void	handle_outfile(t_ast *node)
 {
 	t_token	*token;
 	t_list	*right_tokens;
+	char	**args;
 
-	token = node->right->exec->first->content;
 	right_tokens = node->right->exec;
-	substitute_first_token_str(right_tokens);
+	token = node->right->exec->first->content;
+	args = tokens_to_args(right_tokens);
+	token->str = ft_strdup(args[0]);
+	ft_clear_list(&args);
 	if (node->type == R_REDIR)
 		node->fd = open(token->str, TRUN, 0666);
 	else if (node->type == APPEND)
@@ -47,10 +50,13 @@ void	handle_infile(t_ast *node)
 {
 	t_list	*right_tokens;
 	t_token	*token;
+	char	**args;
 
 	right_tokens = node->right->exec;
-	substitute_first_token_str(right_tokens);
 	token = right_tokens->first->content;
+	args = tokens_to_args(right_tokens);
+	token->str = ft_strdup(args[0]);
+	ft_clear_list(&args);
 	if (node->type == HEREDOC && token->type != QUOTE \
 		&& token->type != DOUBLE_QUOTE)
 		heredoc_expansion(token);

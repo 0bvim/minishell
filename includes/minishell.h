@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/17 19:48:53 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 00:22:02 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ int			is_redirect_in(int type);
 int			is_redirect_out(int type);
 void		dup_close_tmp(const int *tmp);
 void		handle_redirs(t_ast *node_pipe);
-void		substitute_first_token_str(t_list *tokens);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);
