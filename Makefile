@@ -120,9 +120,7 @@ BIN_OBJ = $(MAIN_SRC:%.c=$(OBJ)/%.o)
 # define bonus #
 ifdef WITH_BONUS
 	NAME = $(BLIBNAME)
-	MAIN_SRC = $(BONUS_SRC)
 	compile = compile_bonus
-	BIN_OBJ = $(BONUS_SRC:%.c=$(OBJ)/%.o)
 	MANDATORY = $(LBONUS)
 	MAGENTA = $(YELLOW)
 	LIBNAME = $(BLIBNAME)
