@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 23:37:33 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/17 18:49:06 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 19:51:32 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,19 @@ void	dup_close_tmp(const int *tmp)
 	dup2(tmp[0], STDIN_FILENO);
 	close(tmp[0]);
 	close(tmp[1]);
+}
+
+int	expand_redirs(t_list *right_tokens)
+{
+	char	**args;
+
+	args = tokens_to_args(right_tokens);
+	ft_clear_list(&args);
+	if (right_tokens->size > 1)
+	{
+		ft_putendl_fd("ambiguous redirect", 2);
+		last_exit_status(1);
+		return (0);
+	}
+	return (1);
 }

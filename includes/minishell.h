@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 19:25:25 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/18 20:03:44 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,14 @@ enum	e_flags
 {
 	READ,
 	WRITE
+};
+
+enum	e_type_match
+{
+	M_NONE,
+	M_START,
+	M_END,
+	M_BOTH
 };
 
 typedef struct s_token
