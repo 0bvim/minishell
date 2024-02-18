@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 10:59:50 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 14:44:06 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void		environ_initializer(void);
 char		*static_pwd(char *new_pwd, int to_free);
 char		*static_old_pwd(char *new_pwd, int to_free);
 char		**environ_holder(char **new_environ, int to_free);
+void		term_properties(int restore);
 
 //BUILTINS
 char		*malloc_pwd(void);
@@ -204,9 +205,10 @@ void		trim_edges(void *content);
 
 //SIGNALS
 void		signals_initializer(void);
-void		signal_handler(int signal);
+void		sigint_handler(int signal);
 int			is_after_prompt(int is_after);
 int			on_heredoc(int on_heredoc);
+void		sigquit_case(void);
 
 //DEBUGGERS
 void		list_printer(t_list *tokens);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/17 06:07:57 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/18 14:42:26 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	fork_and_execve(char **tokens, char *path)
 	pid = fork();
 	if (pid == -1)
 		panic_ast(1, "fork error");
+	if (!pid)
+		signal(SIGQUIT, SIG_DFL);
 	if (!pid && execve(path, tokens, environ_holder(NULL, 0)) < 0)
 	{
 		if (errno == EACCES)

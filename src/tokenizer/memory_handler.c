@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:22:42 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/18 11:02:47 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 11:32:22 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_list	*token_list_holder(t_list *tokens, int to_free, int to_null)
 		lst_address = tokens;
 	if (to_null)
 		lst_address = NULL;
-	//printf("lst_address: %p\n", (void *)lst_address);
 	if (lst_address && to_free)
 	{
 		ft_lstclear(lst_address, free_token);

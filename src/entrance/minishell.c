@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 11:06:06 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 14:46:14 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,25 @@
 
 volatile int	g_last_signal;
 
+void	term_properties(int restore)
+{
+	static struct termios	term;
+
+	if (!restore)
+		tcgetattr(STDIN_FILENO, &term);
+	else
+		tcsetattr(STDIN_FILENO, TCSANOW, &term);
+}
+
 int	main(void)
 {
 	signals_initializer();
 	environ_initializer();
 	static_pwd(malloc_pwd(), 0);
+	term_properties(0);
 	while (true)
 	{
+		sigquit_case();
 		g_last_signal = 0;
 		parser(prompt());
 	}
