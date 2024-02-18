@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 14:44:06 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 19:25:25 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,8 +165,6 @@ void		asterisk(t_list	*tokens, t_element *el);
 
 // execve
 void		execution(t_ast *root);
-void		execute(char **tokens);
-char		*validate_path(char *exec_name);
 
 //GRAMMAR CHECK
 int			grammar_checker(t_list *tokens);

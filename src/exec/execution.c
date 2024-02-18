@@ -3,22 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 14:42:26 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 19:29:42 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	clean_pwd(void)
-{
-	static_pwd(NULL, 1);
-	static_old_pwd(NULL, 1);
-}
+int		search_command(char *exec_name);
+void	treat_errors(char *path);
 
-void	fork_and_execve(char **tokens, char *path)
+static void	fork_and_execve(char **tokens, char *path)
 {
 	pid_t	pid;
 
@@ -26,30 +23,49 @@ void	fork_and_execve(char **tokens, char *path)
 	if (pid == -1)
 		panic_ast(1, "fork error");
 	if (!pid)
-		signal(SIGQUIT, SIG_DFL);
-	if (!pid && execve(path, tokens, environ_holder(NULL, 0)) < 0)
 	{
-		if (errno == EACCES)
+		signal(SIGQUIT, SIG_DFL);
+		if (execve(path, tokens, environ_holder(NULL, 0)) < 0)
 		{
-			if ((open(path, O_DIRECTORY | O_RDONLY)) != -1)
-				panic_ast(126, "minishell: Is a directory");
-			else
-				panic_ast(126, "minishell: Permission denied");
+			treat_errors(path);
+			ft_clear_list(&tokens);
+			free(path);
+			exit(last_exit_status(-1));
 		}
-		else if (errno == ENOENT)
-			panic_ast(127, "minishell: command not found");
-		else
-			panic_ast(!!errno, NULL);
-		ft_clear_list(&tokens);
-		free(path);
-		close_fds();
-		clean_pwd();
-		exit(last_exit_status(-1));
 	}
 	pid_last_exit_status(pid);
 }
 
-void	execute(char **tokens)
+static char	*validate_path(char *exec_name)
+{
+	char	**paths;
+	char	*cmd;
+	int		i;
+
+	paths = ft_split(ft_getenv("PATH"), ':');
+	if (access(exec_name, F_OK) == 0 || !paths)
+	{
+		ft_clear_list(&paths);
+		return (ft_strdup(exec_name));
+	}
+	i = 0;
+	while (paths[i])
+	{
+		cmd = ft_strmerge(ft_strjoin(paths[i], "/"), ft_strdup(exec_name));
+		if (access(cmd, F_OK) == 0)
+		{
+			ft_clear_list(&paths);
+			return (cmd);
+		}
+		free(cmd);
+		cmd = NULL;
+		i++;
+	}
+	ft_clear_list(&paths);
+	return (ft_strdup(exec_name));
+}
+
+static void	execute(char **tokens)
 {
 	char	*path;
 
@@ -65,35 +81,6 @@ void	execute(char **tokens)
 	if (g_last_signal == SIGINT)
 		last_exit_status(130);
 	ft_clear_list(&tokens);
-}
-
-char	*validate_path(char *exec_name)
-{
-	char	**paths;
-	char	*cmd;
-	int		i;
-
-	paths = ft_split(ft_getenv("PATH"), ':');
-	if (access(exec_name, X_OK) == 0 || !paths)
-	{
-		ft_clear_list(&paths);
-		return (ft_strdup(exec_name));
-	}
-	i = 0;
-	while (paths[i])
-	{
-		cmd = ft_strmerge(ft_strjoin(paths[i], "/"), ft_strdup(exec_name));
-		if (access(cmd, X_OK) == 0)
-		{
-			ft_clear_list(&paths);
-			return (cmd);
-		}
-		free(cmd);
-		cmd = NULL;
-		i++;
-	}
-	ft_clear_list(&paths);
-	return (ft_strdup(exec_name));
 }
 
 void	execution(t_ast *root)
