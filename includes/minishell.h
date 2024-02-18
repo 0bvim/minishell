@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 00:22:02 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 10:59:50 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void		close_fds(void);
 
 //TOKENIZER
 t_list		*tokenizer(const char *str);
-t_list		*token_list_holder(t_list *tokens, int to_free);
+t_list		*token_list_holder(t_list *tokens, int to_free, int to_null);
 void		free_token(void *p_token);
 void		panic_tokenizer(int error, char *msg);
 void		add_token(t_list *tokens, const char **start, const char **mover, \

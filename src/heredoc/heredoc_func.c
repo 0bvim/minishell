@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:49:49 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/17 04:38:38 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/18 11:20:39 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,14 @@ static int	heredoc(t_token *token, int count)
 	while (heredoc_loop(&buff, token, std_in, fd))
 		;
 	clean_heredoc_variables(buff, std_in, fd);
-	free (token->str);
-	token->str = fl_name;
 	if (g_last_signal == SIGINT)
 	{
 		unlink(fl_name);
+		free (fl_name);
 		return (0);
 	}
+	free (token->str);
+	token->str = fl_name;
 	return (1);
 }
 
@@ -93,10 +94,7 @@ int	heredoc_substitution(t_list *tokens)
 		if (token->type == HEREDOC)
 		{
 			if (!heredoc(el->next->content, count))
-			{
-				token_list_holder(tokens, 1);
 				return (0);
-			}
 			count++;
 		}
 		el = el->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/17 03:02:10 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/18 11:06:06 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	parser(char *input)
 	root = ast_constructor(tokens);
 	if (!root)
 		return ;
+	token_list_holder(NULL, 0, 1);
 	ast_holder(root, 0);
 	execution(root);
 	ast_holder(NULL, 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:10:21 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/03 02:49:29 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/18 11:03:01 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_list	*tokenizer(const char *str)
 	tokens = ft_calloc(1, sizeof(t_list));
 	if (!tokens)
 		return (NULL);
-	token_list_holder(tokens, 0);
+	token_list_holder(tokens, 0, 0);
 	token_list_generator(tokens, str, str + 1);
 	return (tokens);
 }

@@ -44,6 +44,9 @@
 					"description": "Set Disassembly Flavor to Intel",
 					"text": "-gdb-set disassembly-flavor intel",
 					"ignoreFailures": true
+				},
+				{
+					"text": "handle SIGINT print stop nopass"
 				}
 				// {
 				// 	"description": "Set detach-on-fork to off",
