@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:49:49 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 11:20:39 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 22:14:43 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 static int	heredoc_file_creation(int count, int *fd, char **fl_name)
 {
-	*fl_name = ft_strmerge(ft_strdup("/tmp/heredoc"), ft_itoa(count));
+	static long int	result;
+
+	result = result + (u_int64_t)heredoc_file_creation * count;
+	*fl_name = ft_strmerge(ft_strdup("/tmp/heredoc"), ft_itoa(result));
 	if (!*fl_name)
 		return (0);
 	*fd = open(*fl_name, TRUN, 0666);
@@ -84,18 +87,15 @@ int	heredoc_substitution(t_list *tokens)
 {
 	t_element	*el;
 	t_token		*token;
-	int			count;
 
-	count = 0;
 	el = tokens->first;
 	while (el)
 	{
 		token = el->content;
 		if (token->type == HEREDOC)
 		{
-			if (!heredoc(el->next->content, count))
+			if (!heredoc(el->next->content, 0xFF))
 				return (0);
-			count++;
 		}
 		el = el->next;
 	}
