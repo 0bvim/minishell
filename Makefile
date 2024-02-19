@@ -67,7 +67,7 @@ INC = includes
 OBJ = obj
 
 # includes #
-HEADERS = $(addprefix $(INC)/, cmds.h minishell.h parsers.h)
+HEADERS = $(addprefix $(INC)/, minishell.h)
 
 # files path #
 ENTRANCE = $(SRC)/entrance
