@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   asterisk.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:48:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/18 23:42:00 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/19 16:14:48 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static	int	compare_end(const char *word, const char *subpattern)
+{
+	char	*end;
+	size_t	lens[2];
+
+	lens[0] = ft_strlen(word);
+	lens[1] = ft_strlen(subpattern);
+	if (lens[1] > lens[0])
+		return (0);
+	end = (char *)word;
+	end += lens[0] - lens[1];
+	if (!ft_strcmp(end, subpattern))
+		return (1);
+	return (0);
+}
 
 static int	word_comparison(const char *word,
 	const char **subpatterns, int comp_type)
@@ -34,8 +50,8 @@ static int	word_comparison(const char *word,
 		else
 			return (0);
 	}
-	if (comp_type >= M_END && *start)
-		return (0);
+	if (comp_type >= M_END)
+		return(compare_end(word, *(--subpatterns)));
 	return (1);
 }
 
