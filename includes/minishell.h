@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 20:03:44 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 21:25:30 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int			cd(char **args);
 int			builtins_caller(char **args);
 int			echo(char **args);
 int			env(const char **args);
-void		builtin_exit(char **args);
+int			builtin_exit(char **args);
 int			export(char **args);
 int			pwd(const char **args);
 int			unset(char **args);

@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:48:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/18 17:51:28 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 21:32:10 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int	word_comparison(const char *word,
 		start = ft_strnstr(start, *subpatterns, ft_strlen(start));
 		if (!start)
 			return (0);
-		if (!begin_ok 
+		if (!begin_ok
 			&& ((comp_type == M_NONE || comp_type == M_END)
-			|| start == word))
+				|| start == word))
 			begin_ok = 1;
 		if (begin_ok)
 			start += ft_strlen(*(subpatterns++));
@@ -89,13 +89,13 @@ void	asterisk(t_list	*tokens, t_element *el)
 		return ;
 	define_subpatterns(&subpaterns, compare, &comp_type);
 	if (!subpaterns)
-		return;
+		return ;
 	entry = readdir(dir);
 	while (entry)
 	{
-		
 		if (*(char *)entry->d_name != '.'
-			&& word_comparison(((const char *)entry->d_name), (const char **)subpaterns, comp_type))
+			&& word_comparison(((const char *)entry->d_name),
+				(const char **)subpaterns, comp_type))
 			match_insertion(tokens, el, (char *)entry->d_name);
 		entry = readdir(dir);
 	}

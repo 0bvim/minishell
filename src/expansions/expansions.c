@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/18 18:05:48 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 21:33:01 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	asterisk_expansion(t_list *tokens)
 			lst_size = tokens->size;
 			asterisk(tokens, el);
 			next = el->next;
-			if (lst_size <  tokens->size)
+			if (lst_size < tokens->size)
 				ft_lstdelone(tokens, el, free_token);
 			el = next;
 		}

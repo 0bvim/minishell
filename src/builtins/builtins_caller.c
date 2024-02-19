@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 22:08:00 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/17 13:36:54 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 21:24:17 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	builtins_caller(char **args)
 	else if (!ft_strcmp(args[0], "env"))
 		exit_status = env((const char **)args);
 	else if (!ft_strcmp(args[0], "exit"))
-		builtin_exit(args);
+		exit_status = builtin_exit(args);
 	if (exit_status == EXIT_FAILURE || exit_status == EXIT_SUCCESS)
 		last_exit_status(exit_status);
 	return (exit_status);

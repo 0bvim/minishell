@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:19:57 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/17 13:32:51 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 21:28:35 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,17 @@ void	clear_everything(void)
 	close(STDERR_FILENO);
 }
 
-void	builtin_exit(char **args)
+int	builtin_exit(char **args)
 {
 	int	exit_code;
 
-	exit_status_code(args, &exit_code);
 	ft_putendl_fd("exit", 1);
+	if (args[1] && args[2])
+	{
+		ft_putendl_fd("minishell: too many arguments", STDOUT_FILENO);
+		return (EXIT_FAILURE);
+	}
+	exit_status_code(args, &exit_code);
 	ft_clear_list(&args);
 	clear_everything();
 	exit(exit_code);
