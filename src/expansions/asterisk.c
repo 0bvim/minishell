@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asterisk.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:48:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/19 16:14:48 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:00:18 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	word_comparison(const char *word,
 			return (0);
 	}
 	if (comp_type >= M_END)
-		return(compare_end(word, *(--subpatterns)));
+		return (compare_end(word, *(--subpatterns)));
 	return (1);
 }
 

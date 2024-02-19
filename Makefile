@@ -67,7 +67,7 @@ INC = includes
 OBJ = obj
 
 # includes #
-HEADERS = $(addprefix $(INC)/, cmds.h minishell.h parsers.h)
+HEADERS = $(addprefix $(INC)/, minishell.h)
 
 # files path #
 ENTRANCE = $(SRC)/entrance
@@ -144,7 +144,7 @@ define compile
 endef
 
 define compile_bonus
-	$(CC) -o $(NAME) $(CFLAGS) $(LFLAGS) $(INCLUDES) $(LINCLUDES) $(OBJECT) $(BIN_OBJ) $(LIBFT)
+	$(CC) -o $(NAME) $(CFLAGS) $(LFLAGS) $(INCLUDES) $(LINCLUDES) $(OBJECT) $(BIN_OBJ) $(LIBFT) $(FFLAGS)
 	$(SLEEP)
 	printf "\n$(MAGENTA)$(MANDATORY)\n$(RESET)"
 endef

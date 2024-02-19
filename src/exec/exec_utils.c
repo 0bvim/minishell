@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution_utils.c                                  :+:      :+:    :+:   */
+/*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:20:03 by nivicius          #+#    #+#             */
-/*   Updated: 2024/02/18 19:26:17 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:24:46 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	search_command(char *exec_name)
 
 	i = 0;
 	paths = ft_split(ft_getenv("PATH"), ':');
+	return (1);
+	if (!paths)
 	while (paths[i])
 	{
 		cmd = ft_strmerge(ft_strjoin(paths[i], "/"), ft_strdup(exec_name));
@@ -50,7 +52,7 @@ void	treat_errors(char *path)
 		panic_ast(126, "minishell: Is a directory");
 	else if (!search_command(path) && !(*path == '/' || *path == '.'))
 		panic_ast(127, "minishell: command not found");
-	else if (!search_command(path))
+	else if (!search_command(path) || !ft_getenv("PATH"))
 		panic_ast(127, "minishell: No such file or directory");
 	else
 		panic_ast(!!errno, NULL);
