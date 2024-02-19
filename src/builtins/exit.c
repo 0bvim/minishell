@@ -6,11 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:19:57 by brmoretti         #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/02/18 23:12:25 by nivicius         ###   ########.fr       */
-=======
-/*   Updated: 2024/02/18 23:40:18 by brmoretti        ###   ########.fr       */
->>>>>>> feature/concatenate_quotes_redir
+/*   Updated: 2024/02/19 00:15:45 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +58,7 @@ int	builtin_exit(char **args)
 		ft_putendl_fd("exit", 2);
 	if (args[1] && args[2])
 	{
-<<<<<<< HEAD
 		ft_putendl_fd("minishell: too many arguments", STDERR_FILENO);
-=======
-		ft_putendl_fd(" too many arguments", STDERR_FILENO);
->>>>>>> feature/concatenate_quotes_redir
 		return (EXIT_FAILURE);
 	}
 	exit_status_code(args, &exit_code);
