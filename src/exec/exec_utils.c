@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:20:03 by nivicius          #+#    #+#             */
-/*   Updated: 2024/02/19 17:24:46 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:34:31 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	search_command(char *exec_name)
 
 	i = 0;
 	paths = ft_split(ft_getenv("PATH"), ':');
-	return (1);
 	if (!paths)
+		return (1);
 	while (paths[i])
 	{
 		cmd = ft_strmerge(ft_strjoin(paths[i], "/"), ft_strdup(exec_name));
