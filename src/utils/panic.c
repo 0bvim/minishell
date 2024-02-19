@@ -3,25 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   panic.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:51:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/25 15:43:19 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/18 23:06:06 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	panic(char *str1, char *str2, char *str3, int err_nb)
+int	is_fork(int status)
 {
-	ft_putstr_fd("minishell:\n", 2);
-	ft_putstr_fd(str1, 2);
-	ft_putstr_fd(str2, 2);
-	ft_putstr_fd(str3, 2);
-	if (err_nb)
-	{
-		ft_putstr_fd("\nError number: ", 2);
-		ft_putnbr_fd(err_nb, 2);
-	}
-	exit(errno);
+	static int	on_fork;
+	
+	if (status == 1)
+		on_fork = status;
+	return (on_fork);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 21:25:30 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 22:53:56 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,6 @@ int			block_rule(t_element *el);
 int			ft_issymbol(char c);
 void		ft_skip_spaces(const char **str);
 void		clear_console(void);
-void		panic(char *str1, char *str2, char *str3, int err_nb);
 int			which_token(const char *str);
 t_list		*ft_lstsplit(t_list *lst, t_element *el);
 int			last_exit_status(int exit_status);
@@ -195,6 +194,7 @@ void		pid_last_exit_status(pid_t pid);
 void		ft_clear_list(char ***list);
 char		*ft_getenv(const char *name);
 void		close_fds(void);
+int			is_fork(int status);
 
 //TOKENIZER
 t_list		*tokenizer(const char *str);

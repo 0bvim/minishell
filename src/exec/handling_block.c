@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_block.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:39:19 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/16 15:50:04 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/18 22:55:36 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	handle_block(t_token *block)
 	}
 	if (!pid)
 	{
+		is_fork(1);
 		str = block->str;
 		block->str = NULL;
 		ast_holder(NULL, 1);

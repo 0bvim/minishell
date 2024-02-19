@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:19:57 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/18 21:28:35 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 23:12:25 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,11 @@ int	builtin_exit(char **args)
 {
 	int	exit_code;
 
-	ft_putendl_fd("exit", 1);
+	if (!is_fork(-1))
+		ft_putendl_fd("exit", 2);
 	if (args[1] && args[2])
 	{
-		ft_putendl_fd("minishell: too many arguments", STDOUT_FILENO);
+		ft_putendl_fd("minishell: too many arguments", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
 	exit_status_code(args, &exit_code);

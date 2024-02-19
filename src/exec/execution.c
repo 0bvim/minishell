@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 19:29:42 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/18 22:55:03 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	fork_and_execve(char **tokens, char *path)
 		panic_ast(1, "fork error");
 	if (!pid)
 	{
+		is_fork(1);
 		signal(SIGQUIT, SIG_DFL);
 		if (execve(path, tokens, environ_holder(NULL, 0)) < 0)
 		{

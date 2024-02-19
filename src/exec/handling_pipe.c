@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:30:51 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/17 05:59:26 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/18 22:56:08 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	fork_process(int *fildes, t_ast *node_pipe, int left_right)
 {
+	is_fork(1);
 	if (left_right == 0 && node_pipe->left->type != R_REDIR)
 		dup2(fildes[1], STDOUT_FILENO);
 	else if (left_right == 1)
