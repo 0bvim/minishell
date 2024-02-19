@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 21:09:26 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/19 02:14:18 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void	open_dup_close(t_ast *node)
 			dup2(node->fd, STDIN_FILENO);
 			close(node->fd);
 		}
+		if (node->type == HEREDOC)
+			unlink(node->right->exec->first->content);
 	}
-	if (node->type == HEREDOC)
-		unlink(node->right->exec->first->content);
 }
 
 void	handle_redirs(t_ast *node)
@@ -103,12 +103,9 @@ void	handle_redirs(t_ast *node)
 	if (last_exit_status(-1))
 	{
 		dup_close_tmp(tmp);
-		if (node->type == HEREDOC)
-			unlink(node->right->exec->first->content);
 		return ;
 	}
+	fd_keeper(tmp, node->fd, 0);
 	execution(node->left);
 	dup_close_tmp(tmp);
-	if (node->type == HEREDOC)
-		unlink(node->right->exec->first->content);
 }

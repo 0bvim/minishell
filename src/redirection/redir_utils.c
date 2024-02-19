@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 23:37:33 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 23:36:21 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/19 02:14:42 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,22 @@ int	expand_redirs(t_list *right_tokens)
 		return (0);
 	}
 	return (1);
+}
+
+void	fd_keeper(const int *tmp, int node_fd, int to_close)
+{
+	static int	open_fd[3];
+
+	if (!to_close)
+	{
+		open_fd[0] = tmp[0];
+		open_fd[1] = tmp[1];
+		open_fd[2] = node_fd;
+	}
+	else
+	{
+		close(open_fd[0]);
+		close(open_fd[1]);
+		close(open_fd[2]);
+	}
 }

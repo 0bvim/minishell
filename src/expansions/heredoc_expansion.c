@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:23:09 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/04 16:06:01 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/19 01:46:42 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 static int	check_fd(int fd, char **text);
+static int	check_line(char *line, int fd);
 
 void	heredoc_expansion(t_token *token)
 {
@@ -23,7 +24,7 @@ void	heredoc_expansion(t_token *token)
 
 	fd = open(token->str, O_RDONLY);
 	line = get_next_line(fd);
-	if (!line)
+	if (check_line(line, fd))
 		return ;
 	text = ft_calloc(1, sizeof(char));
 	while (line)
@@ -49,6 +50,16 @@ static int	check_fd(int fd, char **text)
 	{
 		perror("Error opening file");
 		free(*text);
+		return (1);
+	}
+	return (0);
+}
+
+static int	check_line(char *line, int fd)
+{
+	if (!line)
+	{
+		close(fd);
 		return (1);
 	}
 	return (0);

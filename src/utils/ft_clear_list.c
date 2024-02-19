@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clear_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:05:25 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/17 06:06:41 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/19 01:18:05 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void	close_fds(void)
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	close(STDERR_FILENO);
+	fd_keeper(NULL, 0, 1);
 }

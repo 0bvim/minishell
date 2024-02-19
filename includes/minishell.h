@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 22:53:56 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/19 00:54:35 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ int			is_redirect_in(int type);
 int			is_redirect_out(int type);
 void		dup_close_tmp(const int *tmp);
 void		handle_redirs(t_ast *node_pipe);
+void		fd_keeper(const int *tmp, int node_fd, int to_close);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);
