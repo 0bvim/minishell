@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:08:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/17 20:46:05 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/19 19:16:42 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 void	print_environ_sorted(void);
+char	*key_name(const char *key_value);
+int		is_valid_identifier(char *str);
 
 static void	add_to_env(char *new_env_var)
 {
@@ -34,43 +36,58 @@ static void	add_to_env(char *new_env_var)
 	environ_holder(new_env_vars, 0);
 }
 
+static char	*new_env_var_generator(const char *name, const char *value)
+{
+	char	*new_env_var;
+	char	*eq_value;
+	char	*tmp;
+
+	if (!value)
+		return (ft_strdup(name));
+	if (*value != '\"')
+	{
+		if (*value == '\'')
+			eq_value = ft_strndup(value + 1, strlen(value) - 2);
+		else
+			eq_value = ft_strdup(value);
+		tmp = ft_strjoin("\"", eq_value);
+		free (eq_value);
+		eq_value = ft_strjoin(tmp, "\"");
+		free (tmp);
+	}
+	else
+		eq_value = ft_strdup(value);
+	tmp = eq_value;
+	eq_value = ft_strjoin("=", eq_value);
+	free (tmp);
+	new_env_var = ft_strjoin(name, eq_value);
+	free (eq_value);
+	return (new_env_var);
+}
+
 static void	ft_setenv(const char *name, const char *value)
 {
 	char	**env_vars;
 	char	*new_env_var;
-	char	*temp;
+	char	*env_var;
 	int		i;
 
 	env_vars = environ_holder(NULL, 0);
-	temp = ft_strjoin(name, "=");
-	new_env_var = ft_strjoin(temp, value);
+	new_env_var = new_env_var_generator(name, value);
 	i = -1;
 	while (env_vars[++i])
 	{
-		if (!ft_strncmp(env_vars[i], temp, ft_strlen(temp)))
+		env_var = key_name(env_vars[i]);
+		if (!ft_strcmp(env_var, name))
 		{
-			free(temp);
+			free(env_var);
 			free(env_vars[i]);
 			env_vars[i] = new_env_var;
 			return ;
 		}
+		free (env_var);
 	}
-	free(temp);
 	add_to_env(new_env_var);
-}
-
-static int	is_valid_identifier(char *str)
-{
-	if (*str != '=' && !ft_isdigit(*str))
-	{
-		while (*str && *str != '=' && (ft_isalnum(*str) || *str == '_'))
-			str++;
-		if (*str == '=' || !*str)
-			return (1);
-	}
-	ft_putendl_fd("minishell: export: not a valid identifier", 2);
-	last_exit_status(1);
-	return (0);
 }
 
 int	export(char **args)
@@ -88,15 +105,13 @@ int	export(char **args)
 	{
 		if (!is_valid_identifier(args[i]) && status++)
 			continue ;
+		name = key_name(args[i]);
 		equal_sign = ft_strchr(args[i], '=');
 		if (equal_sign)
-		{
-			name = ft_strndup(args[i], equal_sign - args[i]);
-			if (!name)
-				return (EXIT_FAILURE);
 			ft_setenv(name, equal_sign + 1);
-			free(name);
-		}
+		else
+			ft_setenv(name, NULL);
+		free(name);
 	}
 	return (!!status);
 }

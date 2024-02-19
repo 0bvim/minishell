@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:18:15 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/03 11:23:20 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/19 19:20:08 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	env(const char **args)
 	i = -1;
 	while (env_vars[++i])
 	{
-		if (env_vars[i][0])
+		if (env_vars[i][0] && ft_strchr(env_vars[i], '='))
 			ft_putendl_fd(env_vars[i], 1);
 	}
 	return (EXIT_SUCCESS);
