@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:43 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 20:23:28 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:17:55 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ char	*prompt(void)
 	is_after_prompt(0);
 	input = readline("minishell>$ ");
 	is_after_prompt(1);
-	if (ft_strcmp(input, ""))
-		add_history(input);
 	if (!input)
 		input = ft_strdup("exit");
+	if (ft_strcmp(input, ""))
+		add_history(input);
 	return (input);
 }
 
