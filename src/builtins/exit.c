@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:19:57 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/18 21:28:35 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/18 23:40:18 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	builtin_exit(char **args)
 	ft_putendl_fd("exit", 1);
 	if (args[1] && args[2])
 	{
-		ft_putendl_fd("minishell: too many arguments", STDOUT_FILENO);
+		ft_putendl_fd(" too many arguments", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
 	exit_status_code(args, &exit_code);

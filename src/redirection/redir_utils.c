@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 23:37:33 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/18 20:57:36 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/18 23:36:21 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,18 @@ void	dup_close_tmp(const int *tmp)
 int	expand_redirs(t_list *right_tokens)
 {
 	char	**args;
+	t_token	*token;
+	size_t	list_size;
 
+	list_size = right_tokens->size;
 	args = tokens_to_args(right_tokens);
+	token = right_tokens->first->content;
+	free(token->str);
+	token->str = ft_strdup(args[0]);
+	if (!token->str)
+		return (0);
 	ft_clear_list(&args);
-	if (right_tokens->size > 1)
+	if (right_tokens->size > list_size)
 	{
 		ft_putendl_fd("ambiguous redirect", 2);
 		last_exit_status(1);
