@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/19 02:14:18 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:45:08 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	handle_infile(t_ast *node)
 		&& token->type != DOUBLE_QUOTE)
 		heredoc_expansion(token);
 	node->fd = open(token->str, O_RDONLY);
+	if (node->fd != -1)
+		last_redir_status(node->fd);
 	open_file_error(token->str);
 }
 
@@ -81,7 +83,7 @@ void	open_dup_close(t_ast *node)
 			close(node->fd);
 		}
 	}
-	else if (is_redirect_in(node->type) && !last_exit_status(-1))
+	else if (is_redirect_in(node->type) && last_redir_status(-2) != -1)
 	{
 		handle_infile(node);
 		if (node->fd != -1)
@@ -100,7 +102,7 @@ void	handle_redirs(t_ast *node)
 
 	if (!node->fd)
 		open_dup_close(node);
-	if (last_exit_status(-1))
+	if (last_redir_status(-2) == -1)
 	{
 		dup_close_tmp(tmp);
 		return ;
