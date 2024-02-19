@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/19 20:10:48 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:53:04 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ void	handle_infile(t_ast *node)
 		&& token->type != DOUBLE_QUOTE)
 		heredoc_expansion(token);
 	node->fd = open(token->str, O_RDONLY);
-	if (node->fd != -1)
-		last_redir_status(node->fd);
 	open_file_error(token->str);
 }
 
