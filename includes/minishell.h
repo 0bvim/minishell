@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/19 16:13:51 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:12:25 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,6 @@ int			is_redirect_out(int type);
 void		dup_close_tmp(const int *tmp);
 void		handle_redirs(t_ast *node_pipe);
 void		fd_keeper(const int *tmp, int node_fd, int to_close);
-int			last_redir_status(int success);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);
@@ -217,9 +216,5 @@ void		sigint_handler(int signal);
 int			is_after_prompt(int is_after);
 int			on_heredoc(int on_heredoc);
 void		sigquit_case(void);
-
-//DEBUGGERS
-void		list_printer(t_list *tokens);
-void		tree_execs_printer(t_ast *root);
 
 #endif

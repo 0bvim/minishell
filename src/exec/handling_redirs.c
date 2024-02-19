@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/19 19:58:09 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:10:48 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void	open_dup_close(t_ast *node)
 			close(node->fd);
 		}
 	}
-	else if (is_redirect_in(node->type) && !last_exit_status(-1))
+	else if (is_redirect_in(node->type)
+		&& (node->left->fd != -1 || !last_exit_status(-1)))
 	{
 		handle_infile(node);
 		if (node->fd != -1)
@@ -102,7 +103,7 @@ void	handle_redirs(t_ast *node)
 
 	if (!node->fd)
 		open_dup_close(node);
-	if (last_exit_status(-1))
+	if (last_exit_status(-1) && node->fd == -1)
 	{
 		dup_close_tmp(tmp);
 		return ;

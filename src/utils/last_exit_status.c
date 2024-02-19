@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   last_exit_status.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:11:29 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/19 16:28:09 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:11:06 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	last_redir_status(int success)
-{
-	static int	status;
-
-	if (success != -2)
-		status = success;
-	return (status);
-}
 
 int	last_exit_status(int exit_status)
 {
