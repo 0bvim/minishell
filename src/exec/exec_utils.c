@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:20:03 by nivicius          #+#    #+#             */
-/*   Updated: 2024/02/19 19:34:31 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:24:15 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	search_command(char *exec_name)
 		if (access(cmd, F_OK) == 0)
 		{
 			ft_clear_list(&paths);
+			free (cmd);
 			return (1);
 		}
 		free(cmd);

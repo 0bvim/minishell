@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:50:11 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/20 00:49:00 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/20 12:32:38 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	is_valid_identifier(char *str);
 
 static	char	**clone_env_except(char **env_vars, int except)
 {
@@ -59,9 +61,23 @@ void	ft_unsetenv(const char *name)
 int	unset(char **args)
 {
 	int		i;
+	int		exit_status;
+	char	*equal;
 
 	i = 0;
+	exit_status = EXIT_SUCCESS;
 	while (args[++i])
-		ft_unsetenv(args[i]);
-	return (EXIT_SUCCESS);
+	{
+		equal = ft_strchr(args[i], '=');
+		if (equal && !equal[1])
+		{
+			ft_putendl_fd("minishell: export: not a valid identifier", 2);
+			exit_status = EXIT_FAILURE;
+		}
+		else if (is_valid_identifier(args[i]))
+			ft_unsetenv(args[i]);
+		else
+			exit_status = EXIT_FAILURE;
+	}
+	return (exit_status);
 }

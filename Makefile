@@ -56,7 +56,7 @@ COMP = Compiling
 
 # debug and normal flags #
 DFLAGS = -Wall -Wextra -Werror -g3 # TO DEBBUG
-CFLAGS = -Wall -Werror -Wextra -g3 -pedantic -flto -MD -MP # FOR DEPENDENCIES
+CFLAGS = -Wall -Werror -Wextra -pedantic -flto -MD -MP # FOR DEPENDENCIES
 LFLAGS = -march=native # TO OPTIMIZE FOR SPECIFIC ARCHITECTURE
 FFLAGS = -lreadline # FLAGS THAT ONLY WORK AT THE END OF LINE (AFTER OBJECTS)
 
@@ -98,7 +98,7 @@ BONUS_SRC = $(addprefix $(BONUS)/, )
 CFILES = $(addprefix $(ENTRANCE)/, environ.c)
 CFILES += $(addprefix $(GRAMMAR)/, grammar_checker.c rules.c meta_checker.c)
 CFILES += $(addprefix $(TOKENIZER)/, add_tokens.c memory_handler.c parenthesis_validation.c quotes_validation.c tokenizer.c trim_edges.c)
-CFILES += $(addprefix $(UTILS)/, str.c ft_lst_split.c panic.c which_token.c last_exit_status.c ft_clear_list.c ft_getenv.c)
+CFILES += $(addprefix $(UTILS)/, str.c ft_lst_split.c is_fork.c which_token.c last_exit_status.c ft_clear_list.c ft_getenv.c)
 CFILES += $(addprefix $(REDIR)/, redir_utils.c)
 CFILES += $(addprefix $(AST)/, ast.c ast_split_node.c ast_memory_handler.c search_tokens.c)
 CFILES += $(addprefix $(EXEC)/, execution.c handling_pipe.c handling_redirs.c tokens_to_args.c handling_and_or.c handling_block.c exec_utils.c)
