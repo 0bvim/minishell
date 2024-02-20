@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:13:34 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/19 01:18:34 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/20 09:07:58 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,17 @@ static void	execute(char **tokens)
 {
 	char	*path;
 
-	if (!tokens || !tokens[0])
+	if (!tokens)
 		return ;
 	g_last_signal = 0;
-	if (builtins_caller(tokens) == -1)
+	if (tokens[0] && builtins_caller(tokens) == -1)
 	{
 		path = validate_path(tokens[0]);
 		fork_and_execve(tokens, path);
 		free(path);
 	}
+	else if (!tokens[0])
+		last_exit_status(0);
 	if (g_last_signal == SIGINT)
 		last_exit_status(130);
 	ft_clear_list(&tokens);

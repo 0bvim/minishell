@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:15:21 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/19 17:00:40 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/20 09:31:26 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 void	sigint_handler(int signal)
 {
 	g_last_signal = signal;
+	if (is_fork(-1))
+	{
+		environ_holder(NULL, 1);
+		static_pwd(NULL, 1);
+		static_old_pwd(NULL, 1);
+		close(STDIN_FILENO);
+		close(STDOUT_FILENO);
+		close(STDERR_FILENO);
+	}
 	ast_holder(NULL, 1);
 	token_list_holder(NULL, 1, 0);
 	if (on_heredoc(-1))

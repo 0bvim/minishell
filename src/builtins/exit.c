@@ -3,18 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:19:57 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/20 05:32:05 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:28:24 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	check_arg(char *str)
+int	treat_as_number(char *str)
 {
-	return (!ft_strcmp(str, MAX_NB) || !ft_strcmp(str, MIN_NB));
+	char			*mover;
+	size_t			nb_len;
+	const size_t	max_nb_len = ft_strlen(MAX_NB);
+
+	if (!ft_strisinteger(str))
+		return (0);
+	mover = str;
+	if (*mover == '-' || *mover == '+')
+		mover++;
+	while (*mover == '0')
+		mover++;
+	nb_len = ft_strlen(mover);
+	if (nb_len < max_nb_len)
+		return (1);
+	if (nb_len > max_nb_len)
+		return (0);
+	if (*str == '-')
+		return (!ft_strcmp(mover, (MIN_NB + 1)));
+	return (!ft_strcmp(mover, MAX_NB));
 }
 
 /**
@@ -34,7 +52,7 @@ void	exit_status_code(char **args, int *exit_code)
 			ft_putendl_fd("exit: too many arguments", 2);
 			*exit_code = 1;
 		}
-		else if (!ft_strisinteger(args[1]) || check_arg(args[1]))
+		else if (!treat_as_number(args[1]))
 		{
 			*exit_code = 2;
 			ft_putendl_fd("exit: numeric argument required", 2);
