@@ -6,13 +6,13 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:19:57 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/20 10:28:24 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/20 10:57:08 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	treat_as_number(char *str)
+static int	treat_as_number(char *str)
 {
 	char			*mover;
 	size_t			nb_len;
@@ -31,8 +31,8 @@ int	treat_as_number(char *str)
 	if (nb_len > max_nb_len)
 		return (0);
 	if (*str == '-')
-		return (!ft_strcmp(mover, (MIN_NB + 1)));
-	return (!ft_strcmp(mover, MAX_NB));
+		return (ft_strcmp(&MIN_NB[1], mover) >= 0);
+	return (ft_strcmp(mover, &MAX_NB[0]) <= 0);
 }
 
 /**
@@ -42,24 +42,24 @@ int	treat_as_number(char *str)
  * @param args The arguments passed to the function.
  * @param exit_code A pointer to the exit status code variable.
  */
-void	exit_status_code(char **args, int *exit_code)
+static int	exit_status_code(char **args)
 {
-	*exit_code = 0;
 	if (args && args[1])
 	{
 		if (args[2])
 		{
 			ft_putendl_fd("exit: too many arguments", 2);
-			*exit_code = 1;
+			return (1);
 		}
 		else if (!treat_as_number(args[1]))
 		{
-			*exit_code = 2;
 			ft_putendl_fd("exit: numeric argument required", 2);
+			return (2);
 		}
 		else
-			*exit_code = (int)(unsigned char)ft_atoi(args[1]);
+			return((int)(unsigned char)ft_atoi(args[1]));
 	}
+	return (0);
 }
 
 void	clear_everything(void)
@@ -84,7 +84,7 @@ int	builtin_exit(char **args)
 		ft_putendl_fd("minishell: too many arguments", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	exit_status_code(args, &exit_code);
+	exit_code = exit_status_code(args);
 	ft_clear_list(&args);
 	clear_everything();
 	exit(exit_code);
