@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:33:04 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/18 21:33:01 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/20 01:21:51 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*merged_substitution(char *head, char *middle, char *tail,
 	if (!ft_strncmp(middle, "?", 2))
 		expansion = ft_itoa(last_exit_status(-1));
 	else
-		expansion = ft_strdup(getenv_or_blank(middle));
+		expansion = ft_strdup(ft_getenv_or_blank(middle));
 	free (middle);
 	if (expansion)
 	{

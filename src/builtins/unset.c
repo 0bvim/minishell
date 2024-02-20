@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:50:11 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/19 21:25:52 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/20 00:49:00 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-char	*key_name(const char *key_value);
 
 static	char	**clone_env_except(char **env_vars, int except)
 {

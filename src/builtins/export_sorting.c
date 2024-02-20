@@ -6,11 +6,32 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 19:53:32 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/17 20:49:45 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/20 01:08:06 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	format_and_print(const char *env_var)
+{
+	char	*name;
+	char	*equal;
+	char	*value;
+	char	*copy;
+
+	copy = ft_strdup(env_var);
+	equal = ft_strchr(copy, '=');
+	if (!equal)
+		printf("declare -x %s\n", copy);
+	else
+	{
+		*equal = '\0';
+		name = copy;
+		value = equal + 1;
+		printf("declare -x %s=\"%s\"\n", name, value);
+	}
+	free(copy);
+}
 
 static int	print_small(char **env, size_t env_size, unsigned char *printed)
 {
@@ -31,7 +52,7 @@ static int	print_small(char **env, size_t env_size, unsigned char *printed)
 	}
 	if (small_pos != -1)
 	{
-		printf("declare -x %s\n", env[small_pos]);
+		format_and_print(env[small_pos]);
 		printed[small_pos]++;
 		return (1);
 	}

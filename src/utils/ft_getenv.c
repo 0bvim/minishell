@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:42:26 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/02 11:50:16 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/20 01:20:07 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,14 @@ char	*ft_getenv(const char *name)
 	env_var = getenv(name);
 	__environ = temp_env;
 	return (env_var);
+}
+
+char	*ft_getenv_or_blank(const char *name)
+{
+	char	*env_var;
+
+	env_var = ft_getenv(name);
+	if (env_var)
+		return (env_var);
+	return (BLANK);
 }

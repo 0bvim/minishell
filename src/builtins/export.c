@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:08:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/19 21:38:38 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/20 00:51:44 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 void	print_environ_sorted(void);
-char	*key_name(const char *key_value);
 int		is_valid_identifier(char *str);
 
 static void	add_to_env(char *new_env_var)
@@ -44,17 +43,8 @@ static char	*new_env_var_generator(const char *name, const char *value)
 
 	if (!value)
 		return (ft_strdup(name));
-	if (*value != '\"')
-	{
-		if (*value == '\'')
-			eq_value = ft_strndup(value + 1, ft_strlen(value) - 2);
-		else
-			eq_value = ft_strdup(value);
-		tmp = ft_strjoin("\"", eq_value);
-		free (eq_value);
-		eq_value = ft_strjoin(tmp, "\"");
-		free (tmp);
-	}
+	if (*value == '\"' || *value == '\'')
+		eq_value = ft_strndup(value + 1, ft_strlen(value) - 2);
 	else
 		eq_value = ft_strdup(value);
 	tmp = eq_value;

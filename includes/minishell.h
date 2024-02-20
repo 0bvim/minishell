@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/19 21:44:32 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/20 01:22:31 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int			export(char **args);
 int			pwd(const char **args);
 int			unset(char **args);
 void		clear_everything(void);
+char		*key_name(const char *key_value);
 
 //prompt
 char		*prompt(void);
@@ -139,9 +140,6 @@ void		handle_and_or(t_ast *node);
 
 //handle block
 void		handle_block(t_token *block);
-
-// code_pieces
-char		*getenv_or_blank(const char *name);
 
 //expands dollar sign variables
 void		clear_tree(t_ast *root);
@@ -184,6 +182,7 @@ int			last_exit_status(int exit_status);
 void		pid_last_exit_status(pid_t pid);
 void		ft_clear_list(char ***list);
 char		*ft_getenv(const char *name);
+char		*ft_getenv_or_blank(const char *name);
 void		close_fds(void);
 int			is_fork(int status);
 
