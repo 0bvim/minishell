@@ -8,6 +8,7 @@
 		"vector": "c",
 		"string_view": "c",
 		"initializer_list": "c",
-		"cstdlib": "c"
+		"cstdlib": "c",
+		"string.h": "c"
 	}
 }

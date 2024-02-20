@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:08:03 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/19 19:16:42 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:38:38 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*new_env_var_generator(const char *name, const char *value)
 	if (*value != '\"')
 	{
 		if (*value == '\'')
-			eq_value = ft_strndup(value + 1, strlen(value) - 2);
+			eq_value = ft_strndup(value + 1, ft_strlen(value) - 2);
 		else
 			eq_value = ft_strdup(value);
 		tmp = ft_strjoin("\"", eq_value);

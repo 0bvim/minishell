@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/19 21:34:46 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:44:32 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 /* malloc, free, write, printf, getcwd, chdir, stat, lstat and others */
 # include <dirent.h>
-# include <stdlib.h>
-# include <string.h>
 # include <sys/stat.h>
 # include <termios.h>
 
@@ -69,12 +67,6 @@ enum	e_token
 	TOKEN_NULL,
 	BLOCK,
 	EXEC
-};
-
-enum	e_flags
-{
-	READ,
-	WRITE
 };
 
 enum	e_type_match
