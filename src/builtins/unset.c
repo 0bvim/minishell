@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:50:11 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/19 21:22:43 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:25:52 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static	char	**clone_env_except(char **env_vars, int except)
 	while (env_vars[++i])
 	{
 		if (i == except)
-			continue;
+			continue ;
 		new_env[++j] = ft_strdup(env_vars[i]);
 	}
 	return (new_env);
