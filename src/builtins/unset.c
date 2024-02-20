@@ -6,11 +6,36 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:50:11 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/19 20:50:16 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:22:43 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+char	*key_name(const char *key_value);
+
+static	char	**clone_env_except(char **env_vars, int except)
+{
+	int		i;
+	int		j;
+	char	**new_env;
+
+	i = 0;
+	while (env_vars[i])
+		i++;
+	new_env = ft_calloc(i, sizeof(char *));
+	if (!new_env)
+		return (NULL);
+	i = -1;
+	j = -1;
+	while (env_vars[++i])
+	{
+		if (i == except)
+			continue;
+		new_env[++j] = ft_strdup(env_vars[i]);
+	}
+	return (new_env);
+}
 
 void	ft_unsetenv(const char *name)
 {
