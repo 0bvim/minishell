@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_array.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:49:56 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/01/29 15:39:10 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/19 21:31:48 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,4 @@ char	*getenv_or_blank(const char *name)
 	if (env_var)
 		return (env_var);
 	return (BLANK);
-}
-
-char	**get_paths(void)
-{
-	char		**splited_path;
-	const char	*full_path = getenv_or_blank("PATH");
-
-	splited_path = ft_split(full_path, ':');
-	return (splited_path);
 }

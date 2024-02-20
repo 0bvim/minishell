@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/19 20:12:25 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:34:46 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,6 @@ void		handle_block(t_token *block);
 char		*getenv_or_blank(const char *name);
 
 //expands dollar sign variables
-char		**get_paths(void);
 void		clear_tree(t_ast *root);
 
 //AST
@@ -187,7 +186,6 @@ int			block_rule(t_element *el);
 //UTILS
 int			ft_issymbol(char c);
 void		ft_skip_spaces(const char **str);
-void		clear_console(void);
 int			which_token(const char *str);
 t_list		*ft_lstsplit(t_list *lst, t_element *el);
 int			last_exit_status(int exit_status);
