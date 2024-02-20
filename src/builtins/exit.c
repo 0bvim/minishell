@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:19:57 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/19 00:15:45 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/02/20 05:32:05 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	check_arg(char *str)
+{
+	return (!ft_strcmp(str, MAX_NB) || !ft_strcmp(str, MIN_NB));
+}
 
 /**
  * Sets the exit status code based on the arguments provided.
@@ -29,10 +34,10 @@ void	exit_status_code(char **args, int *exit_code)
 			ft_putendl_fd("exit: too many arguments", 2);
 			*exit_code = 1;
 		}
-		else if (!ft_strisinteger(args[1]))
+		else if (!ft_strisinteger(args[1]) || check_arg(args[1]))
 		{
-			ft_putendl_fd("exit: numeric argument required", 2);
 			*exit_code = 2;
+			ft_putendl_fd("exit: numeric argument required", 2);
 		}
 		else
 			*exit_code = (int)(unsigned char)ft_atoi(args[1]);

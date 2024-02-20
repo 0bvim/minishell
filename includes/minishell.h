@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/20 01:22:31 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/20 05:22:00 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define TRUN 0x00000242
 # define APEN 0x00000442
 # define HERE 0x000000C2
+# define MAX_NB "9223372036854775808"
+# define MIN_NB "-9223372036854775809"
 
 extern volatile int	g_last_signal;
 
