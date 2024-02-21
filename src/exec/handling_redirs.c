@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/19 21:23:09 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:55:49y vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void	handle_outfile(t_ast *node)
 		node->fd = open(token->str, TRUN, 0666);
 	else if (node->type == APPEND)
 		node->fd = open(token->str, APEN, 0666);
+	if ((node->fd == -1) && last_exit_status(-1))
+		last_exit_status(0);
 	open_file_error(token->str);
 }
 
@@ -65,6 +67,8 @@ void	handle_infile(t_ast *node)
 		&& token->type != DOUBLE_QUOTE)
 		heredoc_expansion(token);
 	node->fd = open(token->str, O_RDONLY);
+	if (node->fd == -1 && last_exit_status(-1))
+		last_exit_status(0);
 	open_file_error(token->str);
 }
 
@@ -72,7 +76,8 @@ void	open_dup_close(t_ast *node)
 {
 	if (is_redirect(node->left->type))
 		open_dup_close(node->left);
-	if (is_redirect_out(node->type) && !last_exit_status(-1))
+	if (is_redirect_out(node->type)
+		&& ((node->fd != -1 && node->left->fd != -1) || !last_exit_status(-1)))
 	{
 		handle_outfile(node);
 		if (node->fd != -1)
