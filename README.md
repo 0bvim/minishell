@@ -46,4 +46,9 @@ ls *
 cat *c
 ```
 
+## Download
+```ssh
+git clone git@github.com:vinicius-f-pereira/minishell.git
+```
+Use `make` or `make bonus` and follow instructions [`Here`](#mandatory-part)
 ### under construction.
