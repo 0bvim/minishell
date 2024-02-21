@@ -19,7 +19,7 @@ We need to implement a bash that handle simple commands like
 	- `ctrl-C`
 	- `ctrl-D`
 	- `ctrl-\`
-6. $? (expand to the exit status of the most recently executed foregrund pipeline)
+6. $? (expand to the exit status of the most recently executed foreground pipeline)
 7. builtins
 	- `echo with option -n`
 	- `cd with only a relative or absolute path`
@@ -28,5 +28,22 @@ We need to implement a bash that handle simple commands like
 	- `unset with no options`
 	- `env with no options or arguments`
 	- `exit with no options`
+
+### Bonus part
+Our program has to implement
+	- `&& and || with parenthesis for priorities.`
+	- `Wildcards * should work for the current working directory.`
+
+```bash
+# && and || examples
+echo Hello && echo Bye
+wrong_command || echo right_command
+```
+
+```bash
+# Wildcard example
+ls *
+cat *c
+```
 
 ### under construction.
