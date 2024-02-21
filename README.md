@@ -30,7 +30,7 @@ We need to implement a bash that handle simple commands like
 	- `exit with no options`
 
 ### Bonus part
-Our program has to implement
+- Our program has to implement
 	- `&& and || with parenthesis for priorities.`
 	- `Wildcards * should work for the current working directory.`
 
