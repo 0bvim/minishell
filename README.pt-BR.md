@@ -4,40 +4,40 @@
 Esse projeto e sobre criar o seu proprio shell.
 
 ### Mandatory part
-Nos precisamos implementar um bash que execute os comando a seguir
+Nos precisamos implementar um bash que execute os comandos a seguir
 
-1. redirections
-	- `output (ls > file)`
-	- `append (echo Hail >> file)`
-	- `input (< Makefile cat)`
-	- `heredoc (cat << delimiter_to_stop)`
+1. redirecionamento
+	- `saida (ls > arquivo)`
+	- `acrescentar (echo Hail >> arquivo)`
+	- `entrada (< Makefile cat)`
+	- `heredoc (cat << delimitador_de_parada)`
 2. pipes
 	- `cat Makefile | grep CFLAGS | tr ' ' '#' | wc`
-3. command history
-4. environment variables
-5. signals
+3. historico de comandos
+4. variaveis ambiente
+5. sinais
 	- `ctrl-C`
 	- `ctrl-D`
 	- `ctrl-\`
-6. $? (expand to the exit status of the most recently executed foreground pipeline)
+6. $? (expande para o codigo de estado de saida mais recente executado na linha de comando do primeiro plano.)
 7. builtins
-	- `echo with option -n`
-	- `cd with only a relative or absolute path`
-	- `pwd with no options`
-	- `export with no options`
-	- `unset with no options`
-	- `env with no options or arguments`
-	- `exit with no options`
+	- `echo com a flag -n`
+	- `cd apenas com caminho relativo e absoluto`
+	- `pwd sem flags`
+	- `export sem flags`
+	- `unset sem flags`
+	- `env sem flags e argumentos`
+	- `exit flags`
 
 ### Bonus part
-- Our program has to implement
-	- `&& and || with parenthesis for priorities.`
-	- `Wildcards * should work for the current working directory.`
+- Nosso programa precisa executar
+	- `&& e || com parenteses para prioridades.`
+	- `Wildcards * devem funcionar para o diretorio atual.`
 
 ```bash
 # && and || examples
-echo Hello && echo Bye
-wrong_command || echo right_command
+echo oi && echo Tchau
+comando_errado || echo comando_da_direita
 ```
 
 ```bash
@@ -50,5 +50,4 @@ cat *c
 ```ssh
 git clone git@github.com:vinicius-f-pereira/minishell.git
 ```
-Use `make` or `make bonus` and follow instructions [`Here`](#mandatory-part)
-### under construction.
+Use `make` or `make bonus` e siga as instrucoes [`Here`](#mandatory-part)
