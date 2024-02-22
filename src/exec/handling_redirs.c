@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handling_redirs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/21 08:47:01 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/22 00:49:11 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	open_dup_close(t_ast *node)
 	if (is_redirect(node->left->type))
 		open_dup_close(node->left);
 	if (is_redirect_out(node->type)
-		&& ((node->fd != -1 && node->left->fd != -1) || !last_exit_status(-1)))
+		&& ((node->fd != -1 && node->left->fd != -1) && !last_exit_status(-1)))
 	{
 		handle_outfile(node);
 		if (node->fd != -1)
