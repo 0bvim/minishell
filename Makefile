@@ -5,7 +5,7 @@ NAME = minishell
 SHELL := /bin/bash
 
 # misc #
-COUNT := 0
+COUNT = -1
 SLEEP := sleep 0.2
 
 # colors #
@@ -44,6 +44,7 @@ BG_MAGENTA=\033[105m
 BG_CYAN=\033[106m
 BG_WHITE=\033[107m
 RESET=\033[0m
+RESET_TERM=\r\033[K
 
 # messages #
 MANDATORY = Program compiled
@@ -92,7 +93,6 @@ LIBFT_PATH = lib/libft
 
 # main #
 MAIN_SRC = $(ENTRANCE)/minishell.c
-BONUS_SRC = $(addprefix $(BONUS)/, )
 
 # files mandatory #
 CFILES = $(addprefix $(ENTRANCE)/, environ.c)
@@ -150,7 +150,7 @@ define compile_source
 	$(eval COUNT=$(shell expr $(COUNT) + 1))
 	$(MAKE) -sC $(LIBFT_PATH)
 	$(CC) -o $@ $(CFLAGS) $(INCLUDES) -c $<
-	printf "$(GREEN)$(LIBNAME) $(COMP) %d%%\r$(RESET)" $$(echo $$(($(COUNT) * 100 / $(words $(CFILES)))))
+	printf "$(RESET_TERM)$(RESET)%d%%  $(GREEN)$(COMP) $(notdir $<) -> $(notdir $@) to $(NAME) \r$(RESET)" $$(echo $$(($(COUNT) * 100 / $(words $(OBJECT)))))
 endef
 
 define clean
