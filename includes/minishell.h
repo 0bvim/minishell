@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/20 10:24:10 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/02/22 01:26:44 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ int			is_redirect_out(int type);
 void		dup_close_tmp(const int *tmp);
 void		handle_redirs(t_ast *node_pipe);
 void		fd_keeper(const int *tmp, int node_fd, int to_close);
+void		dup_fun(t_ast *node, int outin);
 
 //handle && and ||
 void		handle_and_or(t_ast *node);

@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:26:07 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/22 00:49:11 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/02/22 01:30:09 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,18 @@ void	open_dup_close(t_ast *node)
 	if (is_redirect(node->left->type))
 		open_dup_close(node->left);
 	if (is_redirect_out(node->type)
-		&& ((node->fd != -1 && node->left->fd != -1) && !last_exit_status(-1)))
+		&& (node->left->fd != -1 || !last_exit_status(-1)))
 	{
 		handle_outfile(node);
-		if (node->fd != -1)
-		{
-			dup2(node->fd, STDOUT_FILENO);
-			close(node->fd);
-		}
+		dup_fun(node, STDOUT_FILENO);
 	}
+	else if (node->left->fd == -1)
+		node->fd = -1;
 	else if (is_redirect_in(node->type)
 		&& (node->left->fd != -1 || !last_exit_status(-1)))
 	{
 		handle_infile(node);
-		if (node->fd != -1)
-		{
-			dup2(node->fd, STDIN_FILENO);
-			close(node->fd);
-		}
+		dup_fun(node, STDIN_FILENO);
 		if (node->type == HEREDOC)
 			unlink(node->right->exec->first->content);
 	}
@@ -106,7 +100,7 @@ void	handle_redirs(t_ast *node)
 
 	if (!node->fd)
 		open_dup_close(node);
-	if (last_exit_status(-1) && node->fd == -1)
+	if (last_exit_status(-1) || node->fd == -1)
 	{
 		dup_close_tmp(tmp);
 		return ;
