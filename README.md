@@ -3,6 +3,12 @@
 # minishell
 This project is about creating a simple shell.
 
+## Table of Contents
+- [Mandatory](#mandatory-part)
+- [Bonus](#bonus-part)
+- [Download](#download)
+- [License](./LICENSE)
+
 ### Mandatory part
 We need to implement a bash that handle simple commands like
 
