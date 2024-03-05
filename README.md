@@ -9,7 +9,7 @@ This project is about creating a simple shell.
 - [Download](#download)
 - [License](./LICENSE)
 
-### Mandatory part
+## Mandatory part
 We need to implement a bash that handle simple commands like
 
 1. redirections
