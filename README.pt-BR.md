@@ -3,7 +3,13 @@
 # minishell
 Esse projeto e sobre criar o seu proprio shell.
 
-### Mandatory part
+## Tabela de Conteúdo
+- [Mandatorio](#mandatory-part)
+- [Bonus](#bonus-part)
+- [Download](#download)
+- [Licença](./LICENSE)
+
+## Mandatory part
 Nos precisamos implementar um bash que execute os comandos a seguir
 
 1. redirecionamento
