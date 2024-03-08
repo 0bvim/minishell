@@ -183,15 +183,12 @@ endef
 
 define help
 	echo -e "${BG_DARK_GREEN}${ORANGE}Available targets:${RESET}"
-	echo -e "${BG_DARK_GREEN}${ORANGE}all:${RESET}${LIGHT_GRAY}Build push swap${RESET}"
-	echo -e "${BG_DARK_GREEN}${ORANGE}both:${RESET}${LIGHT_GRAY}Build push swap and checker${RESET}"
-	echo -e "${BG_DARK_GREEN}${ORANGE}bonus:${RESET}${LIGHT_GRAY}Build checker${RESET}"
+	echo -e "${BG_DARK_GREEN}${ORANGE}all:${RESET}${LIGHT_GRAY}Build minishell${RESET}"
+	echo -e "${BG_DARK_GREEN}${ORANGE}bonus:${RESET}${LIGHT_GRAY}Build minishell_bonus${RESET}"
 	echo -e "${BG_DARK_GREEN}${ORANGE}re:${RESET}${LIGHT_GRAY}Rebuild the program${RESET}"
 	echo -e "${BG_RED}${ORANGE}clean:${RESET}${LIGHT_GRAY}Remove the object files${RESET}"
 	echo -e "${BG_RED}${ORANGE}fclean:${RESET}${LIGHT_GRAY}Remove the program and the object files${RESET}"
 	echo -e "${BG_BLUE}${ORANGE}debug:${RESET}${LIGHT_GRAY}Build the program with debugging information${RESET}"
-	echo -e "${BG_BLUE}${ORANGE}case:${RESET}${LIGHT_GRAY}Show numbers with best and worst case${RESET}"
-	echo -e "${BG_BLUE}${ORANGE}test_nb:${RESET}${LIGHT_GRAY}Test the program with provided list length${RESET}"
 endef
 
 # rules #
