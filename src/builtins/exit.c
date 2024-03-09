@@ -6,11 +6,12 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:19:57 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/20 12:48:00 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:01:45 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <readline/readline.h>
 
 static int	treat_as_number(char *str)
 {
@@ -64,6 +65,7 @@ static int	exit_status_code(char **args)
 
 void	clear_everything(void)
 {
+	rl_clear_history();
 	ast_holder(NULL, 1);
 	environ_holder(NULL, 1);
 	static_pwd(NULL, 1);

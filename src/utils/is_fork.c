@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:51:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/22 01:25:59 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:01:20 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	is_fork(int status)
 
 	if (status == 1)
 		on_fork = status;
+	rl_clear_history();
 	return (on_fork);
 }
 
