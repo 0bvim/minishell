@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:44:34 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/02/18 11:05:48 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/14 22:54:48 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,18 @@ int	check_block_grammar(t_element *el)
 
 	tokens_backup = token_list_holder(NULL, 0, 0);
 	block_tokens = tokenizer(((t_token *)el->content)->str);
-	ft_lstiter(block_tokens, trim_edges);
-	grammar = grammar_checker(block_tokens);
-	token_list_holder(NULL, 1, 0);
+	if (block_tokens)
+	{
+		ft_lstiter(block_tokens, trim_edges);
+		grammar = grammar_checker(block_tokens);
+		token_list_holder(NULL, 1, 0);
+	}
 	token_list_holder(tokens_backup, 0, 0);
+	if (!block_tokens)
+	{
+		panic_tokenizer(2, "syntax error near unexpected token");
+		return (1);
+	}
 	if (grammar)
 	{
 		panic_tokenizer(2, NULL);
@@ -78,10 +86,5 @@ int	block_rule(t_element *el)
 		panic_tokenizer(2, "syntax error near unexpected token");
 		return (1);
 	}
-	if (check_block_grammar(el))
-	{
-		token_list_holder(NULL, 1, 0);
-		return (1);
-	}
-	return (0);
+	return (check_block_grammar(el));
 }
