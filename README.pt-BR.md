@@ -1,7 +1,7 @@
 [![eng](../../../stuff/blob/main/USA-icon.png)](README.md) ![pt-BR](../../../stuff/blob/main/Brazil-icon.png)
 
 # minishell
-Esse projeto e sobre criar o seu proprio shell.
+Esse projeto é sobre criar o seu próprio shell.
 
 ## Tabela de Conteúdo
 - [Mandatorio](#mandatory-part)
@@ -10,7 +10,7 @@ Esse projeto e sobre criar o seu proprio shell.
 - [Licença](./LICENSE)
 
 ## Mandatory part
-Nos precisamos implementar um bash que execute os comandos a seguir
+Nós precisamos implementar um bash que execute os comandos a seguir
 
 1. redirecionamento
 	- `saida (ls > arquivo)`
@@ -41,13 +41,13 @@ Nos precisamos implementar um bash que execute os comandos a seguir
 	- `Wildcards * devem funcionar para o diretorio atual.`
 
 ```bash
-# && and || examples
+# && and || examplos
 echo oi && echo Tchau
 comando_errado || echo comando_da_direita
 ```
 
 ```bash
-# Wildcard example
+# Wildcard examplo
 ls *
 cat *c
 ```
