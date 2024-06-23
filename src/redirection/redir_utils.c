@@ -6,7 +6,7 @@
 /*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 23:37:33 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/19 02:14:42 by nivicius         ###   ########.fr       */
+/*   Updated: 2024/06/23 15:57:48 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ int	expand_redirs(t_list *right_tokens)
 
 	list_size = right_tokens->size;
 	args = tokens_to_args(right_tokens);
+	if (!args[0])
+	{
+		free(args);
+		return (ambiguous_error());
+	}
 	token = right_tokens->first->content;
 	free(token->str);
 	token->str = ft_strdup(args[0]);
@@ -45,11 +50,7 @@ int	expand_redirs(t_list *right_tokens)
 		return (0);
 	ft_clear_list(&args);
 	if (right_tokens->size > list_size)
-	{
-		ft_putendl_fd("ambiguous redirect", 2);
-		last_exit_status(1);
-		return (0);
-	}
+		return (ambiguous_error());
 	return (1);
 }
 
