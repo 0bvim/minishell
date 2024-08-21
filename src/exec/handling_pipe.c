@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:30:51 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/20 09:41:23 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/04/19 09:26:54 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	fork_process(int *fildes, t_ast *node_pipe, int left_right)
 {
 	is_fork(1);
-	if (left_right == 0 && node_pipe->left->type != R_REDIR)
+	if (!left_right)
 		dup2(fildes[1], STDOUT_FILENO);
 	else if (left_right == 1)
 		dup2(fildes[0], STDIN_FILENO);
 	close(fildes[0]);
 	close(fildes[1]);
-	if (left_right == 0 && node_pipe->left->type != R_REDIR)
+	if (!left_right)
 	{
 		execution(node_pipe->left);
 		close_fds();
@@ -51,8 +51,6 @@ int	handle_pipe(t_ast *node_pipe)
 	int			fildes[2];
 	pid_t		fs[2];
 
-	if (node_pipe->left->type == R_REDIR)
-		execution(node_pipe->left);
 	if (!pipe(fildes))
 	{
 		fs[0] = fork();

@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 10:16:44 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/02/14 10:53:37 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/06/18 15:51:12 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ int	ast_split_node(t_ast *ast_node, t_list *tokens,
 	}
 	ast_node->type = ((t_token *)tokens->last->content)->type;
 	ft_lstdelone(tokens, tokens->last, free_token);
-	if (ast_node->type == L_REDIR || ast_node->type == R_REDIR
-		|| ast_node->type == HEREDOC || ast_node->type == APPEND)
+	if (is_redirect(ast_node->type))
 		transfer_all_elements_keep_first(tokens, right);
 	ast_node->left = ast_constructor(tokens);
 	ast_node->right = ast_constructor(right);

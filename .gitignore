@@ -55,3 +55,5 @@ minishell_bonus
 minishell_tester/
 test_files/
 outfiles/
+valgrind*
+tags

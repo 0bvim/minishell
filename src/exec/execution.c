@@ -26,13 +26,11 @@ static void	fork_and_execve(char **tokens, char *path)
 	{
 		is_fork(1);
 		signal(SIGQUIT, SIG_DFL);
-		if (execve(path, tokens, environ_holder(NULL, 0)) < 0)
-		{
-			treat_errors(path);
-			ft_clear_list(&tokens);
-			free(path);
-			exit(last_exit_status(-1));
-		}
+		execve(path, tokens, environ_holder(NULL, 0));
+		treat_errors(path);
+		ft_clear_list(&tokens);
+		free(path);
+		exit(last_exit_status(-1));
 	}
 	pid_last_exit_status(pid);
 }

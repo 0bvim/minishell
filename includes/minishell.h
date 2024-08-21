@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:55:27 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/02/22 01:26:44 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/06/23 15:57:00 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ char		*ft_getenv(const char *name);
 char		*ft_getenv_or_blank(const char *name);
 void		close_fds(void);
 int			is_fork(int status);
+int			ambiguous_error(void);
 
 //TOKENIZER
 t_list		*tokenizer(const char *str);
