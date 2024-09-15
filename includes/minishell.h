@@ -81,24 +81,24 @@ enum	e_type_match
 
 typedef struct s_token
 {
+  char	*str;
 	int		type;
-	char	*str;
 	char	next_char;
 }	t_token;
 
 typedef struct s_ast
 {
-	int					type;
-	int					fd;
-	struct s_ast		*left;
-	struct s_ast		*right;
-	t_list				*exec;
+  struct s_ast		*left;
+  struct s_ast		*right;
+  t_list				*exec;
+  int					type;
+  int					fd;
 }	t_ast;
 
 typedef struct s_cmd
 {
+  char	**args;
 	char	*cmd;
-	char	**args;
 }	t_cmd;
 
 //ENTRANCE
