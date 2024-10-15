@@ -14,7 +14,7 @@
 
 /**
  * Executes the appropriate built-in command based on the given arguments.
- * 
+ *
  * @param args The array of command-line arguments.
  * @return The exit status of the executed command. -1 if no command was
  * executed.

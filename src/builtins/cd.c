@@ -12,9 +12,9 @@
 
 #include "../../includes/minishell.h"
 
-int		success(void);
-void	test_exist_permission(char *path, char **pwd, int *chdir_ret);
-int		inexistent_directory(char *path, char *pwd);
+int			success(void);
+void		test_exist_permission(char *path, char **pwd, int *chdir_ret);
+int			inexistent_directory(char *path, char *pwd);
 
 static int	test_to_change(char *path)
 {
@@ -56,8 +56,7 @@ int	cd(char **args)
 	const char	*home = ft_getenv("HOME");
 	char		*path;
 
-	if (!args[1]
-		|| (args[1] && !args[2] && !ft_strcmp(args[1], "~")))
+	if (!args[1] || (args[1] && !args[2] && !ft_strcmp(args[1], "~")))
 		return (case_home(home));
 	else if (args[2])
 	{

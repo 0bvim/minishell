@@ -12,9 +12,9 @@
 
 #include "../../includes/minishell.h"
 
-int	is_valid_identifier(char *str);
+int			is_valid_identifier(char *str);
 
-static	char	**clone_env_except(char **env_vars, int except)
+static char	**clone_env_except(char **env_vars, int except)
 {
 	int		i;
 	int		j;
