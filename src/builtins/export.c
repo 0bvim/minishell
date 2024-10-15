@@ -12,8 +12,8 @@
 
 #include "../../includes/minishell.h"
 
-void	print_environ_sorted(void);
-int		is_valid_identifier(char *str);
+void		print_environ_sorted(void);
+int			is_valid_identifier(char *str);
 
 static void	add_to_env(char *new_env_var)
 {
@@ -49,9 +49,9 @@ static char	*new_env_var_generator(const char *name, const char *value)
 		eq_value = ft_strdup(value);
 	tmp = eq_value;
 	eq_value = ft_strjoin("=", eq_value);
-	free (tmp);
+	free(tmp);
 	new_env_var = ft_strjoin(name, eq_value);
-	free (eq_value);
+	free(eq_value);
 	return (new_env_var);
 }
 
@@ -75,7 +75,7 @@ static void	ft_setenv(const char *name, const char *value)
 			env_vars[i] = new_env_var;
 			return ;
 		}
-		free (env_var);
+		free(env_var);
 	}
 	add_to_env(new_env_var);
 }
@@ -96,6 +96,11 @@ int	export(char **args)
 		if (!is_valid_identifier(args[i]) && status++)
 			continue ;
 		name = key_name(args[i]);
+		if (ft_strcmp(name, "="))
+		{
+			free(name);
+			break ;
+		}
 		equal_sign = ft_strchr(args[i], '=');
 		if (equal_sign)
 			ft_setenv(name, equal_sign + 1);
