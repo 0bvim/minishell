@@ -23,7 +23,7 @@ static void	format_and_print(const char *env_var)
 	equal = ft_strchr(copy, '=');
 	if (!equal)
 		printf("declare -x %s\n", copy);
-	else
+	else if (ft_strncmp(copy, "_=", 2))
 	{
 		*equal = '\0';
 		name = copy;
