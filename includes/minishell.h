@@ -12,11 +12,14 @@
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+# include <crt_externs.h>
+
+#define __environ (*_NSGetEnviron())
 
 /* for read line (compile with -lreadline or just -l) */
+# include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include <stdio.h>
 
 /* malloc, free, write, printf, getcwd, chdir, stat, lstat and others */
 # include <dirent.h>

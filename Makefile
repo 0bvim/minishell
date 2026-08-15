@@ -57,9 +57,23 @@ COMP = Compiling
 
 # debug and normal flags #
 DFLAGS = -Wall -Wextra -Werror -g3 # TO DEBBUG
-CFLAGS = -Wall -Werror -Wextra -g3 -pedantic -flto -MD -MP # FOR DEPENDENCIES
+# Removed -flto to avoid LTO-related missing symbol issues on macOS arm64
+CFLAGS = -Wall -Werror -Wextra -g3 -pedantic -MD -MP # FOR DEPENDENCIES
 LFLAGS = -march=native # TO OPTIMIZE FOR SPECIFIC ARCHITECTURE
-FFLAGS = -lreadline # FLAGS THAT ONLY WORK AT THE END OF LINE (AFTER OBJECTS)
+
+# Homebrew readline support:
+# On Apple Silicon Homebrew typically lives under /opt/homebrew, on Intel it's under /usr/local.
+# Allow override by setting READLINE_PREFIX in the environment.
+READLINE_PREFIX ?= /opt/homebrew/opt/readline
+ifeq ($(wildcard $(READLINE_PREFIX)),)
+	ifneq ($(wildcard /usr/local/opt/readline),)
+		READLINE_PREFIX := /usr/local/opt/readline
+	endif
+endif
+
+# Linker flags that must appear at the end (after objects)
+# Link against Homebrew's readline and ncurses to resolve rl_* symbols on macOS arm64
+FFLAGS = -L$(READLINE_PREFIX)/lib -lreadline -lncurses
 
 # paths #
 SRC = src
@@ -85,7 +99,7 @@ HEREDOC = $(SRC)/heredoc
 REDIR = $(SRC)/redirection
 
 # libs #
-INCLUDES = -I$(INC)/ -Ilib/libft/includes/
+INCLUDES = -I$(INC)/ -Ilib/libft/includes/ -I$(READLINE_PREFIX)/include
 LINCLUDES = -L$(LIBFT_PATH) -lft
 
 LIBFT = lib/libft/libft.a

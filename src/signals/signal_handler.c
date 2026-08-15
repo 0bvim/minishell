@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+/* rl_replace_line is declared in <readline/readline.h>; do not redeclare to avoid conflicts */
+
 void	sigint_handler(int signal)
 {
 	g_last_signal = signal;

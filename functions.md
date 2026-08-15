@@ -27,7 +27,7 @@ The functions you listed can be grouped based on their primary purpose, and many
 
 - **Related functions:**
   - `add_history`: Adds a command to the history.
-  - `rl_clear_history`: Clears the history.
+  - `clear_history`: Clears the history.
   - `rl_replace_line`: Replaces the current input line.
   - `rl_on_new_line`: Prepares for a new line.
   - `rl_redisplay`: Redisplays the current line.

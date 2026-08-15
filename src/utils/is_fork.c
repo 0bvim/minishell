@@ -18,7 +18,7 @@ int	is_fork(int status)
 
 	if (status == 1)
 		on_fork = status;
-	rl_clear_history();
+	clear_history();
 	return (on_fork);
 }
 
