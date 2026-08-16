@@ -12,11 +12,11 @@
 
 #include "../../includes/minishell.h"
 
-static int	heredoc_file_creation(int count, int *fd, char **fl_name)
+static int	heredoc_file_creation(int *fd, char **fl_name)
 {
 	static long int	result;
 
-	result = result + (u_int64_t)heredoc_file_creation * count;
+	result = result + (u_int64_t)heredoc_file_creation * 0xFF;
 	*fl_name = ft_strmerge(ft_strdup("/tmp/heredoc"), ft_itoa(result));
 	if (!*fl_name)
 		return (0);
@@ -37,7 +37,7 @@ static void	clean_heredoc_variables(char *buff, const int std_in, int fd)
 	close (std_in);
 }
 
-static int	heredoc_loop(char **buff, t_token *token, const int std_in, int fd)
+static int	heredoc_loop(char **buff, const t_token *token, const int std_in, const int fd)
 {
 	on_heredoc(1);
 	*buff = readline("> ");
@@ -60,14 +60,14 @@ static int	heredoc_loop(char **buff, t_token *token, const int std_in, int fd)
 	return (1);
 }
 
-static int	heredoc(t_token *token, int count)
+static int	heredoc(t_token *token)
 {
 	int			fd;
 	char		*buff;
 	char		*fl_name;
 	const int	std_in = dup(STDIN_FILENO);
 
-	if (!heredoc_file_creation(count, &fd, &fl_name))
+	if (!heredoc_file_creation(&fd, &fl_name))
 		return (0);
 	while (heredoc_loop(&buff, token, std_in, fd))
 		;
@@ -94,7 +94,7 @@ int	heredoc_substitution(t_list *tokens)
 		token = el->content;
 		if (token->type == HEREDOC)
 		{
-			if (!heredoc(el->next->content, 0xFF))
+			if (!heredoc(el->next->content))
 				return (0);
 		}
 		el = el->next;

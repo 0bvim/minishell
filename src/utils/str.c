@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-int	ft_issymbol(char c)
+int	ft_is_symbol(char c)
 {
 	if (ft_strchr(SYMBOLS, c))
 		return (1);

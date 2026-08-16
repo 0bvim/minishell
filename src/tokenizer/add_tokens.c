@@ -52,7 +52,7 @@ static void	add_quotes_token(t_list *tokens,
 }
 
 static void	add_symbols_token(t_list *tokens,
-					const char **start, const char **mover, int token_type)
+					const char **start, const char **mover, const int token_type)
 {
 	if (token_type == AND || token_type == OR || token_type == HEREDOC \
 		|| token_type == APPEND)
@@ -70,7 +70,7 @@ static void	add_block_token(t_list *tokens,
 }
 
 int	add_special_token(t_list *tokens,
-					const char **start, const char **mover, int token_type)
+					const char **start, const char **mover, const int token_type)
 {
 	if (token_type == QUOTE || token_type == DOUBLE_QUOTE)
 		add_quotes_token(tokens, start, mover, token_type);

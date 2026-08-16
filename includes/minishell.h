@@ -180,7 +180,7 @@ int					redir_and_or_pipe_rule(t_element *el);
 int					block_rule(t_element *el);
 
 // UTILS
-int					ft_issymbol(char c);
+int					ft_is_symbol(char c);
 void				ft_skip_spaces(const char **str);
 int					which_token(const char *str);
 t_list				*ft_lstsplit(t_list *lst, t_element *el);
@@ -210,7 +210,6 @@ void				trim_edges(void *content);
 // SIGNALS
 void				signals_initializer(void);
 void				sigint_handler(int signal);
-int					is_after_prompt(int is_after);
 int					on_heredoc(int on_heredoc);
 void				sigquit_case(void);
 
