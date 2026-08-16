@@ -16,10 +16,9 @@ static int	ft_skip_quotes(const char **str)
 {
 	char	quote_type;
 
-	if (**str == '\'' || **str == '"')
-		quote_type = **str;
-	else
+	if (**str != '\'' || **str != '"')
 		return (0);
+	quote_type = **str;
 	(*str)++;
 	while (**str && **str != quote_type)
 		(*str)++;

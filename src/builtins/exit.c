@@ -65,7 +65,7 @@ static int	exit_status_code(char **args)
 
 void	clear_everything(void)
 {
-	rl_clear_history();
+	clear_history();
 	ast_holder(NULL, 1);
 	environ_holder(NULL, 1);
 	static_pwd(NULL, 1);

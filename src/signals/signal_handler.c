@@ -12,7 +12,9 @@
 
 #include "../../includes/minishell.h"
 
-void	sigint_handler(int signal)
+/* rl_replace_line is declared in <readline/readline.h>; do not redeclare to avoid conflicts */
+
+void	sigint_handler(const int signal)
 {
 	g_last_signal = signal;
 	if (is_fork(-1))

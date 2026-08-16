@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	environ_initializer(void)
 {
@@ -51,35 +51,29 @@ char	**environ_holder(char **new_environ, int to_free)
 char	*static_pwd(char *new_pwd, int to_free)
 {
 	static char	*pwd;
+	bool null_pwd;
 
-	if (new_pwd)
-	{
-		if (pwd)
-			free(pwd);
-		pwd = new_pwd;
-	}
-	if (pwd && to_free)
-	{
+	null_pwd = pwd && to_free;
+	if ((new_pwd && pwd) || null_pwd)
 		free(pwd);
+	if (new_pwd)
+		pwd = new_pwd;
+	if (null_pwd)
 		pwd = NULL;
-	}
 	return (pwd);
 }
 
 char	*static_old_pwd(char *new_pwd, int to_free)
 {
 	static char	*pwd;
+	bool null_pwd;
 
-	if (new_pwd)
-	{
-		if (pwd)
-			free(pwd);
-		pwd = new_pwd;
-	}
-	if (pwd && to_free)
-	{
+	null_pwd = pwd && to_free;
+	if ((new_pwd && pwd) || null_pwd)
 		free(pwd);
+	if (new_pwd)
+		pwd = new_pwd;
+	if (null_pwd)
 		pwd = NULL;
-	}
 	return (pwd);
 }

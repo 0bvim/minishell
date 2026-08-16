@@ -25,7 +25,7 @@ static void	token_list_generator(t_list *tokens,
 		{
 			if (!add_special_token(tokens, &start, &mover, token))
 			{
-				while (*mover && !ft_isspace(*mover) && !ft_issymbol(*mover))
+				while (*mover && !ft_isspace(*mover) && !ft_is_symbol(*mover))
 					mover++;
 				if (mover == start)
 					break ;

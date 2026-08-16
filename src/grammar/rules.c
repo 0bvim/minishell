@@ -25,7 +25,7 @@ int	redir_and_or_pipe_rule(t_element *el)
 	else
 		prev_type = -1;
 	if (prev_type == -1 && !is_redirect(type))
-		panic_tokenizer(2, "Invalid token begining the line");
+		panic_tokenizer(2, "Invalid token beginning the line");
 	else if (!el->next)
 		panic_tokenizer(2, "Invalid token at the end of the line");
 	else if (!is_redirect(type)

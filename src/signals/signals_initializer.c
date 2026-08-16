@@ -22,7 +22,7 @@ void	signals_initializer(void)
 	}
 }
 
-int	is_after_prompt(int is_after)
+int	is_after_prompt(const int is_after)
 {
 	static int	after;
 
@@ -31,7 +31,7 @@ int	is_after_prompt(int is_after)
 	return (after);
 }
 
-int	on_heredoc(int on_heredoc)
+int	on_heredoc(const int on_heredoc)
 {
 	static int	heredoc;
 
@@ -46,7 +46,7 @@ void	sigquit_case(void)
 	{
 		ft_putendl_fd("Quit (core dumped)", STDERR_FILENO);
 		term_properties(1);
+		return;
 	}
-	else
-		term_properties(0);
+	term_properties(0);
 }

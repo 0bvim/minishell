@@ -46,14 +46,15 @@ int	quotes_validation(const char *str)
 	int	single_quotes;
 	int	double_quotes;
 
-	if (*str)
+	if (!*str)
+		return (1);
+
+	count_quotes(str, &single_quotes, &double_quotes);
+	if (single_quotes % 2 || double_quotes % 2)
 	{
-		count_quotes(str, &single_quotes, &double_quotes);
-		if (single_quotes % 2 || double_quotes % 2)
-		{
-			ft_putstr_fd("minishell parses closed quotes only\n", 2);
-			return (0);
-		}
+		ft_putstr_fd("minishell parses closed quotes only\n", 2);
+		return (0);
 	}
+
 	return (1);
 }

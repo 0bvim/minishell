@@ -60,7 +60,7 @@ int	ast_split_node(t_ast *ast_node, t_list *tokens,
 	if (!right)
 	{
 		panic_tokenizer(1, NULL);
-		panic_ast(1, "panic while spliting tokens to create AST");
+		panic_ast(1, "panic while splitting tokens to create AST");
 		return (-1);
 	}
 	ast_node->type = ((t_token *)tokens->last->content)->type;
